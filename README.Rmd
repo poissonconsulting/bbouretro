@@ -15,5 +15,12 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(bbouretro)
-## basic example code
+CO<-Recruitment(RsampsC,pFemales=0.65,sexratio=0.5,variance="binomial") 
+S<-KMsurvival(SsampsC,MortType="Total",variance="Pollock")
+PlotRecruitment(CO)
+PlotSurvival(S)
+Lambdadat<-LambdaSim(CO,S)
+Summary<-SummarizeLambda(Lambdadat)
+plotLambda(Lambdadat)
+plotLambdaDistributions(Lambdadat,"C")
 ```
