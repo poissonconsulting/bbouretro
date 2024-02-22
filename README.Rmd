@@ -15,6 +15,10 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(bbouretro)
+
+SsampsC <- bboudata::bbousurv_c
+RsampsC <- bboudata::bbourecruit_c
+
 CO<-Recruitment(RsampsC,pFemales=0.65,sexratio=0.5,variance="binomial") 
 S<-KMsurvival(SsampsC,MortType="Total",variance="Pollock")
 PlotRecruitment(CO)
