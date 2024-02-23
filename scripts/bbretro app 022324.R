@@ -335,7 +335,7 @@ plotLambda(Lambdadat_A)
 plotLambdaDistributions(Lambdadat_A,"A")
 
 #with B
-Rec_B<-Recruitment(bbourecruit_b,pFemales=0.65,sexratio=0.5,variance="binomial") 
+Rec_B<-Recruitment(bbourecruit_b,pFemales=0.65,sexratio=0.5,variance="bootstrap") 
 S_B<-KMsurvival(bbousurv_b,MortType="Total",variance="Pollock")
 PlotRecruitment(Rec_B)
 PlotSurvival(S_B)
@@ -346,7 +346,7 @@ plotLambdaDistributions(Lambdadat_B,"B")
 
 
 #with C
-Rec_C<-Recruitment(bbourecruit_c,pFemales=0.65,sexratio=0.5,variance="binomial") 
+Rec_C<-Recruitment(bbourecruit_c,pFemales=0.65,sexratio=0.5,variance="bootstrap") 
 S_C<-KMsurvival(bbousurv_c,MortType="Total",variance="Pollock")
 PlotRecruitment(Rec_C)
 PlotSurvival(S_C)
