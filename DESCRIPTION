@@ -1,9 +1,15 @@
 Package: bbouretro
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-7388-1222"))
+           comment = c(ORCID = "0000-0001-7388-1222")),
+    person("Seb", "Dalgarno", , "seb@poissonconsulting.ca", role = "ctb",
+           comment = c(ORCID = "0000-0002-3658-4517")),
+    person("Colton", "Stephens", , "colton@poissonconsulting.ca", role = "ctb",
+           comment = c(ORCID = "0000-0002-8744-6405")),
+    person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "ctb")
+  )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports: 
