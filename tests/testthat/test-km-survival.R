@@ -12,6 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+bboudata::bbousurv_c
+
+km_survival(bboudata::bbousurv_c,MortType="Total",variance="Pollock")
+
 test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+  
+  output <- km_survival(
+    bboudata::bbousurv_c,
+    MortType = "Total",
+    variance = "Pollock"
+  )
+  
+  expect_s3_class(output, "data.frame")
+  
 })
