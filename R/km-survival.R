@@ -67,22 +67,28 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   x<-subset(x,x$StartTotal>0)
   
   #calculate monthly components of survival and variance
-  LiveDeadCount<-transform(x,
-                           Smonth=(1-(Morts/StartTotal)), 
-                           Smonth_varj=Morts/(StartTotal*(StartTotal-Morts)))
-  
+  LiveDeadCount<-dplyr::mutate(
+    x,
+    Smonth=(1-(.data$Morts/.data$StartTotal)), 
+    Smonth_varj=.data$Morts/(.data$StartTotal*(.data$StartTotal-.data$Morts))
+  )
+
   #use ddply sum or product each year.
-  YearSurv<-plyr::ddply(LiveDeadCount, c("PopulationName","Year"),plyr::summarize,
-                  S=prod(Smonth),
-                  S_var1=sum(Smonth_varj),
-                  Survmean=mean(Smonth),
-                  sumalive=sum(StartTotal),
-                  sumdead=sum(Morts),
-                  meanalive=mean(StartTotal),
-                  minalive=min(StartTotal),
-                  maxalive=max(StartTotal),
-                  monthcount=length(Year))
-  
+  YearSurv<-plyr::ddply(
+    LiveDeadCount, 
+    c("PopulationName","Year"),
+    plyr::summarize,
+    S=prod(Smonth),
+    S_var1=sum(Smonth_varj),
+    Survmean=mean(Smonth),
+    sumalive=sum(StartTotal),
+    sumdead=sum(Morts),
+    meanalive=mean(StartTotal),
+    minalive=min(StartTotal),
+    maxalive=max(StartTotal),
+    monthcount=length(Year)
+  )
+
   
   YearSurv$VarType<-variance
   
@@ -103,9 +109,11 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   YearSurv$S_SE<-YearSurv$S_Var^0.5
   
   #logit-based confidence intervals--formulas based on program MARK.
-  YearSurv<-transform(YearSurv,
-                      logits=log(S/(1-S)), 
-                      varlogit=S_Var/(S^2*((1-S)^2)))
+  YearSurv<- dplyr::mutate(
+    YearSurv,
+    logits=log(.data$S/(1-.data$S)), 
+    varlogit=.data$S_Var/(.data$S^2*((1-.data$S)^2))
+  )
   YearSurv$S_CIU<-1/(1+exp(-1*(YearSurv$logits+ 1.96*(YearSurv$varlogit**0.5)))) 
   YearSurv$S_CIL<-1/(1+exp(-1*(YearSurv$logits- 1.96*(YearSurv$varlogit**0.5)))) 
   
