@@ -49,10 +49,10 @@ few different approaches.
 See the vignette Methods for description of equations used.
 }
 \examples{
-recruitment_estimate <- bbr_recruitment(
-  bboudata::bbourecruit_a, 
-  pFemales = 0.65, 
-  sexratio = 0.5, 
- variance <- "binomial"
+recruitment_est <- bbr_recruitment(
+  bboudata::bbourecruit_a,
+  pFemales = 0.65,
+  sexratio = 0.5,
+  variance = "binomial"
 )
 }
