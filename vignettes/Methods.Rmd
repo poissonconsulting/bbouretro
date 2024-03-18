@@ -5,6 +5,7 @@ vignette: >
   %\VignetteIndexEntry{Methods}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: bibliography.bib
 ---
 
 ```{r, include = FALSE}
@@ -16,38 +17,39 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(bbouretro)
+library(bboudata)
 ```
 
 
-For `km-survival()`
+## For `km_survival()`
 
-The staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below (Pollock et al. 1989). 
+The staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below [@pollock_survival_1989].
 The probability of surviving in the $i$th time step (usually month) is given by the equation below 
 
 $$ \hat{S}_{i} = 1 - \frac{d_{i}}{r_{i}} $$
 
-where $d_{i}$  is the number of mortalities during the period and  $r_{i}$ is the number of collared individuals at the start of period. 
-The estimated survival for any arbitrary time period $t$  (usually year) is given by 
+where $d_{i}$  is the number of mortalities during the period and  $r_{i}$ is the number of collared individuals at the start of period.
+The estimated survival for any arbitrary time period $t$  (usually year) is given by
 
 $$ \hat{S}(t) = \prod_{i=1}(\hat{S}_{i,t}) $$
 
 where $S$ is the survival during the $i$th time step of the $t$th period.
 
-Standard error is estimated using either the (Cox and Oakes 1984) uses Greenwood’s formula EQN XXX 
+Standard error is estimated using either the [@cox_analysis_1984] uses Greenwood’s formula
 
 $$SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum \frac{d_{i}}{r_{i}(r_{i} - d_{i})}}$$
 
-Or a propose a simpler alternative estimate “which is better in the tails of the distribution” (Pollock et al. 1989). 
+Or a propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989]
 
 $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 
-Logit-based confidence limits are estimated.  
-Further details on the Kaplan Meir approach as applied in boreal caribou studies are given in Pearson et al (2022).
+Logit-based confidence limits are estimated.
+Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in Pearson et al [-@pearson_boreal_2022].
 
-For `recruitment()`
+## For `recruitment()`
 
-Estimation of recruitment follows methods of (DeCesare et al. 2012).
-From Pearson et al (2022) we summarize the following equations: 
+Estimation of recruitment follows methods of [@decesare_estimating_2012].
+From Pearson et al [-@pearson_boreal_2022] we summarize the following equations: 
 
 The age ratio, $X$, is commonly estimated as the number of calves, $n{_j}$, per adult female, $n_{af}$, observed at the end of a measured year, such that 
 
@@ -59,24 +61,25 @@ Recruitment is estimated using the equation below which accounts for recruitment
 
 $$R_{RM} = \frac{X \cdot sexratio}{1 + X \cdot sexratio}$$
 
-Variance is estimated using a bootstrap approach or the binomial method.    
-The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.   
-Percentile-based 95% confidence limits are then estimated from the 1000 estimates.  
+Variance is estimated using a bootstrap approach or the binomial method.
+The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.
+Percentile-based 95% confidence limits are then estimated from the 1000 estimates.
 For the binomial method, variance is estimated as $R_m \cdot (1 - R_{rm})/n)$ where $n$ is the number of adult females sampled during each yearly survey.  
 Logit-based confidence limits are estimated assuming that values of recruitment are constrained between 0 and 1.
-The bootstrap method is recommended as the most robust approach to obtain variance estimates. 
-A full summary of methods is given in (Pearson et al. 2022).
+The bootstrap method is recommended as the most robust approach to obtain variance estimates.
+A full summary of methods is given in [@pearson_boreal_2022].
 
-For `lambda_sim()`
+## For `lambda_sim()`
 
-The basic Hatter-Bergerud equation used to estimate lamba is given below. 
+The basic Hatter-Bergerud equation used to estimate lamba is given below.
 
 $$\lambda = \frac{(S)}{(1 - R)}$$
 
-The standard errors on estimates of survival and recruitment are then used to create simulated distributions of $S$ and $R$ and derive a distribution of $\lambda$ based on the simulated values.  
-It is assumed both survival and recruitment are distributed on the logit scale therefore bounding each value between 0 and 1.  
-One thousand simulations are conducted. 
-Percentile-based confidence limits are then derived.  
-Also, the proportion of simulations where $\lambda$ is greater than 1 is tabulated to provide a p-value for the hypothesis test $(Ho: \lambda >= 1, Ha: \lambda < 1)$.  
+The standard errors on estimates of survival and recruitment are then used to create simulated distributions of $S$ and $R$ and derive a distribution of $\lambda$ based on the simulated values.
+It is assumed both survival and recruitment are distributed on the logit scale therefore bounding each value between 0 and 1.
+One thousand simulations are conducted.
+Percentile-based confidence limits are then derived.
+Also, the proportion of simulations where $\lambda$ is greater than 1 is tabulated to provide a p-value for the hypothesis test $(Ho: \lambda >= 1, Ha: \lambda < 1)$.
 Output summaries also include mean values simulated for $S$, $R$, as well as mean and median $\lambda$ values from the simulation.
 
+## References
