@@ -24,21 +24,8 @@
 #' @param variance Variance type to estimate.  Can be the Greenwood estimator
 #'   “Greenwood” or Pollock estimator (“Pollock”)
 #'
-#' @details The staggered entry Kaplan-Meier, which uses discrete time steps, is
-#' defined algebraically below (Pollock et al. 1989). The probability of
-#' surviving in the \eqn{ith} time step (usually month) is given by the equation
-#' below EQN XX where \eqn{d_i}  is the number of mortalities during the period
-#' and  \eqn{r_i} is the number of collared individuals at the start of period.
-#' The estimated survival for any arbitrary time period \eqn{t}  (usually year)
-#' is given by EQN XX where \eqn{S} is the survival during the \eqn{ith} time
-#' step of the \eqn{tth} period.
-#'
-#' Standard error is estimated using either the (Cox and Oakes 1984) uses
-#' Greenwood’s formula EQN XXX Or a propose a simpler alternative estimate
-#' “which is better in the tails of the distribution” (Pollock et al. 1989)
-#' Logit-based confidence limits are estimated.  Further details on the Kaplan
-#' Meir approach as applied in boreal caribou studies are given in Pearson et al
-#' (2022).
+#' @details 
+#' See the vignette Methods for description of equations used. 
 #'
 #' @return An output data frame with the columns.
 #' @export
@@ -147,6 +134,6 @@ km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   YearSurv$S_CIU <- round(YearSurv$S_CIU, 3)
 
   YearSurvR <- YearSurv[c("PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "MeanMonitored", "sumdead", "sumalive", "Status")]
-
+  
   YearSurvR
 }
