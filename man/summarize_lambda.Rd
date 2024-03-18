@@ -35,5 +35,7 @@ more details on each row.
 Provides a summary of yearly \eqn{lambda} estimates from simulations.
 }
 \examples{
+\dontrun{
 summarize_lambda(lambda)
+}
 }

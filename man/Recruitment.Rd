@@ -69,7 +69,12 @@ variance estimates. A full summary of methods is given in (Pearson et al.
 }
 }
 \examples{
-recruitment_estimate <- recruitment(bboudata::bbourecruit_a, pFemales = 0.65, sexratio = 0.5, variance <- "binomial")
+recruitment_estimate <- recruitment(
+  bboudata::bbourecruit_a, 
+  pFemales = 0.65, 
+  sexratio = 0.5, 
+ variance <- "binomial"
+)
 }
 \references{
 DeCesare, N. J., M. Hebblewhite, M. Bradley, K. G. Smith, D.

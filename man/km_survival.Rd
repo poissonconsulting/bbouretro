@@ -19,7 +19,7 @@ A tibble with columns:
 }
 }
 \usage{
-km_survival(x, MortType, variance)
+km_survival(x, MortType = "Total", variance = "Pollock")
 }
 \arguments{
 \item{x}{input survival data frame}
