@@ -55,7 +55,7 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   chk::chk_string(variance)
 
   # make sure data set is sorted properly
-  x <- dplyr::arrange(x, PopulationName, Year, Month)
+  x <- dplyr::arrange(x, .data$PopulationName, .data$Year, .data$Month)
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
@@ -72,22 +72,22 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
     Smonth = (1 - (.data$Morts / .data$StartTotal)),
     Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
-
-  # use ddply sum or product each year.
-  YearSurv <- plyr::ddply(
-    LiveDeadCount,
-    c("PopulationName", "Year"),
-    plyr::summarize,
-    S = prod(Smonth),
-    S_var1 = sum(Smonth_varj),
-    Survmean = mean(Smonth),
-    sumalive = sum(StartTotal),
-    sumdead = sum(Morts),
-    meanalive = mean(StartTotal),
-    minalive = min(StartTotal),
-    maxalive = max(StartTotal),
-    monthcount = length(Year)
-  )
+  
+  YearSurv <- 
+    LiveDeadCount |>
+    dplyr::group_by(.data$PopulationName, .data$Year) |>
+    dplyr::summarise(
+      S = prod(.data$Smonth),
+      S_var1 = sum(.data$Smonth_varj),
+      Survmean = mean(.data$Smonth),
+      sumalive = sum(.data$StartTotal),
+      sumdead = sum(.data$Morts),
+      meanalive = mean(.data$StartTotal),
+      minalive = min(.data$StartTotal),
+      maxalive = max(.data$StartTotal),
+      monthcount = length(.data$Year)
+    ) |>
+    dplyr::ungroup()
 
   YearSurv$VarType <- variance
 
@@ -95,11 +95,24 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   YearSurv$S_Var_Green <- YearSurv$S^2 * YearSurv$S_var1
   # Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sumalive
-  YearSurv$S_Var <- ifelse(YearSurv$VarType == "Pollock", YearSurv$S_Var_Pollock, YearSurv$S_Var_Green)
+  YearSurv$S_Var <- ifelse(
+    YearSurv$VarType == "Pollock", 
+    YearSurv$S_Var_Pollock, 
+    YearSurv$S_Var_Green
+  )
 
-  # Put note in output if there are no mortalities or less than 12 years.  Zero mortalities causes variance to be 0
-  YearSurv$Status1 <- ifelse(YearSurv$monthcount == 12, "", paste("Only", YearSurv$monthcount, "months monitored"))
-  YearSurv$Status2 <- ifelse(YearSurv$sumdead == 0, "No Mortalities all year (SE=0)", "")
+  # Put note in output if there are no mortalities or less than 12 years.  
+  # Zero mortalities causes variance to be 0
+  YearSurv$Status1 <- ifelse(
+    YearSurv$monthcount == 12, 
+    "", 
+    paste("Only", YearSurv$monthcount, "months monitored")
+  )
+  YearSurv$Status2 <- ifelse(
+    YearSurv$sumdead == 0, 
+    "No Mortalities all year (SE=0)", 
+    ""
+  )
   YearSurv$Status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
 
   # scale estimates to a year if less than 12 months monitored
@@ -127,7 +140,8 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
     YearSurv,
     "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "MeanMonitored",
     "sumdead", "sumalive", "Status"
-  )
+  ) |>
+    tibble::tibble()
 
   YearSurv
 }
