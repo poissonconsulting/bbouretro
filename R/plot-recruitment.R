@@ -32,7 +32,7 @@ bbr_plot_recruitment <- function(recruitment) {
   ggplot(recruitment, aes(.data$Year, .data$R)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$R_CIL, ymax = .data$R_CIU), 
+      aes(x = .data$Year, ymin = .data$R_CIL, ymax = .data$R_CIU),
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +

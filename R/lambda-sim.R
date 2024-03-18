@@ -87,8 +87,8 @@ bbr_lambda_sim <- function(recruitment, survival) {
 
   # summary of simulation and percentile based estimated CI's for lambda
   SumLambda <- plyr::ddply(
-    LambdaSumSim, 
-    c("PopulationName", "Year", "S", "R", "Lambda"), 
+    LambdaSumSim,
+    c("PopulationName", "Year", "S", "R", "Lambda"),
     plyr::summarize,
     SE_Lambda = sd(.data$RanLambda, na.rm = T),
     Lambda_LCL = quantile(.data$RanLambda, 0.025, na.rm = T),

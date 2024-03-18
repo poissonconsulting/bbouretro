@@ -33,32 +33,32 @@
 #' bbr_plot_lambda_distributions(lambda)
 #' }
 bbr_plot_lambda_distributions <- function(lambda, population) {
-  #subset data set for target population
-  Ld<-subset(lambda$RawValues,lambda$RawValues$PopulationName==Pop) 
-  RL<-subset(lambda$Summary,lambda$Summary$PopulationName==Pop) 
-  
-  #screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
-  #year is still plotted as a line but with no distribution
-  LrawR<-subset(Ld,is.na(Ld$RanLambda)==F)
-  
-  #set lambda limits for x axis based all lambda--this reduces influence of outliers
-  xmin<-quantile(LrawR$RanLambda,0.0001) 
-  xmax<-quantile( LrawR$RanLambda,0.99) 
-  #make sure that limits are still within range of lambda estimates for estimates with no CI's
-  xmax<-ifelse(xmax<=max(RL$Lambda),max(RL$Lambda)+0.05,xmax)
-  xmin<-ifelse(xmin>=min(RL$Lambda),min(RL$Lambda)-0.05,xmin)
-  
-  #subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
-  LrawR<-subset(LrawR,LrawR$RanLambda>=xmin & LrawR$RanLambda<=xmax )
-  
-  #plot estimated lambda for each year as a red line with 
-  #a black hashed line indicates lambda=1.
-  ggplot(LrawR,aes(RanLambda))+
-    geom_histogram(bins=30,fill="tan",color="black")+
-    geom_vline(data=RL, aes(xintercept=Lambda),  color="red")+
-    geom_vline(xintercept=1,linetype=2,color="black")+
-    facet_wrap(~Year)+
-    xlab("Lambda Values")+
-    ylab("Frequencies")+
+  # subset data set for target population
+  Ld <- subset(lambda$RawValues, lambda$RawValues$PopulationName == Pop)
+  RL <- subset(lambda$Summary, lambda$Summary$PopulationName == Pop)
+
+  # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
+  # year is still plotted as a line but with no distribution
+  LrawR <- subset(Ld, is.na(Ld$RanLambda) == F)
+
+  # set lambda limits for x axis based all lambda--this reduces influence of outliers
+  xmin <- quantile(LrawR$RanLambda, 0.0001)
+  xmax <- quantile(LrawR$RanLambda, 0.99)
+  # make sure that limits are still within range of lambda estimates for estimates with no CI's
+  xmax <- ifelse(xmax <= max(RL$Lambda), max(RL$Lambda) + 0.05, xmax)
+  xmin <- ifelse(xmin >= min(RL$Lambda), min(RL$Lambda) - 0.05, xmin)
+
+  # subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
+  LrawR <- subset(LrawR, LrawR$RanLambda >= xmin & LrawR$RanLambda <= xmax)
+
+  # plot estimated lambda for each year as a red line with
+  # a black hashed line indicates lambda=1.
+  ggplot(LrawR, aes(RanLambda)) +
+    geom_histogram(bins = 30, fill = "tan", color = "black") +
+    geom_vline(data = RL, aes(xintercept = Lambda), color = "red") +
+    geom_vline(xintercept = 1, linetype = 2, color = "black") +
+    facet_wrap(~Year) +
+    xlab("Lambda Values") +
+    ylab("Frequencies") +
     theme_bw()
 }

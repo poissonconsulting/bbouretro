@@ -46,17 +46,17 @@ This is a basic example which shows you how to solve a common problem:
 library(bbouretro)
 library(bboudata)
 
-recruitment_est <- recruitment(bbourecruit_c, pFemales = 0.65, sexratio = 0.5, variance = "binomial") 
+recruitment_est <- recruitment(bbourecruit_c, pFemales = 0.65, sexratio = 0.5, variance = "binomial")
 plot_recruitment(recruitment_est)
 
 survival_est <- km_survival(bbousurv_c, MortType = "Total", variance = "Pollock")
 plot_survival(survival_est)
 
 # TODO turn on when not erroring
-#lambda_est <- lambda_sim(recruitment_est, survival_est)
-#summary <- SummarizeLambda(lambda_est)
-#plot_lambda(lambda_est)
-#plot_lambda_distributions(lambda_est, "C")
+# lambda_est <- lambda_sim(recruitment_est, survival_est)
+# summary <- SummarizeLambda(lambda_est)
+# plot_lambda(lambda_est)
+# plot_lambda_distributions(lambda_est, "C")
 ```
 
 ## Contribution

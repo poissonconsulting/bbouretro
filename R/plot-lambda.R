@@ -34,7 +34,7 @@ bbr_plot_lambda <- function(lambda) {
   ggplot(plotdat, aes(.data$Year, .data$Lambda)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$Lambda_LCL, ymax = .data$Lambda_UCL), 
+      aes(x = .data$Year, ymin = .data$Lambda_LCL, ymax = .data$Lambda_UCL),
       color = "steelblue"
     ) +
     geom_hline(yintercept = 1) +

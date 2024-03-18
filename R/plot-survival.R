@@ -31,7 +31,7 @@ bbr_plot_survival <- function(survival) {
   ggplot(survival, aes(.data$Year, .data$S)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$S_CIL, ymax = .data$S_CIU), 
+      aes(x = .data$Year, ymin = .data$S_CIL, ymax = .data$S_CIU),
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
