@@ -27,9 +27,9 @@
 #'
 #' @examples
 #' summarize_lambda(lambda)
-summarize_lambda<-function(lambda) {
-  Lsum<-lambda$Summary
-  Lsum[c(3:12)]<-round(Lsum[c(3:12)],3)
+summarize_lambda <- function(lambda) {
+  Lsum <- lambda$Summary
+  Lsum[c(3:12)] <- round(Lsum[c(3:12)], 3)
   print(Lsum)
   Lsum
 }
