@@ -23,18 +23,8 @@ to estimate \eqn{lambda} using the Hatter-Bergerud equation.  Monte Carlo
 simulation is used to generate confidence limits on \eqn{lambda}.
 }
 \details{
-The basic Hatter-Bergerud equation used to estimate lamba is given
-below. \eqn{lambda = (S) / (1 - R)} The standard errors on estimates of
-survival and recruitment are then used to create simulated distributions of
-S and R and derive a distribution of λ based on the simulated values.  It
-is assumed both survival and recruitment are distributed on the logit scale
-therefore bounding each value between 0 and 1.  One thousand simulations
-are conducted. Percentile-based confidence limits are then derived.  Also,
-the proportion of simulations where \eqn{lambda} is greater than 1 is
-tabulated to provide a p-value for the hypothesis test \eqn{(Ho: lambda >=
-  1, Ha: lambda < 1)}.  Output summaries also include mean values simulated
-for \eqn{S}, \eqn{R}, as well as mean and median \eqn{lambda} values from
-the simulation.  Users can plot the distribution of simulated \eqn{lambda}
+See the vignette Methods for description of equations used.
+Users can plot the distribution of simulated \eqn{lambda}
 values using \code{plot_lambda_distributions()} function as well as estimated
 values using the \code{plot_lambda()} function.
 }
