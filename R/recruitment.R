@@ -1,21 +1,40 @@
 #' Calculate recruitment
-#' 
-#' This function generates estimates of recruitment from the Recruitment data frame with confidence limits.   User’s can input the assumed proportion of females in the population (to estimate females from adult caribou that have unknown sex) as well as sex ratio at birth. Variance can be estimated using a few different approaches. 
+#'
+#' This function generates estimates of recruitment from the Recruitment data
+#' frame with confidence limits.   User’s can input the assumed proportion of
+#' females in the population (to estimate females from adult caribou that have
+#' unknown sex) as well as sex ratio at birth. Variance can be estimated using a
+#' few different approaches.
 #'
 #' @param x input recruitment data frame
-#' @param pFemales Assumed or estimated proportion females in the population used to assign unknown sex caribou (see details).  Can be set to 0 to exclude unknown sex caribou from recruitment estimates 
-#' @param sexratio Sex ratio of caribou at birth used to assign calves and yearlings as male or female (see details).  Sex ratio is defined as the proportion females at birth.  Usually this is set at 0.5.
+#' @param pFemales Assumed or estimated proportion females in the population
+#'   used to assign unknown sex caribou (see details).  Can be set to 0 to
+#'   exclude unknown sex caribou from recruitment estimates
+#' @param sexratio Sex ratio of caribou at birth used to assign calves and
+#'   yearlings as male or female (see details).  Sex ratio is defined as the
+#'   proportion females at birth.  Usually this is set at 0.5.
 #' @param variance Estimate variance using “binomial” or “bootstrap”
-#' 
-#' @details
-#' Estimation of recruitment follows methods of (DeCesare et al. 2012).   From Pearson et al (2022) we summarize the following equations: 
-#' The age ratio, \eqn{X}, is commonly estimated as the number of calves,\eqn{n_j} ,  per adult female, \eqn{n_af}, observed at the end of a measured year, such that
-#'  \eqn{X = n_j / n_af}
-#'  where \eqn{X * sexratio} estimates the number of female calves \eqn{(n_jf)} per adult female. Recruitment is estimated using the equation below which accounts for recruitment of calves into the yearling/adult age class at the end of the caribou year. 
-#'  \eqn{R_RM = X * sexration / a + X * sexratio}
-#' Variance is estimated using a bootstrap approach or the binomial method.    The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.   Percentile-based 95% confidence limits are then estimated from the 1000 estimates.  For the binomial method, variance is estimated as \eqn{R_m * (1 - R_rm)/n)} where \eqn{n} is the number of adult females sampled during each yearly survey.  Logit-based confidence limits are estimated assuming that values of recruitment are constrained between 0 and 1.  The bootstrap method is recommended as the most robust approach to obtain variance estimates.  
-#' A full summary of methods is given in (Pearson et al. 2022). 
-#' 
+#'
+#' @details Estimation of recruitment follows methods of (DeCesare et al. 2012).
+#' From Pearson et al (2022) we summarize the following equations: The age
+#' ratio, \eqn{X}, is commonly estimated as the number of calves,\eqn{n_j} ,
+#' per adult female, \eqn{n_af}, observed at the end of a measured year, such
+#' that \eqn{X = n_j / n_af} where \eqn{X * sexratio} estimates the number of
+#' female calves \eqn{(n_jf)} per adult female. Recruitment is estimated using
+#' the equation below which accounts for recruitment of calves into the
+#' yearling/adult age class at the end of the caribou year. \eqn{R_RM = X *
+#' sexration / a + X * sexratio} Variance is estimated using a bootstrap
+#' approach or the binomial method.    The bootstrap approach randomly resamples
+#' groups for 1000 iterations to create 1000 estimates of calf cow ratio and
+#' recruitment.   Percentile-based 95% confidence limits are then estimated from
+#' the 1000 estimates.  For the binomial method, variance is estimated as
+#' \eqn{R_m * (1 - R_rm)/n)} where \eqn{n} is the number of adult females
+#' sampled during each yearly survey.  Logit-based confidence limits are
+#' estimated assuming that values of recruitment are constrained between 0 and
+#' 1.  The bootstrap method is recommended as the most robust approach to obtain
+#' variance estimates. A full summary of methods is given in (Pearson et al.
+#' 2022).
+#'
 #' @return An output data frame with the columns.
 #' 
 #' @format A tibble with columns:
@@ -34,9 +53,12 @@
 #' }
 #' @export
 #' 
-#' @references 
-#' DeCesare, N. J., M. Hebblewhite, M. Bradley, K. G. Smith, D. Hervieux, and L. Neufeld. 2012. Estimating ungulate recruitment and growth rates using age ratios. The Journal of Wildlife Management 76:144-153. 
-#' Pearson, A., J. Boulanger, and J. L. Thorley. 2022. Boreal Caribou Monitoring – Literature Review of Current and Historical Data Collection and Analysis Methods Used to Estimate Survival, Recruitment, and Population Growth. 
+#' @references DeCesare, N. J., M. Hebblewhite, M. Bradley, K. G. Smith, D.
+#' Hervieux, and L. Neufeld. 2012. Estimating ungulate recruitment and growth
+#' rates using age ratios. The Journal of Wildlife Management 76:144-153.
+#' Pearson, A., J. Boulanger, and J. L. Thorley. 2022. Boreal Caribou Monitoring
+#' – Literature Review of Current and Historical Data Collection and Analysis
+#' Methods Used to Estimate Survival, Recruitment, and Population Growth.
 #'
 #' @examples
 #' recruitment_estimate <- recruitment(bboudata::bbourecruit_a, pFemales = 0.65, sexratio = 0.5, variance<-"binomial")

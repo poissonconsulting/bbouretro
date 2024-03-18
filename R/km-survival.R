@@ -1,26 +1,34 @@
 #' Calculate survival
-#' 
-#' This function estimates survival rates based on the Kaplan Meir survival rate estimator (Pollock et al. 1989). 
 #'
-#' @param x input survival data frame 
-#' @param MortType Mortality data to be included.   Values can be “Total” which would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”, (MortalitiesCertain only) 
-#' @param variance Variance type to estimate.  Can be the Greenwood estimator “Greenwood” or Pollock estimator (“Pollock”) 
+#' This function estimates survival rates based on the Kaplan Meir survival rate
+#' estimator (Pollock et al. 1989).
 #'
-#' @details
-#' The staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below (Pollock et al. 1989). The probability of surviving in the \eqn{ith} time step (usually month) is given by the equation below   
-#' EQN XX
-#' where \eqn{d_i}  is the number of mortalities during the period and  \eqn{r_i} is the number of collared individuals at the start of period. The estimated survival for any arbitrary time period \eqn{t}  (usually year) is given by
-#' EQN XX
-#' where \eqn{S} is the survival during the \eqn{ith} time step of the \eqn{tth} period.  
-#' 
-#' Standard error is estimated using either the (Cox and Oakes 1984) uses Greenwood’s formula 
-#' EQN XXX
-#' Or a propose a simpler alternative estimate “which is better in the tails of the distribution” (Pollock et al. 1989) 
-#' Logit-based confidence limits are estimated.  Further details on the Kaplan Meir approach as applied in boreal caribou studies are given in Pearson et al (2022).  
-#' 
+#' @param x input survival data frame
+#' @param MortType Mortality data to be included.   Values can be “Total” which
+#'   would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
+#'   (MortalitiesCertain only)
+#' @param variance Variance type to estimate.  Can be the Greenwood estimator
+#'   “Greenwood” or Pollock estimator (“Pollock”)
+#'
+#' @details The staggered entry Kaplan-Meier, which uses discrete time steps, is
+#' defined algebraically below (Pollock et al. 1989). The probability of
+#' surviving in the \eqn{ith} time step (usually month) is given by the equation
+#' below EQN XX where \eqn{d_i}  is the number of mortalities during the period
+#' and  \eqn{r_i} is the number of collared individuals at the start of period.
+#' The estimated survival for any arbitrary time period \eqn{t}  (usually year)
+#' is given by EQN XX where \eqn{S} is the survival during the \eqn{ith} time
+#' step of the \eqn{tth} period.
+#'
+#' Standard error is estimated using either the (Cox and Oakes 1984) uses
+#' Greenwood’s formula EQN XXX Or a propose a simpler alternative estimate
+#' “which is better in the tails of the distribution” (Pollock et al. 1989)
+#' Logit-based confidence limits are estimated.  Further details on the Kaplan
+#' Meir approach as applied in boreal caribou studies are given in Pearson et al
+#' (2022).
+#'
 #' @return An output data frame with the columns.
 #' @export
-#' 
+#'
 #' #' @format A tibble with columns:
 #' \describe{
 #' \item{PopulationName}{Population name}
@@ -29,15 +37,15 @@
 #' \item{S_SE}{SE}
 #' \item{S_CIL}{Confidence limit}
 #' \item{S_CIU}{Confidence limit}
-#' \item{MeanMonitored}{Mean number of caribou monitored each month} 
+#' \item{MeanMonitored}{Mean number of caribou monitored each month}
 #' \item{sumdead }{Total number of mortalities in a year}
 #' \item{sumalive}{Total number of caribou-months in a year}
 #' \item{Status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
 #' }
-#' 
-#' @references 
-#' Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis. 1989. Survival analysis in telemetry studies: the staggered entry design. Journal of Wildlife Management 53:7-15. 
-#' TODO Need Cox paper
+#'
+#' @references Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
+#' 1989. Survival analysis in telemetry studies: the staggered entry design.
+#' Journal of Wildlife Management 53:7-15. TODO Need Cox paper
 #'
 #' @examples
 km_survival<-function(x, MortType, variance)  {
