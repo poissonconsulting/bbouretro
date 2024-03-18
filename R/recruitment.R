@@ -51,21 +51,30 @@
 #' @export
 #'
 #' @examples
-#' recruitment_estimate <- bbr_recruitment(
+#' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
 #'   pFemales = 0.65,
 #'   sexratio = 0.5,
-#'   variance <- "binomial"
+#'   variance = "binomial"
 #' )
 bbr_recruitment <- function(x, pFemales, sexratio, variance) {
+  x <- bboutools:::.chk_data_recruitment(x)
+  chk::chk_range(pFemales)
+  chk::chk_range(sexratio)
+  chk::chk_string(variance)
+  
   # Estimate total females based on pFemales and sexratio
-  x <- transform(x,
-    Females = Cows + UnknownAdults * pFemales + Yearlings * sexratio,
-    FemaleCalves = Calves * sexratio
+  x <- dplyr::mutate(
+    x,
+    Females = .data$Cows + .data$UnknownAdults * pFemales + .data$Yearlings * sexratio,
+    FemaleCalves = .data$Calves * sexratio
   )
 
   # summarize by population and year
-  Compfull <- ddply(x, c("PopulationName", "Year"), summarize,
+  Compfull <- plyr::ddply(
+    x, 
+    c("PopulationName", "Year"), 
+    plyr::summarize,
     Females = sum(Females),
     FemaleCalves = sum(FemaleCalves),
     Calves = sum(Calves),
@@ -109,7 +118,11 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
     }
 
     # use ddply to bootstrap by Population and year
-    boot <- dlply(x, c("PopulationName", "Year"), function(x) boot(data = x, RecCalc, R = 1000))
+    boot <- plyr::dlply(
+      x, 
+      c("PopulationName", "Year"), 
+      function(x) boot(data = x, RecCalc, R = 1000)
+    )
 
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
@@ -135,5 +148,5 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   CompfullR <- cbind(Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")], sexratio, pFemales)
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
 
-  return(CompfullR)
+  CompfullR
 }
