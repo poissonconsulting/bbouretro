@@ -12,8 +12,9 @@
 #' 
 #'
 #' @examples
-#' recruitment_est <- recruitment(bboudata::bbourecruit_a)
+#' \dontrun{
 #' plot_recruitment(recruitment_est)
+#' }
 plot_recruitment<-function(recruitment)  {
   
   ggplot(recruitment,aes(Year,R))+

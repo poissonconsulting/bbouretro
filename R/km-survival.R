@@ -29,7 +29,7 @@
 #' @return An output data frame with the columns.
 #' @export
 #'
-#' #' @format A tibble with columns:
+#' @format A tibble with columns:
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
@@ -48,6 +48,7 @@
 #' Journal of Wildlife Management 53:7-15. TODO Need Cox paper
 #'
 #' @examples
+#' survival_est <- km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
 km_survival<-function(x, MortType, variance)  {
   #suggest we make MortType="Total" and variance="Pollock" default settings.
   x<-xC

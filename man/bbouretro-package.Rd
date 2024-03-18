@@ -11,11 +11,15 @@ What the package does (one paragraph).
 \author{
 \strong{Maintainer}: Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID})
 
+Authors:
+\itemize{
+  \item John Boulanger \email{boulange@ecological.bc.ca}
+}
+
 Other contributors:
 \itemize{
   \item Seb Dalgarno \email{seb@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-3658-4517}{ORCID}) [contributor]
   \item Colton Stephens \email{colton@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-8744-6405}{ORCID}) [contributor]
-  \item John Boulanger \email{boulange@ecological.bc.ca} [contributor]
 }
 
 }

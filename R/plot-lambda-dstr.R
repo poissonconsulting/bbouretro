@@ -16,7 +16,9 @@
 #'
 #'
 #' @examples
+#' \dontrun{
 #' summarize_lambda(lambda) 
+#' }
 plot_lambda_distributions<-function(lambda,population){
   #subset data set for target population
   Ld<-subset(lambda$RawValues,lambda$RawValues$PopulationName==population) 
