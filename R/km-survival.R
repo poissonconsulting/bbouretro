@@ -50,26 +50,29 @@
 #' @examples
 #' survival_est <- bbr_km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
 bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
+  x <- bboutools:::.chk_data_survival(x)
+  chk::chk_string(MortType)
+  chk::chk_string(variance)
   
   #make sure data set is sorted properly
-  Ssamps<-arrange(Ssamps,PopulationName,Year,Month)
+  x<-dplyr::arrange(x,PopulationName,Year,Month)
   #Tally total mortalities.
-  Ssamps$TotalMorts<-Ssamps$MortalitiesCertain+Ssamps$MortalitiesUncertain
+  x$TotalMorts<-x$MortalitiesCertain+x$MortalitiesUncertain
   
   #MortType can be "Total" or "Certain"
-  Ssamps$MortType<-MortType
-  Ssamps$Morts<-ifelse(Ssamps$MortType=="Total",Ssamps$TotalMorts,Ssamps$MortalitiesCertain)
+  x$MortType<-MortType
+  x$Morts<-ifelse(x$MortType=="Total",x$TotalMorts,x$MortalitiesCertain)
   
   #Months with 0 collars monitored are removed but this is noted to user later and estimates scaled appropriately
-  Ssamps<-subset(Ssamps,Ssamps$StartTotal>0)
+  x<-subset(x,x$StartTotal>0)
   
   #calculate monthly components of survival and variance
-  LiveDeadCount<-transform(Ssamps,
+  LiveDeadCount<-transform(x,
                            Smonth=(1-(Morts/StartTotal)), 
                            Smonth_varj=Morts/(StartTotal*(StartTotal-Morts)))
   
   #use ddply sum or product each year.
-  YearSurv<-ddply(LiveDeadCount, c("PopulationName","Year"),summarize,
+  YearSurv<-plyr::ddply(LiveDeadCount, c("PopulationName","Year"),plyr::summarize,
                   S=prod(Smonth),
                   S_var1=sum(Smonth_varj),
                   Survmean=mean(Smonth),
