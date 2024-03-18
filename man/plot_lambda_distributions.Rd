@@ -26,6 +26,6 @@ of \eqn{lambda}.
 }
 \examples{
 \dontrun{
-summarize_lambda(lambda) 
+summarize_lambda(lambda)
 }
 }
