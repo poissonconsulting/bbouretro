@@ -18,7 +18,6 @@
 #' @examples
 #' summarize_lambda(lambda) 
 plot_lambda_distributions<-function(lambda,population){
-  
   #subset data set for target population
   Ld<-subset(lambda$RawValues,lambda$RawValues$PopulationName==population) 
   RL<-subset(lambda$Summary,lambda$Summary$PopulationName==population) 
