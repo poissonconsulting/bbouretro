@@ -15,19 +15,19 @@
 #' Calculate recruitment
 #'
 #' This function generates estimates of recruitment from the Recruitment data
-#' frame with confidence limits.   User’s can input the assumed proportion of
+#' frame with confidence limits. User’s can input the assumed proportion of
 #' females in the population (to estimate females from adult caribou that have
 #' unknown sex) as well as sex ratio at birth. Variance can be estimated using a
 #' few different approaches.
 #'
-#' @param x input recruitment data frame
+#' @param x input recruitment data frame.
 #' @param pFemales Assumed or estimated proportion females in the population
 #'   used to assign unknown sex caribou (see details).  Can be set to 0 to
-#'   exclude unknown sex caribou from recruitment estimates
+#'   exclude unknown sex caribou from recruitment estimates.
 #' @param sexratio Sex ratio of caribou at birth used to assign calves and
 #'   yearlings as male or female (see details).  Sex ratio is defined as the
 #'   proportion females at birth.  Usually this is set at 0.5.
-#' @param variance Estimate variance using “binomial” or “bootstrap”
+#' @param variance Estimate variance using “binomial” or “bootstrap”.
 #'
 #' @details 
 #' See the vignette Methods for description of equations used. 
@@ -50,21 +50,14 @@
 #' }
 #' @export
 #'
-#' @references DeCesare, N. J., M. Hebblewhite, M. Bradley, K. G. Smith, D.
-#' Hervieux, and L. Neufeld. 2012. Estimating ungulate recruitment and growth
-#' rates using age ratios. The Journal of Wildlife Management 76:144-153.
-#' Pearson, A., J. Boulanger, and J. L. Thorley. 2022. Boreal Caribou Monitoring
-#' – Literature Review of Current and Historical Data Collection and Analysis
-#' Methods Used to Estimate Survival, Recruitment, and Population Growth.
-#'
 #' @examples
-#' recruitment_estimate <- recruitment(
+#' recruitment_estimate <- bbr_recruitment(
 #'   bboudata::bbourecruit_a, 
 #'   pFemales = 0.65, 
 #'   sexratio = 0.5, 
 #'  variance <- "binomial"
 #' )
-recruitment <- function(x, pFemales, sexratio, variance) {
+bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   #Estimate total females based on pFemales and sexratio
   x<-transform(x,
                     Females=Cows+UnknownAdults*pFemales+Yearlings*sexratio,

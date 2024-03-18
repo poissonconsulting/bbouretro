@@ -20,12 +20,11 @@
 #' @param x input survival data frame
 #' @param MortType Mortality data to be included.   Values can be “Total” which
 #'   would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
-#'   (MortalitiesCertain only)
+#'   (MortalitiesCertain only).
 #' @param variance Variance type to estimate.  Can be the Greenwood estimator
-#'   “Greenwood” or Pollock estimator (“Pollock”)
+#'   “Greenwood” or Pollock estimator (“Pollock”).
 #'
-#' @details 
-#' See the vignette Methods for description of equations used. 
+#' @details See the vignette Methods for description of equations used.
 #'
 #' @return An output data frame with the columns.
 #' @export
@@ -45,12 +44,12 @@
 #' }
 #'
 #' @references Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
-#' 1989. Survival analysis in telemetry studies: the staggered entry design.
-#' Journal of Wildlife Management 53:7-15. TODO Need Cox paper
+#'   1989. Survival analysis in telemetry studies: the staggered entry design.
+#'   Journal of Wildlife Management 53:7-15. TODO Need Cox paper
 #'
 #' @examples
-#' survival_est <- km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
-km_survival <- function(x, MortType = "Total", variance = "Pollock") {
+#' survival_est <- bbr_km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
+bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   
   #make sure data set is sorted properly
   Ssamps<-arrange(Ssamps,PopulationName,Year,Month)
