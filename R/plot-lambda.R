@@ -1,3 +1,17 @@
+# Copyright 2024 Province of Alberta
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #' Plot lambda
 #'
 #' Uses output from LambdaSim
@@ -17,9 +31,12 @@
 plot_lambda <- function(lambda) {
   plotdat <- lambda$Summary
 
-  ggplot(plotdat, aes(Year, Lambda)) +
+  ggplot(plotdat, aes(.data$Year, .data$Lambda)) +
     geom_point(color = "red", size = 3) +
-    geom_errorbar(aes(x = Year, ymin = Lambda_LCL, ymax = Lambda_UCL), color = "steelblue") +
+    geom_errorbar(
+      aes(x = .data$Year, ymin = .data$Lambda_LCL, ymax = .data$Lambda_UCL), 
+      color = "steelblue"
+    ) +
     geom_hline(yintercept = 1) +
     facet_wrap(~PopulationName, ncol = 1) +
     xlab("Year") +

@@ -1,3 +1,17 @@
+# Copyright 2024 Province of Alberta
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #' Calculate survival
 #'
 #' This function estimates survival rates based on the Kaplan Meir survival rate
@@ -53,7 +67,7 @@ km_survival <- function(x, MortType, variance) {
   # suggest we make MortType="Total" and variance="Pollock" default settings.
   x <- xC
   # make sure data set is sorted properly
-  x <- arrange(x, PopulationName, Year, Month)
+  x <- dplyr::arrange(x, .data$PopulationName, .data$Year, .data$Month)
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
@@ -71,7 +85,7 @@ km_survival <- function(x, MortType, variance) {
   )
 
   # use ddply sum or product each year.
-  YearSurv <- ddply(LiveDeadCount, c("PopulationName", "Year"), summarize,
+  YearSurv <- plyr::ddply(LiveDeadCount, c("PopulationName", "Year"), summarize,
     S = prod(Smonth),
     S_var1 = sum(Smonth_varj),
     Survmean = mean(Smonth),
@@ -83,7 +97,6 @@ km_survival <- function(x, MortType, variance) {
     monthcount = length(Year)
   )
 
-
   YearSurv$VarType <- variance
 
   # Variance estimate using the Greenwood formula for variance
@@ -93,8 +106,16 @@ km_survival <- function(x, MortType, variance) {
   YearSurv$S_Var <- ifelse(YearSurv$VarType == "Pollock", YearSurv$S_Var_Pollock, YearSurv$S_Var_Green)
 
   # Put note in output if there are no mortalities or less than 12 years.  Zero mortalities causes variance to be 0
-  YearSurv$Status1 <- ifelse(YearSurv$monthcount == 12, "", paste("Only", YearSurv$monthcount, "months monitored"))
-  YearSurv$Status2 <- ifelse(YearSurv$sumdead == 0, "No Mortalities all year (SE=0)", "")
+  YearSurv$Status1 <- ifelse(
+    YearSurv$monthcount == 12, 
+    "", 
+    paste("Only", YearSurv$monthcount, "months monitored")
+  )
+  YearSurv$Status2 <- ifelse(
+    YearSurv$sumdead == 0, 
+    "No Mortalities all year (SE=0)", 
+    ""
+  )
   YearSurv$Status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
 
   # scale estimates to a year if less than 12 months monitored

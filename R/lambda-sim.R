@@ -1,3 +1,17 @@
+# Copyright 2024 Province of Alberta
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #' Simulate lambda
 #'
 #' This function uses the summary output of `km_survival()` and `recruitment()`
@@ -47,7 +61,7 @@ lambda_sim <- function(recruitment, survival) {
   rnnors$RannorR <- rnorm(groups * sims)
   rnnors$nrow <- 1:nrow(rnnors)
   rnnors$group <- rep(seq(1, groups, 1), 1000)
-  rnnors <- arrange(rnnors, group)
+  rnnors <- dplyr::arrange(rnnors, .data$group)
 
   # merge the random numbers with input data set based on group/row #
   # this expands the data frame 1000X
@@ -78,8 +92,10 @@ lambda_sim <- function(recruitment, survival) {
   LambdaSumSimR <- LambdaSumSim[c("PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR")]
 
   # summary of simulation and percentile based estimated CI's for lambda
-  SumLambda <- ddply(
-    LambdaSumSim, c("PopulationName", "Year", "S", "R", "Lambda"), summarize,
+  SumLambda <- plyr::ddply(
+    LambdaSumSim, 
+    c("PopulationName", "Year", "S", "R", "Lambda"), 
+    summarize,
     SE_Lambda = sd(RanLambda, na.rm = T),
     Lambda_LCL = quantile(RanLambda, 0.025, na.rm = T),
     Lambda_UCL = quantile(RanLambda, 0.975, na.rm = T),

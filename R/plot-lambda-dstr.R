@@ -1,3 +1,17 @@
+# Copyright 2024 Province of Alberta
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #' Plot lambda distributions
 #'
 #' Provides histograms of simulated \eqn{lambda} values for a chose population
@@ -31,10 +45,18 @@ plot_lambda_distributions <- function(lambda, population) {
 
   # plot estimated lambda for each year as a red line with
   # a black hashed line indicates lambda=1.
-  ggplot(LrawR, aes(RanLambda)) +
+  ggplot(LrawR, aes(.data$RanLambda)) +
     geom_histogram(bins = 30, fill = "tan", color = "black") +
-    geom_vline(data = RL, aes(xintercept = Lambda), color = "red") +
-    geom_vline(xintercept = 1, linetype = 2, color = "black") +
+    geom_vline(
+      data = RL,
+      aes(xintercept = .data$Lambda), 
+      color = "red"
+    ) +
+    geom_vline(
+      xintercept = 1, 
+      linetype = 2, 
+      color = "black"
+    ) +
     scale_x_continuous(breaks = seq(0.2, 1.4, 0.4)) +
     facet_wrap(~Year) +
     xlab("Lambda Values") +
