@@ -16,7 +16,7 @@
 #' Variance is estimated using a bootstrap approach or the binomial method.    The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.   Percentile-based 95% confidence limits are then estimated from the 1000 estimates.  For the binomial method, variance is estimated as \eqn{R_m * (1 - R_rm)/n)} where \eqn{n} is the number of adult females sampled during each yearly survey.  Logit-based confidence limits are estimated assuming that values of recruitment are constrained between 0 and 1.  The bootstrap method is recommended as the most robust approach to obtain variance estimates.  
 #' A full summary of methods is given in (Pearson et al. 2022). 
 #' 
-#' @return An output data frame with the columns :
+#' @return An output data frame with the columns.
 #' 
 #' @format A tibble with columns:
 #' \describe{
