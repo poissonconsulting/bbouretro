@@ -26,14 +26,14 @@ The goal of bbouretro is to ...
 
 To install the latest development version from [GitHub](https://github.com/poissonconsulting/bbouretro)
 
-```r
+```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("poissonconsulting/bbouretro")
 ```
 
 or alternatively using pak
 
-```r
+```{r, eval=FALSE}
 # install.packages("pak")
 pak::pak("poissonconsulting/bbouretro")
 ```
@@ -42,20 +42,21 @@ pak::pak("poissonconsulting/bbouretro")
 
 This is a basic example which shows you how to solve a common problem:
 
-``` r
+```{r}
 library(bbouretro)
+library(bboudata)
 
-SsampsC <- bboudata::bbousurv_c
-RsampsC <- bboudata::bbourecruit_c
+recruitment_est <- recruitment(bbourecruit_c, pFemales = 0.65, sexratio = 0.5, variance = "binomial") 
+plot_recruitment(recruitment_est)
 
-CO<-Recruitment(RsampsC,pFemales=0.65,sexratio=0.5,variance="binomial") 
-S<-KMsurvival(SsampsC,MortType="Total",variance="Pollock")
-PlotRecruitment(CO)
-PlotSurvival(S)
-Lambdadat<-LambdaSim(CO,S)
-Summary<-SummarizeLambda(Lambdadat)
-plotLambda(Lambdadat)
-plotLambdaDistributions(Lambdadat,"C")
+survival_est <- km_survival(bbousurv_c, MortType = "Total", variance = "Pollock")
+plot_survival(survival_est)
+
+# TODO turn on when not erroring
+#lambda_est <- lambda_sim(recruitment_est, survival_est)
+#summary <- SummarizeLambda(lambda_est)
+#plot_lambda(lambda_est)
+#plot_lambda_distributions(lambda_est, "C")
 ```
 
 ## Contribution
