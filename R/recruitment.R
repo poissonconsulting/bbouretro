@@ -71,19 +71,20 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   )
 
   # summarize by population and year
-  Compfull <- plyr::ddply(
-    x, 
-    c("PopulationName", "Year"), 
-    plyr::summarize,
-    Females = sum(Females),
-    FemaleCalves = sum(FemaleCalves),
-    Calves = sum(Calves),
-    UnknownAdults = sum(UnknownAdults),
-    Bulls = sum(Bulls),
-    Yearlings = sum(Yearlings),
-    groups = length(Year)
-  )
-
+  Compfull <- 
+    x |>
+    dplyr::group_by(.data$PopulationName, .data$Year) |>
+    dplyr::summarize(
+      Females = sum(.data$Females),
+      FemaleCalves = sum(.data$FemaleCalves),
+      Calves = sum(.data$Calves),
+      UnknownAdults = sum(.data$UnknownAdults),
+      Bulls = sum(.data$Bulls),
+      Yearlings = sum(.data$Yearlings),
+      groups = length(.data$Year)
+    ) |>
+    dplyr::group_by()
+  
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
   Compfull$CalfCow <- Compfull$Calves / Compfull$Females
