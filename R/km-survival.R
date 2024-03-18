@@ -63,9 +63,8 @@
 #'
 #' @examples
 #' survival_est <- km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
-km_survival <- function(x, MortType, variance) {
-  # suggest we make MortType="Total" and variance="Pollock" default settings.
-  x <- xC
+km_survival <- function(x, MortType = "Total", variance = "Pollock") {
+  
   # make sure data set is sorted properly
   x <- dplyr::arrange(x, .data$PopulationName, .data$Year, .data$Month)
   # Tally total mortalities.
@@ -79,22 +78,26 @@ km_survival <- function(x, MortType, variance) {
   x <- subset(x, x$StartTotal > 0)
 
   # calculate monthly components of survival and variance
-  LiveDeadCount <- transform(x,
-    Smonth = (1 - (Morts / StartTotal)),
-    Smonth_varj = Morts / (StartTotal * (StartTotal - Morts))
+  LiveDeadCount <- dplyr::mutate(
+    x,
+    Smonth = (1 - (.data$Morts / .data$StartTotal)),
+    Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
 
   # use ddply sum or product each year.
-  YearSurv <- plyr::ddply(LiveDeadCount, c("PopulationName", "Year"), summarize,
-    S = prod(Smonth),
-    S_var1 = sum(Smonth_varj),
-    Survmean = mean(Smonth),
-    sumalive = sum(StartTotal),
-    sumdead = sum(Morts),
-    meanalive = mean(StartTotal),
-    minalive = min(StartTotal),
-    maxalive = max(StartTotal),
-    monthcount = length(Year)
+  YearSurv <- plyr::ddply(
+    LiveDeadCount, 
+    c("PopulationName", "Year"), 
+    plyr::summarize,
+    S = prod(.data$Smonth),
+    S_var1 = sum(.data$Smonth_varj),
+    Survmean = mean(.data$Smonth),
+    sumalive = sum(.data$StartTotal),
+    sumdead = sum(.data$Morts),
+    meanalive = mean(.data$StartTotal),
+    minalive = min(.data$StartTotal),
+    maxalive = max(.data$StartTotal),
+    monthcount = length(.data$Year)
   )
 
   YearSurv$VarType <- variance
@@ -103,7 +106,11 @@ km_survival <- function(x, MortType, variance) {
   YearSurv$S_Var_Green <- YearSurv$S^2 * YearSurv$S_var1
   # Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sumalive
-  YearSurv$S_Var <- ifelse(YearSurv$VarType == "Pollock", YearSurv$S_Var_Pollock, YearSurv$S_Var_Green)
+  YearSurv$S_Var <- ifelse(
+    YearSurv$VarType == "Pollock", 
+    YearSurv$S_Var_Pollock, 
+    YearSurv$S_Var_Green
+  )
 
   # Put note in output if there are no mortalities or less than 12 years.  Zero mortalities causes variance to be 0
   YearSurv$Status1 <- ifelse(
@@ -124,9 +131,10 @@ km_survival <- function(x, MortType, variance) {
   YearSurv$S_SE <- YearSurv$S_Var^0.5
 
   # logit-based confidence intervals--formulas based on program MARK.
-  YearSurv <- transform(YearSurv,
-    logits = log(S / (1 - S)),
-    varlogit = S_Var / (S^2 * ((1 - S)^2))
+  YearSurv <- dplyr::mutate(
+    YearSurv,
+    logits = log(.data$S / (1 - .data$S)),
+    varlogit = .data$S_Var / (.data$S^2 * ((1 - .data$S)^2))
   )
   YearSurv$S_CIU <- 1 / (1 + exp(-1 * (YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))))
   YearSurv$S_CIL <- 1 / (1 + exp(-1 * (YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))))

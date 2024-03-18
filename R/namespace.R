@@ -13,9 +13,7 @@
 # limitations under the License.
 
 #' @import boot
-#' @import dplyr
 #' @import ggplot2
-#' @import plyr
 #' @importFrom rlang .data
 #' @importFrom stats median quantile rnorm sd
 NULL

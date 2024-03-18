@@ -75,27 +75,32 @@
 #' Methods Used to Estimate Survival, Recruitment, and Population Growth.
 #'
 #' @examples
-#' recruitment_estimate <- recruitment(bboudata::bbourecruit_a, pFemales = 0.65, sexratio = 0.5, variance <- "binomial")
+#' recruitment_estimate <- recruitment(
+#'   bboudata::bbourecruit_a, 
+#'   pFemales = 0.65, 
+#'   sexratio = 0.5, 
+#'  variance <- "binomial"
+#' )
 recruitment <- function(x, pFemales, sexratio, variance) {
   # Estimate total females based on pFemales and sexratio
-  x <- transform(
+  x <- dplyr::mutate(
     x,
-    Females = Cows + UnknownAdults * pFemales + Yearlings * sexratio,
-    FemaleCalves = Calves * sexratio
+    Females = .data$Cows + .data$UnknownAdults * pFemales + .data$Yearlings * sexratio,
+    FemaleCalves = .data$Calves * sexratio
   )
 
   # summarize by population and year
-  Compfull <- ddply(
+  Compfull <-plyr::ddply(
     x,
     c("PopulationName", "Year"),
-    summarize,
-    Females = sum(Females),
-    FemaleCalves = sum(FemaleCalves),
-    Calves = sum(Calves),
-    UnknownAdults = sum(UnknownAdults),
-    Bulls = sum(Bulls),
-    Yearlings = sum(Yearlings),
-    groups = length(Year)
+    plyr::summarize,
+    Females = sum(.data$Females),
+    FemaleCalves = sum(.data$FemaleCalves),
+    Calves = sum(.data$Calves),
+    UnknownAdults = sum(.data$UnknownAdults),
+    Bulls = sum(.data$Bulls),
+    Yearlings = sum(.data$Yearlings),
+    groups = length(.data$Year)
   )
 
   # Estimate recruitment based on full data set.
@@ -113,10 +118,10 @@ recruitment <- function(x, pFemales, sexratio, variance) {
     Compfull$R_SE <- Compfull$BinVar^0.5
 
     # logit-based confidence limits assuing R is constrained between 0 and 1.
-    Compfull <- transform(
+    Compfull <- dplyr::mutate(
       Compfull,
-      logits = log(R / (1 - R)),
-      varlogit = BinVar / (R^2 * ((1 - R)^2))
+      logits = log(.data$R / (1 - .data$R)),
+      varlogit = .data$BinVar / (.data$R^2 * ((1 - .data$R)^2))
     )
     Compfull$R_CIU <- 1 / (1 + exp(-1 * (Compfull$logits + 1.96 * (Compfull$varlogit**0.5))))
     Compfull$R_CIL <- 1 / (1 + exp(-1 * (Compfull$logits - 1.96 * (Compfull$varlogit**0.5))))
@@ -124,16 +129,13 @@ recruitment <- function(x, pFemales, sexratio, variance) {
 
   # bootstrap approach...in progress....
   if (variance == "bootstrap") {
-    # a function to bootrap
-    RecCalc <- function(C, indices) {
-      d <- C[indices, ]
-      CCF <- sum(d$FemaleCalves) / sum(d$Females)
-      Rec <- CCF / (1 + CCF)
-      return(Rec)
-    }
 
     # use ddply to bootstrap by Population and year
-    boot <- dlply(x, c("PopulationName", "Year"), function(x) boot(data = x, RecCalc, R = 1000))
+    boot <- plyr::dlply(
+      x, 
+      c("PopulationName", "Year"), 
+      function(x) boot(data = x, RecCalc, R = 1000)
+    )
     # need to write a way to extract SE and percentile CI's from boot list.....
   }
 
@@ -144,4 +146,12 @@ recruitment <- function(x, pFemales, sexratio, variance) {
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
 
   CompfullR
+}
+
+# a function to bootrap
+RecCalc <- function(C, indices) {
+  d <- C[indices, ]
+  CCF <- sum(d$FemaleCalves) / sum(d$Females)
+  Rec <- CCF / (1 + CCF)
+  return(Rec)
 }
