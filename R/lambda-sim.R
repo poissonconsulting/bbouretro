@@ -121,24 +121,13 @@ bbr_lambda_sim <- function(recruitment, survival) {
   LambdaSumSim$LGT1 <- ifelse(LambdaSumSim$RanLambda > 1, 1, 0)
 
   # An abriged data set with raw simulated values for later plotting etc.
-  LambdaSumSimR <- LambdaSumSim[c("PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR")]
-  LambdaSumSimR <- tibble::tibble(LambdaSumSimR)
+  LambdaSumSimR <- LambdaSumSim |>
+    dplyr::select(
+      "PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR"
+    ) |>
+    tibble::tibble()
   
   # summary of simulation and percentile based estimated CI's for lambda
-  # SumLambda <- plyr::ddply(
-  #   LambdaSumSim,
-  #   c("PopulationName", "Year", "S", "R", "Lambda"),
-  #   plyr::summarize,
-  #   SE_Lambda = sd(RanLambda, na.rm = T),
-  #   Lambda_LCL = quantile(RanLambda, 0.025, na.rm = T),
-  #   Lambda_UCL = quantile(RanLambda, 0.975, na.rm = T),
-  #   Prop_LGT1 = mean(LGT1),
-  #   meanSimSurv = mean(RanS, na.rm = T),
-  #   meanRsim = mean(RanR, na.rm = T),
-  #   meanSimLambda = mean(RanLambda, na.rm = T),
-  #   medianSimLambda = median(RanLambda)
-  # )
-  
   SumLambda <- 
     LambdaSumSim |>
     dplyr::group_by(PopulationName, Year, S, R, Lambda) |>
@@ -152,10 +141,8 @@ bbr_lambda_sim <- function(recruitment, survival) {
       meanSimLambda = mean(RanLambda, na.rm = T),
       medianSimLambda = median(RanLambda)
     ) |>
-    dplyr::ungroup()
-  
-  
-  SumLambda <- tibble::tibble(SumLambda)
+    dplyr::ungroup() |>
+    tibble::tibble()
   
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
