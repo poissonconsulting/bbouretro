@@ -110,20 +110,18 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
 
   # bootstrap approach...in progress....
   if (variance == "bootstrap") {
-    # a function to bootrap
-    RecCalc <- function(C, indices) {
-      d <- C[indices, ]
-      CCF <- sum(d$FemaleCalves) / sum(d$Females)
-      Rec <- CCF / (1 + CCF)
-      return(Rec)
-    }
-
-    # use ddply to bootstrap by Population and year
-    boot <- plyr::dlply(
-      x, 
-      c("PopulationName", "Year"), 
-      function(x) boot(data = x, RecCalc, R = 1000)
-    )
+    # bootstrap by Population and year
+    boot_names <- expand.grid(unique(x$PopulationName), unique(x$Year))
+    boot_names <- sort(sprintf('%s.%s', boot_names[,1], boot_names[,2]))
+    boot <- 
+      x |>
+      dplyr::group_split(
+        .data$PopulationName, .data$Year
+      ) |>
+      purrr::set_names(boot_names) |>
+      purrr::map(
+        function(x) boot(data = x, RecCalc, R = 1000)
+      )
 
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t

@@ -27,3 +27,12 @@ chk_has_data <- function(x) {
   
   rlang::abort(paste(deparse(substitute(x)), "must have rows"))
 }
+
+# Bootstrap ---------------------------------------------------------------
+
+RecCalc <- function(C, indices) {
+  d <- C[indices, ]
+  CCF <- sum(d$FemaleCalves) / sum(d$Females)
+  Rec <- CCF / (1 + CCF)
+  return(Rec)
+}

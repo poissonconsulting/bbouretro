@@ -18,7 +18,6 @@ Imports:
     chk,
     dplyr,
     ggplot2,
-    plyr,
     purrr,
     rlang,
     tibble
