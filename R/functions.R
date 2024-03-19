@@ -34,5 +34,5 @@ RecCalc <- function(C, indices) {
   d <- C[indices, ]
   CCF <- sum(d$FemaleCalves) / sum(d$Females)
   Rec <- CCF / (1 + CCF)
-  return(Rec)
+  Rec
 }
