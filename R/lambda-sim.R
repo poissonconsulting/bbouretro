@@ -130,16 +130,18 @@ bbr_lambda_sim <- function(recruitment, survival) {
   # summary of simulation and percentile based estimated CI's for lambda
   SumLambda <- 
     LambdaSumSim |>
-    dplyr::group_by(PopulationName, Year, S, R, Lambda) |>
+    dplyr::group_by(
+      .data$PopulationName, .data$Year, .data$S, .data$R, .data$Lambda
+    ) |>
     dplyr::summarize(
-      SE_Lambda = sd(RanLambda, na.rm = T),
-      Lambda_LCL = quantile(RanLambda, 0.025, na.rm = T),
-      Lambda_UCL = quantile(RanLambda, 0.975, na.rm = T),
-      Prop_LGT1 = mean(LGT1),
-      meanSimSurv = mean(RanS, na.rm = T),
-      meanRsim = mean(RanR, na.rm = T),
-      meanSimLambda = mean(RanLambda, na.rm = T),
-      medianSimLambda = median(RanLambda)
+      SE_Lambda = sd(.data$RanLambda, na.rm = TRUE),
+      Lambda_LCL = quantile(.data$RanLambda, 0.025, na.rm = TRUE),
+      Lambda_UCL = quantile(.data$RanLambda, 0.975, na.rm = TRUE),
+      Prop_LGT1 = mean(.data$LGT1),
+      meanSimSurv = mean(.data$RanS, na.rm = TRUE),
+      meanRsim = mean(.data$RanR, na.rm = TRUE),
+      meanSimLambda = mean(.data$RanLambda, na.rm = TRUE),
+      medianSimLambda = median(.data$RanLambda)
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
