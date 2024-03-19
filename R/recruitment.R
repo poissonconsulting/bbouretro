@@ -140,12 +140,20 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
       )
     })
 
-    Compfull <- merge(Compfull, pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")], by = c("PopulationName", "Year"))
+    Compfull <- merge(
+      Compfull, 
+      pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")], 
+      by = c("PopulationName", "Year")
+    )
   }
 
 
   # An abbreviated output data set.
-  CompfullR <- cbind(Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")], sexratio, pFemales)
+  CompfullR <- cbind(
+    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")], 
+    sexratio, 
+    pFemales)
+  
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
 
   CompfullR
