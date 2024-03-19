@@ -31,6 +31,6 @@ using the \code{bbr_plot_lambda()} function.
 }
 \examples{
 \dontrun{
-bbr_lambda_sim(recruitment_estimate, survival_est)
+bbr_lambda_sim(recruitment_est, survival_est)
 }
 }
