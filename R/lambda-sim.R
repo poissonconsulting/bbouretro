@@ -35,14 +35,52 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_lambda_sim(recruitment_estimate, survival_est)
+#' bbr_lambda_sim(recruitment_est, survival_est)
 #' }
 bbr_lambda_sim <- function(recruitment, survival) {
+  chk_has_data(recruitment)
+  chk_has_data(survival)
+  
+  chk::check_data(
+    recruitment,
+    values = list(
+      PopulationName = character(),
+      Year = integer(),
+      R = numeric(),
+      R_SE = numeric(),
+      R_CIL = numeric(),        
+      R_CIU = numeric(),
+      groups = integer(),
+      FemaleCalves = numeric(),
+      Females = numeric(),
+      sexratio = numeric(),
+      pFemales = numeric()
+    )
+  )
+  
+  chk::check_data(
+    survival,
+    values = list(
+      PopulationName = character(),
+      Year = integer(),
+      S = numeric(),
+      S_SE = numeric(),
+      S_CIL = numeric(),        
+      S_CIU = numeric(),
+      MeanMonitored = numeric(),
+      sumdead = integer(),
+      sumalive = integer(),
+      Status = character()
+    )
+  )
+  
+  chk_overlap(recruitment, survival, "PopulationName")
+  chk_overlap(recruitment, survival, "Year")
+  
   # merge the comp and survival databases
   LambdaSum <- merge(recruitment, survival, by = c("PopulationName", "Year"))
   # Lambda estimate using the H-B equation
   LambdaSum$Lambda <- LambdaSum$S / (1 - LambdaSum$R)
-
   # total number of groups (projectXYear) for sims
   groups <- nrow(LambdaSum)
   # fix sims at 1000
@@ -84,22 +122,41 @@ bbr_lambda_sim <- function(recruitment, survival) {
 
   # An abriged data set with raw simulated values for later plotting etc.
   LambdaSumSimR <- LambdaSumSim[c("PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR")]
-
+  LambdaSumSimR <- tibble::tibble(LambdaSumSimR)
+  
   # summary of simulation and percentile based estimated CI's for lambda
-  SumLambda <- plyr::ddply(
-    LambdaSumSim,
-    c("PopulationName", "Year", "S", "R", "Lambda"),
-    plyr::summarize,
-    SE_Lambda = sd(.data$RanLambda, na.rm = T),
-    Lambda_LCL = quantile(.data$RanLambda, 0.025, na.rm = T),
-    Lambda_UCL = quantile(.data$RanLambda, 0.975, na.rm = T),
-    Prop_LGT1 = mean(.data$LGT1),
-    meanSimSurv = mean(.data$RanS, na.rm = T),
-    meanRsim = mean(.data$RanR, na.rm = T),
-    meanSimLambda = mean(.data$RanLambda, na.rm = T),
-    medianSimLambda = median(.data$RanLambda)
-  )
-
+  # SumLambda <- plyr::ddply(
+  #   LambdaSumSim,
+  #   c("PopulationName", "Year", "S", "R", "Lambda"),
+  #   plyr::summarize,
+  #   SE_Lambda = sd(RanLambda, na.rm = T),
+  #   Lambda_LCL = quantile(RanLambda, 0.025, na.rm = T),
+  #   Lambda_UCL = quantile(RanLambda, 0.975, na.rm = T),
+  #   Prop_LGT1 = mean(LGT1),
+  #   meanSimSurv = mean(RanS, na.rm = T),
+  #   meanRsim = mean(RanR, na.rm = T),
+  #   meanSimLambda = mean(RanLambda, na.rm = T),
+  #   medianSimLambda = median(RanLambda)
+  # )
+  
+  SumLambda <- 
+    LambdaSumSim |>
+    dplyr::group_by(PopulationName, Year, S, R, Lambda) |>
+    dplyr::summarize(
+      SE_Lambda = sd(RanLambda, na.rm = T),
+      Lambda_LCL = quantile(RanLambda, 0.025, na.rm = T),
+      Lambda_UCL = quantile(RanLambda, 0.975, na.rm = T),
+      Prop_LGT1 = mean(LGT1),
+      meanSimSurv = mean(RanS, na.rm = T),
+      meanRsim = mean(RanR, na.rm = T),
+      meanSimLambda = mean(RanLambda, na.rm = T),
+      medianSimLambda = median(RanLambda)
+    ) |>
+    dplyr::ungroup()
+  
+  
+  SumLambda <- tibble::tibble(SumLambda)
+  
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
   names(LambdaOut) <- c("RawValues", "Summary")
