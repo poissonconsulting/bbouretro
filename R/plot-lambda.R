@@ -23,14 +23,29 @@
 #' @details
 #' A plot of \eqn{lambda} estimates is given for each population unit.
 #'
-#'
 #' @examples
 #' \dontrun{
 #' bbr_plot_lambda(lambda_est)
 #' }
 bbr_plot_lambda <- function(lambda) {
-  plotdat <- lambda$Summary
+  chk::chk_is(lambda, "list")
+  chk::check_names(lambda, names = c("Summary"))
+  chk_has_data(lambda$Summary)
+  
+  plotdat <- lambda$Summary 
+  plotdat$Year <- as.character(plotdat$Year)
 
+  chk::check_data(
+    plotdat,
+    values = list(
+      PopulationName = character(),
+      Year = character(),
+      Lambda = numeric(),
+      Lambda_LCL = numeric(),
+      Lambda_UCL = numeric()
+    )
+  )
+  
   ggplot(plotdat, aes(.data$Year, .data$Lambda)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
@@ -41,5 +56,6 @@ bbr_plot_lambda <- function(lambda) {
     facet_wrap(~PopulationName, ncol = 1) +
     xlab("Year") +
     ylab("Lambda estimate") +
-    theme_bw()
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 }
