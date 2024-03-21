@@ -28,6 +28,21 @@
 #' bbr_plot_survival(survival_est)
 #' }
 bbr_plot_survival <- function(survival) {
+  chk::chk_s3_class(survival, "data.frame")
+  chk_has_data(survival)
+  chk::check_data(
+    survival,
+    values = list(
+      PopulationName = character(),
+      Year = integer(),
+      S = numeric(),
+      S_CIL = numeric(),
+      S_CIU = numeric()
+    )
+  )
+  
+  survival$Year <- as.character(survival$Year)
+  
   ggplot(survival, aes(.data$Year, .data$S)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
@@ -35,8 +50,10 @@ bbr_plot_survival <- function(survival) {
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
+    scale_x_discrete(breaks = every_nth(n = 2)) +
     xlab("Year") +
     ylab("Adult female survival") +
     facet_wrap(~PopulationName, scales = "free_x") +
-    theme_bw(base_size = 14)
+    theme_bw(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 }
