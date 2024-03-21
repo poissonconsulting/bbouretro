@@ -8,6 +8,7 @@ save_png <- function(x, width = 400, height = 400) {
 
 save_csv <- function(x) {
   path <- tempfile(fileext = ".csv")
+  x <- round_df_sigs(x)
   readr::write_csv(x, path)
   path
 }
@@ -22,4 +23,17 @@ expect_snapshot_data <- function(x, name) {
   testthat::skip_on_os("windows")
   path <- save_csv(x)
   testthat::expect_snapshot_file(path, paste0(name, ".csv"))
+}
+
+round_df_sigs <- function(df) {
+  x <- vapply(df, class, FUN.VALUE="")
+  names(x)
+  nums <- which(x == "numeric")
+  num_cols <- names(x)[nums]
+  
+  df <- df |>
+    dplyr::mutate(
+      dplyr::across(dplyr::all_of(num_cols), ~ signif(.x , digits = 3))
+    )
+  df
 }
