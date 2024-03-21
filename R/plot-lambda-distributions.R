@@ -33,13 +33,19 @@
 #' bbr_plot_lambda_distributions(lambda)
 #' }
 bbr_plot_lambda_distributions <- function(lambda, population) {
+  chk::chk_is(lambda, "list")
+  chk::check_names(lambda, names = c("RawValues", "Summary"))
+  chk::chk_string(population)
+  chk_set(population, lambda, "RawValues")
+  chk_set(population, lambda, "Summary")
+  
   # subset data set for target population
-  Ld <- subset(lambda$RawValues, lambda$RawValues$PopulationName == Pop)
-  RL <- subset(lambda$Summary, lambda$Summary$PopulationName == Pop)
+  Ld <- subset(lambda$RawValues, lambda$RawValues$PopulationName == population)
+  RL <- subset(lambda$Summary, lambda$Summary$PopulationName == population)
 
   # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
   # year is still plotted as a line but with no distribution
-  LrawR <- subset(Ld, is.na(Ld$RanLambda) == F)
+  LrawR <- subset(Ld, is.na(Ld$RanLambda) == FALSE)
 
   # set lambda limits for x axis based all lambda--this reduces influence of outliers
   xmin <- quantile(LrawR$RanLambda, 0.0001)

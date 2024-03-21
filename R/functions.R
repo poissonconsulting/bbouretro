@@ -28,6 +28,18 @@ chk_has_data <- function(x) {
   rlang::abort(paste(deparse(substitute(x)), "must have rows"))
 }
 
+chk_set <- function(x, list, name) {
+  if (x %in% list[[name]]$PopulationName) {
+    return(invisible(x))
+  }
+  
+  rlang::abort(
+    paste(
+      "The population", x, "is not present in the", name, "table."
+    )
+  )
+}
+
 # Bootstrap ---------------------------------------------------------------
 
 RecCalc <- function(C, indices) {
