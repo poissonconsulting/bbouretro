@@ -48,7 +48,11 @@
 #'   Journal of Wildlife Management 53:7-15. TODO Need Cox paper
 #'
 #' @examples
-#' survival_est <- bbr_km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
+#' survival_est <- bbr_km_survival(
+#'   bboudata::bbousurv_a,
+#'   MortType = "Total",
+#'   variance = "Greenwood"
+#' )
 bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   x <- bboutools:::.chk_data_survival(x)
   chk::chk_string(MortType)
@@ -63,7 +67,8 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   x$MortType <- MortType
   x$Morts <- ifelse(x$MortType == "Total", x$TotalMorts, x$MortalitiesCertain)
 
-  # Months with 0 collars monitored are removed but this is noted to user later and estimates scaled appropriately
+  # Months with 0 collars monitored are removed but this is noted to user later 
+  # and estimates scaled appropriately
   x <- subset(x, x$StartTotal > 0)
 
   # calculate monthly components of survival and variance

@@ -91,13 +91,13 @@ bbr_lambda_sim <- function(recruitment, survival) {
   rnnors <- data.frame(rnorm(groups * sims))
   names(rnnors) <- "RannorS"
   rnnors$RannorR <- rnorm(groups * sims)
-  rnnors$nrow <- 1:nrow(rnnors)
+  rnnors$nrow <- seq_len(nrow(rnnors))
   rnnors$group <- rep(seq(1, groups, 1), 1000)
   rnnors <- dplyr::arrange(rnnors, .data$group)
 
   # merge the random numbers with input data set based on group/row #
   # this expands the data frame 1000X
-  LambdaSum$group <- 1:nrow(LambdaSum)
+  LambdaSum$group <- seq_len(nrow(LambdaSum))
   LambdaSumSim <- merge(LambdaSum, rnnors, by = "group")
 
   # put the estimated parameters on the logit scale
