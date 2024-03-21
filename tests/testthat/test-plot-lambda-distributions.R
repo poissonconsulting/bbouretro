@@ -31,7 +31,7 @@ test_that("pop a works", {
     plot <- bbr_plot_lambda_distributions(output, "A")
     
     expect_s3_class(plot, "ggplot")
-    expect_snapshot_plot(plot, "plot_month_lambda_distributions_pop_a")
+    expect_snapshot_plot(plot, "plot_lambda_distributions_pop_a")
   })
 })
 
@@ -54,7 +54,7 @@ test_that("pop b works", {
     plot <- bbr_plot_lambda_distributions(output, "B")
     
     expect_s3_class(plot, "ggplot")
-    expect_snapshot_plot(plot, "plot_month_lambda_distributions_pop_b")
+    expect_snapshot_plot(plot, "plot_lambda_distributions_pop_b")
   })
 })
 
@@ -77,7 +77,7 @@ test_that("pop c works", {
     plot <- bbr_plot_lambda_distributions(output, "C")
     
     expect_s3_class(plot, "ggplot")
-    expect_snapshot_plot(plot, "plot_month_lambda_distributions_pop_c")
+    expect_snapshot_plot(plot, "plot_lambda_distributions_pop_c")
   })
 })
 
