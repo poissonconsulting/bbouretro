@@ -85,7 +85,6 @@ test_that("test xaxis labels", {
   plot <- bbr_plot_recruitment(recruitment_est[1,])
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_recruitment_only_1")
-  
 })
 
 test_that("errors if no year column", {
