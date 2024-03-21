@@ -29,6 +29,21 @@
 #' bbr_plot_recruitment(recruitment_est)
 #' }
 bbr_plot_recruitment <- function(recruitment) {
+  chk::chk_s3_class(recruitment, "data.frame")
+  chk_has_data(recruitment)
+  chk::check_data(
+    recruitment,
+    values = list(
+      PopulationName = character(),
+      Year = integer(),
+      R = numeric(),
+      R_CIL = numeric(),
+      R_CIU = numeric()
+    )
+  )
+  
+  recruitment$Year <- as.character(recruitment$Year)
+  
   ggplot(recruitment, aes(.data$Year, .data$R)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
@@ -36,8 +51,10 @@ bbr_plot_recruitment <- function(recruitment) {
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
+    scale_x_discrete(breaks = every_nth(n = 2)) +
     xlab("Year") +
     ylab("Recruitment") +
     facet_wrap(~PopulationName, ncol = 1) +
-    theme_bw(base_size = 14)
+    theme_bw(base_size = 14) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 }

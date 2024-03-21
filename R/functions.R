@@ -48,3 +48,15 @@ RecCalc <- function(C, indices) {
   Rec <- CCF / (1 + CCF)
   Rec
 }
+
+# Plot Helper -------------------------------------------------------------
+
+every_nth <- function(n) {
+  function(x) {
+    if (length(x) <= 6) {
+      return(x)
+    }
+    
+    x[c(TRUE, rep(FALSE, n - 1))]
+  }
+}
