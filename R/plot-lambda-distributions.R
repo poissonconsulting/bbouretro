@@ -59,11 +59,11 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
 
   # plot estimated lambda for each year as a red line with
   # a black hashed line indicates lambda=1.
-  ggplot(LrawR, aes(RanLambda)) +
+  ggplot(LrawR, aes(.data$RanLambda)) +
     geom_histogram(bins = 30, fill = "tan", color = "black") +
-    geom_vline(data = RL, aes(xintercept = Lambda), color = "red") +
+    geom_vline(data = RL, aes(xintercept = .data$Lambda), color = "red") +
     geom_vline(xintercept = 1, linetype = 2, color = "black") +
-    facet_wrap(~Year) +
+    facet_wrap(~.data$Year) +
     xlab("Lambda Values") +
     ylab("Frequencies") +
     theme_bw()
