@@ -4,9 +4,9 @@
 \name{bbouretro-package}
 \alias{bbouretro}
 \alias{bbouretro-package}
-\title{bbouretro: What the Package Does (One Line, Title Case)}
+\title{bbouretro: Classic Survival, Recruitment and Population Growth Methods}
 \description{
-What the package does (one paragraph).
+Estimates annual survival, recruitment and population growth using the classical methods. The package has been designed to work with a specifc data format.
 }
 \author{
 \strong{Maintainer}: Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID})

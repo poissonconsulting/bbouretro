@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/poissonconsulting/bbouretro/branch/main/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/bbouretro?branch=main)
+[![Codecov test coverage](https://codecov.io/gh/poissonconsulting/bbouretro/branch/main/graph/badge.svg?token=y99t6ttYNS)](https://app.codecov.io/gh/poissonconsulting/bbouretro?branch=main)
 <!-- badges: end -->
 
 ## Introduction
-The goal of bbouretro is to ...
+The goal of bbouretro is to provide the ability to calculate survival, recruitment and population growth using the classical methods. 
 
 ## Installation
 
@@ -41,12 +41,11 @@ pak::pak("poissonconsulting/bbouretro")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r}
 library(bbouretro)
 library(bboudata)
 
+# generate recruitment estimate for each year
 recruitment_est <- 
   bbr_recruitment(
     bbourecruit_c, 
@@ -56,6 +55,7 @@ recruitment_est <-
 )
 bbr_plot_recruitment(recruitment_est)
 
+# generate survival estimate for each year
 survival_est <- 
   bbr_km_survival(
     bbousurv_c,
@@ -64,6 +64,7 @@ survival_est <-
   )
 bbr_plot_survival(survival_est)
 
+# calculate lambda now that both recruitment and survival have been calculated
 lambda_est <- bbr_lambda_sim(recruitment_est, survival_est)
 summary <- bbr_summarize_lambda(lambda_est)
 summary
