@@ -46,9 +46,9 @@
 bbr_summarize_lambda <- function(lambda) {
   chk::chk_not_empty(lambda, x_name = "lambda")
   chk::check_names(lambda, names = c("Summary", "RawValues"))
-  
+
   Summary <- lambda$Summary
-  
+
   chk::check_data(
     Summary,
     values = list(
@@ -58,7 +58,7 @@ bbr_summarize_lambda <- function(lambda) {
       R = numeric(),
       Lambda = numeric(),
       SE_Lambda = numeric(),
-      Lambda_LCL = numeric(),        
+      Lambda_LCL = numeric(),
       Lambda_UCL = numeric(),
       Prop_LGT1 = numeric(),
       meanSimSurv = numeric(),
@@ -67,7 +67,7 @@ bbr_summarize_lambda <- function(lambda) {
       medianSimLambda = numeric()
     )
   )
-  
+
   Summary[c(3:12)] <- round(Summary[c(3:12)], 3)
   Summary
 }

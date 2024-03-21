@@ -62,7 +62,7 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   chk::chk_range(pFemales)
   chk::chk_range(sexratio)
   chk::chk_string(variance)
-  
+
   # Estimate total females based on pFemales and sexratio
   x <- dplyr::mutate(
     x,
@@ -71,7 +71,7 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   )
 
   # summarize by population and year
-  Compfull <- 
+  Compfull <-
     x |>
     dplyr::group_by(.data$PopulationName, .data$Year) |>
     dplyr::summarize(
@@ -84,7 +84,7 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
       groups = length(.data$Year)
     ) |>
     dplyr::group_by()
-  
+
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
   Compfull$CalfCow <- Compfull$Calves / Compfull$Females
@@ -102,9 +102,9 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
     # logit-based confidence limits assuing R is constrained between 0 and 1.
     Compfull <- dplyr::mutate(
       Compfull,
-        logits = log(.data$R / (1 - .data$R)),
-        varlogit = .data$BinVar / (.data$R^2 * ((1 - .data$R)^2))
-      )
+      logits = log(.data$R / (1 - .data$R)),
+      varlogit = .data$BinVar / (.data$R^2 * ((1 - .data$R)^2))
+    )
     Compfull$R_CIU <- 1 / (1 + exp(-1 * (Compfull$logits + 1.96 * (Compfull$varlogit**0.5))))
     Compfull$R_CIL <- 1 / (1 + exp(-1 * (Compfull$logits - 1.96 * (Compfull$varlogit**0.5))))
   }
@@ -113,8 +113,8 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
   if (variance == "bootstrap") {
     # bootstrap by Population and year
     boot_names <- expand.grid(unique(x$PopulationName), unique(x$Year))
-    boot_names <- sort(sprintf('%s.%s', boot_names[,1], boot_names[,2]))
-    boot <- 
+    boot_names <- sort(sprintf("%s.%s", boot_names[, 1], boot_names[, 2]))
+    boot <-
       x |>
       dplyr::group_split(
         .data$PopulationName, .data$Year
@@ -141,8 +141,8 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
     })
 
     Compfull <- merge(
-      Compfull, 
-      pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")], 
+      Compfull,
+      pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")],
       by = c("PopulationName", "Year")
     )
   }
@@ -150,10 +150,11 @@ bbr_recruitment <- function(x, pFemales, sexratio, variance) {
 
   # An abbreviated output data set.
   CompfullR <- cbind(
-    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")], 
-    sexratio, 
-    pFemales)
-  
+    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")],
+    sexratio,
+    pFemales
+  )
+
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
 
   CompfullR

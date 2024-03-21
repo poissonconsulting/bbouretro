@@ -72,8 +72,8 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
     Smonth = (1 - (.data$Morts / .data$StartTotal)),
     Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
-  
-  YearSurv <- 
+
+  YearSurv <-
     LiveDeadCount |>
     dplyr::group_by(.data$PopulationName, .data$Year) |>
     dplyr::summarise(
@@ -96,21 +96,21 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   # Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sumalive
   YearSurv$S_Var <- ifelse(
-    YearSurv$VarType == "Pollock", 
-    YearSurv$S_Var_Pollock, 
+    YearSurv$VarType == "Pollock",
+    YearSurv$S_Var_Pollock,
     YearSurv$S_Var_Green
   )
 
-  # Put note in output if there are no mortalities or less than 12 years.  
+  # Put note in output if there are no mortalities or less than 12 years.
   # Zero mortalities causes variance to be 0
   YearSurv$Status1 <- ifelse(
-    YearSurv$monthcount == 12, 
-    "", 
+    YearSurv$monthcount == 12,
+    "",
     paste("Only", YearSurv$monthcount, "months monitored")
   )
   YearSurv$Status2 <- ifelse(
-    YearSurv$sumdead == 0, 
-    "No Mortalities all year (SE=0)", 
+    YearSurv$sumdead == 0,
+    "No Mortalities all year (SE=0)",
     ""
   )
   YearSurv$Status <- paste(YearSurv$Status1, "-", YearSurv$Status2)

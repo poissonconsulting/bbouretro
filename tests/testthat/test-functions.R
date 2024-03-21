@@ -26,7 +26,7 @@ test_that("cuts every 2nd value when more then 6", {
 
 test_that("pass when df has at least 1 row", {
   x <- data.frame(x = 1)
-  output <- chk_has_data(x) 
+  output <- chk_has_data(x)
   expect_equal(output, data.frame(x = 1))
 })
 
@@ -35,5 +35,5 @@ test_that("error when df has no rows", {
   expect_error(
     chk_has_data(x),
     regex = "x must have rows"
-  )  
+  )
 })

@@ -81,21 +81,21 @@ test_that("outputs even if RawValues is empty", {
   output <- bbr_summarize_lambda(lambda)
 
   expect_equal(
-   output,
-   data.frame(
-     PopulationName = c("A"),
-     Year = 1991L,
-     S = .874,
-     R = 0.125,
-     Lambda = 0.949,
-     SE_Lambda = 0.346,
-     Lambda_LCL = 0.947,
-     Lambda_UCL = 0.972,
-     Prop_LGT1 = 0.78,
-     meanSimSurv = 0.874,
-     meanRsim = 0.09,
-     meanSimLambda = 0.14,
-     medianSimLambda = 0.8745
-   )
+    output,
+    data.frame(
+      PopulationName = c("A"),
+      Year = 1991L,
+      S = .874,
+      R = 0.125,
+      Lambda = 0.949,
+      SE_Lambda = 0.346,
+      Lambda_LCL = 0.947,
+      Lambda_UCL = 0.972,
+      Prop_LGT1 = 0.78,
+      meanSimSurv = 0.874,
+      meanRsim = 0.09,
+      meanSimLambda = 0.14,
+      medianSimLambda = 0.8745
+    )
   )
 })

@@ -40,7 +40,7 @@
 bbr_lambda_sim <- function(recruitment, survival) {
   chk_has_data(recruitment)
   chk_has_data(survival)
-  
+
   chk::check_data(
     recruitment,
     values = list(
@@ -48,7 +48,7 @@ bbr_lambda_sim <- function(recruitment, survival) {
       Year = integer(),
       R = numeric(),
       R_SE = numeric(),
-      R_CIL = numeric(),        
+      R_CIL = numeric(),
       R_CIU = numeric(),
       groups = integer(),
       FemaleCalves = numeric(),
@@ -57,7 +57,7 @@ bbr_lambda_sim <- function(recruitment, survival) {
       pFemales = numeric()
     )
   )
-  
+
   chk::check_data(
     survival,
     values = list(
@@ -65,7 +65,7 @@ bbr_lambda_sim <- function(recruitment, survival) {
       Year = integer(),
       S = numeric(),
       S_SE = numeric(),
-      S_CIL = numeric(),        
+      S_CIL = numeric(),
       S_CIU = numeric(),
       MeanMonitored = numeric(),
       sumdead = integer(),
@@ -73,10 +73,10 @@ bbr_lambda_sim <- function(recruitment, survival) {
       Status = character()
     )
   )
-  
+
   chk_overlap(recruitment, survival, "PopulationName")
   chk_overlap(recruitment, survival, "Year")
-  
+
   # merge the comp and survival databases
   LambdaSum <- merge(recruitment, survival, by = c("PopulationName", "Year"))
   # Lambda estimate using the H-B equation
@@ -126,9 +126,9 @@ bbr_lambda_sim <- function(recruitment, survival) {
       "PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR"
     ) |>
     tibble::tibble()
-  
+
   # summary of simulation and percentile based estimated CI's for lambda
-  SumLambda <- 
+  SumLambda <-
     LambdaSumSim |>
     dplyr::group_by(
       .data$PopulationName, .data$Year, .data$S, .data$R, .data$Lambda
@@ -145,7 +145,7 @@ bbr_lambda_sim <- function(recruitment, survival) {
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
-  
+
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
   names(LambdaOut) <- c("RawValues", "Summary")

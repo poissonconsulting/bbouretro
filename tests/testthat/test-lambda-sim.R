@@ -107,8 +107,10 @@ test_that("test data works", {
       MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
-      Status = c("Only 9 months monitored - ", " - ", " - ",
-                 " - No Mortalities all year (SE=0)")
+      Status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
     )
 
     output <- bbr_lambda_sim(recruitment_est, survival_est)
@@ -144,8 +146,10 @@ test_that("errors if no populations overlap", {
       MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
-      Status = c("Only 9 months monitored - ", " - ", " - ",
-                 " - No Mortalities all year (SE=0)")
+      Status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
     )
 
     expect_error(
@@ -181,8 +185,10 @@ test_that("errors if no years overlap", {
       MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
-      Status = c("Only 9 months monitored - ", " - ", " - ",
-                 " - No Mortalities all year (SE=0)")
+      Status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
     )
 
     expect_error(
@@ -199,7 +205,7 @@ test_that("errors when recruitment has rows passed", {
       pFemales = 0.65,
       sexratio = 0.5,
       variance = "binomial"
-    )[0,]
+    )[0, ]
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
@@ -227,7 +233,7 @@ test_that("errors when survival has rows passed", {
       bboudata::bbousurv_c,
       MortType = "Total",
       variance = "Pollock"
-    )[0,]
+    )[0, ]
 
     expect_error(
       bbr_lambda_sim(recruitment_est, survival_est),
@@ -262,8 +268,10 @@ test_that("NA instead in dataset work", {
       MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
-      Status = c("Only 9 months monitored - ", " - ", " - ",
-                 " - No Mortalities all year (SE=0)")
+      Status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
     )
 
     output <- bbr_lambda_sim(recruitment_est, survival_est)

@@ -41,9 +41,9 @@ bbr_plot_recruitment <- function(recruitment) {
       R_CIU = numeric()
     )
   )
-  
+
   recruitment$Year <- as.character(recruitment$Year)
-  
+
   ggplot(recruitment, aes(.data$Year, .data$R)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(

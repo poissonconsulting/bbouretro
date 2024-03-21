@@ -6,7 +6,7 @@
 \alias{bbouretro-package}
 \title{bbouretro: Classic Survival, Recruitment and Population Growth Methods}
 \description{
-Estimates annual survival, recruitment and population growth using the classical methods. The package has been designed to work with a specifc data format.
+Estimates annual survival, recruitment and population growth using the classical methods. This package is part of the bbou suite of tools.
 }
 \author{
 \strong{Maintainer}: Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID})

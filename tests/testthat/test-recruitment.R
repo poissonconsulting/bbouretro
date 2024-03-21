@@ -194,6 +194,3 @@ test_that("pFemales and sexratio matches what was set", {
   )
   expect_snapshot_data(output, "bbr_recruitment_c_0")
 })
-
-
-

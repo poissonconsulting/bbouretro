@@ -31,8 +31,8 @@ bbr_plot_lambda <- function(lambda) {
   chk::chk_is(lambda, "list")
   chk::check_names(lambda, names = c("Summary"))
   chk_has_data(lambda$Summary)
-  
-  plotdat <- lambda$Summary 
+
+  plotdat <- lambda$Summary
   plotdat$Year <- as.character(plotdat$Year)
 
   chk::check_data(
@@ -45,7 +45,7 @@ bbr_plot_lambda <- function(lambda) {
       Lambda_UCL = numeric()
     )
   )
-  
+
   ggplot(plotdat, aes(.data$Year, .data$Lambda)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(

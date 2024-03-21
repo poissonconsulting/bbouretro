@@ -107,8 +107,10 @@ test_that("errors when pop not in data set", {
       MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
-      Status = c("Only 9 months monitored - ", " - ", " - ",
-                 " - No Mortalities all year (SE=0)")
+      Status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
     )
 
     output <- bbr_lambda_sim(recruitment_est, survival_est)

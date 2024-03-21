@@ -38,7 +38,7 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
   chk::chk_string(population)
   chk_set(population, lambda, "RawValues")
   chk_set(population, lambda, "Summary")
-  
+
   # subset data set for target population
   Ld <- subset(lambda$RawValues, lambda$RawValues$PopulationName == population)
   RL <- subset(lambda$Summary, lambda$Summary$PopulationName == population)
@@ -63,7 +63,7 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
     geom_histogram(bins = 30, fill = "tan", color = "black") +
     geom_vline(data = RL, aes(xintercept = .data$Lambda), color = "red") +
     geom_vline(xintercept = 1, linetype = 2, color = "black") +
-    facet_wrap(~.data$Year) +
+    facet_wrap(~ .data$Year) +
     xlab("Lambda Values") +
     ylab("Frequencies") +
     theme_bw()

@@ -40,9 +40,9 @@ bbr_plot_survival <- function(survival) {
       S_CIU = numeric()
     )
   )
-  
+
   survival$Year <- as.character(survival$Year)
-  
+
   ggplot(survival, aes(.data$Year, .data$S)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(

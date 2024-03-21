@@ -68,19 +68,21 @@ test_that("skip x ticks when more then 6 groups", {
     MeanMonitored = c(4.5, 12.6, 14.6, 20.2, 14.2, 15.7, 18.7),
     sumdead = c(3L, 3L, 3L, 0L, 7L, 2L, 4L),
     sumalive = c(39L, 149L, 179L, 242L, 251L, 124L, 365L),
-    Status = c("Only 9 months monitored - ", " - ", " - ", " - ", " - ", " - ",
-               " - ")
+    Status = c(
+      "Only 9 months monitored - ", " - ", " - ", " - ", " - ", " - ",
+      " - "
+    )
   )
 
   plot <- bbr_plot_survival(survival_est)
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_survival_test_data_7")
 
-  plot <- bbr_plot_survival(survival_est[1:4,])
+  plot <- bbr_plot_survival(survival_est[1:4, ])
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_survival_test_data_4")
 
-  plot <- bbr_plot_survival(survival_est[1,])
+  plot <- bbr_plot_survival(survival_est[1, ])
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_survival_test_data_1")
 })
@@ -95,8 +97,10 @@ test_that("errors if no year column", {
     MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
     sumdead = c(3L, 3L, 3L, 0L),
     sumalive = c(39L, 149L, 179L, 242L),
-    Status = c("Only 9 months monitored - ", " - ", " - ",
-               " - No Mortalities all year (SE=0)")
+    Status = c(
+      "Only 9 months monitored - ", " - ", " - ",
+      " - No Mortalities all year (SE=0)"
+    )
   )
 
   expect_error(
@@ -118,7 +122,7 @@ test_that("errors if df is empty", {
   survival_est <- data.frame(
     PopulationName = "A",
     Year = 2001L
-  )[0,]
+  )[0, ]
 
   expect_error(
     bbr_plot_survival(survival_est),

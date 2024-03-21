@@ -46,20 +46,20 @@ library(bbouretro)
 library(bboudata)
 
 # generate recruitment estimate for each year
-recruitment_est <- 
+recruitment_est <-
   bbr_recruitment(
-    bbourecruit_c, 
-    pFemales = 0.65, 
-    sexratio = 0.5, 
+    bbourecruit_c,
+    pFemales = 0.65,
+    sexratio = 0.5,
     variance = "binomial"
-)
+  )
 bbr_plot_recruitment(recruitment_est)
 
 # generate survival estimate for each year
-survival_est <- 
+survival_est <-
   bbr_km_survival(
     bbousurv_c,
-    MortType = "Total", 
+    MortType = "Total",
     variance = "Pollock"
   )
 bbr_plot_survival(survival_est)

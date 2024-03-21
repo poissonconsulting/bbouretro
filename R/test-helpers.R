@@ -26,14 +26,14 @@ expect_snapshot_data <- function(x, name, digits = 3) {
 }
 
 round_df_sigs <- function(df, digits) {
-  x <- vapply(df, class, FUN.VALUE="")
+  x <- vapply(df, class, FUN.VALUE = "")
   names(x)
   nums <- which(x == "numeric")
   num_cols <- names(x)[nums]
-  
+
   df <- df |>
     dplyr::mutate(
-      dplyr::across(dplyr::all_of(num_cols), ~ signif(.x , digits = digits))
+      dplyr::across(dplyr::all_of(num_cols), ~ signif(.x, digits = digits))
     )
   df
 }

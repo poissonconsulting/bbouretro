@@ -78,11 +78,11 @@ test_that("test xaxis labels", {
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_recruitment_more_then_6")
 
-  plot <- bbr_plot_recruitment(recruitment_est[1:4,])
+  plot <- bbr_plot_recruitment(recruitment_est[1:4, ])
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_recruitment_less_then_6")
 
-  plot <- bbr_plot_recruitment(recruitment_est[1,])
+  plot <- bbr_plot_recruitment(recruitment_est[1, ])
   expect_s3_class(plot, "ggplot")
   expect_snapshot_plot(plot, "plot_recruitment_only_1")
 })
@@ -120,7 +120,7 @@ test_that("errors if df is empty", {
   recruitment_est <- data.frame(
     PopulationName = "A",
     Year = 2001L
-  )[0,]
+  )[0, ]
 
   expect_error(
     bbr_plot_recruitment(recruitment_est),
