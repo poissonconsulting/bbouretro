@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/poissonconsulting/bbouretro/branch/main/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/bbouretro?branch=main)
 <!-- badges: end -->
 
 ## Introduction
@@ -37,118 +39,60 @@ This is a basic example which shows you how to solve a common problem:
 library(bbouretro)
 library(bboudata)
 
-recruitment_est <- recruitment(bbourecruit_c, pFemales = 0.65, sexratio = 0.5, variance = "binomial") 
-plot_recruitment(recruitment_est)
-#> Warning: Removed 9 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
+recruitment_est <- 
+  bbr_recruitment(
+    bbourecruit_c, 
+    pFemales = 0.65, 
+    sexratio = 0.5, 
+    variance = "binomial"
+)
+bbr_plot_recruitment(recruitment_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ``` r
 
-survival_est <- km_survival(bbousurv_c, MortType = "Total", variance = "Pollock")
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-#> Warning in mean.default(.data$Smonth): argument is not numeric or logical:
-#> returning NA
-#> Warning in mean.default(.data$StartTotal): argument is not numeric or logical:
-#> returning NA
-#> Warning in min(.data$StartTotal): no non-missing arguments to min; returning
-#> Inf
-#> Warning in max(.data$StartTotal): no non-missing arguments to max; returning
-#> -Inf
-plot_survival(survival_est)
+survival_est <- 
+  bbr_km_survival(
+    bbousurv_c,
+    MortType = "Total", 
+    variance = "Pollock"
+  )
+bbr_plot_survival(survival_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
 
 ``` r
 
-# TODO turn on when not erroring
-#lambda_est <- lambda_sim(recruitment_est, survival_est)
-#summary <- SummarizeLambda(lambda_est)
-#plot_lambda(lambda_est)
-#plot_lambda_distributions(lambda_est, "C")
+lambda_est <- bbr_lambda_sim(recruitment_est, survival_est)
+summary <- bbr_summarize_lambda(lambda_est)
+summary
+#> # A tibble: 9 × 13
+#>   PopulationName  Year     S     R Lambda SE_Lambda Lambda_LCL Lambda_UCL
+#>   <chr>          <int> <dbl> <dbl>  <dbl>     <dbl>      <dbl>      <dbl>
+#> 1 C               2005 0.832 0.096  0.92      0.051      0.84       1.04 
+#> 2 C               2006 1     0.08   1.09     NA         NA         NA    
+#> 3 C               2007 0.524 0.068  0.562     0.037      0.502      0.652
+#> 4 C               2008 0.824 0.059  0.876     0.123      0.799      1.25 
+#> 5 C               2009 1     0.083  1.09     NA         NA         NA    
+#> 6 C               2010 0.926 0.14   1.08      0.065      0.99       1.23 
+#> 7 C               2011 0.96  0.158  1.14      0.107      1.03       1.44 
+#> 8 C               2012 0.963 0.112  1.08      0.054      1.01       1.20 
+#> 9 C               2013 0.512 0.133  0.591     0.027      0.553      0.657
+#> # ℹ 5 more variables: Prop_LGT1 <dbl>, meanSimSurv <dbl>, meanRsim <dbl>,
+#> #   meanSimLambda <dbl>, medianSimLambda <dbl>
+bbr_plot_lambda(lambda_est)
 ```
+
+<img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
+
+``` r
+bbr_plot_lambda_distributions(lambda_est, "C")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />
 
 ## Contribution
 
