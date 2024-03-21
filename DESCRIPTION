@@ -1,5 +1,5 @@
 Package: bbouretro
-Title: What the Package Does (One Line, Title Case)
+Title: Classic Survival, Recruitment and Population Growth Methods
 Version: 0.0.0.9000
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut"),
@@ -10,7 +10,8 @@ Authors@R: c(
     person("Colton", "Stephens", , "colton@poissonconsulting.ca", role = "ctb",
            comment = c(ORCID = "0000-0002-8744-6405"))
   )
-Description: What the package does (one paragraph).
+Description: Estimates annual survival, recruitment and population growth using 
+  the classical methods. This package is part of the bbou suite of tools.
 License: Apache License (>= 2)
 Imports: 
     bboutools,
