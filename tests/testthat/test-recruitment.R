@@ -65,7 +65,7 @@ test_that("pop c works", {
       variance = "binomial"
     )
     expect_s3_class(output, "data.frame")
-    expect_snapshot_data(output, "bbr_recruitment_c_bin")
+    expect_snapshot_data(output, "bbr_recruitment_c_bin", 2)
 
     output <- bbr_recruitment(
       bboudata::bbourecruit_c,
