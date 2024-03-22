@@ -136,7 +136,7 @@ test_that("errors when dataframe passed as lambda", {
 test_that("errors when number passed as population", {
   lambda <- list(
     raw_values = data.frame(PopulationName = "A"),
-    Summary = data.frame(PopulationName = "A")
+    summary = data.frame(PopulationName = "A")
   )
   expect_error(
     bbr_plot_lambda_distributions(lambda, 1),

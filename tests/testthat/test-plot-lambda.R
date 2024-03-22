@@ -89,29 +89,29 @@ test_that("errors when dataframe passed as lambda", {
   )
 })
 
-test_that("errors when Summary not in input list", {
+test_that("errors when summary not in input list", {
   lambda <- list(
     Summary_2 = data.frame(PopulationName = "A")
   )
   expect_error(
     bbr_plot_lambda(lambda),
-    regexp = "`names\\(lambda\\)` must include 'Summary'\\."
+    regexp = "`names\\(lambda\\)` must include 'summary'\\."
   )
 })
 
-test_that("errors when Summary is an empty dataframe", {
+test_that("errors when summary is an empty dataframe", {
   lambda <- list(
-    Summary = data.frame()
+    summary = data.frame()
   )
   expect_error(
     bbr_plot_lambda(lambda),
-    regexp = "lambda\\$Summary must have rows"
+    regexp = "lambda\\$summary must have rows"
   )
 })
 
 test_that("creats plot as expected", {
   lambda <- list(
-    Summary = data.frame(
+    summary = data.frame(
       PopulationName = c("A", "A"),
       Year = c(2000L, 2001L),
       S = c(0.814, .987),

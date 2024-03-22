@@ -31,7 +31,7 @@ test_that("pop a works", {
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_a_raw_values")
-    expect_snapshot_data(output$Summary, "bbr_lambda_simulate_pop_a_summary")
+    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_a_summary")
   })
 })
 
@@ -54,7 +54,7 @@ test_that("pop b works", {
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_b_raw_values")
-    expect_snapshot_data(output$Summary, "bbr_lambda_simulate_pop_b_summary")
+    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_b_summary")
   })
 })
 
@@ -77,7 +77,7 @@ test_that("pop c works", {
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_c_raw_values")
-    expect_snapshot_data(output$Summary, "bbr_lambda_simulate_pop_c_summary")
+    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_c_summary")
   })
 })
 
@@ -116,7 +116,7 @@ test_that("test data works", {
     output <- bbr_lambda_simulate(recruitment_est, survival_est)
 
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_raw_values")
-    expect_snapshot_data(output$Summary, "bbr_lambda_simulate_summary")
+    expect_snapshot_data(output$summary, "bbr_lambda_simulate_summary")
   })
 })
 
@@ -278,6 +278,6 @@ test_that("NA instead in dataset work", {
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_na_test_raw")
-    expect_snapshot_data(output$Summary, "bbr_lambda_simulate_na_test_sum")
+    expect_snapshot_data(output$summary, "bbr_lambda_simulate_na_test_sum")
   })
 })

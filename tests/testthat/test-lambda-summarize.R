@@ -43,10 +43,10 @@ test_that("errors with empty list", {
 })
 
 test_that("errors with list that doesn't have correct columns", {
-  lambda <- list(raw_values = data.frame(x = 1), Summary = data.frame(y = 2))
+  lambda <- list(raw_values = data.frame(x = 1), summary = data.frame(y = 2))
   expect_error(
     bbr_lambda_summarize(lambda),
-    regexp = "`names\\(Summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'Lambda', 'SE_Lambda', 'Lambda_LCL', 'Lambda_UCL', ... and 'medianSimLambda'."
+    regexp = "`names\\(summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'Lambda', 'SE_Lambda', 'Lambda_LCL', 'Lambda_UCL', ... and 'medianSimLambda'."
   )
 })
 
@@ -54,14 +54,14 @@ test_that("errors with wrong list name", {
   lambda <- list(raw_values = data.frame(x = 1), Summary2 = data.frame(y = 2))
   expect_error(
     bbr_lambda_summarize(lambda),
-    regexp = "names\\(lambda\\)` must include 'Summary'."
+    regexp = "names\\(lambda\\)` must include 'summary'."
   )
 })
 
 test_that("outputs even if raw_values is empty", {
   lambda <- list(
     raw_values = data.frame(x = 1),
-    Summary = data.frame(
+    summary = data.frame(
       PopulationName = c("A"),
       Year = 1991L,
       S = .874,
