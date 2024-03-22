@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
-      MortType = "Total",
+      mort_type = "Total",
       variance = "Pollock"
     )
 
@@ -31,7 +31,7 @@ test_that("pop b works", {
   withr::with_seed(10, {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_b,
-      MortType = "Total",
+      mort_type = "Total",
       variance = "Pollock"
     )
 
@@ -46,7 +46,7 @@ test_that("pop c works", {
   withr::with_seed(10, {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
-      MortType = "Total",
+      mort_type = "Total",
       variance = "Pollock"
     )
 

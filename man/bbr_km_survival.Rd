@@ -19,12 +19,12 @@ A tibble with columns:
 }
 }
 \usage{
-bbr_km_survival(x, MortType = "Total", variance = "Pollock")
+bbr_km_survival(x, mort_type = "Total", variance = "Pollock")
 }
 \arguments{
 \item{x}{input survival data frame}
 
-\item{MortType}{Mortality data to be included.   Values can be “Total” which
+\item{mort_type}{Mortality data to be included.   Values can be “Total” which
 would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
 (MortalitiesCertain only).}
 
@@ -44,7 +44,7 @@ See the vignette Methods for description of equations used.
 \examples{
 survival_est <- bbr_km_survival(
   bboudata::bbousurv_a,
-  MortType = "Total",
+  mort_type = "Total",
   variance = "Greenwood"
 )
 }

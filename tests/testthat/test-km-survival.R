@@ -15,7 +15,7 @@
 test_that("pop a works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_a,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Pollock"
   )
 
@@ -26,7 +26,7 @@ test_that("pop a works", {
 test_that("pop b works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_b,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Pollock"
   )
 
@@ -37,7 +37,7 @@ test_that("pop b works", {
 test_that("pop c works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Pollock"
   )
 
@@ -48,7 +48,7 @@ test_that("pop c works", {
 test_that("works with mort_type as 'certain'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    MortType = "Certain",
+    mort_type = "Certain",
     variance = "Pollock"
   )
 
@@ -57,7 +57,7 @@ test_that("works with mort_type as 'certain'", {
 
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    MortType = "Certain",
+    mort_type = "Certain",
     variance = "Greenwood"
   )
 
@@ -68,7 +68,7 @@ test_that("works with mort_type as 'certain'", {
 test_that("works with variance as 'Greenwood'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Greenwood"
   )
 
@@ -83,13 +83,13 @@ test_that("mort_type gives different outputs when values in mort uncertain colum
 
   output_total <- bbr_km_survival(
     df,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Greenwood"
   )
 
   output_certain <- bbr_km_survival(
     df,
-    MortType = "Certain",
+    mort_type = "Certain",
     variance = "Greenwood"
   )
 
@@ -105,13 +105,13 @@ test_that("mort_type gives same outputs when all 0 values in mort uncertain colu
 
   output_total <- bbr_km_survival(
     df,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Greenwood"
   )
 
   output_certain <- bbr_km_survival(
     df,
-    MortType = "Certain",
+    mort_type = "Certain",
     variance = "Greenwood"
   )
 
@@ -125,13 +125,13 @@ test_that("variance options give different SE, CIL and CIU", {
 
   output_greenwood <- bbr_km_survival(
     df,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Greenwood"
   )
 
   output_pollock <- bbr_km_survival(
     df,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Pollock"
   )
 

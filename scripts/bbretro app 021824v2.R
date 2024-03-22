@@ -17,7 +17,7 @@ RsampsC <- bboudata::bbourecruit_c
   
 #example code...load functions first.
 CO<-Recruitment(RsampsC,pFemales=0.65,sexratio=0.5,variance="binomial") 
-S<-KMsurvival(SsampsC,MortType="Total",variance="Pollock")
+S<-KMsurvival(SsampsC,mort_type="Total",variance="Pollock")
 PlotRecruitment(CO)
 PlotSurvival(S)
 Lambdadat<-LambdaSim(CO,S)
@@ -115,17 +115,17 @@ PlotRecruitment<-function(Compout)  {
 
 
 #Survival rate function
-KMsurvival<-function(Ssamps,MortType,variance)  {
-#suggest we make MortType="Total" and variance="Pollock" default settings.
+KMsurvival<-function(Ssamps,mort_type,variance)  {
+#suggest we make mort_type="Total" and variance="Pollock" default settings.
   Ssamps<-SsampsC
   #make sure data set is sorted properly
   Ssamps<-arrange(Ssamps,PopulationName,Year,Month)
   #Tally total mortalities.
   Ssamps$TotalMorts<-Ssamps$MortalitiesCertain+Ssamps$MortalitiesUncertain
 
-  #MortType can be "Total" or "Certain"
-  Ssamps$MortType<-MortType
-  Ssamps$Morts<-ifelse(Ssamps$MortType=="Total",Ssamps$TotalMorts,Ssamps$MortalitiesCertain)
+  #mort_type can be "Total" or "Certain"
+  Ssamps$mort_type<-mort_type
+  Ssamps$Morts<-ifelse(Ssamps$mort_type=="Total",Ssamps$TotalMorts,Ssamps$MortalitiesCertain)
 
   #Months with 0 collars monitored are removed but this is noted to user later and estimates scaled appropriately
   Ssamps<-subset(Ssamps,Ssamps$StartTotal>0)

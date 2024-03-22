@@ -18,7 +18,7 @@
 #' estimator (Pollock et al. 1989).
 #'
 #' @param x input survival data frame
-#' @param MortType Mortality data to be included.   Values can be “Total” which
+#' @param mort_type Mortality data to be included.   Values can be “Total” which
 #'   would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
 #'   (MortalitiesCertain only).
 #' @param variance Variance type to estimate.  Can be the Greenwood estimator
@@ -50,12 +50,12 @@
 #' @examples
 #' survival_est <- bbr_km_survival(
 #'   bboudata::bbousurv_a,
-#'   MortType = "Total",
+#'   mort_type = "Total",
 #'   variance = "Greenwood"
 #' )
-bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
+bbr_km_survival <- function(x, mort_type = "Total", variance = "Pollock") {
   x <- bboudata::bbd_chk_data_survival(x)
-  chk::chk_string(MortType)
+  chk::chk_string(mort_type)
   chk::chk_string(variance)
 
   # make sure data set is sorted properly
@@ -63,9 +63,9 @@ bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
-  # MortType can be "Total" or "Certain"
-  x$MortType <- MortType
-  x$Morts <- ifelse(x$MortType == "Total", x$TotalMorts, x$MortalitiesCertain)
+  # mort_type can be "Total" or "Certain"
+  x$mort_type <- mort_type
+  x$Morts <- ifelse(x$mort_type == "Total", x$TotalMorts, x$MortalitiesCertain)
 
   # Months with 0 collars monitored are removed but this is noted to user later 
   # and estimates scaled appropriately

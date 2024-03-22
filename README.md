@@ -57,7 +57,7 @@ bbr_plot_recruitment(recruitment_est)
 survival_est <-
   bbr_km_survival(
     bbousurv_c,
-    MortType = "Total",
+    mort_type = "Total",
     variance = "Pollock"
   )
 bbr_plot_survival(survival_est)

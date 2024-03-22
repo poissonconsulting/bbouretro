@@ -121,17 +121,17 @@ PlotRecruitment<-function(Compout)  {
 
 
 #Survival rate function
-KMsurvival<-function(Ssamps,MortType,variance)  {
-#suggest we make MortType="Total" and variance="Pollock" default settings.
+KMsurvival<-function(Ssamps,mort_type,variance)  {
+#suggest we make mort_type="Total" and variance="Pollock" default settings.
    
   #make sure data set is sorted properly
   Ssamps<-arrange(Ssamps,PopulationName,Year,Month)
   #Tally total mortalities.
   Ssamps$TotalMorts<-Ssamps$MortalitiesCertain+Ssamps$MortalitiesUncertain
 
-  #MortType can be "Total" or "Certain"
-  Ssamps$MortType<-MortType
-  Ssamps$Morts<-ifelse(Ssamps$MortType=="Total",Ssamps$TotalMorts,Ssamps$MortalitiesCertain)
+  #mort_type can be "Total" or "Certain"
+  Ssamps$mort_type<-mort_type
+  Ssamps$Morts<-ifelse(Ssamps$mort_type=="Total",Ssamps$TotalMorts,Ssamps$MortalitiesCertain)
 
   #Months with 0 collars monitored are removed but this is noted to user later and estimates scaled appropriately
   Ssamps<-subset(Ssamps,Ssamps$StartTotal>0)
@@ -326,7 +326,7 @@ plotLambda<-function(L){
 
 #with A
 Rec_A<-Recruitment(bbourecruit_a,pFemales=0.65,sexratio=0.5,variance="bootstrap") 
-S_A<-KMsurvival(bbousurv_a,MortType="Total",variance="Pollock")
+S_A<-KMsurvival(bbousurv_a,mort_type="Total",variance="Pollock")
 PlotRecruitment(Rec_A)
 PlotSurvival(S_A)
 Lambdadat_A<-LambdaSim(Rec_A,S_A)
@@ -336,7 +336,7 @@ plotLambdaDistributions(Lambdadat_A,"A")
 
 #with B
 Rec_B<-Recruitment(bbourecruit_b,pFemales=0.65,sexratio=0.5,variance="bootstrap") 
-S_B<-KMsurvival(bbousurv_b,MortType="Total",variance="Pollock")
+S_B<-KMsurvival(bbousurv_b,mort_type="Total",variance="Pollock")
 PlotRecruitment(Rec_B)
 PlotSurvival(S_B)
 Lambdadat_B<-LambdaSim(Rec_B,S_B)
@@ -347,7 +347,7 @@ plotLambdaDistributions(Lambdadat_B,"B")
 
 #with C
 Rec_C<-Recruitment(bbourecruit_c,pFemales=0.65,sexratio=0.5,variance="bootstrap") 
-S_C<-KMsurvival(bbousurv_c,MortType="Total",variance="Pollock")
+S_C<-KMsurvival(bbousurv_c,mort_type="Total",variance="Pollock")
 PlotRecruitment(Rec_C)
 PlotSurvival(S_C)
 Lambdadat_C<-LambdaSim(Rec_C,S_C)
