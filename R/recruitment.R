@@ -30,8 +30,8 @@
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use
-#'   \link[bboudata]{bbd_chk_data_recruitment} function.  See the
-#'   \code{vignette("Methods", package = "bbouretro")} for the equations used in
+#'   [bbd_chk_data_recruitment][bboudata::bbd_chk_data_recruitment] function.  See the
+#'   `vignette("Methods", package = "bbouretro")` for the equations used in
 #'   this function.
 #'
 #'   User’s can input the assumed proportion of females in the population (to

@@ -47,7 +47,7 @@ Estimate recruitment using DeCesare et al. (2012) methods.
 \details{
 \code{x} needs to be formatted in a certain manner. To confirm the input
 data frame is in the right format you can use
-\link[bboudata]{bbd_chk_data_recruitment} function.  See the
+\link[bboudata:bbd_chk_data_recruitment]{bbd_chk_data_recruitment} function.  See the
 \code{vignette("Methods", package = "bbouretro")} for the equations used in
 this function.
 
