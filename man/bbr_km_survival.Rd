@@ -45,7 +45,7 @@ See the vignette Methods for description of equations used.
 survival_est <- bbr_km_survival(
   bboudata::bbousurv_a,
   mort_type = "total",
-  variance = "Greenwood"
+  variance = "greenwood"
 )
 }
 \references{

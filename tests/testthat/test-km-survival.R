@@ -58,7 +58,7 @@ test_that("works with mort_type as 'certain'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
     mort_type = "Certain",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   expect_s3_class(output, "data.frame")
@@ -69,7 +69,7 @@ test_that("works with variance as 'Greenwood'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
     mort_type = "total",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   expect_s3_class(output, "data.frame")
@@ -84,13 +84,13 @@ test_that("mort_type gives different outputs when values in mort uncertain colum
   output_total <- bbr_km_survival(
     df,
     mort_type = "total",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   output_certain <- bbr_km_survival(
     df,
     mort_type = "Certain",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   expect_true(
@@ -106,13 +106,13 @@ test_that("mort_type gives same outputs when all 0 values in mort uncertain colu
   output_total <- bbr_km_survival(
     df,
     mort_type = "total",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   output_certain <- bbr_km_survival(
     df,
     mort_type = "Certain",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   expect_true(
@@ -126,7 +126,7 @@ test_that("variance options give different SE, CIL and CIU", {
   output_greenwood <- bbr_km_survival(
     df,
     mort_type = "total",
-    variance = "Greenwood"
+    variance = "greenwood"
   )
 
   output_pollock <- bbr_km_survival(

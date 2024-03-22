@@ -51,7 +51,7 @@
 #' survival_est <- bbr_km_survival(
 #'   bboudata::bbousurv_a,
 #'   mort_type = "total",
-#'   variance = "Greenwood"
+#'   variance = "greenwood"
 #' )
 bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   x <- bboudata::bbd_chk_data_survival(x)
