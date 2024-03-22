@@ -1,4 +1,4 @@
-PopulationName,Year,S,S_SE,S_CIL,S_CIU,MeanMonitored,sumdead,sumalive,Status
+PopulationName,Year,S,S_SE,S_CIL,S_CIU,mean_monitored,sumdead,sumalive,Status
 A,1986,1,0,NA,NA,8,0,88,Only 11 months monitored - No Mortalities all year (SE=0)
 A,1987,0.625,0.044,0.536,0.706,6.4,3,77, - 
 A,1988,0.933,0.019,0.883,0.963,12.8,1,153, - 

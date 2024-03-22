@@ -1,4 +1,4 @@
-PopulationName,Year,S,S_SE,S_CIL,S_CIU,MeanMonitored,sumdead,sumalive,Status
+PopulationName,Year,S,S_SE,S_CIL,S_CIU,mean_monitored,sumdead,sumalive,Status
 B,2001,0.855,0.011,0.831,0.875,8.2,1,74,Only 9 months monitored - 
 B,2002,0.923,0.016,0.885,0.949,21.5,2,258, - 
 B,2003,0.798,0.019,0.759,0.832,30.7,7,368, - 

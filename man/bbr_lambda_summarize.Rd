@@ -10,10 +10,10 @@ The return object has these columns:
 \item{Year}{Year sampled}
 \item{S}{Estimated survival}
 \item{R}{Estimated recruitment}
-\item{Lambda}{Estimated lambda (S/(1-R))}
-\item{SE_Lambda }{SE}
-\item{Lambda_LCL}{Percentile 95\% confidence limits}
-\item{Lambda_UCL }{Percentile 95\% confidence limits}
+\item{Lambda}{Estimated lambda}
+\item{Lambda_SE }{SE}
+\item{Lambda_CIL}{Percentile 95\% confidence limits}
+\item{Lambda_CIU }{Percentile 95\% confidence limits}
 \item{Prop_LGT1 }{Proportion simulations where lambda>1}
 \item{meanSimSurv}{Mean simulated survival value}
 \item{meanRsim}{Mean simulated recruitment value}

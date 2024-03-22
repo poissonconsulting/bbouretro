@@ -27,10 +27,10 @@
 #' \item{Year}{Year sampled}
 #' \item{S}{Estimated survival}
 #' \item{R}{Estimated recruitment}
-#' \item{Lambda}{Estimated lambda (S/(1-R))}
-#' \item{SE_Lambda }{SE}
-#' \item{Lambda_LCL}{Percentile 95% confidence limits}
-#' \item{Lambda_UCL }{Percentile 95% confidence limits}
+#' \item{Lambda}{Estimated lambda}
+#' \item{Lambda_SE }{SE}
+#' \item{Lambda_CIL}{Percentile 95% confidence limits}
+#' \item{Lambda_CIU }{Percentile 95% confidence limits}
 #' \item{Prop_LGT1 }{Proportion simulations where lambda>1}
 #' \item{meanSimSurv}{Mean simulated survival value}
 #' \item{meanRsim}{Mean simulated recruitment value}
@@ -56,9 +56,9 @@ bbr_lambda_summarize <- function(lambda) {
       S = numeric(),
       R = numeric(),
       Lambda = numeric(),
-      SE_Lambda = numeric(),
-      Lambda_LCL = numeric(),
-      Lambda_UCL = numeric(),
+      Lambda_SE = numeric(),
+      Lambda_CIL = numeric(),
+      Lambda_CIU = numeric(),
       Prop_LGT1 = numeric(),
       meanSimSurv = numeric(),
       meanRsim = numeric(),

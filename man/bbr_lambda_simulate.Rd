@@ -25,7 +25,7 @@ on \eqn{\lambda}.
 See the \code{vignette("Methods", package = "bbouretro")} for
 descriptions of the equations used. The raw_values can be plotted using
 \code{bbr_plot_lambda_distributions()} and the summary data frame can be output
-using \code{bbr_lambda_summarize()} or plotted using \code{bbr_plot_lamba()}.
+using \code{bbr_lambda_summarize()} or plotted using \code{bbr_plot_lambda()}.
 }
 \examples{
 \dontrun{

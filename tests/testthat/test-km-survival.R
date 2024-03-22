@@ -159,7 +159,7 @@ test_that("variance options give different SE, CIL and CIU", {
   )
 
   expect_true(
-    all(output_greenwood$MeanMonitored == output_pollock$MeanMonitored)
+    all(output_greenwood$mean_monitored == output_pollock$mean_monitored)
   )
 
   expect_true(

@@ -38,15 +38,15 @@ bbr_plot_lambda <- function(lambda) {
       PopulationName = character(),
       Year = character(),
       Lambda = numeric(),
-      Lambda_LCL = numeric(),
-      Lambda_UCL = numeric()
+      Lambda_CIL = numeric(),
+      Lambda_CIU = numeric()
     )
   )
 
   ggplot(plotdat, aes(.data$Year, .data$Lambda)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$Lambda_LCL, ymax = .data$Lambda_UCL),
+      aes(x = .data$Year, ymin = .data$Lambda_CIL, ymax = .data$Lambda_CIU),
       color = "steelblue"
     ) +
     geom_hline(yintercept = 1) +

@@ -104,7 +104,7 @@ test_that("test data works", {
       S_SE = c(0.05, 0.03, 0.03, 0),
       S_CIL = c(0.5, 0.7, 0.7, NaN),
       S_CIU = c(0.6, 0.8, 0.8, NaN),
-      MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
+      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
       Status = c(
@@ -143,7 +143,7 @@ test_that("errors if no populations overlap", {
       S_SE = c(0.05, 0.03, 0.03, 0),
       S_CIL = c(0.5, 0.7, 0.7, NaN),
       S_CIU = c(0.6, 0.8, 0.8, NaN),
-      MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
+      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
       Status = c(
@@ -182,7 +182,7 @@ test_that("errors if no years overlap", {
       S_SE = c(0.05, 0.03, 0.03, 0),
       S_CIL = c(0.5, 0.7, 0.7, NaN),
       S_CIU = c(0.6, 0.8, 0.8, NaN),
-      MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
+      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
       Status = c(
@@ -265,7 +265,7 @@ test_that("NA instead in dataset work", {
       S_SE = c(0.05, 0.03, 0.03, 0),
       S_CIL = c(0.5, 0.7, 0.7, NA),
       S_CIU = c(0.6, 0.8, 0.8, NA),
-      MeanMonitored = c(4.5, 12.6, 14.6, 20.2),
+      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
       sumdead = c(3L, 3L, 3L, 0L),
       sumalive = c(39L, 149L, 179L, 242L),
       Status = c(

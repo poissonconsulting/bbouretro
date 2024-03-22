@@ -42,7 +42,7 @@
 #' \item{S_SE}{SE}
 #' \item{S_CIL}{Confidence limit}
 #' \item{S_CIU}{Confidence limit}
-#' \item{MeanMonitored}{Mean number of caribou monitored each month}
+#' \item{mean_monitored}{Mean number of caribou monitored each month}
 #' \item{sumdead }{Total number of mortalities in a year}
 #' \item{sumalive}{Total number of caribou-months in a year}
 #' \item{Status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
@@ -145,7 +145,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   YearSurv$S_CIL <- 1 / (1 + exp(-1 * (YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))))
 
   # round estimates for table.
-  YearSurv$MeanMonitored <- round(YearSurv$meanalive, 1)
+  YearSurv$mean_monitored <- round(YearSurv$meanalive, 1)
   YearSurv$S <- round(YearSurv$S, 3)
   YearSurv$S_SE <- round(YearSurv$S_SE, 3)
   YearSurv$S_CIL <- round(YearSurv$S_CIL, 3)
@@ -153,7 +153,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
 
   YearSurv <- dplyr::select(
     YearSurv,
-    "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "MeanMonitored",
+    "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "mean_monitored",
     "sumdead", "sumalive", "Status"
   ) |>
     tibble::tibble()
