@@ -23,7 +23,7 @@ test_that("pop a works", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )
 
@@ -46,7 +46,7 @@ test_that("pop b works", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_b,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )
 
@@ -69,7 +69,7 @@ test_that("pop c works", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )
 
@@ -209,7 +209,7 @@ test_that("errors when recruitment has rows passed", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )
 
@@ -231,7 +231,7 @@ test_that("errors when survival has rows passed", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )[0, ]
 

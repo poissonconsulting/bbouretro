@@ -23,7 +23,7 @@ test_that("pop a works", {
 
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
-      mort_type = "Total",
+      mort_type = "total",
       variance = "Pollock"
     )
 

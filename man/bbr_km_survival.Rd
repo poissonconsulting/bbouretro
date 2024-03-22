@@ -19,7 +19,7 @@ A tibble with columns:
 }
 }
 \usage{
-bbr_km_survival(x, mort_type = "Total", variance = "Pollock")
+bbr_km_survival(x, mort_type = "total", variance = "Pollock")
 }
 \arguments{
 \item{x}{input survival data frame}
@@ -44,7 +44,7 @@ See the vignette Methods for description of equations used.
 \examples{
 survival_est <- bbr_km_survival(
   bboudata::bbousurv_a,
-  mort_type = "Total",
+  mort_type = "total",
   variance = "Greenwood"
 )
 }
