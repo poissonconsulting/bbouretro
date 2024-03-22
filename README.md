@@ -1,5 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- # Copyright 2024 Province of Alberta -->
+<!-- # -->
+<!-- # Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!-- # you may not use this file except in compliance with the License. -->
+<!-- # You may obtain a copy of the License at -->
+<!-- # -->
+<!-- # http://www.apache.org/licenses/LICENSE-2.0 -->
+<!-- # -->
+<!-- # Unless required by applicable law or agreed to in writing, software -->
+<!-- # distributed under the License is distributed on an "AS IS" BASIS, -->
+<!-- # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!-- # See the License for the specific language governing permissions and -->
+<!-- # limitations under the License. -->
 
 # bbouretro
 
@@ -74,15 +87,15 @@ summary
 #> # A tibble: 9 × 13
 #>   PopulationName  Year     S     R Lambda SE_Lambda Lambda_LCL Lambda_UCL
 #>   <chr>          <int> <dbl> <dbl>  <dbl>     <dbl>      <dbl>      <dbl>
-#> 1 C               2005 0.832 0.096  0.92      0.052      0.838      1.04 
+#> 1 C               2005 0.832 0.096  0.92      0.05       0.845      1.03 
 #> 2 C               2006 1     0.08   1.09     NA         NA         NA    
-#> 3 C               2007 0.524 0.068  0.562     0.04       0.5        0.651
-#> 4 C               2008 0.824 0.059  0.876     0.151      0.793      1.23 
+#> 3 C               2007 0.524 0.068  0.562     0.041      0.503      0.66 
+#> 4 C               2008 0.824 0.059  0.876     0.142      0.798      1.27 
 #> 5 C               2009 1     0.083  1.09     NA         NA         NA    
-#> 6 C               2010 0.926 0.14   1.08      0.062      0.987      1.23 
-#> 7 C               2011 0.96  0.158  1.14      0.099      1.03       1.42 
-#> 8 C               2012 0.963 0.112  1.08      0.051      1.01       1.22 
-#> 9 C               2013 0.512 0.133  0.591     0.029      0.554      0.665
+#> 6 C               2010 0.926 0.14   1.08      0.069      0.992      1.26 
+#> 7 C               2011 0.96  0.158  1.14      0.095      1.03       1.39 
+#> 8 C               2012 0.963 0.112  1.08      0.05       1.02       1.20 
+#> 9 C               2013 0.512 0.133  0.591     0.029      0.553      0.665
 #> # ℹ 5 more variables: Prop_LGT1 <dbl>, meanSimSurv <dbl>, meanRsim <dbl>,
 #> #   meanSimLambda <dbl>, medianSimLambda <dbl>
 bbr_plot_lambda(lambda_est)
@@ -95,6 +108,16 @@ bbr_plot_lambda_distributions(lambda_est, "C")
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />
+
+## bbou Suite
+
+`bbouretro` is part of the bbou suite of tools. Other packages in this
+suite include:
+
+- [bboudata](https://github.com/poissonconsulting/bboudata)
+- [bboutools](https://github.com/poissonconsulting/bboutools)
+- [bboushiny](https://github.com/poissonconsulting/bboushiny)
+- [bbousims](https://github.com/poissonconsulting/bbousims)
 
 ## Contribution
 
