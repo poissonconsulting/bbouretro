@@ -2,7 +2,7 @@
 % Please edit documentation in R/km-survival.R
 \name{bbr_km_survival}
 \alias{bbr_km_survival}
-\title{Calculate survival}
+\title{Estimate survival}
 \format{
 A tibble with columns:
 \describe{
@@ -22,24 +22,29 @@ A tibble with columns:
 bbr_km_survival(x, mort_type = "total", variance = "pollock")
 }
 \arguments{
-\item{x}{input survival data frame}
+\item{x}{A data frame that has survival data.}
 
-\item{mort_type}{Mortality data to be included.   Values can be “total” which
-would be all (MortalitiesCertain and MortalitiesUncertain) or “certain”,
-(MortalitiesCertain only).}
+\item{mort_type}{Mortality data to be included. Values can be \code{"total"} which
+would be all mortalities (MortalitiesCertain and MortalitiesUncertain) or
+only \code{"certain"} mortalities (MortalitiesCertain). The default is
+\code{"total"}.}
 
-\item{variance}{Variance type to estimate.  Can be the Greenwood estimator
-“greenwood” or Pollock estimator (“pollock”).}
+\item{variance}{Variance type to estimate. Can be the Greenwood estimator
+\code{"greenwood"} or Pollock estimator \code{"pollock"}. The default is "pollock".}
 }
 \value{
-An output data frame with the columns.
+A data frame. The columns are listed in the format section.
 }
 \description{
-This function estimates survival rates based on the Kaplan Meir survival rate
-estimator (Pollock et al. 1989).
+Estimate survival rates based on the Kaplan-Meier survival rate estimator
+(Pollock et al. 1989).
 }
 \details{
-See the vignette Methods for description of equations used.
+\code{x} needs to be formatted in a certain manner. To confirm the input
+data frame is in the right format you can use
+\link[bboudata]{bbd_chk_data_survival} function. See the
+\code{vignette("Methods", package = "bbouretro")} for the equations used in
+this function.
 }
 \examples{
 survival_est <- bbr_km_survival(
@@ -51,5 +56,5 @@ survival_est <- bbr_km_survival(
 \references{
 Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
 1989. Survival analysis in telemetry studies: the staggered entry design.
-Journal of Wildlife Management 53:7-15. TODO Need Cox paper
+Journal of Wildlife Management 53:7-15.
 }

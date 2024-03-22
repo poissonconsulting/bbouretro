@@ -12,27 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Calculate recruitment
+#' Estimate recruitment
 #'
-#' This function generates estimates of recruitment from the Recruitment data
-#' frame with confidence limits. User’s can input the assumed proportion of
-#' females in the population (to estimate females from adult caribou that have
-#' unknown sex) as well as sex ratio at birth. Variance can be estimated using a
-#' few different approaches.
+#' Estimate recruitment using DeCesare et al. (2012) methods.
 #'
-#' @param x input recruitment data frame.
+#' @param x A data frame that has recruitment data.
 #' @param p_females Assumed or estimated proportion females in the population
 #'   used to assign unknown sex caribou (see details).  Can be set to 0 to
-#'   exclude unknown sex caribou from recruitment estimates.
+#'   exclude unknown sex caribou from recruitment estimates. Values must be
+#'   between 0 and 1. The default is set at 0.65.
 #' @param sexratio Sex ratio of caribou at birth used to assign calves and
 #'   yearlings as male or female (see details).  Sex ratio is defined as the
-#'   proportion females at birth.  Usually this is set at 0.5.
-#' @param variance Estimate variance using “binomial” or “bootstrap”.
+#'   proportion females at birth. Values must be between 0 and 1. The default is
+#'   set at 0.5.
+#' @param variance Estimate variance using "binomial" or "bootstrap". The
+#'   default is set as "binomial".
 #'
-#' @details
-#' See the vignette Methods for description of equations used.
+#' @details `x` needs to be formatted in a certain manner. To confirm the input
+#'   data frame is in the right format you can use
+#'   \link[bboudata]{bbd_chk_data_recruitment} function.  See the
+#'   \code{vignette("Methods", package = "bbouretro")} for the equations used in
+#'   this function.
 #'
-#' @return An output data frame with the columns.
+#'   User’s can input the assumed proportion of females in the population (to
+#'   estimate females from adult caribou that have unknown sex) as well as sex
+#'   ratio at birth.
+#' 
+#' @return A data frame. The columns are listed in the format section.
 #'
 #' @format A tibble with columns:
 #' \describe{
@@ -49,7 +55,12 @@
 #' \item{p_females}{Input proportion adult females}
 #' }
 #' @export
-#'
+#' @references 
+#'   DeCesare, Nicholas J., Mark Hebblewhite, Mark Bradley, Kirby G. Smith, 
+#'   David Hervieux, and Lalenia Neufeld. 2012 “Estimating Ungulate Recruitment 
+#'   and Growth Rates Using Age Ratios.” The Journal of Wildlife Management 
+#'   76 (1): 144–53 https://doi.org/10.1002/jwmg.244.
+#'   
 #' @examples
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
@@ -63,7 +74,7 @@
 #'   sexratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females, sexratio, variance) {
+bbr_recruitment <- function(x, p_females = 0.65, sexratio = 0.5, variance = "binomial") {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(p_females)
   chk::chk_range(sexratio)

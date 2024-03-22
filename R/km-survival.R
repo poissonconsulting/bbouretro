@@ -12,21 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Calculate survival
+#' Estimate survival
 #'
-#' This function estimates survival rates based on the Kaplan Meir survival rate
-#' estimator (Pollock et al. 1989).
+#' Estimate survival rates based on the Kaplan-Meier survival rate estimator
+#' (Pollock et al. 1989).
 #'
-#' @param x input survival data frame
-#' @param mort_type Mortality data to be included.   Values can be “total” which
-#'   would be all (MortalitiesCertain and MortalitiesUncertain) or “certain”,
-#'   (MortalitiesCertain only).
-#' @param variance Variance type to estimate.  Can be the Greenwood estimator
-#'   “greenwood” or Pollock estimator (“pollock”).
+#' @param x A data frame that has survival data.
+#' @param mort_type Mortality data to be included. Values can be `"total"` which
+#'   would be all mortalities (MortalitiesCertain and MortalitiesUncertain) or
+#'   only `"certain"` mortalities (MortalitiesCertain). The default is
+#'   `"total"`.
+#' @param variance Variance type to estimate. Can be the Greenwood estimator
+#'   `"greenwood"` or Pollock estimator `"pollock"`. The default is "pollock".
 #'
-#' @details See the vignette Methods for description of equations used.
-#'
-#' @return An output data frame with the columns.
+#' @details `x` needs to be formatted in a certain manner. To confirm the input
+#'   data frame is in the right format you can use
+#'   \link[bboudata]{bbd_chk_data_survival} function. See the
+#'   \code{vignette("Methods", package = "bbouretro")} for the equations used in
+#'   this function.
+#' 
+#' @return A data frame. The columns are listed in the format section.
 #' @export
 #'
 #' @format A tibble with columns:
@@ -45,7 +50,7 @@
 #'
 #' @references Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
 #'   1989. Survival analysis in telemetry studies: the staggered entry design.
-#'   Journal of Wildlife Management 53:7-15. TODO Need Cox paper
+#'   Journal of Wildlife Management 53:7-15.
 #'
 #' @examples
 #' survival_est <- bbr_km_survival(
