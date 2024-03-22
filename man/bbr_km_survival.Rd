@@ -24,12 +24,12 @@ bbr_km_survival(x, mort_type = "total", variance = "pollock")
 \arguments{
 \item{x}{input survival data frame}
 
-\item{mort_type}{Mortality data to be included.   Values can be “Total” which
-would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
+\item{mort_type}{Mortality data to be included.   Values can be “total” which
+would be all (MortalitiesCertain and MortalitiesUncertain) or “certain”,
 (MortalitiesCertain only).}
 
 \item{variance}{Variance type to estimate.  Can be the Greenwood estimator
-“Greenwood” or Pollock estimator (“Pollock”).}
+“greenwood” or Pollock estimator (“pollock”).}
 }
 \value{
 An output data frame with the columns.

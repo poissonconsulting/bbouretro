@@ -63,7 +63,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
-  # mort_type can be "total" or 'certain"
+  # mort_type can be "total" or "certain"
   x$mort_type <- mort_type
   x$Morts <- ifelse(x$mort_type == "total", x$TotalMorts, x$MortalitiesCertain)
 
