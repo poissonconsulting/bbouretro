@@ -30,7 +30,7 @@
 #'   [bbd_chk_data_survival][bboudata::bbd_chk_data_survival] function. See the
 #'   `vignette("Methods", package = "bbouretro")` for the equations used in
 #'   this function.
-#' 
+#'
 #' @return A data frame. The columns are listed in the format section.
 #' @export
 #'
@@ -77,7 +77,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   x$mort_type <- mort_type
   x$Morts <- ifelse(x$mort_type == "total", x$TotalMorts, x$MortalitiesCertain)
 
-  # Months with 0 collars monitored are removed but this is noted to user later 
+  # Months with 0 collars monitored are removed but this is noted to user later
   # and estimates scaled appropriately
   x <- subset(x, x$StartTotal > 0)
 

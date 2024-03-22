@@ -37,7 +37,7 @@
 #'   User’s can input the assumed proportion of females in the population (to
 #'   estimate females from adult caribou that have unknown sex) as well as sex
 #'   ratio at birth.
-#' 
+#'
 #' @return A data frame. The columns are listed in the format section.
 #'
 #' @format The return object has these columns:
@@ -55,12 +55,12 @@
 #' \item{p_females}{Input proportion adult females}
 #' }
 #' @export
-#' @references 
-#'   DeCesare, Nicholas J., Mark Hebblewhite, Mark Bradley, Kirby G. Smith, 
-#'   David Hervieux, and Lalenia Neufeld. 2012 “Estimating Ungulate Recruitment 
-#'   and Growth Rates Using Age Ratios.” The Journal of Wildlife Management 
+#' @references
+#'   DeCesare, Nicholas J., Mark Hebblewhite, Mark Bradley, Kirby G. Smith,
+#'   David Hervieux, and Lalenia Neufeld. 2012 “Estimating Ungulate Recruitment
+#'   and Growth Rates Using Age Ratios.” The Journal of Wildlife Management
 #'   76 (1): 144–53 https://doi.org/10.1002/jwmg.244.
-#'   
+#'
 #' @examples
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
