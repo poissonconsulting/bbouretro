@@ -1,4 +1,4 @@
-PopulationName,Year,R,R_SE,R_CIL,R_CIU,groups,FemaleCalves,Females,sexratio,pFemales
+PopulationName,Year,R,R_SE,R_CIL,R_CIU,groups,FemaleCalves,Females,sexratio,p_females
 B,2004,0.15,0.142,0,0.545,3,1.2,6.8,0.6,0.2
 B,2005,0.11,0.013,0.085,0.139,95,42.6,346,0.6,0.2
 B,2006,0.072,0.02,0.036,0.112,23,7.2,93.4,0.6,0.2

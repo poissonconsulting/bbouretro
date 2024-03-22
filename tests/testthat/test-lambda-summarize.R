@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_a,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )

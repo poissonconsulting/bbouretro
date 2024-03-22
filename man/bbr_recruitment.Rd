@@ -16,16 +16,16 @@ A tibble with columns:
 \item{FemaleCalves}{Estimated female calves}
 \item{Females}{Estimated adult females}
 \item{sexratio}{Input sex ratio}
-\item{pFemales}{Input proportion adult females}
+\item{p_females}{Input proportion adult females}
 }
 }
 \usage{
-bbr_recruitment(x, pFemales, sexratio, variance)
+bbr_recruitment(x, p_females, sexratio, variance)
 }
 \arguments{
 \item{x}{input recruitment data frame.}
 
-\item{pFemales}{Assumed or estimated proportion females in the population
+\item{p_females}{Assumed or estimated proportion females in the population
 used to assign unknown sex caribou (see details).  Can be set to 0 to
 exclude unknown sex caribou from recruitment estimates.}
 
@@ -51,13 +51,13 @@ See the vignette Methods for description of equations used.
 \examples{
 recruitment_est <- bbr_recruitment(
   bboudata::bbourecruit_a,
-  pFemales = 0.65,
+  p_females = 0.65,
   sexratio = 0.5,
   variance = "binomial"
 )
 recruitment_est <- bbr_recruitment(
   bboudata::bbourecruit_a,
-  pFemales = 0.60,
+  p_females = 0.60,
   sexratio = 0.65,
   variance = "bootstrap"
 )

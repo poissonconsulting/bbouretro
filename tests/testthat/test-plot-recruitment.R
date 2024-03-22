@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_a,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -32,7 +32,7 @@ test_that("pop b works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_b,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -48,7 +48,7 @@ test_that("pop c works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -71,7 +71,7 @@ test_that("test xaxis labels", {
     FemaleCalves = rep(7, 7),
     Females = rep(66, 7),
     sexratio = rep(0.5, 7),
-    pFemales = rep(0.65, 7)
+    p_females = rep(0.65, 7)
   )
 
   plot <- bbr_plot_recruitment(recruitment_est)
@@ -98,7 +98,7 @@ test_that("errors if no year column", {
     FemaleCalves = rep(7, 7),
     Females = rep(66, 7),
     sexratio = rep(0.5, 7),
-    pFemales = rep(0.65, 7)
+    p_females = rep(0.65, 7)
   )
 
   expect_error(

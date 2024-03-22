@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     output <- bbr_recruitment(
       bboudata::bbourecruit_a,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -25,7 +25,7 @@ test_that("pop a works", {
 
     output <- bbr_recruitment(
       bboudata::bbourecruit_a,
-      pFemales = 0.20,
+      p_females = 0.20,
       sexratio = 0.6,
       variance = "bootstrap"
     )
@@ -38,7 +38,7 @@ test_that("pop b works", {
   withr::with_seed(10, {
     output <- bbr_recruitment(
       bboudata::bbourecruit_b,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -47,7 +47,7 @@ test_that("pop b works", {
 
     output <- bbr_recruitment(
       bboudata::bbourecruit_b,
-      pFemales = 0.20,
+      p_females = 0.20,
       sexratio = 0.6,
       variance = "bootstrap"
     )
@@ -60,7 +60,7 @@ test_that("pop c works", {
   withr::with_seed(10, {
     output <- bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 0.65,
+      p_females = 0.65,
       sexratio = 0.5,
       variance = "binomial"
     )
@@ -69,7 +69,7 @@ test_that("pop c works", {
 
     output <- bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 0.20,
+      p_females = 0.20,
       sexratio = 0.6,
       variance = "bootstrap"
     )
@@ -78,28 +78,28 @@ test_that("pop c works", {
   })
 })
 
-test_that("pFemales and sexratio matches what was set", {
+test_that("p_females and sexratio matches what was set", {
   output <- bbr_recruitment(
     bboudata::bbourecruit_c,
-    pFemales = 0.65,
+    p_females = 0.65,
     sexratio = 0.5,
     variance = "binomial"
   )
-  expect_equal(unique(output$pFemales), 0.65)
+  expect_equal(unique(output$p_females), 0.65)
   expect_equal(unique(output$sexratio), 0.5)
 })
 
 test_that("variance options give different se, cui and cil and same for other columns", {
   output_binomial <- bbr_recruitment(
     bboudata::bbourecruit_c,
-    pFemales = 0.65,
+    p_females = 0.65,
     sexratio = 0.5,
     variance = "binomial"
   )
 
   output_bootstrap <- bbr_recruitment(
     bboudata::bbourecruit_c,
-    pFemales = 0.65,
+    p_females = 0.65,
     sexratio = 0.5,
     variance = "bootstrap"
   )
@@ -111,7 +111,7 @@ test_that("variance options give different se, cui and cil and same for other co
   expect_equal(output_binomial$FemaleCalves, output_bootstrap$FemaleCalves)
   expect_equal(output_binomial$Females, output_bootstrap$Females)
   expect_equal(output_binomial$sexratio, output_bootstrap$sexratio)
-  expect_equal(output_binomial$pFemales, output_bootstrap$pFemales)
+  expect_equal(output_binomial$p_females, output_bootstrap$p_females)
   expect_true(all(output_binomial$R_SE != output_bootstrap$R_SE))
   expect_true(any(output_binomial$R_CIL != output_bootstrap$R_CIL))
   expect_true(all(output_binomial$R_CIU != output_bootstrap$R_CIU))
@@ -141,25 +141,25 @@ test_that("errors when column missing in data", {
   )
 })
 
-test_that("errors number greater then 1 or less then 0 provided to pFemales", {
+test_that("errors number greater then 1 or less then 0 provided to p_females", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 1.05,
+      p_females = 1.05,
       sexratio = 0.5,
       variance = "binomial"
     ),
-    regexp = "`pFemales` must be between 0 and 1, not 1.05\\."
+    regexp = "`p_females` must be between 0 and 1, not 1.05\\."
   )
 
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = -1.05,
+      p_females = -1.05,
       sexratio = 0.5,
       variance = "binomial"
     ),
-    regexp = "`pFemales` must be between 0 and 1, not -1.05\\."
+    regexp = "`p_females` must be between 0 and 1, not -1.05\\."
   )
 })
 
@@ -167,7 +167,7 @@ test_that("errors number greater then 1 or less then 0 provided to sexratio", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 0.5,
+      p_females = 0.5,
       sexratio = 2,
       variance = "binomial"
     ),
@@ -177,7 +177,7 @@ test_that("errors number greater then 1 or less then 0 provided to sexratio", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      pFemales = 0.5,
+      p_females = 0.5,
       sexratio = -1,
       variance = "binomial"
     ),
@@ -185,10 +185,10 @@ test_that("errors number greater then 1 or less then 0 provided to sexratio", {
   )
 })
 
-test_that("pFemales and sexratio matches what was set", {
+test_that("p_females and sexratio matches what was set", {
   output <- bbr_recruitment(
     bboudata::bbourecruit_c,
-    pFemales = 0,
+    p_females = 0,
     sexratio = 0,
     variance = "binomial"
   )

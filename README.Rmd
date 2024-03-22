@@ -49,7 +49,7 @@ library(bboudata)
 recruitment_est <-
   bbr_recruitment(
     bbourecruit_c,
-    pFemales = 0.65,
+    p_females = 0.65,
     sexratio = 0.5,
     variance = "binomial"
   )
