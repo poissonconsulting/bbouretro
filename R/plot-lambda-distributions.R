@@ -34,13 +34,13 @@
 #' }
 bbr_plot_lambda_distributions <- function(lambda, population) {
   chk::chk_is(lambda, "list")
-  chk::check_names(lambda, names = c("RawValues", "Summary"))
+  chk::check_names(lambda, names = c("raw_values", "Summary"))
   chk::chk_string(population)
-  chk_set(population, lambda, "RawValues")
+  chk_set(population, lambda, "raw_values")
   chk_set(population, lambda, "Summary")
 
   # subset data set for target population
-  Ld <- subset(lambda$RawValues, lambda$RawValues$PopulationName == population)
+  Ld <- subset(lambda$raw_values, lambda$raw_values$PopulationName == population)
   RL <- subset(lambda$Summary, lambda$Summary$PopulationName == population)
 
   # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)

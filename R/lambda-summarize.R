@@ -45,7 +45,7 @@
 #' }
 bbr_lambda_summarize <- function(lambda) {
   chk::chk_not_empty(lambda, x_name = "lambda")
-  chk::check_names(lambda, names = c("Summary", "RawValues"))
+  chk::check_names(lambda, names = c("Summary", "raw_values"))
 
   Summary <- lambda$Summary
 

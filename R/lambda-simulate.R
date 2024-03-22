@@ -148,7 +148,7 @@ bbr_lambda_simulate <- function(recruitment, survival) {
 
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
-  names(LambdaOut) <- c("RawValues", "Summary")
+  names(LambdaOut) <- c("raw_values", "Summary")
 
   LambdaOut
 }

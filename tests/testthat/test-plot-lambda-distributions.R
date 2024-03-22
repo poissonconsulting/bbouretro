@@ -120,7 +120,7 @@ test_that("errors when pop not in data set", {
 
     expect_error(
       bbr_plot_lambda_distributions(output, "B"),
-      regexp = "The population B is not present in the RawValues table\\."
+      regexp = "The population B is not present in the raw_values table\\."
     )
   })
 })
@@ -135,7 +135,7 @@ test_that("errors when dataframe passed as lambda", {
 
 test_that("errors when number passed as population", {
   lambda <- list(
-    RawValues = data.frame(PopulationName = "A"),
+    raw_values = data.frame(PopulationName = "A"),
     Summary = data.frame(PopulationName = "A")
   )
   expect_error(
