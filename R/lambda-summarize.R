@@ -41,9 +41,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_summarize_lambda(lambda)
+#' bbr_lambda_summarize(lambda)
 #' }
-bbr_summarize_lambda <- function(lambda) {
+bbr_lambda_summarize <- function(lambda) {
   chk::chk_not_empty(lambda, x_name = "lambda")
   chk::check_names(lambda, names = c("Summary", "RawValues"))
 

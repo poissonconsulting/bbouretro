@@ -69,7 +69,7 @@ bbr_plot_survival(survival_est)
 
 # calculate lambda now that both recruitment and survival have been calculated
 lambda_est <- bbr_lambda_sim(recruitment_est, survival_est)
-summary <- bbr_summarize_lambda(lambda_est)
+summary <- bbr_lambda_summarize(lambda_est)
 summary
 #> # A tibble: 9 × 13
 #>   PopulationName  Year     S     R Lambda SE_Lambda Lambda_LCL Lambda_UCL

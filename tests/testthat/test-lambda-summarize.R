@@ -28,16 +28,16 @@ test_that("pop a works", {
     )
 
     lambda <- bbr_lambda_sim(recruitment_est, survival_est)
-    output <- bbr_summarize_lambda(lambda)
+    output <- bbr_lambda_summarize(lambda)
 
     expect_s3_class(output, "data.frame")
-    expect_snapshot_data(output, "bbr_summarize_lambda_pop_a")
+    expect_snapshot_data(output, "bbr_lambda_summarize_pop_a")
   })
 })
 
 test_that("errors with empty list", {
   expect_error(
-    bbr_summarize_lambda(list()),
+    bbr_lambda_summarize(list()),
     regexp = "Lambda must not be empty \\(zero length\\)."
   )
 })
@@ -45,7 +45,7 @@ test_that("errors with empty list", {
 test_that("errors with list that doesn't have correct columns", {
   lambda <- list(RawValues = data.frame(x = 1), Summary = data.frame(y = 2))
   expect_error(
-    bbr_summarize_lambda(lambda),
+    bbr_lambda_summarize(lambda),
     regexp = "`names\\(Summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'Lambda', 'SE_Lambda', 'Lambda_LCL', 'Lambda_UCL', ... and 'medianSimLambda'."
   )
 })
@@ -53,7 +53,7 @@ test_that("errors with list that doesn't have correct columns", {
 test_that("errors with wrong list name", {
   lambda <- list(RawValues = data.frame(x = 1), Summary2 = data.frame(y = 2))
   expect_error(
-    bbr_summarize_lambda(lambda),
+    bbr_lambda_summarize(lambda),
     regexp = "names\\(lambda\\)` must include 'Summary'."
   )
 })
@@ -78,7 +78,7 @@ test_that("outputs even if RawValues is empty", {
     )
   )
 
-  output <- bbr_summarize_lambda(lambda)
+  output <- bbr_lambda_summarize(lambda)
 
   expect_equal(
     output,

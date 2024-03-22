@@ -14,7 +14,7 @@ bbr_lambda_sim(recruitment, survival)
 \value{
 A list object that contains raw simulated data and summary data.  The
 raw data can be plotted using the \code{bbr_plot_lambda_distributions()} and the
-summary data can be output using the \code{bbr_summarize_lambda()} function or
+summary data can be output using the \code{bbr_lambda_summarize()} function or
 plotted using the \code{bbr_plot_lamba()} function.
 }
 \description{
