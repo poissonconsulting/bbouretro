@@ -57,8 +57,14 @@
 #'   sexratio = 0.5,
 #'   variance = "binomial"
 #' )
+#' recruitment_est <- bbr_recruitment(
+#'   bboudata::bbourecruit_a,
+#'   pFemales = 0.60,
+#'   sexratio = 0.65,
+#'   variance = "bootstrap"
+#' )
 bbr_recruitment <- function(x, pFemales, sexratio, variance) {
-  x <- bboutools:::.chk_data_recruitment(x)
+  x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(pFemales)
   chk::chk_range(sexratio)
   chk::chk_string(variance)

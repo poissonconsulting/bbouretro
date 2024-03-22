@@ -54,7 +54,7 @@
 #'   variance = "Greenwood"
 #' )
 bbr_km_survival <- function(x, MortType = "Total", variance = "Pollock") {
-  x <- bboutools:::.chk_data_survival(x)
+  x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_string(MortType)
   chk::chk_string(variance)
 
