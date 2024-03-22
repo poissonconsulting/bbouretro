@@ -13,14 +13,14 @@ The return object has these columns:
 \item{R_CIL}{Confidence limit}
 \item{R_CIU}{Confidence limit}
 \item{groups}{Groups sampled}
-\item{FemaleCalves}{Estimated female calves}
-\item{Females}{Estimated adult females}
-\item{sexratio}{Input sex ratio}
+\item{female_calves}{Estimated female calves}
+\item{females}{Estimated adult females}
+\item{sex_ratio}{Input sex ratio}
 \item{p_females}{Input proportion adult females}
 }
 }
 \usage{
-bbr_recruitment(x, p_females = 0.65, sexratio = 0.5, variance = "binomial")
+bbr_recruitment(x, p_females = 0.65, sex_ratio = 0.5, variance = "binomial")
 }
 \arguments{
 \item{x}{A data frame that has recruitment data.}
@@ -30,7 +30,7 @@ used to assign unknown sex caribou. Values must be between 0
 and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
 estimates. The default is set at 0.65.}
 
-\item{sexratio}{Sex ratio of caribou at birth used to assign calves and
+\item{sex_ratio}{Sex ratio of caribou at birth used to assign calves and
 yearlings as male or female.  Sex ratio is defined as the
 proportion females at birth. Values must be between 0 and 1. The default is
 set at 0.5.}
@@ -59,13 +59,13 @@ ratio at birth.
 recruitment_est <- bbr_recruitment(
   bboudata::bbourecruit_a,
   p_females = 0.65,
-  sexratio = 0.5,
+  sex_ratio = 0.5,
   variance = "binomial"
 )
 recruitment_est <- bbr_recruitment(
   bboudata::bbourecruit_a,
   p_females = 0.60,
-  sexratio = 0.65,
+  sex_ratio = 0.65,
   variance = "bootstrap"
 )
 }

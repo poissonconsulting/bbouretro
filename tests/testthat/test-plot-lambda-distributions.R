@@ -17,7 +17,7 @@ test_that("pop a works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_a,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
 
@@ -40,7 +40,7 @@ test_that("pop b works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_b,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
 
@@ -63,7 +63,7 @@ test_that("pop c works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_c,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
 
@@ -91,9 +91,9 @@ test_that("errors when pop not in data set", {
       R_CIL = c(0.01, 0.02, 0.02, 0.03),
       R_CIU = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
-      FemaleCalves = c(7, 6, 3.5, 1),
-      Females = c(66, 69, 47.95, 16),
-      sexratio = rep(0.5, 4),
+      female_calves = c(7, 6, 3.5, 1),
+      females = c(66, 69, 47.95, 16),
+      sex_ratio = rep(0.5, 4),
       p_females = rep(0.65, 4)
     )
 

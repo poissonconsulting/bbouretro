@@ -57,7 +57,7 @@ chk_set <- function(x, list, name) {
 
 RecCalc <- function(C, indices) {
   d <- C[indices, ]
-  CCF <- sum(d$FemaleCalves) / sum(d$Females)
+  CCF <- sum(d$female_calves) / sum(d$females)
   Rec <- CCF / (1 + CCF)
   Rec
 }

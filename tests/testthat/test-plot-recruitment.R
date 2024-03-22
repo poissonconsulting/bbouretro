@@ -17,7 +17,7 @@ test_that("pop a works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_a,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
 
@@ -33,7 +33,7 @@ test_that("pop b works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_b,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
 
@@ -49,7 +49,7 @@ test_that("pop c works", {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_c,
       p_females = 0.65,
-      sexratio = 0.5,
+      sex_ratio = 0.5,
       variance = "binomial"
     )
     plot <- bbr_plot_recruitment(recruitment_est)
@@ -68,9 +68,9 @@ test_that("test xaxis labels", {
     R_CIL = c(0.01, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03),
     R_CIU = c(0.2, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35),
     groups = c(10L, 15L, 12L, 4L, 7L, 5L, 9L),
-    FemaleCalves = rep(7, 7),
-    Females = rep(66, 7),
-    sexratio = rep(0.5, 7),
+    female_calves = rep(7, 7),
+    females = rep(66, 7),
+    sex_ratio = rep(0.5, 7),
     p_females = rep(0.65, 7)
   )
 
@@ -95,9 +95,9 @@ test_that("errors if no year column", {
     R_CIL = c(0.01, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03),
     R_CIU = c(0.2, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35),
     groups = c(10L, 15L, 12L, 4L, 7L, 5L, 9L),
-    FemaleCalves = rep(7, 7),
-    Females = rep(66, 7),
-    sexratio = rep(0.5, 7),
+    female_calves = rep(7, 7),
+    females = rep(66, 7),
+    sex_ratio = rep(0.5, 7),
     p_females = rep(0.65, 7)
   )
 

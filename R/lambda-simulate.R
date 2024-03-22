@@ -53,9 +53,9 @@ bbr_lambda_simulate <- function(recruitment, survival) {
       R_CIL = numeric(),
       R_CIU = numeric(),
       groups = integer(),
-      FemaleCalves = numeric(),
-      Females = numeric(),
-      sexratio = numeric(),
+      female_calves = numeric(),
+      females = numeric(),
+      sex_ratio = numeric(),
       p_females = numeric()
     )
   )

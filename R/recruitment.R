@@ -21,7 +21,7 @@
 #'   used to assign unknown sex caribou. Values must be between 0
 #'   and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
 #'   estimates. The default is set at 0.65.
-#' @param sexratio Sex ratio of caribou at birth used to assign calves and
+#' @param sex_ratio Sex ratio of caribou at birth used to assign calves and
 #'   yearlings as male or female.  Sex ratio is defined as the
 #'   proportion females at birth. Values must be between 0 and 1. The default is
 #'   set at 0.5.
@@ -49,9 +49,9 @@
 #' \item{R_CIL}{Confidence limit}
 #' \item{R_CIU}{Confidence limit}
 #' \item{groups}{Groups sampled}
-#' \item{FemaleCalves}{Estimated female calves}
-#' \item{Females}{Estimated adult females}
-#' \item{sexratio}{Input sex ratio}
+#' \item{female_calves}{Estimated female calves}
+#' \item{females}{Estimated adult females}
+#' \item{sex_ratio}{Input sex ratio}
 #' \item{p_females}{Input proportion adult females}
 #' }
 #' @export
@@ -65,26 +65,26 @@
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
 #'   p_females = 0.65,
-#'   sexratio = 0.5,
+#'   sex_ratio = 0.5,
 #'   variance = "binomial"
 #' )
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
 #'   p_females = 0.60,
-#'   sexratio = 0.65,
+#'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females = 0.65, sexratio = 0.5, variance = "binomial") {
+bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "binomial") {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(p_females)
-  chk::chk_range(sexratio)
+  chk::chk_range(sex_ratio)
   chk::chk_string(variance)
 
-  # Estimate total females based on p_females and sexratio
+  # Estimate total females based on p_females and sex_ratio
   x <- dplyr::mutate(
     x,
-    Females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sexratio,
-    FemaleCalves = .data$Calves * sexratio
+    females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
+    female_calves = .data$Calves * sex_ratio
   )
 
   # summarize by population and year
@@ -92,8 +92,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sexratio = 0.5, variance = "bin
     x |>
     dplyr::group_by(.data$PopulationName, .data$Year) |>
     dplyr::summarize(
-      Females = sum(.data$Females),
-      FemaleCalves = sum(.data$FemaleCalves),
+      females = sum(.data$females),
+      female_calves = sum(.data$female_calves),
       Calves = sum(.data$Calves),
       UnknownAdults = sum(.data$UnknownAdults),
       Bulls = sum(.data$Bulls),
@@ -104,16 +104,16 @@ bbr_recruitment <- function(x, p_females = 0.65, sexratio = 0.5, variance = "bin
 
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
-  Compfull$CalfCow <- Compfull$Calves / Compfull$Females
+  Compfull$CalfCow <- Compfull$Calves / Compfull$females
   # Calf cow for female calves is 1/2 of CC with female/male calves
-  Compfull$CalfCowF <- Compfull$CalfCow * sexratio
+  Compfull$CalfCowF <- Compfull$CalfCow * sex_ratio
   # Recruitment using DeCesare correction
   Compfull$R <- Compfull$CalfCowF / (1 + Compfull$CalfCowF)
 
   # variance estimation-in progress.....
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
-    Compfull$BinVar <- (Compfull$R * (1 - Compfull$R)) / Compfull$Females
+    Compfull$BinVar <- (Compfull$R * (1 - Compfull$R)) / Compfull$females
     Compfull$R_SE <- Compfull$BinVar^0.5
 
     # logit-based confidence limits assuing R is constrained between 0 and 1.
@@ -167,8 +167,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sexratio = 0.5, variance = "bin
 
   # An abbreviated output data set.
   CompfullR <- cbind(
-    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "FemaleCalves", "Females")],
-    sexratio,
+    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "female_calves", "females")],
+    sex_ratio,
     p_females
   )
 

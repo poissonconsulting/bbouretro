@@ -64,7 +64,7 @@ recruitment_est <-
   bbr_recruitment(
     bbourecruit_c,
     p_females = 0.65,
-    sexratio = 0.5,
+    sex_ratio = 0.5,
     variance = "binomial"
   )
 bbr_plot_recruitment(recruitment_est)

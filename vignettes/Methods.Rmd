@@ -76,11 +76,11 @@ The age ratio, $X$, is commonly estimated as the number of calves, $n{_j}$, per 
 
 $$X = \frac{n_j}{n_{af}}$$ 
 
-where $X \cdot sexratio$ estimates the number of female calves $(n_{jf})$ per adult female. 
+where $X \cdot sex_ratio$ estimates the number of female calves $(n_{jf})$ per adult female. 
 
 Recruitment is estimated using the equation below which accounts for recruitment of calves into the yearling/adult age class at the end of the caribou year.
 
-$$R_{RM} = \frac{X \cdot sexratio}{1 + X \cdot sexratio}$$
+$$R_{RM} = \frac{X \cdot sex_ratio}{1 + X \cdot sex_ratio}$$
 
 Variance is estimated using a bootstrap approach or the binomial method.
 
