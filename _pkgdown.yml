@@ -1,0 +1,17 @@
+destination: docs
+
+reference:
+- title: Recruitment
+  contents:
+  - '`bbr_recruitment`'
+  - '`bbr_plot_recruitment`'
+- title: Survival
+  contents:
+  - '`bbr_km_survival`'
+  - '`bbr_plot_survival`'
+- title: Lambda
+  contents:
+  - '`bbr_lambda_sim`'
+  - '`bbr_summarize_lambda`'
+  - '`bbr_plot_lambda`'
+  - '`bbr_plot_lambda_distributions`'
