@@ -80,7 +80,7 @@ A full summary of methods is given in [@pearson_boreal_2022].
 
 ## Population Growth, $\lambda$
 
-For `bbr_lambda_sim()` function uses the basic Hatter-Bergerud method.
+For `bbr_lambda_simulate()` function uses the basic Hatter-Bergerud method.
 
 The basic Hatter-Bergerud equation used to estimate $\lambda$ is given below.
 

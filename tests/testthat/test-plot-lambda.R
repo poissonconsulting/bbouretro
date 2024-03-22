@@ -27,7 +27,7 @@ test_that("pop a works", {
       variance = "Pollock"
     )
 
-    output <- bbr_lambda_sim(recruitment_est, survival_est)
+    output <- bbr_lambda_simulate(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")
@@ -50,7 +50,7 @@ test_that("pop b works", {
       variance = "Pollock"
     )
 
-    output <- bbr_lambda_sim(recruitment_est, survival_est)
+    output <- bbr_lambda_simulate(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")
@@ -73,7 +73,7 @@ test_that("pop c works", {
       variance = "Pollock"
     )
 
-    output <- bbr_lambda_sim(recruitment_est, survival_est)
+    output <- bbr_lambda_simulate(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")
