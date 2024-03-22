@@ -1,5 +1,5 @@
 ---
-title: "Classical Methods for estimating Survival, Recruitment and Population Change"
+title: "Classical Methods for estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Methods}
@@ -20,10 +20,10 @@ library(bbouretro)
 library(bboudata)
 ```
 
-There are multiple ways cited in literature to calculate survival, recruitment and population growth.
+There are multiple ways cited in literature to calculate survival, recruitment, and population growth.
 The classical or retro methods used in the package are outlined below. 
 
-## Survival
+## Survival, $S$
 
 The `bbr_km_survival()` function uses the staggered entry Kaplan-Meier method.
 
@@ -43,14 +43,14 @@ Standard error is estimated using either the [@cox_analysis_1984] uses Greenwood
 
 $$SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum \frac{d_{i}}{r_{i}(r_{i} - d_{i})}}$$
 
-Or a propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989]
+Or a propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989].
 
 $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 
 Logit-based confidence limits are estimated.
 Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in Pearson et al [-@pearson_boreal_2022].
 
-## Recruitment
+## Recruitment, $R$
 
 The `bbr_recruitment()` function estimates recruitment using the following method. 
 
@@ -68,26 +68,31 @@ Recruitment is estimated using the equation below which accounts for recruitment
 $$R_{RM} = \frac{X \cdot sexratio}{1 + X \cdot sexratio}$$
 
 Variance is estimated using a bootstrap approach or the binomial method.
+
 The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.
 Percentile-based 95% confidence limits are then estimated from the 1000 estimates.
+
 For the binomial method, variance is estimated as $R_m \cdot (1 - R_{rm})/n)$ where $n$ is the number of adult females sampled during each yearly survey.  
+
 Logit-based confidence limits are estimated assuming that values of recruitment are constrained between 0 and 1.
 The bootstrap method is recommended as the most robust approach to obtain variance estimates.
 A full summary of methods is given in [@pearson_boreal_2022].
 
-## Population Growth
+## Population Growth, $\lambda$
 
 For `bbr_lambda_sim()` function uses the basic Hatter-Bergerud method.
 
-The basic Hatter-Bergerud equation used to estimate lambda is given below.
+The basic Hatter-Bergerud equation used to estimate $\lambda$ is given below.
 
 $$\lambda = \frac{(S)}{(1 - R)}$$
 
 The standard errors on estimates of survival and recruitment are then used to create simulated distributions of $S$ and $R$ and derive a distribution of $\lambda$ based on the simulated values.
 It is assumed both survival and recruitment are distributed on the logit scale therefore bounding each value between 0 and 1.
+
 One thousand simulations are conducted.
 Percentile-based confidence limits are then derived.
 Also, the proportion of simulations where $\lambda$ is greater than 1 is tabulated to provide a p-value for the hypothesis test $(Ho: \lambda >= 1, Ha: \lambda < 1)$.
+
 Output summaries also include mean values simulated for $S$, $R$, as well as mean and median $\lambda$ values from the simulation.
 
 ## References
