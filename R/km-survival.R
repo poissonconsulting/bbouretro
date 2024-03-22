@@ -18,11 +18,11 @@
 #' estimator (Pollock et al. 1989).
 #'
 #' @param x input survival data frame
-#' @param mort_type Mortality data to be included.   Values can be “Total” which
-#'   would be all (MortalitiesCertain and MortalitiesUncertain) or “Certain”,
+#' @param mort_type Mortality data to be included.   Values can be “total” which
+#'   would be all (MortalitiesCertain and MortalitiesUncertain) or “certain”,
 #'   (MortalitiesCertain only).
 #' @param variance Variance type to estimate.  Can be the Greenwood estimator
-#'   “Greenwood” or Pollock estimator (“Pollock”).
+#'   “greenwood” or Pollock estimator (“pollock”).
 #'
 #' @details See the vignette Methods for description of equations used.
 #'
@@ -63,7 +63,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
-  # mort_type can be "total" or "Certain"
+  # mort_type can be "total" or 'certain"
   x$mort_type <- mort_type
   x$Morts <- ifelse(x$mort_type == "total", x$TotalMorts, x$MortalitiesCertain)
 

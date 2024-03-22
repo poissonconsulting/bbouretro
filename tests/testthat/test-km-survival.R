@@ -48,7 +48,7 @@ test_that("pop c works", {
 test_that("works with mort_type as 'certain'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    mort_type = "Certain",
+    mort_type = 'certain",
     variance = "pollock"
   )
 
@@ -57,7 +57,7 @@ test_that("works with mort_type as 'certain'", {
 
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
-    mort_type = "Certain",
+    mort_type = 'certain",
     variance = "greenwood"
   )
 
@@ -89,7 +89,7 @@ test_that("mort_type gives different outputs when values in mort uncertain colum
 
   output_certain <- bbr_km_survival(
     df,
-    mort_type = "Certain",
+    mort_type = 'certain",
     variance = "greenwood"
   )
 
@@ -111,7 +111,7 @@ test_that("mort_type gives same outputs when all 0 values in mort uncertain colu
 
   output_certain <- bbr_km_survival(
     df,
-    mort_type = "Certain",
+    mort_type = 'certain",
     variance = "greenwood"
   )
 
