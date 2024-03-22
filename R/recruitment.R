@@ -17,12 +17,12 @@
 #' Estimate recruitment using DeCesare et al. (2012) methods.
 #'
 #' @param x A data frame that has recruitment data.
-#' @param p_females Assumed or estimated proportion females in the population
-#'   used to assign unknown sex caribou (see details).  Can be set to 0 to
-#'   exclude unknown sex caribou from recruitment estimates. Values must be
-#'   between 0 and 1. The default is set at 0.65.
+#' @param p_females Assumed or estimated proportion of females in the population
+#'   used to assign unknown sex caribou. Values must be between 0
+#'   and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
+#'   estimates. The default is set at 0.65.
 #' @param sexratio Sex ratio of caribou at birth used to assign calves and
-#'   yearlings as male or female (see details).  Sex ratio is defined as the
+#'   yearlings as male or female.  Sex ratio is defined as the
 #'   proportion females at birth. Values must be between 0 and 1. The default is
 #'   set at 0.5.
 #' @param variance Estimate variance using "binomial" or "bootstrap". The
@@ -40,7 +40,7 @@
 #' 
 #' @return A data frame. The columns are listed in the format section.
 #'
-#' @format A tibble with columns:
+#' @format The return object has these columns:
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}

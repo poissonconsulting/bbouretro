@@ -13,7 +13,7 @@ bbr_plot_lambda(lambda)
 A ggplot object.
 }
 \description{
-A plot of \eqn{lambda} estimates is given for each population unit.
+A plot of \eqn{\lambda} estimates is given for each population unit.
 }
 \examples{
 \dontrun{

@@ -15,14 +15,14 @@ bbr_plot_lambda_distributions(lambda, population)
 A ggplot object.
 }
 \description{
-Create histograms of simulated \eqn{lambda} values for a chosen population
+Create histograms of simulated \eqn{\lambda} values for a chosen population
 unit.
 }
 \details{
 Plots are generated that show the distribution of simulated
-\eqn{lambda} values, the mean estimate (red line).  In addition, a hashed
-line indicates where \eqn{lambda = 1}.  Plots allow users to evaluate the
-symmetry of the distributions of \eqn{lambda}.
+\eqn{\lambda} values, the mean estimate (red line).  In addition, a hashed
+line indicates where \eqn{\lambda = 1}.  Plots allow users to evaluate the
+symmetry of the distributions of \eqn{\lambda}.
 }
 \examples{
 \dontrun{

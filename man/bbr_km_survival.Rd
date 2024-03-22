@@ -4,7 +4,7 @@
 \alias{bbr_km_survival}
 \title{Estimate survival}
 \format{
-A tibble with columns:
+The return object has these columns:
 \describe{
 \item{PopulationName}{Population name}
 \item{Year}{Year sampled}
@@ -51,6 +51,11 @@ survival_est <- bbr_km_survival(
   bboudata::bbousurv_a,
   mort_type = "total",
   variance = "greenwood"
+)
+survival_est <- bbr_km_survival(
+  bboudata::bbousurv_b,
+  mort_type = "certain",
+  variance = "pollock"
 )
 }
 \references{

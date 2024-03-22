@@ -34,7 +34,7 @@
 #' @return A data frame. The columns are listed in the format section.
 #' @export
 #'
-#' @format A tibble with columns:
+#' @format The return object has these columns:
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
@@ -57,6 +57,11 @@
 #'   bboudata::bbousurv_a,
 #'   mort_type = "total",
 #'   variance = "greenwood"
+#' )
+#' survival_est <- bbr_km_survival(
+#'   bboudata::bbousurv_b,
+#'   mort_type = "certain",
+#'   variance = "pollock"
 #' )
 bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   x <- bboudata::bbd_chk_data_survival(x)
