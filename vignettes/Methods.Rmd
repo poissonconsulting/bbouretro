@@ -1,5 +1,5 @@
 ---
-title: "Methods"
+title: "Classical Methods for estimating Survival, Recruitment and Population Change"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Methods}
@@ -20,8 +20,12 @@ library(bbouretro)
 library(bboudata)
 ```
 
+There are multiple ways cited in literature to calculate survival, recruitment and population growth.
+The classical or retro methods used in the package are outlined below. 
 
-## For `km_survival()`
+## Survival
+
+The `bbr_km_survival()` function uses the staggered entry Kaplan-Meier method.
 
 The staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below [@pollock_survival_1989].
 The probability of surviving in the $i$th time step (usually month) is given by the equation below 
@@ -46,7 +50,9 @@ $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 Logit-based confidence limits are estimated.
 Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in Pearson et al [-@pearson_boreal_2022].
 
-## For `recruitment()`
+## Recruitment
+
+The `bbr_recruitment()` function estimates recruitment using the following method. 
 
 Estimation of recruitment follows methods of [@decesare_estimating_2012].
 From Pearson et al [-@pearson_boreal_2022] we summarize the following equations: 
@@ -69,9 +75,11 @@ Logit-based confidence limits are estimated assuming that values of recruitment 
 The bootstrap method is recommended as the most robust approach to obtain variance estimates.
 A full summary of methods is given in [@pearson_boreal_2022].
 
-## For `lambda_sim()`
+## Population Growth
 
-The basic Hatter-Bergerud equation used to estimate lamba is given below.
+For `bbr_lambda_sim()` function uses the basic Hatter-Bergerud method.
+
+The basic Hatter-Bergerud equation used to estimate lambda is given below.
 
 $$\lambda = \frac{(S)}{(1 - R)}$$
 
