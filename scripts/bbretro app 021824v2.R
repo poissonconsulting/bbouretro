@@ -17,7 +17,7 @@ RsampsC <- bboudata::bbourecruit_c
   
 #example code...load functions first.
 CO<-Recruitment(RsampsC,pFemales=0.65,sexratio=0.5,variance="binomial") 
-S<-KMsurvival(SsampsC,mort_type="total",variance="Pollock")
+S<-KMsurvival(SsampsC,mort_type="total",variance="pollock")
 PlotRecruitment(CO)
 PlotSurvival(S)
 Lambdadat<-LambdaSim(CO,S)
@@ -116,7 +116,7 @@ PlotRecruitment<-function(Compout)  {
 
 #Survival rate function
 KMsurvival<-function(Ssamps,mort_type,variance)  {
-#suggest we make mort_type="total" and variance="Pollock" default settings.
+#suggest we make mort_type="total" and variance="pollock" default settings.
   Ssamps<-SsampsC
   #make sure data set is sorted properly
   Ssamps<-arrange(Ssamps,PopulationName,Year,Month)
@@ -154,7 +154,7 @@ KMsurvival<-function(Ssamps,mort_type,variance)  {
   YearSurv$S_Var_Green<- YearSurv$S^2*YearSurv$S_var1 
   #Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock<- (YearSurv$S^2*(1-YearSurv$S))/YearSurv$sumalive 
-  YearSurv$S_Var<-ifelse(YearSurv$VarType=="Pollock",YearSurv$S_Var_Pollock,YearSurv$S_Var_Green)
+  YearSurv$S_Var<-ifelse(YearSurv$VarType=="pollock",YearSurv$S_Var_Pollock,YearSurv$S_Var_Green)
 
   #Put note in output if there are no mortalities or less than 12 years.  Zero mortalities causes variance to be 0
   YearSurv$Status1<-ifelse(YearSurv$monthcount==12,"",paste("Only", YearSurv$monthcount, "months monitored"))

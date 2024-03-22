@@ -19,7 +19,7 @@ A tibble with columns:
 }
 }
 \usage{
-bbr_km_survival(x, mort_type = "total", variance = "Pollock")
+bbr_km_survival(x, mort_type = "total", variance = "pollock")
 }
 \arguments{
 \item{x}{input survival data frame}

@@ -24,7 +24,7 @@ test_that("pop a works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "Pollock"
+      variance = "pollock"
     )
 
     lambda <- bbr_lambda_simulate(recruitment_est, survival_est)

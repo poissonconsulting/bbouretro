@@ -16,7 +16,7 @@ test_that("pop a works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_a,
     mort_type = "total",
-    variance = "Pollock"
+    variance = "pollock"
   )
 
   expect_s3_class(output, "data.frame")
@@ -27,7 +27,7 @@ test_that("pop b works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_b,
     mort_type = "total",
-    variance = "Pollock"
+    variance = "pollock"
   )
 
   expect_s3_class(output, "data.frame")
@@ -38,7 +38,7 @@ test_that("pop c works", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
     mort_type = "total",
-    variance = "Pollock"
+    variance = "pollock"
   )
 
   expect_s3_class(output, "data.frame")
@@ -49,7 +49,7 @@ test_that("works with mort_type as 'certain'", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c,
     mort_type = "Certain",
-    variance = "Pollock"
+    variance = "pollock"
   )
 
   expect_s3_class(output, "data.frame")
@@ -132,7 +132,7 @@ test_that("variance options give different SE, CIL and CIU", {
   output_pollock <- bbr_km_survival(
     df,
     mort_type = "total",
-    variance = "Pollock"
+    variance = "pollock"
   )
 
   expect_true(

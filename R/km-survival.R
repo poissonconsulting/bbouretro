@@ -53,7 +53,7 @@
 #'   mort_type = "total",
 #'   variance = "Greenwood"
 #' )
-bbr_km_survival <- function(x, mort_type = "total", variance = "Pollock") {
+bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_string(mort_type)
   chk::chk_string(variance)
@@ -101,7 +101,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "Pollock") {
   # Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sumalive
   YearSurv$S_Var <- ifelse(
-    YearSurv$VarType == "Pollock",
+    YearSurv$VarType == "pollock",
     YearSurv$S_Var_Pollock,
     YearSurv$S_Var_Green
   )

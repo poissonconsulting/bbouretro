@@ -17,7 +17,7 @@ test_that("pop a works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "Pollock"
+      variance = "pollock"
     )
 
     plot <- bbr_plot_survival(survival_est)
@@ -32,7 +32,7 @@ test_that("pop b works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_b,
       mort_type = "total",
-      variance = "Pollock"
+      variance = "pollock"
     )
 
     plot <- bbr_plot_survival(survival_est)
@@ -47,7 +47,7 @@ test_that("pop c works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "Pollock"
+      variance = "pollock"
     )
 
     plot <- bbr_plot_survival(survival_est)
