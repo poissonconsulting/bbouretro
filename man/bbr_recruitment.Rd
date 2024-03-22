@@ -55,4 +55,10 @@ recruitment_est <- bbr_recruitment(
   sexratio = 0.5,
   variance = "binomial"
 )
+recruitment_est <- bbr_recruitment(
+  bboudata::bbourecruit_a,
+  pFemales = 0.60,
+  sexratio = 0.65,
+  variance = "bootstrap"
+)
 }

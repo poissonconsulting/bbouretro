@@ -42,7 +42,11 @@ estimator (Pollock et al. 1989).
 See the vignette Methods for description of equations used.
 }
 \examples{
-survival_est <- bbr_km_survival(bboudata::bbousurv_a, "Total", variance = "Greenwood")
+survival_est <- bbr_km_survival(
+  bboudata::bbousurv_a,
+  MortType = "Total",
+  variance = "Greenwood"
+)
 }
 \references{
 Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
