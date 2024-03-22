@@ -17,8 +17,9 @@ can contains raw simulated data and the second one is the summary data.
 }
 \description{
 This function uses the output of \code{bbr_km_survival()} and \code{bbr_recruitment()}
-to estimate \eqn{\lambda} using the Hatter-Bergerud equation. Monte Carlo
-simulation is used to generate confidence limits on \eqn{\lambda}.
+to estimate \eqn{\lambda} using the Hatter-Bergerud equation (Hatter and
+Bergerud, 1991). Monte Carlo simulation is used to generate confidence limits
+on \eqn{\lambda}.
 }
 \details{
 See the \code{vignette("Methods", package = "bbouretro")} for
@@ -30,4 +31,8 @@ using \code{bbr_lambda_summarize()} or plotted using \code{bbr_plot_lamba()}.
 \dontrun{
 bbr_lambda_simulate(recruitment_est, survival_est)
 }
+}
+\references{
+Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recuriment Adult
+Mortality and Rate of Change” 27: 65–73.
 }
