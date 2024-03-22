@@ -13,9 +13,9 @@ The return object has these columns:
 \item{S_CIL}{Confidence limit}
 \item{S_CIU}{Confidence limit}
 \item{mean_monitored}{Mean number of caribou monitored each month}
-\item{sumdead }{Total number of mortalities in a year}
-\item{sumalive}{Total number of caribou-months in a year}
-\item{Status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
+\item{sum_dead }{Total number of mortalities in a year}
+\item{sum_alive}{Total number of caribou-months in a year}
+\item{status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
 }
 }
 \usage{

@@ -43,9 +43,9 @@
 #' \item{S_CIL}{Confidence limit}
 #' \item{S_CIU}{Confidence limit}
 #' \item{mean_monitored}{Mean number of caribou monitored each month}
-#' \item{sumdead }{Total number of mortalities in a year}
-#' \item{sumalive}{Total number of caribou-months in a year}
-#' \item{Status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
+#' \item{sum_dead }{Total number of mortalities in a year}
+#' \item{sum_alive}{Total number of caribou-months in a year}
+#' \item{status}{Indicates less than 12 months monitored or if there were 0 mortalities in a given year}
 #' }
 #'
 #' @references Pollock, K. H., S. R. Winterstein, C. M. Bunck, and P. D. Curtis.
@@ -95,8 +95,8 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
       S = prod(.data$Smonth),
       S_var1 = sum(.data$Smonth_varj),
       Survmean = mean(.data$Smonth),
-      sumalive = sum(.data$StartTotal),
-      sumdead = sum(.data$Morts),
+      sum_alive = sum(.data$StartTotal),
+      sum_dead = sum(.data$Morts),
       meanalive = mean(.data$StartTotal),
       minalive = min(.data$StartTotal),
       maxalive = max(.data$StartTotal),
@@ -109,7 +109,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # Variance estimate using the Greenwood formula for variance
   YearSurv$S_Var_Green <- YearSurv$S^2 * YearSurv$S_var1
   # Variance estimate using the Pollock et al 1989 method
-  YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sumalive
+  YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sum_alive
   YearSurv$S_Var <- ifelse(
     YearSurv$VarType == "pollock",
     YearSurv$S_Var_Pollock,
@@ -124,11 +124,11 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
     paste("Only", YearSurv$monthcount, "months monitored")
   )
   YearSurv$Status2 <- ifelse(
-    YearSurv$sumdead == 0,
+    YearSurv$sum_dead == 0,
     "No Mortalities all year (SE=0)",
     ""
   )
-  YearSurv$Status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
+  YearSurv$status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
 
   # scale estimates to a year if less than 12 months monitored
   YearSurv$S <- YearSurv$S^(12 / YearSurv$monthcount)
@@ -154,7 +154,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   YearSurv <- dplyr::select(
     YearSurv,
     "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "mean_monitored",
-    "sumdead", "sumalive", "Status"
+    "sum_dead", "sum_alive", "status"
   ) |>
     tibble::tibble()
 

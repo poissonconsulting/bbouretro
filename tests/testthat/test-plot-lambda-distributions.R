@@ -105,9 +105,9 @@ test_that("errors when pop not in data set", {
       S_CIL = c(0.5, 0.7, 0.7, NaN),
       S_CIU = c(0.6, 0.8, 0.8, NaN),
       mean_monitored = c(4.5, 12.6, 14.6, 20.2),
-      sumdead = c(3L, 3L, 3L, 0L),
-      sumalive = c(39L, 149L, 179L, 242L),
-      Status = c(
+      sum_dead = c(3L, 3L, 3L, 0L),
+      sum_alive = c(39L, 149L, 179L, 242L),
+      status = c(
         "Only 9 months monitored - ", " - ", " - ",
         " - No Mortalities all year (SE=0)"
       )

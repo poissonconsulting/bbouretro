@@ -70,9 +70,9 @@ bbr_lambda_simulate <- function(recruitment, survival) {
       S_CIL = numeric(),
       S_CIU = numeric(),
       mean_monitored = numeric(),
-      sumdead = integer(),
-      sumalive = integer(),
-      Status = character()
+      sum_dead = integer(),
+      sum_alive = integer(),
+      status = character()
     )
   )
 

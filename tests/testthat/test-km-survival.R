@@ -163,11 +163,11 @@ test_that("variance options give different SE, CIL and CIU", {
   )
 
   expect_true(
-    all(output_greenwood$sumdead == output_pollock$sumdead)
+    all(output_greenwood$sum_dead == output_pollock$sum_dead)
   )
 
   expect_true(
-    all(output_greenwood$sumalive == output_pollock$sumalive)
+    all(output_greenwood$sum_alive == output_pollock$sum_alive)
   )
 
   expect_true(
@@ -205,12 +205,12 @@ test_that("status messages ", {
   )
 
   expect_equal(
-    unique(output$Status[output$sumdead == 0]),
+    unique(output$status[output$sum_dead == 0]),
     " - No Mortalities all year (SE=0)"
   )
 
   expect_equal(
-    unique(output$Status[output$Year == 2003]),
+    unique(output$status[output$Year == 2003]),
     "Only 9 months monitored - "
   )
 })

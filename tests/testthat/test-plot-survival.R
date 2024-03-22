@@ -66,9 +66,9 @@ test_that("skip x ticks when more then 6 groups", {
     S_CIL = c(0.5, 0.7, 0.7, NaN, 0.4, 0.65, 0.72),
     S_CIU = c(0.6, 0.8, 0.8, NaN, 0.72, 0.84, 0.98),
     mean_monitored = c(4.5, 12.6, 14.6, 20.2, 14.2, 15.7, 18.7),
-    sumdead = c(3L, 3L, 3L, 0L, 7L, 2L, 4L),
-    sumalive = c(39L, 149L, 179L, 242L, 251L, 124L, 365L),
-    Status = c(
+    sum_dead = c(3L, 3L, 3L, 0L, 7L, 2L, 4L),
+    sum_alive = c(39L, 149L, 179L, 242L, 251L, 124L, 365L),
+    status = c(
       "Only 9 months monitored - ", " - ", " - ", " - ", " - ", " - ",
       " - "
     )
@@ -95,9 +95,9 @@ test_that("errors if no year column", {
     S_CIL = c(0.5, 0.7, 0.7, NaN),
     S_CIU = c(0.6, 0.8, 0.8, NaN),
     mean_monitored = c(4.5, 12.6, 14.6, 20.2),
-    sumdead = c(3L, 3L, 3L, 0L),
-    sumalive = c(39L, 149L, 179L, 242L),
-    Status = c(
+    sum_dead = c(3L, 3L, 3L, 0L),
+    sum_alive = c(39L, 149L, 179L, 242L),
+    status = c(
       "Only 9 months monitored - ", " - ", " - ",
       " - No Mortalities all year (SE=0)"
     )
