@@ -3,7 +3,7 @@ Title: Classic Survival, Recruitment and Population Growth Methods
 Version: 0.0.0.9000
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut"),
-    person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = "cre",
+    person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0001-7388-1222")),
     person("Seb", "Dalgarno", , "seb@poissonconsulting.ca", role = "ctb",
            comment = c(ORCID = "0000-0002-3658-4517")),
