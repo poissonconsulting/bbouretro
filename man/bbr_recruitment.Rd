@@ -47,9 +47,9 @@ Estimate recruitment using DeCesare et al. (2012) methods.
 \details{
 \code{x} needs to be formatted in a certain manner. To confirm the input
 data frame is in the right format you can use the
-\link[bboudata:bbd_chk_data_recruitment]{bbd_chk_data_recruitment} function.  See the
-\code{vignette("Methods", package = "bbouretro")} for the equations used in
-this function.
+\href{https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_recruitment.html}{\code{bbd_chk_data_recruitment}}
+function.  See the \code{vignette("Methods", package = "bbouretro")} for the
+equations used in this function.
 
 User’s can input the assumed proportion of females in the population (to
 estimate females from adult caribou that have unknown sex) as well as sex
