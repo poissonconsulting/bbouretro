@@ -31,11 +31,11 @@
 #' \item{Lambda_SE }{SE}
 #' \item{Lambda_CIL}{Percentile 95% confidence limits}
 #' \item{Lambda_CIU }{Percentile 95% confidence limits}
-#' \item{Prop_LGT1 }{Proportion simulations where lambda>1}
-#' \item{meanSimSurv}{Mean simulated survival value}
-#' \item{meanRsim}{Mean simulated recruitment value}
-#' \item{meanSimLambda }{Mean simulated lambda value}
-#' \item{medianSimLambda}{Median simulated lambda value}
+#' \item{prop_lgt1 }{Proportion simulations where lambda>1}
+#' \item{mean_sim_survival}{Mean simulated survival value}
+#' \item{mean_sim_recruitment}{Mean simulated recruitment value}
+#' \item{mean_sim_lambda }{Mean simulated lambda value}
+#' \item{median_sim_lambda}{Median simulated lambda value}
 #' }
 #'
 #' @examples
@@ -59,11 +59,11 @@ bbr_lambda_summarize <- function(lambda) {
       Lambda_SE = numeric(),
       Lambda_CIL = numeric(),
       Lambda_CIU = numeric(),
-      Prop_LGT1 = numeric(),
-      meanSimSurv = numeric(),
-      meanRsim = numeric(),
-      meanSimLambda = numeric(),
-      medianSimLambda = numeric()
+      prop_lgt1 = numeric(),
+      mean_sim_survival = numeric(),
+      mean_sim_recruitment = numeric(),
+      mean_sim_lambda = numeric(),
+      median_sim_lambda = numeric()
     )
   )
 

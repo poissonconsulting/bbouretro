@@ -120,11 +120,11 @@ test_that("creats plot as expected", {
       Lambda_SE = c(0.0357, 0.0247),
       Lambda_CIL = c(0.80, 0.75),
       Lambda_CIU = c(1.30, 1.05),
-      Prop_LGT1 = c(0.587, 0.658),
-      meanSimSurv = c(0.974, 0.984),
-      meanRsim = c(0.147, 0.0587),
-      meanSimLambda = c(1.08, 0.478),
-      medianSimLambda = c(0.98, 1.01)
+      prop_lgt1 = c(0.587, 0.658),
+      mean_sim_survival = c(0.974, 0.984),
+      mean_sim_recruitment = c(0.147, 0.0587),
+      mean_sim_lambda = c(1.08, 0.478),
+      median_sim_lambda = c(0.98, 1.01)
     )
   )
 
