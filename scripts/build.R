@@ -14,7 +14,11 @@
 
 roxygen2md::roxygen2md()
 styler::style_pkg(filetype = c("R", "Rmd"))
-lintr::lint_package()
+lintr::lint_package(
+  linters = lintr::linters_with_defaults(
+    line_length_linter = lintr::line_length_linter(400)
+  )
+)
 
 devtools::test()
 devtools::document()

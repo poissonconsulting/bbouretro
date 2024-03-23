@@ -138,7 +138,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
       ) |>
       purrr::set_names(boot_names) |>
       purrr::map(
-        function(x) boot(data = x, RecCalc, R = 1000)
+        function(x) boot(data = x, rec_calc, R = 1000)
       )
 
     pc <- purrr::map_df(names(boot), function(x) {

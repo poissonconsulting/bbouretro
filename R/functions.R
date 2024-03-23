@@ -55,11 +55,11 @@ chk_set <- function(x, list, name) {
 
 # Bootstrap ---------------------------------------------------------------
 
-RecCalc <- function(C, indices) {
-  d <- C[indices, ]
-  CCF <- sum(d$female_calves) / sum(d$females)
-  Rec <- CCF / (1 + CCF)
-  Rec
+rec_calc <- function(x, indices) {
+  d <- x[indices, ]
+  ccf <- sum(d$female_calves) / sum(d$females)
+  rec <- ccf / (1 + ccf)
+  rec
 }
 
 # Plot Helper -------------------------------------------------------------
