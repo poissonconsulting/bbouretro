@@ -56,6 +56,8 @@ pak::pak("poissonconsulting/bbouretro")
 ## Example
 
 ```{r}
+set.seed(101)
+
 library(bbouretro)
 library(bboudata)
 

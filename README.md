@@ -48,6 +48,8 @@ pak::pak("poissonconsulting/bbouretro")
 ## Example
 
 ``` r
+set.seed(101)
+
 library(bbouretro)
 library(bboudata)
 
@@ -87,15 +89,15 @@ summary
 #> # A tibble: 9 × 13
 #>   PopulationName  Year     S     R Lambda Lambda_SE Lambda_CIL Lambda_CIU
 #>   <chr>          <int> <dbl> <dbl>  <dbl>     <dbl>      <dbl>      <dbl>
-#> 1 C               2005 0.832 0.096  0.92      0.049      0.846      1.04 
+#> 1 C               2005 0.832 0.096  0.92      0.048      0.846      1.04 
 #> 2 C               2006 1     0.08   1.09     NA         NA         NA    
-#> 3 C               2007 0.524 0.068  0.562     0.039      0.503      0.653
-#> 4 C               2008 0.824 0.059  0.876     0.123      0.801      1.25 
+#> 3 C               2007 0.524 0.068  0.562     0.042      0.502      0.667
+#> 4 C               2008 0.824 0.059  0.876     0.119      0.798      1.21 
 #> 5 C               2009 1     0.083  1.09     NA         NA         NA    
-#> 6 C               2010 0.926 0.14   1.08      0.062      0.99       1.23 
-#> 7 C               2011 0.96  0.158  1.14      0.109      1.03       1.42 
-#> 8 C               2012 0.963 0.112  1.08      0.05       1.01       1.21 
-#> 9 C               2013 0.512 0.133  0.591     0.029      0.554      0.663
+#> 6 C               2010 0.926 0.14   1.08      0.064      0.991      1.25 
+#> 7 C               2011 0.96  0.158  1.14      0.106      1.03       1.39 
+#> 8 C               2012 0.963 0.112  1.08      0.051      1.01       1.22 
+#> 9 C               2013 0.512 0.133  0.591     0.028      0.552      0.656
 #> # ℹ 5 more variables: Prop_LGT1 <dbl>, meanSimSurv <dbl>, meanRsim <dbl>,
 #> #   meanSimLambda <dbl>, medianSimLambda <dbl>
 bbr_plot_lambda(lambda_est)
