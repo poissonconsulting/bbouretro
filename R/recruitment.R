@@ -119,11 +119,11 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
     # logit-based confidence limits assuing R is constrained between 0 and 1.
     Compfull <- dplyr::mutate(
       Compfull,
-      logits = qlogis(.data$R),
+      logits = logit(.data$R),
       varlogit = .data$BinVar / (.data$R^2 * ((1 - .data$R)^2))
     )
-    Compfull$R_CIU <- plogis(Compfull$logits + 1.96 * (Compfull$varlogit**0.5))
-    Compfull$R_CIL <- plogis(Compfull$logits - 1.96 * (Compfull$varlogit**0.5))
+    Compfull$R_CIU <- ilogit(Compfull$logits + 1.96 * (Compfull$varlogit**0.5))
+    Compfull$R_CIL <- ilogit(Compfull$logits - 1.96 * (Compfull$varlogit**0.5))
   }
   
   # bootstrap approach...in progress....

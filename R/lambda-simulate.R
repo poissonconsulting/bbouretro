@@ -107,21 +107,21 @@ bbr_lambda_simulate <- function(recruitment, survival) {
   # this expands the data frame 1000X
   LambdaSum$group <- seq_len(nrow(LambdaSum))
   LambdaSumSim <- merge(LambdaSum, rnnors, by = "group")
-
+  
   # put the estimated parameters on the logit scale
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    Slogit = qlogis(.data$S),
+    Slogit = logit(.data$S),
     Svarlogit = .data$S_SE^2 / (.data$S^2 * ((1 - .data$S)^2)),
-    Rlogit = qlogis(.data$R),
+    Rlogit = logit(.data$R),
     Rvarlogit = .data$R_SE^2 / (.data$R^2 * ((1 - .data$R)^2))
   )
 
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    RanS = plogis(.data$Slogit + .data$RannorS * (.data$Svarlogit^0.5)),
-    RanR = plogis(.data$Rlogit + .data$RannorR * (.data$Rvarlogit^0.5)))
+    RanS = ilogit(.data$Slogit + .data$RannorS * (.data$Svarlogit^0.5)),
+    RanR = ilogit(.data$Rlogit + .data$RannorR * (.data$Rvarlogit^0.5)))
 
   # random H-B lambda based on simulated R and S
   LambdaSumSim$RanLambda <- LambdaSumSim$RanS / (1 - LambdaSumSim$RanR)
