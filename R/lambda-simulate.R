@@ -111,9 +111,9 @@ bbr_lambda_simulate <- function(recruitment, survival) {
   # put the estimated parameters on the logit scale
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    Slogit = log(.data$S / (1 - .data$S)),
+    Slogit = qlogis(.data$S),
     Svarlogit = .data$S_SE^2 / (.data$S^2 * ((1 - .data$S)^2)),
-    Rlogit = log(.data$R / (1 - .data$R)),
+    Rlogit = qlogis(.data$R),
     Rvarlogit = .data$R_SE^2 / (.data$R^2 * ((1 - .data$R)^2))
   )
 

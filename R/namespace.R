@@ -15,5 +15,5 @@
 #' @import boot
 #' @import ggplot2
 #' @importFrom rlang .data
-#' @importFrom stats median quantile rnorm sd
+#' @importFrom stats median quantile rnorm sd qlogis
 NULL

@@ -138,7 +138,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # logit-based confidence intervals--formulas based on program MARK.
   YearSurv <- dplyr::mutate(
     YearSurv,
-    logits = log(.data$S / (1 - .data$S)),
+    logits = qlogis(.data$S),
     varlogit = .data$S_Var / (.data$S^2 * ((1 - .data$S)^2))
   )
   YearSurv$S_CIU <- 1 / (1 + exp(-1 * (YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))))
