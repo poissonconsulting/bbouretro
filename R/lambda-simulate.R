@@ -32,7 +32,7 @@
 #'
 #' @export
 #'
-#' @references Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recuriment Adult
+#' @references Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recruitment, Adult
 #'   Mortality and Rate of Change” 27: 65–73.
 #'
 #' @examples
