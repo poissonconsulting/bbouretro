@@ -174,5 +174,5 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
 
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
 
-  CompfullR
+  tibble::as_tibble(CompfullR)
 }
