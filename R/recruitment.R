@@ -100,7 +100,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
       Yearlings = sum(.data$Yearlings),
       groups = length(.data$Year)
     ) |>
-    dplyr::group_by()
+    dplyr::ungroup()
   
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
