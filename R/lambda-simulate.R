@@ -154,6 +154,11 @@ bbr_lambda_simulate <- function(recruitment, survival) {
     dplyr::ungroup() |>
     tibble::tibble()
 
+  SumLambda <-
+    dplyr::rename(SumLambda, "estimate" = "Lambda",
+           "se" = "Lambda_SE",
+           "lower" = "Lambda_CIL",
+           "upper" = "Lambda_CIU")
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
   names(LambdaOut) <- c("raw_values", "summary")

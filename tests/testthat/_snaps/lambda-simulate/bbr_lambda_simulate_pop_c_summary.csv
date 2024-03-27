@@ -1,4 +1,4 @@
-PopulationName,Year,S,R,Lambda,Lambda_SE,Lambda_CIL,Lambda_CIU,prop_lgt1,mean_sim_survival,mean_sim_recruitment,mean_sim_lambda,median_sim_lambda
+PopulationName,Year,S,R,estimate,se,lower,upper,prop_lgt1,mean_sim_survival,mean_sim_recruitment,mean_sim_lambda,median_sim_lambda
 C,2005,0.832,0.096,0.92,0.0483,0.847,1.03,0.068,0.831,0.101,0.926,0.92
 C,2006,1,0.08,1.09,NA,NA,NA,NA,NA,0.0843,NA,NA
 C,2007,0.524,0.068,0.562,0.0387,0.505,0.649,0,0.525,0.0775,0.57,0.568
