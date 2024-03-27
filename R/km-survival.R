@@ -141,8 +141,8 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
     logits = qlogis(.data$S),
     varlogit = .data$S_Var / (.data$S^2 * ((1 - .data$S)^2))
   )
-  YearSurv$S_CIU <- 1 / (1 + exp(-1 * (YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))))
-  YearSurv$S_CIL <- 1 / (1 + exp(-1 * (YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))))
+  YearSurv$S_CIU <- plogis(YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))
+  YearSurv$S_CIL <- plogis(YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))
 
   # round estimates for table.
   YearSurv$mean_monitored <- round(YearSurv$meanalive, 1)

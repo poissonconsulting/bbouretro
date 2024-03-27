@@ -120,9 +120,8 @@ bbr_lambda_simulate <- function(recruitment, survival) {
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    RanS = (1 / (1 + exp(-1 * (.data$Slogit + .data$RannorS * (.data$Svarlogit^0.5))))),
-    RanR = (1 / (1 + exp(-1 * (.data$Rlogit + .data$RannorR * (.data$Rvarlogit^0.5)))))
-  )
+    RanS = plogis(.data$Slogit + .data$RannorS * (.data$Svarlogit^0.5)),
+    RanR = plogis(.data$Rlogit + .data$RannorR * (.data$Rvarlogit^0.5)))
 
   # random H-B lambda based on simulated R and S
   LambdaSumSim$RanLambda <- LambdaSumSim$RanS / (1 - LambdaSumSim$RanR)
