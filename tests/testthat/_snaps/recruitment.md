@@ -313,32 +313,6 @@
 # recruitment c works
 
     Code
-      print(bbr_recruitment(bboudata::bbourecruit_c), n = 100, width = 100)
-    Output
-      # A tibble: 9 x 11
-        PopulationName  Year estimate    se lower upper groups female_calves females
-        <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
-      1 C               2005    0.096 0.036 0.045 0.194     22           7      66  
-      2 C               2006    0.08  0.033 0.035 0.172     16           6      69  
-      3 C               2007    0.068 0.036 0.023 0.183     13           3.5    47.9
-      4 C               2008    0.059 0.059 0.008 0.334      6           1      16  
-      5 C               2009    0.083 0.042 0.03  0.209     13           4      44  
-      6 C               2010    0.14  0.044 0.073 0.25      18          10      61.6
-      7 C               2011    0.158 0.064 0.068 0.327     14           6      32  
-      8 C               2012    0.112 0.036 0.058 0.206     19           9.5    75  
-      9 C               2013    0.133 0.039 0.073 0.23      13          11.5    75  
-        sex_ratio p_females
-            <dbl>     <dbl>
-      1       0.5      0.65
-      2       0.5      0.65
-      3       0.5      0.65
-      4       0.5      0.65
-      5       0.5      0.65
-      6       0.5      0.65
-      7       0.5      0.65
-      8       0.5      0.65
-      9       0.5      0.65
-    Code
       print(bbr_recruitment(bboudata::bbourecruit_c, p_females = 0.65, sex_ratio = 0.6,
       variance = "binomial"), n = 100, width = 100)
     Output
