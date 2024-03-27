@@ -44,10 +44,10 @@
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
-#' \item{R}{Recruitment estimate }
-#' \item{R_SE}{SE}
-#' \item{R_CIL}{Confidence limit}
-#' \item{R_CIU}{Confidence limit}
+#' \item{esimate}{Recruitment estimate }
+#' \item{se}{SE}
+#' \item{lower}{Confidence limit}
+#' \item{upper}{Confidence limit}
 #' \item{groups}{Groups sampled}
 #' \item{female_calves}{Estimated female calves}
 #' \item{females}{Estimated adult females}

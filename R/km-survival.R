@@ -38,10 +38,10 @@
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
-#' \item{S}{Survival estimate }
-#' \item{S_SE}{SE}
-#' \item{S_CIL}{Confidence limit}
-#' \item{S_CIU}{Confidence limit}
+#' \item{estimate}{Survival estimate }
+#' \item{se}{SE}
+#' \item{lower}{Confidence limit}
+#' \item{upper}{Confidence limit}
 #' \item{mean_monitored}{Mean number of caribou monitored each month}
 #' \item{sum_dead }{Total number of mortalities in a year}
 #' \item{sum_alive}{Total number of caribou-months in a year}
