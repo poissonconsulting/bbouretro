@@ -58,7 +58,7 @@ bbr_lambda_simulate <- function(recruitment, survival) {
       sex_ratio = numeric(),
       p_females = numeric()
     )
-  )
+  ) 
   
   chk::check_data(
     survival,
