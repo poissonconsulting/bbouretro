@@ -12,166 +12,112 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-test_that("pop a works", {
-  output <- bbr_km_survival(
-    bboudata::bbousurv_a,
-    mort_type = "total",
-    variance = "pollock"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_a")
+test_that("survival a works", {
+  expect_snapshot({
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_a, mort_type = "total", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_a, mort_type = "certain", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+  })
 })
 
-test_that("pop b works", {
-  output <- bbr_km_survival(
-    bboudata::bbousurv_b,
-    mort_type = "total",
-    variance = "pollock"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_b")
+test_that("survival b works", {
+  expect_snapshot({
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_b, mort_type = "total", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_b, mort_type = "certain", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+  })
 })
 
-test_that("pop c works", {
-  output <- bbr_km_survival(
-    bboudata::bbousurv_c,
-    mort_type = "total",
-    variance = "pollock"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_c")
-})
-
-test_that("works with mort_type as 'certain'", {
-  output <- bbr_km_survival(
-    bboudata::bbousurv_c,
-    mort_type = "certain",
-    variance = "pollock"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_c_certain_p")
-
-  output <- bbr_km_survival(
-    bboudata::bbousurv_c,
-    mort_type = "certain",
-    variance = "greenwood"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_c_certain_w")
-})
-
-test_that("works with variance as 'Greenwood'", {
-  output <- bbr_km_survival(
-    bboudata::bbousurv_c,
-    mort_type = "total",
-    variance = "greenwood"
-  )
-
-  expect_s3_class(output, "data.frame")
-  expect_snapshot_data(output, "bbr_km_survival_c_greenwood_t")
+test_that("survival c works", {
+  expect_snapshot({
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_c, mort_type = "total", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_c, mort_type = "certain", variance = "pollock"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+    print(
+      bbr_km_survival(
+        bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"
+      ),
+      n = 100, width = 100
+    )
+  })
 })
 
 test_that("mort_type gives different outputs when values in mort uncertain column", {
   df <- bboudata::bbousurv_c
   df$MortalitiesUncertain <- 1
   df$StartTotal <- df$StartTotal + 1
-
+  
   output_total <- bbr_km_survival(
     df,
     mort_type = "total",
     variance = "greenwood"
   )
-
+  
   output_certain <- bbr_km_survival(
     df,
     mort_type = "certain",
     variance = "greenwood"
   )
-
+  
   expect_true(
     all(output_total$S != output_certain$S)
-  )
-})
-
-test_that("mort_type gives same outputs when all 0 values in mort uncertain column", {
-  df <- bboudata::bbousurv_c
-
-  expect_equal(unique(df$MortalitiesUncertain), 0)
-
-  output_total <- bbr_km_survival(
-    df,
-    mort_type = "total",
-    variance = "greenwood"
-  )
-
-  output_certain <- bbr_km_survival(
-    df,
-    mort_type = "certain",
-    variance = "greenwood"
-  )
-
-  expect_true(
-    all(output_total$S == output_certain$S)
-  )
-})
-
-test_that("variance options give different SE, CIL and CIU", {
-  df <- bboudata::bbousurv_c
-
-  output_greenwood <- bbr_km_survival(
-    df,
-    mort_type = "total",
-    variance = "greenwood"
-  )
-
-  output_pollock <- bbr_km_survival(
-    df,
-    mort_type = "total",
-    variance = "pollock"
-  )
-
-  expect_true(
-    all(output_greenwood$PopulationName == output_pollock$PopulationName)
-  )
-  expect_true(
-    all(output_greenwood$Year == output_pollock$Year)
-  )
-
-  expect_true(
-    all(output_greenwood$S == output_pollock$S)
-  )
-
-  expect_true(
-    any(output_greenwood$S_SE != output_pollock$S_SE)
-  )
-
-  expect_true(
-    any(output_greenwood$S_CIL != output_pollock$S_CIL)
-  )
-
-  expect_true(
-    any(output_greenwood$S_CIU != output_pollock$S_CIU)
-  )
-
-  expect_true(
-    all(output_greenwood$mean_monitored == output_pollock$mean_monitored)
-  )
-
-  expect_true(
-    all(output_greenwood$sum_dead == output_pollock$sum_dead)
-  )
-
-  expect_true(
-    all(output_greenwood$sum_alive == output_pollock$sum_alive)
-  )
-
-  expect_true(
-    all(output_greenwood$S == output_pollock$S)
   )
 })
 
@@ -199,18 +145,13 @@ test_that("errors when column missing in data", {
   )
 })
 
-test_that("status messages ", {
+test_that("status message", {
   output <- bbr_km_survival(
     bboudata::bbousurv_c
   )
-
+  
   expect_equal(
     unique(output$status[output$sum_dead == 0]),
     " - No Mortalities all year (SE=0)"
-  )
-
-  expect_equal(
-    unique(output$status[output$Year == 2003]),
-    "Only 9 months monitored - "
   )
 })
