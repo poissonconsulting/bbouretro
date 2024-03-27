@@ -120,7 +120,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
     Compfull <- dplyr::mutate(
       Compfull,
       logits = logit(.data$R),
-      selogit = logit_se(sqrt(.data$BinVar),  .data$R)
+      selogit = logit_se(.data$R_SE,  .data$R)
     )
     Compfull$R_CIU <- ilogit(Compfull$logits + 1.96 * Compfull$selogit)
     Compfull$R_CIL <- ilogit(Compfull$logits - 1.96 * Compfull$selogit)
