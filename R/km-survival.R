@@ -153,7 +153,8 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
 
   YearSurv <- dplyr::select(
     YearSurv,
-    "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "mean_monitored",
+    "PopulationName", "Year", "estimate" = "S", "se" = "S_SE", 
+    "lower" = "S_CIL", "upper" = "S_CIU", "mean_monitored",
     "sum_dead", "sum_alive", "status"
   ) |>
     tibble::tibble()

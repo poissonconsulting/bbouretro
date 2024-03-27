@@ -65,16 +65,19 @@ bbr_lambda_simulate <- function(recruitment, survival) {
     values = list(
       PopulationName = character(),
       Year = integer(),
-      S = numeric(),
-      S_SE = numeric(),
-      S_CIL = numeric(),
-      S_CIU = numeric(),
+      estimate = numeric(),
+      se = numeric(),
+      lower = numeric(),
+      upper = numeric(),
       mean_monitored = numeric(),
       sum_dead = integer(),
       sum_alive = integer(),
       status = character()
     )
   )
+  
+  survival <- dplyr::rename(survival, "S" = "estimate",
+                            "S_SE" = "se")
 
   chk_overlap(recruitment, survival, "PopulationName")
   chk_overlap(recruitment, survival, "Year")

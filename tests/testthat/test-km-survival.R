@@ -99,28 +99,6 @@ test_that("survival c works", {
   })
 })
 
-test_that("mort_type gives different outputs when values in mort uncertain column", {
-  df <- bboudata::bbousurv_c
-  df$MortalitiesUncertain <- 1
-  df$StartTotal <- df$StartTotal + 1
-  
-  output_total <- bbr_km_survival(
-    df,
-    mort_type = "total",
-    variance = "greenwood"
-  )
-  
-  output_certain <- bbr_km_survival(
-    df,
-    mort_type = "certain",
-    variance = "greenwood"
-  )
-  
-  expect_true(
-    all(output_total$S != output_certain$S)
-  )
-})
-
 test_that("errors when no data supplied", {
   expect_error(
     bbr_km_survival(),

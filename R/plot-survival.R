@@ -33,18 +33,18 @@ bbr_plot_survival <- function(survival) {
     values = list(
       PopulationName = character(),
       Year = integer(),
-      S = numeric(),
-      S_CIL = numeric(),
-      S_CIU = numeric()
+      estimate = numeric(),
+      lower = numeric(),
+      upper = numeric()
     )
   )
 
   survival$Year <- as.character(survival$Year)
 
-  ggplot(survival, aes(.data$Year, .data$S)) +
+  ggplot(survival, aes(.data$Year, .data$estimate)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$S_CIL, ymax = .data$S_CIU),
+      aes(x = .data$Year, ymin = .data$lower, ymax = .data$upper),
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
