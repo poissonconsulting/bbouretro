@@ -139,7 +139,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   YearSurv <- dplyr::mutate(
     YearSurv,
     logits = logit(.data$S),
-    varlogit = .data$S_Var / (.data$S^2 * ((1 - .data$S)^2))
+    varlogit = logit_se(sqrt(.data$S_Var), .data$S)^2
   )
   YearSurv$S_CIU <- ilogit(YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))
   YearSurv$S_CIL <- ilogit(YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))
