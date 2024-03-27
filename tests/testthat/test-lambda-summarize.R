@@ -46,7 +46,7 @@ test_that("errors with list that doesn't have correct columns", {
   lambda <- list(raw_values = data.frame(x = 1), summary = data.frame(y = 2))
   expect_error(
     bbr_lambda_summarize(lambda),
-    regexp = "`names\\(summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'Lambda', 'Lambda_SE', 'Lambda_CIL', 'Lambda_CIU', ... and 'median_sim_lambda'."
+    regexp = "`names\\(summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'median_sim_lambda'."
   )
 })
 
@@ -66,10 +66,10 @@ test_that("outputs even if raw_values is empty", {
       Year = 1991L,
       S = .874,
       R = 0.125,
-      Lambda = 0.94878,
-      Lambda_SE = 0.345578,
-      Lambda_CIL = 0.947,
-      Lambda_CIU = 0.97248,
+      estimate = 0.94878,
+      se = 0.345578,
+      lower = 0.947,
+      upper = 0.97248,
       prop_lgt1 = 0.78,
       mean_sim_survival = 0.87414,
       mean_sim_recruitment = 0.09,
@@ -87,10 +87,10 @@ test_that("outputs even if raw_values is empty", {
       Year = 1991L,
       S = .874,
       R = 0.125,
-      Lambda = 0.949,
-      Lambda_SE = 0.346,
-      Lambda_CIL = 0.947,
-      Lambda_CIU = 0.972,
+      estimate = 0.949,
+      se = 0.346,
+      lower = 0.947,
+      upper = 0.972,
       prop_lgt1 = 0.78,
       mean_sim_survival = 0.874,
       mean_sim_recruitment = 0.09,

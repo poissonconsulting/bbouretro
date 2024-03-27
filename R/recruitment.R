@@ -44,10 +44,10 @@
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
-#' \item{R}{Recruitment estimate }
-#' \item{R_SE}{SE}
-#' \item{R_CIL}{Confidence limit}
-#' \item{R_CIU}{Confidence limit}
+#' \item{esimate}{Recruitment estimate }
+#' \item{se}{SE}
+#' \item{lower}{Confidence limit}
+#' \item{upper}{Confidence limit}
 #' \item{groups}{Groups sampled}
 #' \item{female_calves}{Estimated female calves}
 #' \item{females}{Estimated adult females}
@@ -79,14 +79,14 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
   chk::chk_range(p_females)
   chk::chk_range(sex_ratio)
   chk::chk_string(variance)
-
+  
   # Estimate total females based on p_females and sex_ratio
   x <- dplyr::mutate(
     x,
     females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
     female_calves = .data$Calves * sex_ratio
   )
-
+  
   # summarize by population and year
   Compfull <-
     x |>
@@ -100,8 +100,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
       Yearlings = sum(.data$Yearlings),
       groups = length(.data$Year)
     ) |>
-    dplyr::group_by()
-
+    dplyr::ungroup()
+  
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
   Compfull$CalfCow <- Compfull$Calves / Compfull$females
@@ -109,23 +109,23 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
   Compfull$CalfCowF <- Compfull$CalfCow * sex_ratio
   # Recruitment using DeCesare correction
   Compfull$R <- Compfull$CalfCowF / (1 + Compfull$CalfCowF)
-
+  
   # variance estimation-in progress.....
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
     Compfull$BinVar <- (Compfull$R * (1 - Compfull$R)) / Compfull$females
     Compfull$R_SE <- Compfull$BinVar^0.5
-
+    
     # logit-based confidence limits assuing R is constrained between 0 and 1.
     Compfull <- dplyr::mutate(
       Compfull,
-      logits = log(.data$R / (1 - .data$R)),
-      varlogit = .data$BinVar / (.data$R^2 * ((1 - .data$R)^2))
+      logits = logit(.data$R),
+      selogit = logit_se(.data$R_SE,  .data$R)
     )
-    Compfull$R_CIU <- 1 / (1 + exp(-1 * (Compfull$logits + 1.96 * (Compfull$varlogit**0.5))))
-    Compfull$R_CIL <- 1 / (1 + exp(-1 * (Compfull$logits - 1.96 * (Compfull$varlogit**0.5))))
+    Compfull$R_CIU <- ilogit(Compfull$logits + 1.96 * Compfull$selogit)
+    Compfull$R_CIL <- ilogit(Compfull$logits - 1.96 * Compfull$selogit)
   }
-
+  
   # bootstrap approach...in progress....
   if (variance == "bootstrap") {
     # bootstrap by Population and year
@@ -140,7 +140,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
       purrr::map(
         function(x) boot(data = x, rec_calc, R = 1000)
       )
-
+    
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
       year <- strsplit(x, split = "\\.")[[1]][2]
@@ -156,23 +156,27 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
         R_CIU = quants[3]
       )
     })
-
+    
     Compfull <- merge(
       Compfull,
       pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")],
       by = c("PopulationName", "Year")
     )
   }
-
-
+  
+  
   # An abbreviated output data set.
   CompfullR <- cbind(
     Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "female_calves", "females")],
     sex_ratio,
     p_females
   )
-
+  
   CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
-
-  CompfullR
+  
+  CompfullR <- dplyr::select(CompfullR, 
+                             "PopulationName", "Year", "estimate" = "R", 
+                             "se" = "R_SE", "lower" = "R_CIL", "upper" = "R_CIU", "groups", "female_calves", "females", "sex_ratio", "p_females")
+  
+  tibble::as_tibble(CompfullR)
 }

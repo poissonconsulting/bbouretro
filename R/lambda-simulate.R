@@ -32,7 +32,7 @@
 #'
 #' @export
 #'
-#' @references Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recuriment Adult
+#' @references Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recruitment, Adult
 #'   Mortality and Rate of Change” 27: 65–73.
 #'
 #' @examples
@@ -42,43 +42,49 @@
 bbr_lambda_simulate <- function(recruitment, survival) {
   chk_has_data(recruitment)
   chk_has_data(survival)
-
+  
   chk::check_data(
     recruitment,
     values = list(
       PopulationName = character(),
       Year = integer(),
-      R = numeric(),
-      R_SE = numeric(),
-      R_CIL = numeric(),
-      R_CIU = numeric(),
+      estimate = numeric(),
+      se = numeric(),
+      lower = numeric(),
+      upper = numeric(),
       groups = integer(),
       female_calves = numeric(),
       females = numeric(),
       sex_ratio = numeric(),
       p_females = numeric()
     )
-  )
-
+  ) 
+  
   chk::check_data(
     survival,
     values = list(
       PopulationName = character(),
       Year = integer(),
-      S = numeric(),
-      S_SE = numeric(),
-      S_CIL = numeric(),
-      S_CIU = numeric(),
+      estimate = numeric(),
+      se = numeric(),
+      lower = numeric(),
+      upper = numeric(),
       mean_monitored = numeric(),
       sum_dead = integer(),
       sum_alive = integer(),
       status = character()
     )
   )
-
+  
+  survival <- dplyr::rename(survival, "S" = "estimate",
+                            "S_SE" = "se")
+  
+  recruitment <- dplyr::rename(recruitment, "R" = "estimate",
+                               "R_SE" = "se")
+  
   chk_overlap(recruitment, survival, "PopulationName")
   chk_overlap(recruitment, survival, "Year")
-
+  
   # merge the comp and survival databases
   LambdaSum <- merge(recruitment, survival, by = c("PopulationName", "Year"))
   # Lambda estimate using the H-B equation
@@ -87,7 +93,7 @@ bbr_lambda_simulate <- function(recruitment, survival) {
   groups <- nrow(LambdaSum)
   # fix sims at 1000
   sims <- 1000
-
+  
   # generate random normal data frames for survival and recruitment and group number to each
   # set of 1000 random numbers.  Use seperate random numbers for S and R to ensure independence
   rnnors <- data.frame(rnorm(groups * sims))
@@ -96,39 +102,39 @@ bbr_lambda_simulate <- function(recruitment, survival) {
   rnnors$nrow <- seq_len(nrow(rnnors))
   rnnors$group <- rep(seq(1, groups, 1), 1000)
   rnnors <- dplyr::arrange(rnnors, .data$group)
-
+  
   # merge the random numbers with input data set based on group/row #
   # this expands the data frame 1000X
   LambdaSum$group <- seq_len(nrow(LambdaSum))
   LambdaSumSim <- merge(LambdaSum, rnnors, by = "group")
-
+  
   # put the estimated parameters on the logit scale
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    Slogit = log(.data$S / (1 - .data$S)),
-    Svarlogit = .data$S_SE^2 / (.data$S^2 * ((1 - .data$S)^2)),
-    Rlogit = log(.data$R / (1 - .data$R)),
-    Rvarlogit = .data$R_SE^2 / (.data$R^2 * ((1 - .data$R)^2))
+    Slogit = logit(.data$S),
+    SElogit = logit_se(.data$S_SE, .data$S),
+    Rlogit = logit(.data$R),
+    RElogit = logit_se(.data$R_SE, .data$R)
   )
-
+  
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   LambdaSumSim <- dplyr::mutate(
     LambdaSumSim,
-    RanS = (1 / (1 + exp(-1 * (.data$Slogit + .data$RannorS * (.data$Svarlogit^0.5))))),
-    RanR = (1 / (1 + exp(-1 * (.data$Rlogit + .data$RannorR * (.data$Rvarlogit^0.5)))))
+    RanS = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
+    RanR = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit)
   )
-
+  
   # random H-B lambda based on simulated R and S
   LambdaSumSim$RanLambda <- LambdaSumSim$RanS / (1 - LambdaSumSim$RanR)
   LambdaSumSim$LGT1 <- ifelse(LambdaSumSim$RanLambda > 1, 1, 0)
-
+  
   # An abriged data set with raw simulated values for later plotting etc.
   LambdaSumSimR <- LambdaSumSim |>
     dplyr::select(
       "PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR"
     ) |>
     tibble::tibble()
-
+  
   # summary of simulation and percentile based estimated CI's for lambda
   SumLambda <-
     LambdaSumSim |>
@@ -147,10 +153,15 @@ bbr_lambda_simulate <- function(recruitment, survival) {
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
-
+  
+  SumLambda <-
+    dplyr::rename(SumLambda, "estimate" = "Lambda",
+                  "se" = "Lambda_SE",
+                  "lower" = "Lambda_CIL",
+                  "upper" = "Lambda_CIU")
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
   names(LambdaOut) <- c("raw_values", "summary")
-
+  
   LambdaOut
 }

@@ -8,10 +8,10 @@ The return object has these columns:
 \describe{
 \item{PopulationName}{Population name}
 \item{Year}{Year sampled}
-\item{S}{Survival estimate }
-\item{S_SE}{SE}
-\item{S_CIL}{Confidence limit}
-\item{S_CIU}{Confidence limit}
+\item{estimate}{Survival estimate }
+\item{se}{SE}
+\item{lower}{Confidence limit}
+\item{upper}{Confidence limit}
 \item{mean_monitored}{Mean number of caribou monitored each month}
 \item{sum_dead }{Total number of mortalities in a year}
 \item{sum_alive}{Total number of caribou-months in a year}
@@ -42,7 +42,7 @@ Estimate survival rates based on the Kaplan-Meier survival rate estimator
 \details{
 \code{x} needs to be formatted in a certain manner. To confirm the input
 data frame is in the right format you can use the
-\href{https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_survival.html}{\code{bbd_chk_data_survival()}}
+\href{https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_survival.html}{\code{bbd_chk_data_survival}}
 function. See the \code{vignette("Methods", package = "bbouretro")} for the
 equations used in this function.
 }
