@@ -30,7 +30,7 @@ only \code{"certain"} mortalities (MortalitiesCertain). The default is
 \code{"total"}.}
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
-\code{"greenwood"} or Cox Oakes estimator \code{"coxoakes"}. The default is "greenwood".}
+\code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is "greenwood".}
 }
 \value{
 A data frame. The columns are listed in the format section.

@@ -27,7 +27,7 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_a_raw_values")
@@ -50,7 +50,7 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_b_raw_values")
@@ -73,7 +73,7 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_c_raw_values")
@@ -113,7 +113,7 @@ test_that("test data works", {
       )
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_raw_values")
     expect_snapshot_data(output$summary, "bbr_lambda_simulate_summary")
@@ -153,7 +153,7 @@ test_that("errors if no populations overlap", {
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "PopulationName must have overlapping values in recruitment and survival."
     )
   })
@@ -192,7 +192,7 @@ test_that("errors if no years overlap", {
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "Year must have overlapping values in recruitment and survival."
     )
   })
@@ -214,7 +214,7 @@ test_that("errors when recruitment has rows passed", {
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "recruitment must have rows"
     )
   })
@@ -236,7 +236,7 @@ test_that("errors when survival has rows passed", {
     )[0, ]
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "survival must have rows"
     )
   })
@@ -274,7 +274,7 @@ test_that("NA instead in dataset work", {
       )
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_na_test_raw")

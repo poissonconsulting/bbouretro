@@ -37,9 +37,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_lambda_simulate(recruitment_est, survival_est)
+#' bbr_lambda(recruitment_est, survival_est)
 #' }
-bbr_lambda_simulate <- function(recruitment, survival) {
+bbr_lambda <- function(recruitment, survival) {
   chk_has_data(recruitment)
   chk_has_data(survival)
   

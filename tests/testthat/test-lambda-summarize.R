@@ -27,7 +27,7 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda_simulate(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
     output <- bbr_lambda_summarize(lambda)
 
     expect_s3_class(output, "data.frame")
