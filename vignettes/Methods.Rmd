@@ -1,5 +1,5 @@
 ---
-title: "Classical Methods for estimating Survival, Recruitment, and Population Growth"
+title: "Classical Methods for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Methods}
@@ -54,11 +54,10 @@ $$ \hat{S}(t) = \prod_{i=1}(\hat{S}_{i,t}) $$
 
 where $S$ is the survival during the $i$th time step of the $t$th period.
 
-Standard error is estimated using either the [@cox_analysis_1984] uses Greenwood’s formula
+Standard error is estimated using the Greenwood’s formula
 
 $$SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum \frac{d_{i}}{r_{i}(r_{i} - d_{i})}}$$
-
-Or a propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989].
+Cox and Oakes [-@cox_analysis_1984] propose a simple binomial variance formula “which is better in the tails of the distribution” [@pollock_survival_1989].
 
 $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 
@@ -69,14 +68,14 @@ Further details on the Kaplan-Meier approach as applied in boreal caribou studie
 
 The `bbr_recruitment()` function estimates recruitment using the following method. 
 
-Estimation of recruitment follows methods of [@decesare_estimating_2012].
+Estimation of recruitment follows methods of DeCesare et al. [-@decesare_estimating_2012].
 From Pearson et al [-@pearson_boreal_2022] we summarize the following equations: 
 
 The age ratio, $X$, is commonly estimated as the number of calves, $n{_j}$, per adult female, $n_{af}$, observed at the end of a measured year, such that 
 
 $$X = \frac{n_j}{n_{af}}$$ 
 
-where $X \cdot sex_ratio$ estimates the number of female calves $(n_{jf})$ per adult female. 
+where $X \cdot sex\_ratio$ estimates the number of female calves $(n_{jf})$ per adult female. 
 
 Recruitment is estimated using the equation below which accounts for recruitment of calves into the yearling/adult age class at the end of the caribou year.
 
@@ -87,11 +86,11 @@ Variance is estimated using a bootstrap approach or the binomial method.
 The bootstrap approach randomly resamples groups for 1000 iterations to create 1000 estimates of calf cow ratio and recruitment.
 Percentile-based 95% confidence limits are then estimated from the 1000 estimates.
 
-For the binomial method, variance is estimated as $R_m \cdot (1 - R_{rm})/n)$ where $n$ is the number of adult females sampled during each yearly survey.  
+For the binomial method, variance is estimated as $(R_m \cdot (1 - R_{rm})/n)$ where $n$ is the number of adult females sampled during each yearly survey.  
 
 Logit-based confidence limits are estimated assuming that values of recruitment are constrained between 0 and 1.
 The bootstrap method is recommended as the most robust approach to obtain variance estimates.
-A full summary of methods is given in [@pearson_boreal_2022].
+A full summary of methods is given in Pearson, Boulanger, and Thorley [-@pearson_boreal_2022].
 
 ## Population Growth, $\lambda$
 
