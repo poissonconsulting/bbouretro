@@ -3,7 +3,7 @@
     Code
       print(bbr_recruitment(bboudata::bbourecruit_a), n = 100, width = 100)
     Output
-      # A tibble: 27 x 11
+      # A tibble: 27 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 A               1990    0.092 0.016 0.062 0.125     40          13.5   133. 
@@ -33,40 +33,11 @@
       25 A               2014    0.116 0.027 0.068 0.172     25          10.5    79.9
       26 A               2015    0.088 0.02  0.05  0.126     29           8      83  
       27 A               2016    0.128 0.02  0.086 0.166     22          11      75  
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.5      0.65
-       2       0.5      0.65
-       3       0.5      0.65
-       4       0.5      0.65
-       5       0.5      0.65
-       6       0.5      0.65
-       7       0.5      0.65
-       8       0.5      0.65
-       9       0.5      0.65
-      10       0.5      0.65
-      11       0.5      0.65
-      12       0.5      0.65
-      13       0.5      0.65
-      14       0.5      0.65
-      15       0.5      0.65
-      16       0.5      0.65
-      17       0.5      0.65
-      18       0.5      0.65
-      19       0.5      0.65
-      20       0.5      0.65
-      21       0.5      0.65
-      22       0.5      0.65
-      23       0.5      0.65
-      24       0.5      0.65
-      25       0.5      0.65
-      26       0.5      0.65
-      27       0.5      0.65
     Code
       print(bbr_recruitment(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.6,
       variance = "binomial"), n = 100, width = 100)
     Output
-      # A tibble: 27 x 11
+      # A tibble: 27 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 A               1990    0.116 0.029 0.07  0.186     40          16.2   123. 
@@ -96,41 +67,12 @@
       25 A               2014    0.14  0.04  0.079 0.237     25          12.6    77.2
       26 A               2015    0.104 0.033 0.054 0.19      29           9.6    83  
       27 A               2016    0.15  0.041 0.085 0.249     22          13.2    75  
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.6       0.2
-       2       0.6       0.2
-       3       0.6       0.2
-       4       0.6       0.2
-       5       0.6       0.2
-       6       0.6       0.2
-       7       0.6       0.2
-       8       0.6       0.2
-       9       0.6       0.2
-      10       0.6       0.2
-      11       0.6       0.2
-      12       0.6       0.2
-      13       0.6       0.2
-      14       0.6       0.2
-      15       0.6       0.2
-      16       0.6       0.2
-      17       0.6       0.2
-      18       0.6       0.2
-      19       0.6       0.2
-      20       0.6       0.2
-      21       0.6       0.2
-      22       0.6       0.2
-      23       0.6       0.2
-      24       0.6       0.2
-      25       0.6       0.2
-      26       0.6       0.2
-      27       0.6       0.2
     Code
       set.seed(42)
       print(bbr_recruitment(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5,
       variance = "bootstrap"), n = 100, width = 100)
     Output
-      # A tibble: 27 x 11
+      # A tibble: 27 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 A               1990    0.099 0.017 0.067 0.131     40          13.5   123. 
@@ -160,42 +102,13 @@
       25 A               2014    0.12  0.028 0.066 0.177     25          10.5    77.2
       26 A               2015    0.088 0.019 0.051 0.125     29           8      83  
       27 A               2016    0.128 0.02  0.09  0.168     22          11      75  
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.5       0.2
-       2       0.5       0.2
-       3       0.5       0.2
-       4       0.5       0.2
-       5       0.5       0.2
-       6       0.5       0.2
-       7       0.5       0.2
-       8       0.5       0.2
-       9       0.5       0.2
-      10       0.5       0.2
-      11       0.5       0.2
-      12       0.5       0.2
-      13       0.5       0.2
-      14       0.5       0.2
-      15       0.5       0.2
-      16       0.5       0.2
-      17       0.5       0.2
-      18       0.5       0.2
-      19       0.5       0.2
-      20       0.5       0.2
-      21       0.5       0.2
-      22       0.5       0.2
-      23       0.5       0.2
-      24       0.5       0.2
-      25       0.5       0.2
-      26       0.5       0.2
-      27       0.5       0.2
 
 # recruitment b works
 
     Code
       print(bbr_recruitment(bboudata::bbourecruit_b), n = 100, width = 100)
     Output
-      # A tibble: 15 x 11
+      # A tibble: 15 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 B               2004    0.084 0.109 0     0.5        3           1      10.9
@@ -213,28 +126,11 @@
       13 B               2016    0.077 0.013 0.052 0.104     40          15.5   185. 
       14 B               2017    0.091 0.019 0.057 0.131     32          11     110  
       15 B               2018    0.089 0.013 0.061 0.113     27          12.5   127. 
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.5      0.65
-       2       0.5      0.65
-       3       0.5      0.65
-       4       0.5      0.65
-       5       0.5      0.65
-       6       0.5      0.65
-       7       0.5      0.65
-       8       0.5      0.65
-       9       0.5      0.65
-      10       0.5      0.65
-      11       0.5      0.65
-      12       0.5      0.65
-      13       0.5      0.65
-      14       0.5      0.65
-      15       0.5      0.65
     Code
       print(bbr_recruitment(bboudata::bbourecruit_b, p_females = 0.65, sex_ratio = 0.6,
       variance = "binomial"), n = 100, width = 100)
     Output
-      # A tibble: 15 x 11
+      # A tibble: 15 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 B               2004    0.1   0.091 0.015 0.447      3           1.2    10.9
@@ -252,29 +148,12 @@
       13 B               2016    0.092 0.021 0.058 0.143     40          18.6   185. 
       14 B               2017    0.107 0.029 0.062 0.18      32          13.2   110  
       15 B               2018    0.105 0.027 0.063 0.172     27          15     127. 
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.6      0.65
-       2       0.6      0.65
-       3       0.6      0.65
-       4       0.6      0.65
-       5       0.6      0.65
-       6       0.6      0.65
-       7       0.6      0.65
-       8       0.6      0.65
-       9       0.6      0.65
-      10       0.6      0.65
-      11       0.6      0.65
-      12       0.6      0.65
-      13       0.6      0.65
-      14       0.6      0.65
-      15       0.6      0.65
     Code
       set.seed(42)
       print(bbr_recruitment(bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5,
       variance = "bootstrap"), n = 100, width = 100)
     Output
-      # A tibble: 15 x 11
+      # A tibble: 15 x 9
          PopulationName  Year estimate    se lower upper groups female_calves females
          <chr>          <int>    <dbl> <dbl> <dbl> <dbl>  <int>         <dbl>   <dbl>
        1 B               2004    0.128 0.136 0     0.5        3           1       6.8
@@ -292,21 +171,4 @@
       13 B               2016    0.079 0.014 0.051 0.108     40          15.5   181. 
       14 B               2017    0.091 0.02  0.053 0.13      32          11     110  
       15 B               2018    0.09  0.013 0.063 0.113     27          12.5   126. 
-         sex_ratio p_females
-             <dbl>     <dbl>
-       1       0.5       0.2
-       2       0.5       0.2
-       3       0.5       0.2
-       4       0.5       0.2
-       5       0.5       0.2
-       6       0.5       0.2
-       7       0.5       0.2
-       8       0.5       0.2
-       9       0.5       0.2
-      10       0.5       0.2
-      11       0.5       0.2
-      12       0.5       0.2
-      13       0.5       0.2
-      14       0.5       0.2
-      15       0.5       0.2
 

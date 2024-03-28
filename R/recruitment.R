@@ -51,8 +51,6 @@
 #' \item{groups}{Groups sampled}
 #' \item{female_calves}{Estimated female calves}
 #' \item{females}{Estimated adult females}
-#' \item{sex_ratio}{Input sex ratio}
-#' \item{p_females}{Input proportion adult females}
 #' }
 #' @export
 #' @references
@@ -176,7 +174,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
   
   CompfullR <- dplyr::select(CompfullR, 
                              "PopulationName", "Year", "estimate" = "R", 
-                             "se" = "R_SE", "lower" = "R_CIL", "upper" = "R_CIU", "groups", "female_calves", "females", "sex_ratio", "p_females")
+                             "se" = "R_SE", "lower" = "R_CIL", "upper" = "R_CIU", "groups", "female_calves", "females")
   
   tibble::as_tibble(CompfullR)
 }

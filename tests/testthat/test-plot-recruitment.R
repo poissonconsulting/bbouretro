@@ -69,9 +69,7 @@ test_that("test xaxis labels", {
     upper = c(0.2, 0.25, 0.35, 0.35, 0.35, 0.35, 0.35),
     groups = c(10L, 15L, 12L, 4L, 7L, 5L, 9L),
     female_calves = rep(7, 7),
-    females = rep(66, 7),
-    sex_ratio = rep(0.5, 7),
-    p_females = rep(0.65, 7)
+    females = rep(66, 7)
   )
 
   plot <- bbr_plot_recruitment(recruitment_est)

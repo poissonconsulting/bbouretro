@@ -15,8 +15,6 @@ The return object has these columns:
 \item{groups}{Groups sampled}
 \item{female_calves}{Estimated female calves}
 \item{females}{Estimated adult females}
-\item{sex_ratio}{Input sex ratio}
-\item{p_females}{Input proportion adult females}
 }
 }
 \usage{

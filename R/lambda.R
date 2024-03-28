@@ -54,9 +54,7 @@ bbr_lambda <- function(recruitment, survival) {
       upper = numeric(),
       groups = integer(),
       female_calves = numeric(),
-      females = numeric(),
-      sex_ratio = numeric(),
-      p_females = numeric()
+      females = numeric()
     )
   ) 
   
