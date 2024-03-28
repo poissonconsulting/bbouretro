@@ -169,12 +169,31 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     sex_ratio,
     p_females
   )
-  
-  CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
-  
-  CompfullR <- dplyr::select(CompfullR, 
-                             "PopulationName", "Year", "estimate" = "R", 
-                             "se" = "R_SE", "lower" = "R_CIL", "upper" = "R_CIU", "groups", "female_calves", "females")
+
+  CompfullR <- 
+    CompfullR |>
+    dplyr::mutate(
+      PopulationName = unique(x$PopulationName),
+      dplyr::across(
+        c("R", "R_SE", "R_CIL", "R_CIU"),
+        ~ round(.x, 3)
+      )
+    ) |>
+    dplyr::relocate(
+      PopulationName,
+      .before = "Year"
+    ) |>
+    dplyr::select(
+      "PopulationName", 
+      "Year", 
+      "estimate" = "R", 
+      "se" = "R_SE", 
+      "lower" = "R_CIL", 
+      "upper" = "R_CIU", 
+      "groups", 
+      "female_calves", 
+      "females"
+    )
   
   tibble::as_tibble(CompfullR)
 }
