@@ -36,7 +36,7 @@ library(bboudata)
 ```
 
 There are multiple ways cited in literature to calculate survival, recruitment, and population growth.
-The classical or retro methods used in the package are outlined below. 
+The classical or **retro** methods used in bbou**retro** are outlined below. 
 
 ## Survival, $S$
 
@@ -54,9 +54,10 @@ $$ \hat{S}(t) = \prod_{i=1}(\hat{S}_{i,t}) $$
 
 where $S$ is the survival during the $i$th time step of the $t$th period.
 
-Standard error is estimated using the Greenwood’s formula
+Standard error is estimated using the Greenwood’s formula [@cox_analysis_1984].
 
 $$SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum \frac{d_{i}}{r_{i}(r_{i} - d_{i})}}$$
+
 Cox and Oakes [-@cox_analysis_1984] propose a simple binomial variance formula “which is better in the tails of the distribution” [@pollock_survival_1989].
 
 $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
