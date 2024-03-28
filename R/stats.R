@@ -28,3 +28,12 @@ ilogit <- function(x) {
 binomial_variance <- function(p, n) {
   (p * (1-p)) / n
 }
+
+wald_cl <- function(estimate, se, upper = FALSE, level = 0.95) {
+  q <- (1 - level) / 2
+  z <- qnorm(q)
+  if(upper) {
+    z <- z * -1
+  }
+  estimate + se * z
+}
