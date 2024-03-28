@@ -7,7 +7,7 @@ reference:
   - '`bbr_plot_recruitment`'
 - title: Survival
   contents:
-  - '`bbr_km_survival`'
+  - '`bbr_survival`'
   - '`bbr_plot_survival`'
 - title: Lambda
   contents:

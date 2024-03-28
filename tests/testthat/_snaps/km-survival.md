@@ -1,7 +1,7 @@
 # survival a works
 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 31 x 10
@@ -72,7 +72,7 @@
       30       309 " - "                                                      
       31       106 "Only 4 months monitored - No Mortalities all year (SE=0)" 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 31 x 10
@@ -143,7 +143,7 @@
       30       309 " - "                                                      
       31       106 "Only 4 months monitored - No Mortalities all year (SE=0)" 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 31 x 10
@@ -214,7 +214,7 @@
       30       309 " - "                                                      
       31       106 "Only 4 months monitored - No Mortalities all year (SE=0)" 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 31 x 10
@@ -288,7 +288,7 @@
 # survival b works
 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 18 x 10
@@ -333,7 +333,7 @@
       17       287 " - "                              
       18        99 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 18 x 10
@@ -378,7 +378,7 @@
       17       287 " - "                              
       18        99 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 18 x 10
@@ -423,7 +423,7 @@
       17       287 " - "                              
       18        99 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 18 x 10
@@ -471,7 +471,7 @@
 # survival c works
 
     Code
-      print(bbr_km_survival(bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 11 x 10
@@ -502,7 +502,7 @@
       10       274 " - "                              
       11        83 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"),
+      print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
     Output
       # A tibble: 11 x 10
@@ -533,7 +533,7 @@
       10       274 " - "                              
       11        83 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 11 x 10
@@ -564,7 +564,7 @@
       10       274 " - "                              
       11        83 "Only 4 months monitored - "       
     Code
-      print(bbr_km_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"),
+      print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
     Output
       # A tibble: 11 x 10

@@ -70,7 +70,7 @@ bbr_plot_recruitment(recruitment_est)
 
 # generate survival estimate for each year
 survival_est <-
-  bbr_km_survival(
+  bbr_survival(
     bbousurv_c,
     mort_type = "total",
     variance = "cox_oakes"

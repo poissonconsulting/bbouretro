@@ -21,7 +21,7 @@ test_that("pop a works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
       variance = "cox_oakes"

@@ -53,17 +53,17 @@
 #'   Journal of Wildlife Management 53:7-15.
 #'
 #' @examples
-#' survival_est <- bbr_km_survival(
+#' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_a,
 #'   mort_type = "total",
 #'   variance = "greenwood"
 #' )
-#' survival_est <- bbr_km_survival(
+#' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_b,
 #'   mort_type = "certain",
 #'   variance = "cox_oakes"
 #' )
-bbr_km_survival <- function(x, mort_type = "total", variance = "greenwood") {
+bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_string(mort_type)
   chk::chk_string(variance)

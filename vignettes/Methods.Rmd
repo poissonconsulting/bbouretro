@@ -40,7 +40,7 @@ The classical or retro methods used in the package are outlined below.
 
 ## Survival, $S$
 
-The `bbr_km_survival()` function uses the staggered entry Kaplan-Meier method.
+The `bbr_survival()` function uses the staggered entry Kaplan-Meier method.
 
 The staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below [@pollock_survival_1989].
 The probability of surviving in the $i$th time step (usually month) is given by the equation below 
