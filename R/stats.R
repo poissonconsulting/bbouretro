@@ -24,3 +24,7 @@ logit <- function(x) {
 ilogit <- function(x) {
   plogis(x)
 }
+
+binomial_variance <- function(p, n) {
+  (p * (1-p)) / n
+}
