@@ -17,7 +17,8 @@ test_that("recruitment a works", {
     expect_snapshot({
       print(
         bbr_recruitment(
-          bboudata::bbourecruit_a),
+          bboudata::bbourecruit_a
+        ),
         n = 100, width = 100
       )
       print(
@@ -42,7 +43,8 @@ test_that("recruitment b works", {
     expect_snapshot({
       print(
         bbr_recruitment(
-          bboudata::bbourecruit_b),
+          bboudata::bbourecruit_b
+        ),
         n = 100, width = 100
       )
       print(

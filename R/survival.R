@@ -69,7 +69,7 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
   chk::chk_string(variance)
 
   # make sure data set is sorted properly
-  x <- dplyr::arrange(x, .data$PopulationName, .data$Year, .data$Month)
+  x <- dplyr::arrange(x, .data$Year, .data$Month)
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
@@ -90,7 +90,7 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
 
   YearSurv <-
     LiveDeadCount |>
-    dplyr::group_by(.data$PopulationName, .data$Year) |>
+    dplyr::group_by(.data$Year) |>
     dplyr::summarise(
       S = prod(.data$Smonth),
       S_var1 = sum(.data$Smonth_varj),
@@ -151,11 +151,22 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
   YearSurv$S_CIL <- round(YearSurv$S_CIL, 3)
   YearSurv$S_CIU <- round(YearSurv$S_CIU, 3)
 
-  YearSurv <- dplyr::select(
-    YearSurv,
-    "PopulationName", "Year", "estimate" = "S", "se" = "S_SE", 
-    "lower" = "S_CIL", "upper" = "S_CIU", "mean_monitored",
-    "sum_dead", "sum_alive", "status"
+  YearSurv <- 
+    YearSurv |>
+    dplyr::mutate(
+      PopulationName = unique(x$PopulationName) 
+    ) |>
+    dplyr::select(
+    "PopulationName", 
+    "Year", 
+    "estimate" = "S", 
+    "se" = "S_SE", 
+    "lower" = "S_CIL", 
+    "upper" = "S_CIU", 
+    "mean_monitored",
+    "sum_dead", 
+    "sum_alive", 
+    "status"
   ) |>
     tibble::tibble()
 
