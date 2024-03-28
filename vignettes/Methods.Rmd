@@ -109,4 +109,6 @@ Also, the proportion of simulations where $\lambda$ is greater than 1 is tabulat
 
 Output summaries also include mean values simulated for $S$, $R$, as well as mean and median $\lambda$ values from the simulation.
 
+Users can generate plots of simulated lambda values using the `bbr_plot_lambda_distributions()` or yearly estimates using `bbr_plot_lambda()`.
+
 ## References
