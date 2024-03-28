@@ -5,10 +5,13 @@ Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut"),
     person("Ayla", "Pearson", , "ayla@poissonconsulting.ca", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0001-7388-1222")),
+    person("Joe", "Thorley", , "joe@poissonconsulting.ca", role = "ctb",
+           comment = c(ORCID = "0000-0002-7683-4592")),
     person("Seb", "Dalgarno", , "seb@poissonconsulting.ca", role = "ctb",
            comment = c(ORCID = "0000-0002-3658-4517")),
     person("Colton", "Stephens", , "colton@poissonconsulting.ca", role = "ctb",
-           comment = c(ORCID = "0000-0002-8744-6405"))
+           comment = c(ORCID = "0000-0002-8744-6405")),
+    person(given = " Province of Alberta", role = "cph")
   )
 Description: Estimates annual survival, recruitment and population growth using 
   the classical methods. This package is part of the bbou suite of tools.
