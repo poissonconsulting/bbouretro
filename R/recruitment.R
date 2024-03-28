@@ -162,16 +162,9 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     )
   }
   
-  
   # An abbreviated output data set.
-  CompfullR <- cbind(
-    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "female_calves", "females")],
-    sex_ratio,
-    p_females
-  )
-
-  CompfullR <- 
-    CompfullR |>
+  Compfull <- 
+    Compfull |>
     dplyr::mutate(
       PopulationName = unique(x$PopulationName),
       dplyr::across(
@@ -195,5 +188,5 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
       "females"
     )
   
-  tibble::as_tibble(CompfullR)
+  tibble::as_tibble(Compfull)
 }
