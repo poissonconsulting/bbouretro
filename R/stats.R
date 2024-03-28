@@ -37,3 +37,4 @@ wald_cl <- function(estimate, se, upper = FALSE, level = 0.95) {
   }
   estimate + se * z
 }
+
