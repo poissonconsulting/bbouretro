@@ -126,27 +126,19 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
   
   # bootstrap approach...in progress....
   if (variance == "bootstrap") {
-    # bootstrap by Population and year
-    boot_names <- expand.grid(unique(x$PopulationName), unique(x$Year))
-    boot_names <- sort(sprintf("%s.%s", boot_names[, 1], boot_names[, 2]))
+    # bootstrap by year
     boot <-
-      x |>
-      dplyr::group_split(
-        .data$PopulationName, .data$Year
-      ) |>
-      purrr::set_names(boot_names) |>
+      split(x, x$Year) |>
       purrr::map(
         function(x) boot(data = x, rec_calc, R = 1000)
       )
-    
+      
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
-      year <- strsplit(x, split = "\\.")[[1]][2]
-      pop <- strsplit(x, split = "\\.")[[1]][1]
+      year <- x
       quants <- quantile(boots, c(0.025, 0.5, 0.975))
       SE <- sd(boots)
       tibble::tibble(
-        PopulationName = pop,
         Year = year,
         medianboot = quants[2],
         R_SE = SE,
@@ -157,8 +149,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     
     Compfull <- merge(
       Compfull,
-      pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")],
-      by = c("PopulationName", "Year")
+      pc[c("Year", "R_SE", "R_CIL", "R_CIU")],
+      by = c("Year")
     )
   }
   
@@ -173,7 +165,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
       )
     ) |>
     dplyr::relocate(
-      PopulationName,
+      "PopulationName",
       .before = "Year"
     ) |>
     dplyr::select(
