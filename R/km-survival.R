@@ -38,10 +38,10 @@
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
-#' \item{S}{Survival estimate }
-#' \item{S_SE}{SE}
-#' \item{S_CIL}{Confidence limit}
-#' \item{S_CIU}{Confidence limit}
+#' \item{estimate}{Survival estimate }
+#' \item{se}{SE}
+#' \item{lower}{Confidence limit}
+#' \item{upper}{Confidence limit}
 #' \item{mean_monitored}{Mean number of caribou monitored each month}
 #' \item{sum_dead }{Total number of mortalities in a year}
 #' \item{sum_alive}{Total number of caribou-months in a year}
@@ -138,11 +138,11 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # logit-based confidence intervals--formulas based on program MARK.
   YearSurv <- dplyr::mutate(
     YearSurv,
-    logits = log(.data$S / (1 - .data$S)),
-    varlogit = .data$S_Var / (.data$S^2 * ((1 - .data$S)^2))
+    logits = logit(.data$S),
+    selogit = logit_se(.data$S_SE, .data$S)
   )
-  YearSurv$S_CIU <- 1 / (1 + exp(-1 * (YearSurv$logits + 1.96 * (YearSurv$varlogit**0.5))))
-  YearSurv$S_CIL <- 1 / (1 + exp(-1 * (YearSurv$logits - 1.96 * (YearSurv$varlogit**0.5))))
+  YearSurv$S_CIU <- ilogit(YearSurv$logits + 1.96 * YearSurv$selogit)
+  YearSurv$S_CIL <- ilogit(YearSurv$logits - 1.96 * YearSurv$selogit)
 
   # round estimates for table.
   YearSurv$mean_monitored <- round(YearSurv$meanalive, 1)
@@ -153,7 +153,8 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
 
   YearSurv <- dplyr::select(
     YearSurv,
-    "PopulationName", "Year", "S", "S_SE", "S_CIL", "S_CIU", "mean_monitored",
+    "PopulationName", "Year", "estimate" = "S", "se" = "S_SE", 
+    "lower" = "S_CIL", "upper" = "S_CIU", "mean_monitored",
     "sum_dead", "sum_alive", "status"
   ) |>
     tibble::tibble()

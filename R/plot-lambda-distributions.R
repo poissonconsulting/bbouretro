@@ -51,8 +51,8 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
   xmin <- quantile(LrawR$RanLambda, 0.0001)
   xmax <- quantile(LrawR$RanLambda, 0.99)
   # make sure that limits are still within range of lambda estimates for estimates with no CI's
-  xmax <- ifelse(xmax <= max(RL$Lambda), max(RL$Lambda) + 0.05, xmax)
-  xmin <- ifelse(xmin >= min(RL$Lambda), min(RL$Lambda) - 0.05, xmin)
+  xmax <- ifelse(xmax <= max(RL$estimate), max(RL$estimate) + 0.05, xmax)
+  xmin <- ifelse(xmin >= min(RL$estimate), min(RL$estimate) - 0.05, xmin)
 
   # subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
   LrawR <- subset(LrawR, LrawR$RanLambda >= xmin & LrawR$RanLambda <= xmax)
@@ -61,7 +61,7 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
   # a black hashed line indicates lambda=1.
   ggplot(LrawR, aes(.data$RanLambda)) +
     geom_histogram(bins = 30, fill = "tan", color = "black") +
-    geom_vline(data = RL, aes(xintercept = .data$Lambda), color = "red") +
+    geom_vline(data = RL, aes(xintercept = .data$estimate), color = "red") +
     geom_vline(xintercept = 1, linetype = 2, color = "black") +
     facet_wrap(~ .data$Year) +
     xlab("Lambda Values") +

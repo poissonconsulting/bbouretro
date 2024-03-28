@@ -1,5 +1,5 @@
 Package: bbouretro
-Title: Classic Survival, Recruitment and Population Growth Methods
+Title: Classical Survival, Recruitment and Population Growth Methods
 Version: 0.0.0.9000
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut"),
@@ -23,6 +23,7 @@ Imports:
     ggplot2,
     purrr,
     rlang,
+    stats,
     tibble
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

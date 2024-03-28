@@ -33,6 +33,6 @@ bbr_lambda_simulate(recruitment_est, survival_est)
 }
 }
 \references{
-Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recuriment Adult
+Hatter, Ian, and Wendy Bergerud. 1991. “Moose Recruitment, Adult
 Mortality and Rate of Change” 27: 65–73.
 }
