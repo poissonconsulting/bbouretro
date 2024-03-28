@@ -73,7 +73,7 @@ survival_est <-
   bbr_km_survival(
     bbousurv_c,
     mort_type = "total",
-    variance = "pollock"
+    variance = "cox_oakes"
   )
 bbr_plot_survival(survival_est)
 ```

@@ -20,7 +20,7 @@ The return object has these columns:
 }
 }
 \usage{
-bbr_recruitment(x, p_females = 0.65, sex_ratio = 0.5, variance = "binomial")
+bbr_recruitment(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap")
 }
 \arguments{
 \item{x}{A data frame that has recruitment data.}
@@ -36,7 +36,7 @@ proportion females at birth. Values must be between 0 and 1. The default is
 set at 0.5.}
 
 \item{variance}{Estimate variance using "binomial" or "bootstrap". The
-default is set as "binomial".}
+default is set as "bootstrap".}
 }
 \value{
 A data frame. The columns are listed in the format section.

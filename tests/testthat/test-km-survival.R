@@ -16,13 +16,13 @@ test_that("survival a works", {
   expect_snapshot({
     print(
       bbr_km_survival(
-        bboudata::bbousurv_a, mort_type = "total", variance = "pollock"
+        bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_km_survival(
-        bboudata::bbousurv_a, mort_type = "certain", variance = "pollock"
+        bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
@@ -45,13 +45,13 @@ test_that("survival b works", {
   expect_snapshot({
     print(
       bbr_km_survival(
-        bboudata::bbousurv_b, mort_type = "total", variance = "pollock"
+        bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_km_survival(
-        bboudata::bbousurv_b, mort_type = "certain", variance = "pollock"
+        bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
@@ -74,13 +74,13 @@ test_that("survival c works", {
   expect_snapshot({
     print(
       bbr_km_survival(
-        bboudata::bbousurv_c, mort_type = "total", variance = "pollock"
+        bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_km_survival(
-        bboudata::bbousurv_c, mort_type = "certain", variance = "pollock"
+        bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )

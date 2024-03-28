@@ -24,7 +24,7 @@ test_that("pop a works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
     output <- bbr_lambda_simulate(recruitment_est, survival_est)
@@ -47,7 +47,7 @@ test_that("pop b works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_b,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
     output <- bbr_lambda_simulate(recruitment_est, survival_est)
@@ -70,7 +70,7 @@ test_that("pop c works", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
     output <- bbr_lambda_simulate(recruitment_est, survival_est)
@@ -210,7 +210,7 @@ test_that("errors when recruitment has rows passed", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
     expect_error(
@@ -232,7 +232,7 @@ test_that("errors when survival has rows passed", {
     survival_est <- bbr_km_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )[0, ]
 
     expect_error(

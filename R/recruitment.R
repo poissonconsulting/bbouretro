@@ -26,7 +26,7 @@
 #'   proportion females at birth. Values must be between 0 and 1. The default is
 #'   set at 0.5.
 #' @param variance Estimate variance using "binomial" or "bootstrap". The
-#'   default is set as "binomial".
+#'   default is set as "bootstrap".
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
@@ -74,7 +74,7 @@
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "binomial") {
+bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap") {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(p_females)
   chk::chk_range(sex_ratio)

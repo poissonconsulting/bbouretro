@@ -19,7 +19,7 @@ The return object has these columns:
 }
 }
 \usage{
-bbr_km_survival(x, mort_type = "total", variance = "pollock")
+bbr_km_survival(x, mort_type = "total", variance = "greenwood")
 }
 \arguments{
 \item{x}{A data frame that has survival data.}
@@ -30,7 +30,7 @@ only \code{"certain"} mortalities (MortalitiesCertain). The default is
 \code{"total"}.}
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
-\code{"greenwood"} or Pollock estimator \code{"pollock"}. The default is "pollock".}
+\code{"greenwood"} or Cox Oakes estimator \code{"coxoakes"}. The default is "greenwood".}
 }
 \value{
 A data frame. The columns are listed in the format section.
@@ -55,7 +55,7 @@ survival_est <- bbr_km_survival(
 survival_est <- bbr_km_survival(
   bboudata::bbousurv_b,
   mort_type = "certain",
-  variance = "pollock"
+  variance = "cox_oakes"
 )
 }
 \references{
