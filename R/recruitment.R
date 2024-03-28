@@ -121,8 +121,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
       logits = logit(.data$R),
       selogit = logit_se(.data$R_SE,  .data$R)
     )
-    Compfull$R_CIU <- ilogit(Compfull$logits + 1.96 * Compfull$selogit)
-    Compfull$R_CIL <- ilogit(Compfull$logits - 1.96 * Compfull$selogit)
+    Compfull$R_CIU <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = TRUE))
+    Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
   }
   
   # bootstrap approach...in progress....
