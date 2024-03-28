@@ -113,9 +113,8 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
   # variance estimation-in progress.....
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
-    Compfull$BinVar <- binomial_variance(Compfull$R, Compfull$females)
-    Compfull$R_SE <- Compfull$BinVar^0.5
-    
+    Compfull$R_SE <- binomial_variance(Compfull$R, Compfull$females)^0.5
+
     # logit-based confidence limits assuing R is constrained between 0 and 1.
     Compfull <- dplyr::mutate(
       Compfull,
