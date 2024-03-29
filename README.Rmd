@@ -67,7 +67,7 @@ recruitment_est <-
     bbourecruit_c,
     p_females = 0.65,
     sex_ratio = 0.5,
-    variance = "binomial"
+    variance = "bootstrap"
   )
 bbr_plot_recruitment(recruitment_est)
 
@@ -76,7 +76,7 @@ survival_est <-
   bbr_survival(
     bbousurv_c,
     mort_type = "total",
-    variance = "cox_oakes"
+    variance = "greenwood"
   )
 bbr_plot_survival(survival_est)
 

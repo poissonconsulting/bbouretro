@@ -59,7 +59,7 @@ recruitment_est <-
     bbourecruit_c,
     p_females = 0.65,
     sex_ratio = 0.5,
-    variance = "binomial"
+    variance = "bootstrap"
   )
 bbr_plot_recruitment(recruitment_est)
 ```
@@ -73,7 +73,7 @@ survival_est <-
   bbr_survival(
     bbousurv_c,
     mort_type = "total",
-    variance = "cox_oakes"
+    variance = "greenwood"
   )
 bbr_plot_survival(survival_est)
 ```
@@ -87,19 +87,19 @@ lambda_est <- bbr_lambda(recruitment_est, survival_est)
 summary <- bbr_lambda_summarize(lambda_est)
 summary
 #> # A tibble: 9 × 13
-#>   PopulationName  Year     S     R Lambda Lambda_SE Lambda_CIL Lambda_CIU
-#>   <chr>          <int> <dbl> <dbl>  <dbl>     <dbl>      <dbl>      <dbl>
-#> 1 C               2005 0.832 0.096  0.92      0.048      0.846      1.04 
-#> 2 C               2006 1     0.08   1.09     NA         NA         NA    
-#> 3 C               2007 0.524 0.068  0.562     0.042      0.502      0.667
-#> 4 C               2008 0.824 0.059  0.876     0.119      0.798      1.21 
-#> 5 C               2009 1     0.083  1.09     NA         NA         NA    
-#> 6 C               2010 0.926 0.14   1.08      0.064      0.991      1.25 
-#> 7 C               2011 0.96  0.158  1.14      0.106      1.03       1.39 
-#> 8 C               2012 0.963 0.112  1.08      0.051      1.01       1.22 
-#> 9 C               2013 0.512 0.133  0.591     0.028      0.552      0.656
-#> # ℹ 5 more variables: Prop_LGT1 <dbl>, meanSimSurv <dbl>, meanRsim <dbl>,
-#> #   meanSimLambda <dbl>, medianSimLambda <dbl>
+#>   PopulationName  Year     S     R estimate     se  lower  upper prop_lgt1
+#>   <chr>          <int> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>     <dbl>
+#> 1 C               2005 0.832 0.096    0.92   0.108  0.631  1.05      0.149
+#> 2 C               2006 1     0.08     1.09  NA     NA     NA        NA    
+#> 3 C               2007 0.524 0.068    0.562  0.108  0.336  0.765     0    
+#> 4 C               2008 0.824 0.059    0.876  0.157  0.481  1.13      0.158
+#> 5 C               2009 1     0.083    1.09  NA     NA     NA        NA    
+#> 6 C               2010 0.926 0.14     1.08   0.077  0.891  1.18      0.847
+#> 7 C               2011 0.96  0.158    1.14   0.086  0.896  1.26      0.925
+#> 8 C               2012 0.963 0.112    1.08   0.071  0.889  1.17      0.875
+#> 9 C               2013 0.512 0.133    0.591  0.013  0.57   0.621     0    
+#> # ℹ 4 more variables: mean_sim_survival <dbl>, mean_sim_recruitment <dbl>,
+#> #   mean_sim_lambda <dbl>, median_sim_lambda <dbl>
 bbr_plot_lambda(lambda_est)
 ```
 
