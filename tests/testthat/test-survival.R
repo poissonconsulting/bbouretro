@@ -15,25 +15,25 @@
 test_that("survival a works", {
   expect_snapshot({
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_a, mort_type = "total", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_a, mort_type = "certain", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
@@ -44,25 +44,25 @@ test_that("survival a works", {
 test_that("survival b works", {
   expect_snapshot({
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_b, mort_type = "total", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_b, mort_type = "certain", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
@@ -73,25 +73,25 @@ test_that("survival b works", {
 test_that("survival c works", {
   expect_snapshot({
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_c, mort_type = "total", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
-        bboudata::bbousurv_c, mort_type = "certain", variance = "pollock"
+      bbr_survival(
+        bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
-      bbr_km_survival(
+      bbr_survival(
         bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
@@ -101,14 +101,14 @@ test_that("survival c works", {
 
 test_that("errors when no data supplied", {
   expect_error(
-    bbr_km_survival(),
+    bbr_survival(),
     regexp = 'argument "x" is missing, with no default'
   )
 })
 
 test_that("errors when empty dataframe is passed", {
   expect_error(
-    bbr_km_survival(
+    bbr_survival(
       bboudata::bbousurv_a[0, ]
     )
   )
@@ -116,7 +116,7 @@ test_that("errors when empty dataframe is passed", {
 
 test_that("errors when column missing in data", {
   expect_error(
-    bbr_km_survival(
+    bbr_survival(
       bboudata::bbousurv_a[-2]
     ),
     regexp = "X must include 'Year'"
@@ -124,7 +124,7 @@ test_that("errors when column missing in data", {
 })
 
 test_that("status message", {
-  output <- bbr_km_survival(
+  output <- bbr_survival(
     bboudata::bbousurv_c
   )
   

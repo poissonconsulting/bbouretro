@@ -23,7 +23,7 @@
 #'   only `"certain"` mortalities (MortalitiesCertain). The default is
 #'   `"total"`.
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
-#'   `"greenwood"` or Pollock estimator `"pollock"`. The default is "pollock".
+#'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is "greenwood".
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
@@ -53,23 +53,23 @@
 #'   Journal of Wildlife Management 53:7-15.
 #'
 #' @examples
-#' survival_est <- bbr_km_survival(
+#' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_a,
 #'   mort_type = "total",
 #'   variance = "greenwood"
 #' )
-#' survival_est <- bbr_km_survival(
+#' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_b,
 #'   mort_type = "certain",
-#'   variance = "pollock"
+#'   variance = "cox_oakes"
 #' )
-bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
+bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_string(mort_type)
   chk::chk_string(variance)
 
   # make sure data set is sorted properly
-  x <- dplyr::arrange(x, .data$PopulationName, .data$Year, .data$Month)
+  x <- dplyr::arrange(x, .data$Year, .data$Month)
   # Tally total mortalities.
   x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
 
@@ -90,7 +90,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
 
   YearSurv <-
     LiveDeadCount |>
-    dplyr::group_by(.data$PopulationName, .data$Year) |>
+    dplyr::group_by(.data$Year) |>
     dplyr::summarise(
       S = prod(.data$Smonth),
       S_var1 = sum(.data$Smonth_varj),
@@ -111,7 +111,7 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   # Variance estimate using the Pollock et al 1989 method
   YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sum_alive
   YearSurv$S_Var <- ifelse(
-    YearSurv$VarType == "pollock",
+    YearSurv$VarType == "cox_oakes",
     YearSurv$S_Var_Pollock,
     YearSurv$S_Var_Green
   )
@@ -151,11 +151,22 @@ bbr_km_survival <- function(x, mort_type = "total", variance = "pollock") {
   YearSurv$S_CIL <- round(YearSurv$S_CIL, 3)
   YearSurv$S_CIU <- round(YearSurv$S_CIU, 3)
 
-  YearSurv <- dplyr::select(
-    YearSurv,
-    "PopulationName", "Year", "estimate" = "S", "se" = "S_SE", 
-    "lower" = "S_CIL", "upper" = "S_CIU", "mean_monitored",
-    "sum_dead", "sum_alive", "status"
+  YearSurv <- 
+    YearSurv |>
+    dplyr::mutate(
+      PopulationName = unique(x$PopulationName) 
+    ) |>
+    dplyr::select(
+    "PopulationName", 
+    "Year", 
+    "estimate" = "S", 
+    "se" = "S_SE", 
+    "lower" = "S_CIL", 
+    "upper" = "S_CIU", 
+    "mean_monitored",
+    "sum_dead", 
+    "sum_alive", 
+    "status"
   ) |>
     tibble::tibble()
 

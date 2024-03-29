@@ -13,48 +13,54 @@
 # limitations under the License.
 
 test_that("recruitment a works", {
-  expect_snapshot({
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_a),
-      n = 100, width = 100
-    )
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.6, variance = "binomial"
-      ),
-      n = 100, width = 100
-    )
-    set.seed(42)
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
-      ),
-      n = 100, width = 100
-    )
+  withr::with_seed(10, {
+    expect_snapshot({
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_a
+        ),
+        n = 100, width = 100
+      )
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.6, variance = "binomial"
+        ),
+        n = 100, width = 100
+      )
+      set.seed(42)
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+        ),
+        n = 100, width = 100
+      )
+    })
   })
 })
 
 test_that("recruitment b works", {
-  expect_snapshot({
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_b),
-      n = 100, width = 100
-    )
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_b, p_females = 0.65, sex_ratio = 0.6, variance = "binomial"
-      ),
-      n = 100, width = 100
-    )
-    set.seed(42)
-    print(
-      bbr_recruitment(
-        bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
-      ),
-      n = 100, width = 100
-    )
+  withr::with_seed(10, {
+    expect_snapshot({
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_b
+        ),
+        n = 100, width = 100
+      )
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_b, p_females = 0.65, sex_ratio = 0.6, variance = "binomial"
+        ),
+        n = 100, width = 100
+      )
+      set.seed(42)
+      print(
+        bbr_recruitment(
+          bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+        ),
+        n = 100, width = 100
+      )
+    })
   })
 })
 

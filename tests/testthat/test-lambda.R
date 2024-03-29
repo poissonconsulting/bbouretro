@@ -21,13 +21,13 @@ test_that("pop a works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_a_raw_values")
@@ -44,13 +44,13 @@ test_that("pop b works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_b,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_b_raw_values")
@@ -67,13 +67,13 @@ test_that("pop c works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_c_raw_values")
@@ -92,9 +92,7 @@ test_that("test data works", {
       upper = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
       female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16),
-      sex_ratio = rep(0.5, 4),
-      p_females = rep(0.65, 4)
+      females = c(66, 69, 47.95, 16)
     )
 
     survival_est <- data.frame(
@@ -113,7 +111,7 @@ test_that("test data works", {
       )
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_raw_values")
     expect_snapshot_data(output$summary, "bbr_lambda_simulate_summary")
@@ -131,9 +129,7 @@ test_that("errors if no populations overlap", {
       upper = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
       female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16),
-      sex_ratio = rep(0.5, 4),
-      p_females = rep(0.65, 4)
+      females = c(66, 69, 47.95, 16)
     )
 
     survival_est <- data.frame(
@@ -153,7 +149,7 @@ test_that("errors if no populations overlap", {
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "PopulationName must have overlapping values in recruitment and survival."
     )
   })
@@ -170,9 +166,7 @@ test_that("errors if no years overlap", {
       upper = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
       female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16),
-      sex_ratio = rep(0.5, 4),
-      p_females = rep(0.65, 4)
+      females = c(66, 69, 47.95, 16)
     )
 
     survival_est <- data.frame(
@@ -192,7 +186,7 @@ test_that("errors if no years overlap", {
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "Year must have overlapping values in recruitment and survival."
     )
   })
@@ -207,14 +201,14 @@ test_that("errors when recruitment has rows passed", {
       variance = "binomial"
     )[0, ]
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "recruitment must have rows"
     )
   })
@@ -229,14 +223,14 @@ test_that("errors when survival has rows passed", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )[0, ]
 
     expect_error(
-      bbr_lambda_simulate(recruitment_est, survival_est),
+      bbr_lambda(recruitment_est, survival_est),
       regexp = "survival must have rows"
     )
   })
@@ -253,9 +247,7 @@ test_that("NA instead in dataset work", {
       upper = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
       female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16),
-      sex_ratio = rep(0.5, 4),
-      p_females = rep(0.65, 4)
+      females = c(66, 69, 47.95, 16)
     )
 
     survival_est <- data.frame(
@@ -274,7 +266,7 @@ test_that("NA instead in dataset work", {
       )
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
     expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_na_test_raw")

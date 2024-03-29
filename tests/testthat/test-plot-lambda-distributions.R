@@ -21,13 +21,13 @@ test_that("pop a works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda_distributions(output, "A")
 
     expect_s3_class(plot, "ggplot")
@@ -44,13 +44,13 @@ test_that("pop b works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_b,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda_distributions(output, "B")
 
     expect_s3_class(plot, "ggplot")
@@ -67,13 +67,13 @@ test_that("pop c works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda_distributions(output, "C")
 
     expect_s3_class(plot, "ggplot")
@@ -92,9 +92,7 @@ test_that("errors when pop not in data set", {
       upper = c(0.01, 0.02, 0.02, 0.03),
       groups = c(10L, 15L, 12L, 4L),
       female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16),
-      sex_ratio = rep(0.5, 4),
-      p_females = rep(0.65, 4)
+      females = c(66, 69, 47.95, 16)
     )
 
     survival_est <- data.frame(
@@ -113,7 +111,7 @@ test_that("errors when pop not in data set", {
       )
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda_distributions(output, "A")
 
     expect_s3_class(plot, "ggplot")

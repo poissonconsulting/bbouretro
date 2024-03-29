@@ -26,7 +26,7 @@
 #'   proportion females at birth. Values must be between 0 and 1. The default is
 #'   set at 0.5.
 #' @param variance Estimate variance using "binomial" or "bootstrap". The
-#'   default is set as "binomial".
+#'   default is set as "bootstrap".
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
@@ -51,8 +51,6 @@
 #' \item{groups}{Groups sampled}
 #' \item{female_calves}{Estimated female calves}
 #' \item{females}{Estimated adult females}
-#' \item{sex_ratio}{Input sex ratio}
-#' \item{p_females}{Input proportion adult females}
 #' }
 #' @export
 #' @references
@@ -74,7 +72,7 @@
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "binomial") {
+bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap") {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(p_females)
   chk::chk_range(sex_ratio)
@@ -127,27 +125,19 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
   
   # bootstrap approach...in progress....
   if (variance == "bootstrap") {
-    # bootstrap by Population and year
-    boot_names <- expand.grid(unique(x$PopulationName), unique(x$Year))
-    boot_names <- sort(sprintf("%s.%s", boot_names[, 1], boot_names[, 2]))
+    # bootstrap by year
     boot <-
-      x |>
-      dplyr::group_split(
-        .data$PopulationName, .data$Year
-      ) |>
-      purrr::set_names(boot_names) |>
+      split(x, x$Year) |>
       purrr::map(
         function(x) boot(data = x, rec_calc, R = 1000)
       )
-    
+      
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
-      year <- strsplit(x, split = "\\.")[[1]][2]
-      pop <- strsplit(x, split = "\\.")[[1]][1]
+      year <- x
       quants <- quantile(boots, c(0.025, 0.5, 0.975))
       SE <- sd(boots)
       tibble::tibble(
-        PopulationName = pop,
         Year = year,
         medianboot = quants[2],
         R_SE = SE,
@@ -158,24 +148,36 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bi
     
     Compfull <- merge(
       Compfull,
-      pc[c("PopulationName", "Year", "R_SE", "R_CIL", "R_CIU")],
-      by = c("PopulationName", "Year")
+      pc[c("Year", "R_SE", "R_CIL", "R_CIU")],
+      by = c("Year")
     )
   }
   
-  
   # An abbreviated output data set.
-  CompfullR <- cbind(
-    Compfull[c("PopulationName", "Year", "R", "R_SE", "R_CIL", "R_CIU", "groups", "female_calves", "females")],
-    sex_ratio,
-    p_females
-  )
+  Compfull <- 
+    Compfull |>
+    dplyr::mutate(
+      PopulationName = unique(x$PopulationName),
+      dplyr::across(
+        c("R", "R_SE", "R_CIL", "R_CIU"),
+        ~ round(.x, 3)
+      )
+    ) |>
+    dplyr::relocate(
+      "PopulationName",
+      .before = "Year"
+    ) |>
+    dplyr::select(
+      "PopulationName", 
+      "Year", 
+      "estimate" = "R", 
+      "se" = "R_SE", 
+      "lower" = "R_CIL", 
+      "upper" = "R_CIU", 
+      "groups", 
+      "female_calves", 
+      "females"
+    )
   
-  CompfullR[c(3:6)] <- round(CompfullR[c(3:6)], 3)
-  
-  CompfullR <- dplyr::select(CompfullR, 
-                             "PopulationName", "Year", "estimate" = "R", 
-                             "se" = "R_SE", "lower" = "R_CIL", "upper" = "R_CIU", "groups", "female_calves", "females", "sex_ratio", "p_females")
-  
-  tibble::as_tibble(CompfullR)
+  tibble::as_tibble(Compfull)
 }

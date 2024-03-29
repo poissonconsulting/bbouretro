@@ -21,13 +21,13 @@ test_that("pop a works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda_simulate(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
     output <- bbr_lambda_summarize(lambda)
 
     expect_s3_class(output, "data.frame")

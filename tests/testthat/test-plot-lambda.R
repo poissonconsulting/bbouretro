@@ -21,13 +21,13 @@ test_that("pop a works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_a,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")
@@ -44,13 +44,13 @@ test_that("pop b works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_b,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")
@@ -67,13 +67,13 @@ test_that("pop c works", {
       variance = "binomial"
     )
 
-    survival_est <- bbr_km_survival(
+    survival_est <- bbr_survival(
       bboudata::bbousurv_c,
       mort_type = "total",
-      variance = "pollock"
+      variance = "cox_oakes"
     )
 
-    output <- bbr_lambda_simulate(recruitment_est, survival_est)
+    output <- bbr_lambda(recruitment_est, survival_est)
     plot <- bbr_plot_lambda(output)
 
     expect_s3_class(plot, "ggplot")

@@ -70,10 +70,10 @@ bbr_plot_recruitment(recruitment_est)
 
 # generate survival estimate for each year
 survival_est <-
-  bbr_km_survival(
+  bbr_survival(
     bbousurv_c,
     mort_type = "total",
-    variance = "pollock"
+    variance = "cox_oakes"
   )
 bbr_plot_survival(survival_est)
 ```
@@ -83,7 +83,7 @@ bbr_plot_survival(survival_est)
 ``` r
 
 # calculate lambda now that both recruitment and survival have been calculated
-lambda_est <- bbr_lambda_simulate(recruitment_est, survival_est)
+lambda_est <- bbr_lambda(recruitment_est, survival_est)
 summary <- bbr_lambda_summarize(lambda_est)
 summary
 #> # A tibble: 9 × 13
