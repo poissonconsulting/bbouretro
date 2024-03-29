@@ -80,7 +80,7 @@ where $X \cdot sex\_ratio$ estimates the number of female calves $(n_{jf})$ per 
 
 Recruitment is estimated using the equation below which accounts for recruitment of calves into the yearling/adult age class at the end of the caribou year.
 
-$$R_{RM} = \frac{X \cdot sex_ratio}{1 + X \cdot sex_ratio}$$
+$$R_{RM} = \frac{X \cdot sex\_ratio}{1 + X \cdot sex\_ratio}$$
 
 Variance is estimated using a bootstrap approach or the binomial method.
 
