@@ -150,7 +150,7 @@ test_that("errors if no populations overlap", {
 
     expect_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "PopulationName must have overlapping values in recruitment and survival."
+      regexp = "recruitment and survival must have overlapping values in ."
     )
   })
 })
@@ -187,7 +187,7 @@ test_that("errors if no years overlap", {
 
     expect_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "Year must have overlapping values in recruitment and survival."
+      regexp = "recruitment and survival must have overlapping values."
     )
   })
 })

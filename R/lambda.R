@@ -40,8 +40,6 @@
 #' bbr_lambda(recruitment_est, survival_est)
 #' }
 bbr_lambda <- function(recruitment, survival) {
-  chk_has_data(recruitment)
-  chk_has_data(survival)
   
   chk::check_data(
     recruitment,
@@ -49,12 +47,7 @@ bbr_lambda <- function(recruitment, survival) {
       PopulationName = character(),
       Year = integer(),
       estimate = numeric(),
-      se = numeric(),
-      lower = numeric(),
-      upper = numeric(),
-      groups = integer(),
-      female_calves = numeric(),
-      females = numeric()
+      se = numeric()
     )
   ) 
   
@@ -64,27 +57,33 @@ bbr_lambda <- function(recruitment, survival) {
       PopulationName = character(),
       Year = integer(),
       estimate = numeric(),
-      se = numeric(),
-      lower = numeric(),
-      upper = numeric(),
-      mean_monitored = numeric(),
-      sum_dead = integer(),
-      sum_alive = integer(),
-      status = character()
+      se = numeric()
     )
   )
   
-  survival <- dplyr::rename(survival, "S" = "estimate",
+  chk_has_data(recruitment)
+  chk_has_data(survival)
+  
+  survival <- dplyr::select(survival, 
+                            "PopulationName", 
+                            "Year", 
+                            "S" = "estimate",
                             "S_SE" = "se")
   
-  recruitment <- dplyr::rename(recruitment, "R" = "estimate",
+  recruitment <- dplyr::select(recruitment, 
+                               "PopulationName", 
+                               "Year", 
+                               "R" = "estimate",
                                "R_SE" = "se")
   
-  chk_overlap(recruitment, survival, "PopulationName")
-  chk_overlap(recruitment, survival, "Year")
-  
   # merge the comp and survival databases
-  LambdaSum <- merge(recruitment, survival, by = c("PopulationName", "Year"))
+  LambdaSum <- dplyr::inner_join(recruitment, survival, by = c("PopulationName", "Year"))
+  
+  if(!nrow(LambdaSum)) {
+    rlang::abort(
+        "recruitment and survival must have overlapping values in recruitment and survival."
+    )
+  }
   # Lambda estimate using the H-B equation
   LambdaSum$Lambda <- LambdaSum$S / (1 - LambdaSum$R)
   # total number of groups (projectXYear) for sims
