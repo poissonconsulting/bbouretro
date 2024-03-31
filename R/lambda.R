@@ -70,60 +70,50 @@ bbr_lambda <- function(recruitment, survival) {
                             "S" = "estimate",
                             "S_SE" = "se")
   
-  recruitment <- dplyr::select(recruitment, 
-                               "PopulationName", 
-                               "Year", 
-                               "R" = "estimate",
-                               "R_SE" = "se")
-  
   # merge the comp and survival databases
-  LambdaSum <- dplyr::inner_join(recruitment, survival, by = c("PopulationName", "Year"))
+  LambdaSum <- recruitment |>
+    dplyr::select("PopulationName", 
+           "Year", 
+           "R" = "estimate",
+           "R_SE" = "se") |>
+    dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
+    dplyr::mutate(Lambda = .data$S / (1 - .data$R),
+                  group = seq_len(dplyr::n()))
   
   if(!nrow(LambdaSum)) {
     rlang::abort(
-        "recruitment and survival must have overlapping values in recruitment and survival."
+      "recruitment and survival must have overlapping values in recruitment and survival."
     )
   }
-  # Lambda estimate using the H-B equation
-  LambdaSum$Lambda <- LambdaSum$S / (1 - LambdaSum$R)
+  
   # total number of groups (projectXYear) for sims
   groups <- nrow(LambdaSum)
   # fix sims at 1000
   sims <- 1000
   
+  n <- groups * sims
   # generate random normal data frames for survival and recruitment and group number to each
   # set of 1000 random numbers.  Use seperate random numbers for S and R to ensure independence
-  rnnors <- data.frame(rnorm(groups * sims))
-  names(rnnors) <- "RannorS"
-  rnnors$RannorR <- rnorm(groups * sims)
-  rnnors$nrow <- seq_len(nrow(rnnors))
-  rnnors$group <- rep(seq(1, groups, 1), 1000)
-  rnnors <- dplyr::arrange(rnnors, .data$group)
-  
   # merge the random numbers with input data set based on group/row #
   # this expands the data frame 1000X
-  LambdaSum$group <- seq_len(nrow(LambdaSum))
-  LambdaSumSim <- merge(LambdaSum, rnnors, by = "group")
-  
   # put the estimated parameters on the logit scale
-  LambdaSumSim <- dplyr::mutate(
-    LambdaSumSim,
-    Slogit = logit(.data$S),
-    SElogit = logit_se(.data$S_SE, .data$S),
-    Rlogit = logit(.data$R),
-    RElogit = logit_se(.data$R_SE, .data$R)
-  )
-  
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
-  LambdaSumSim <- dplyr::mutate(
-    LambdaSumSim,
-    RanS = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
-    RanR = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit)
-  )
-  
   # random H-B lambda based on simulated R and S
-  LambdaSumSim$RanLambda <- LambdaSumSim$RanS / (1 - LambdaSumSim$RanR)
-  LambdaSumSim$LGT1 <- ifelse(LambdaSumSim$RanLambda > 1, 1, 0)
+  LambdaSumSim <- dplyr::tibble(RannorS = rnorm(n), 
+                                RannorR = rnorm(n),
+                                nrow = seq_len(n),
+                                group = rep(seq(1, groups, 1), sims)) |>
+    dplyr::arrange(.data$group) |>
+    dplyr::inner_join(LambdaSum, by = "group") |>
+    dplyr::mutate(
+      Slogit = logit(.data$S),
+      SElogit = logit_se(.data$S_SE, .data$S),
+      Rlogit = logit(.data$R),
+      RElogit = logit_se(.data$R_SE, .data$R),
+      RanS = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
+      RanR = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit),
+      RanLambda =.data$RanS / (1 - .data$RanR),
+      LGT1 = ifelse(.data$RanLambda > 1, 1, 0))
   
   # An abriged data set with raw simulated values for later plotting etc.
   LambdaSumSimR <- LambdaSumSim |>
@@ -149,10 +139,8 @@ bbr_lambda <- function(recruitment, survival) {
       median_sim_lambda = median(.data$RanLambda)
     ) |>
     dplyr::ungroup() |>
-    tibble::tibble()
-  
-  SumLambda <-
-    dplyr::rename(SumLambda, "estimate" = "Lambda",
+    tibble::tibble() |>
+    dplyr::rename("estimate" = "Lambda",
                   "se" = "Lambda_SE",
                   "lower" = "Lambda_CIL",
                   "upper" = "Lambda_CIU")
