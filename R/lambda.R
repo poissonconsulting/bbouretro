@@ -72,9 +72,9 @@ bbr_lambda <- function(recruitment, survival) {
   # merge the comp and survival databases
   LambdaSum <- recruitment |>
     dplyr::select("PopulationName", 
-           "Year", 
-           "R" = "estimate",
-           "R_SE" = "se") |>
+                  "Year", 
+                  "R" = "estimate",
+                  "R_SE" = "se") |>
     dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
     dplyr::mutate(estimate = .data$S / (1 - .data$R),
                   group = seq_len(dplyr::n()))
@@ -97,15 +97,16 @@ bbr_lambda <- function(recruitment, survival) {
   # put the estimated parameters on the logit scale
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   # random H-B lambda based on simulated R and S
-  LambdaSumSim <- dplyr::tibble(RannorS = rnorm(groups * sims), 
-                                RannorR = rnorm(groups * sims),
-                                group = rep(seq(1, groups, 1), sims)) |>
+  LambdaSumSim <- expand.grid(group = seq_len(groups), 
+                              sim = seq_len(sims)) |>
+    dplyr::mutate(RannorS = rnorm(dplyr::n()), 
+                  RannorR = rnorm(dplyr::n())) |>
     dplyr::arrange(.data$group) |>
     dplyr::inner_join(LambdaSum, by = "group") |>
     dplyr::mutate(
       Slogit = logit(.data$S),
-      SElogit = logit_se(.data$S_SE, .data$S),
       Rlogit = logit(.data$R),
+      SElogit = logit_se(.data$S_SE, .data$S),
       RElogit = logit_se(.data$R_SE, .data$R),
       RanS = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
       RanR = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit),
