@@ -77,7 +77,7 @@ bbr_lambda <- function(recruitment, survival) {
            "R" = "estimate",
            "R_SE" = "se") |>
     dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
-    dplyr::mutate(Lambda = .data$S / (1 - .data$R),
+    dplyr::mutate(estimate = .data$S / (1 - .data$R),
                   group = seq_len(dplyr::n()))
   
   if(!nrow(LambdaSum)) {
@@ -118,7 +118,7 @@ bbr_lambda <- function(recruitment, survival) {
   # An abriged data set with raw simulated values for later plotting etc.
   LambdaSumSimR <- LambdaSumSim |>
     dplyr::select(
-      "PopulationName", "Year", "S", "R", "Lambda", "RanLambda", "RanS", "RanR"
+      "PopulationName", "Year", "S", "R", "Lambda" = "estimate", "RanLambda", "RanS", "RanR"
     ) |>
     tibble::tibble()
   
@@ -126,12 +126,12 @@ bbr_lambda <- function(recruitment, survival) {
   SumLambda <-
     LambdaSumSim |>
     dplyr::group_by(
-      .data$PopulationName, .data$Year, .data$S, .data$R, .data$Lambda
+      .data$PopulationName, .data$Year, .data$S, .data$R, .data$estimate
     ) |>
     dplyr::summarize(
-      Lambda_SE = sd(.data$RanLambda, na.rm = TRUE),
-      Lambda_CIL = quantile(.data$RanLambda, 0.025, na.rm = TRUE),
-      Lambda_CIU = quantile(.data$RanLambda, 0.975, na.rm = TRUE),
+      se = sd(.data$RanLambda, na.rm = TRUE),
+      lower = quantile(.data$RanLambda, 0.025, na.rm = TRUE),
+      upper = quantile(.data$RanLambda, 0.975, na.rm = TRUE),
       prop_lgt1 = mean(.data$LGT1),
       mean_sim_survival = mean(.data$RanS, na.rm = TRUE),
       mean_sim_recruitment = mean(.data$RanR, na.rm = TRUE),
@@ -139,11 +139,7 @@ bbr_lambda <- function(recruitment, survival) {
       median_sim_lambda = median(.data$RanLambda)
     ) |>
     dplyr::ungroup() |>
-    tibble::tibble() |>
-    dplyr::rename("estimate" = "Lambda",
-                  "se" = "Lambda_SE",
-                  "lower" = "Lambda_CIL",
-                  "upper" = "Lambda_CIU")
+    tibble::tibble()
   # create a list that contains raw and summarized output
   LambdaOut <- list(LambdaSumSimR, SumLambda)
   names(LambdaOut) <- c("raw_values", "summary")
