@@ -91,7 +91,6 @@ bbr_lambda <- function(recruitment, survival) {
   # fix sims at 1000
   sims <- 1000
   
-  n <- groups * sims
   # generate random normal data frames for survival and recruitment and group number to each
   # set of 1000 random numbers.  Use seperate random numbers for S and R to ensure independence
   # merge the random numbers with input data set based on group/row #
@@ -99,9 +98,8 @@ bbr_lambda <- function(recruitment, survival) {
   # put the estimated parameters on the logit scale
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   # random H-B lambda based on simulated R and S
-  LambdaSumSim <- dplyr::tibble(RannorS = rnorm(n), 
-                                RannorR = rnorm(n),
-                                nrow = seq_len(n),
+  LambdaSumSim <- dplyr::tibble(RannorS = rnorm(groups * sims), 
+                                RannorR = rnorm(groups * sims),
                                 group = rep(seq(1, groups, 1), sims)) |>
     dplyr::arrange(.data$group) |>
     dplyr::inner_join(LambdaSum, by = "group") |>
