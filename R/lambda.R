@@ -63,30 +63,32 @@ bbr_lambda <- function(recruitment, survival) {
     nrow = c(1, Inf)
   )
   
-  survival <- dplyr::select(survival, 
-                            "PopulationName", 
-                            "Year", 
-                            "S" = "estimate",
-                            "S_SE" = "se")
+  survival <- survival |>
+    dplyr::select( 
+      "PopulationName", 
+      "Year", 
+      "S" = "estimate",
+      "S_SE" = "se")
   
   # merge the comp and survival databases
-  LambdaSum <- recruitment |>
-    dplyr::select("PopulationName", 
-                  "Year", 
-                  "R" = "estimate",
-                  "R_SE" = "se") |>
+  lambda <- recruitment |>
+    dplyr::select(
+      "PopulationName", 
+      "Year", 
+      "R" = "estimate",
+      "R_SE" = "se") |>
     dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
     dplyr::mutate(estimate = .data$S / (1 - .data$R),
                   group = seq_len(dplyr::n()))
   
-  if(!nrow(LambdaSum)) {
+  if(!nrow(lambda)) {
     rlang::abort(
       "recruitment and survival must have overlapping values in recruitment and survival."
     )
   }
   
   # total number of groups (projectXYear) for sims
-  groups <- nrow(LambdaSum)
+  groups <- nrow(lambda)
   # fix sims at 1000
   sims <- 1000
   
@@ -97,12 +99,12 @@ bbr_lambda <- function(recruitment, survival) {
   # put the estimated parameters on the logit scale
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   # random H-B lambda based on simulated R and S
-  LambdaSumSim <- expand.grid(group = seq_len(groups), 
-                              sim = seq_len(sims)) |>
+  lambda_sim <- expand.grid(group = seq_len(groups), 
+                            sim = seq_len(sims)) |>
     dplyr::mutate(RannorS = rnorm(dplyr::n()), 
                   RannorR = rnorm(dplyr::n())) |>
     dplyr::arrange(.data$group) |>
-    dplyr::inner_join(LambdaSum, by = "group") |>
+    dplyr::inner_join(lambda, by = "group") |>
     dplyr::mutate(
       Slogit = logit(.data$S),
       Rlogit = logit(.data$R),
@@ -114,7 +116,7 @@ bbr_lambda <- function(recruitment, survival) {
       LGT1 = ifelse(.data$RanLambda > 1, 1, 0))
   
   # An abriged data set with raw simulated values for later plotting etc.
-  LambdaSumSimR <- LambdaSumSim |>
+  LambdaSumSimR <- lambda_sim |>
     dplyr::select(
       "PopulationName", "Year", "S", "R", "Lambda" = "estimate", "RanLambda", "RanS", "RanR"
     ) |>
@@ -122,7 +124,7 @@ bbr_lambda <- function(recruitment, survival) {
   
   # summary of simulation and percentile based estimated CI's for lambda
   SumLambda <-
-    LambdaSumSim |>
+    lambda_sim |>
     dplyr::group_by(
       .data$PopulationName, .data$Year, .data$S, .data$R, .data$estimate
     ) |>
