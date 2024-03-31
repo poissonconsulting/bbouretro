@@ -207,9 +207,9 @@ test_that("errors when recruitment has rows passed", {
       variance = "cox_oakes"
     )
 
-    expect_error(
+    chk::expect_chk_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "recruitment must have rows"
+      regexp = "must"
     )
   })
 })
@@ -229,9 +229,9 @@ test_that("errors when survival has rows passed", {
       variance = "cox_oakes"
     )[0, ]
 
-    expect_error(
+    chk::expect_chk_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "survival must have rows"
+      regexp = "must"
     )
   })
 })

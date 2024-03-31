@@ -48,7 +48,8 @@ bbr_lambda <- function(recruitment, survival) {
       Year = integer(),
       estimate = numeric(),
       se = numeric()
-    )
+    ),
+    nrow = c(1, Inf)
   ) 
   
   chk::check_data(
@@ -58,11 +59,9 @@ bbr_lambda <- function(recruitment, survival) {
       Year = integer(),
       estimate = numeric(),
       se = numeric()
-    )
+    ),
+    nrow = c(1, Inf)
   )
-  
-  chk_has_data(recruitment)
-  chk_has_data(survival)
   
   survival <- dplyr::select(survival, 
                             "PopulationName", 
