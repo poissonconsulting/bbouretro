@@ -136,7 +136,9 @@ bbr_lambda <- function(recruitment, survival) {
       mean_sim_survival = mean(.data$RanS, na.rm = TRUE),
       mean_sim_recruitment = mean(.data$RanR, na.rm = TRUE),
       mean_sim_lambda = mean(.data$RanLambda, na.rm = TRUE),
-      median_sim_lambda = median(.data$RanLambda)
+      median_sim_lambda = median(.data$RanLambda),
+      RanS = list(.data$RanS),
+      RanR = list(.data$RanR)
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
