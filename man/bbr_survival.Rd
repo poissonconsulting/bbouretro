@@ -43,7 +43,7 @@ Estimate survival rates based on the Kaplan-Meier survival rate estimator
 \code{x} needs to be formatted in a certain manner. To confirm the input
 data frame is in the right format you can use the
 \href{https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_survival.html}{\code{bbd_chk_data_survival}}
-function. See the \code{vignette("Methods", package = "bbouretro")} for the
+function. See the \code{vignette("methods", package = "bbouretro")} for the
 equations used in this function.
 }
 \examples{

@@ -25,7 +25,7 @@
 #' @return A list that contains two data frames. First one is named raw_values
 #'   can contains raw simulated data and the second one is the summary data.
 #'
-#' @details See the `vignette("Methods", package = "bbouretro")` for
+#' @details See the `vignette("methods", package = "bbouretro")` for
 #'   descriptions of the equations used. The raw_values can be plotted using
 #'   `bbr_plot_lambda_distributions()` and the summary data frame can be output
 #'   using `bbr_lambda_summarize()` or plotted using `bbr_plot_lambda()`.
