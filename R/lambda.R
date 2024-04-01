@@ -133,12 +133,8 @@ bbr_lambda <- function(recruitment, survival) {
       lower = quantile(.data$RanLambda, 0.025, na.rm = TRUE),
       upper = quantile(.data$RanLambda, 0.975, na.rm = TRUE),
       prop_lgt1 = mean(.data$LGT1),
-      mean_sim_survival = mean(.data$RanS, na.rm = TRUE),
-      mean_sim_recruitment = mean(.data$RanR, na.rm = TRUE),
-      mean_sim_lambda = mean(.data$RanLambda, na.rm = TRUE),
-      median_sim_lambda = median(.data$RanLambda),
-      RanS = list(.data$RanS),
-      RanR = list(.data$RanR)
+      RanS = I(list(.data$RanS)),
+      RanR = I(list(.data$RanR))
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
