@@ -70,7 +70,6 @@ Further details on the Kaplan-Meier approach as applied in boreal caribou studie
 The `bbr_recruitment()` function estimates recruitment using the following method. 
 
 Estimation of recruitment follows methods of DeCesare et al. [-@decesare_estimating_2012].
-From Pearson et al [-@pearson_boreal_2022] we summarize the following equations: 
 
 The age ratio, $X$, is commonly estimated as the number of calves, $n{_j}$, per adult female, $n_{af}$, observed at the end of a measured year, such that 
 
