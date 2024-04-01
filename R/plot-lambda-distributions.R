@@ -33,30 +33,30 @@
 #' bbr_plot_lambda_distributions(lambda)
 #' }
 bbr_plot_lambda_distributions <- function(lambda, population) {
-  chk::chk_is(lambda, "list")
-  chk::check_names(lambda, names = c("raw_values", "summary"))
+  chk::chk_data(lambda)
   chk::chk_string(population)
-  chk_set(population, lambda, "raw_values")
-  chk_set(population, lambda, "summary")
-
+  chk_set(population,lambda)
+  
   # subset data set for target population
-  Ld <- subset(lambda$raw_values, lambda$raw_values$PopulationName == population)
-  RL <- subset(lambda$summary, lambda$summary$PopulationName == population)
+  RL <- subset(lambda, lambda$PopulationName == population)
+  Ld <- RL |>
+    tidyr::unnest(cols = c("RanS", "RanR")) |>
+    dplyr::mutate(RanLambda = .data$RanS / (1 - .data$RanR))
 
   # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
   # year is still plotted as a line but with no distribution
   LrawR <- subset(Ld, is.na(Ld$RanLambda) == FALSE)
-
+  
   # set lambda limits for x axis based all lambda--this reduces influence of outliers
   xmin <- quantile(LrawR$RanLambda, 0.0001)
   xmax <- quantile(LrawR$RanLambda, 0.99)
   # make sure that limits are still within range of lambda estimates for estimates with no CI's
   xmax <- ifelse(xmax <= max(RL$estimate), max(RL$estimate) + 0.05, xmax)
   xmin <- ifelse(xmin >= min(RL$estimate), min(RL$estimate) - 0.05, xmin)
-
+  
   # subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
   LrawR <- subset(LrawR, LrawR$RanLambda >= xmin & LrawR$RanLambda <= xmax)
-
+  
   # plot estimated lambda for each year as a red line with
   # a black hashed line indicates lambda=1.
   ggplot(LrawR, aes(.data$RanLambda)) +

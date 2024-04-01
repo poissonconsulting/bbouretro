@@ -35,25 +35,10 @@ test_that("pop a works", {
   })
 })
 
-test_that("errors with empty list", {
-  expect_error(
-    bbr_lambda_summarize(list()),
-    regexp = "Lambda must not be empty \\(zero length\\)."
-  )
-})
-
 test_that("errors with list that doesn't have correct columns", {
-  lambda <- list(raw_values = data.frame(x = 1), summary = data.frame(y = 2))
+  lambda <- data.frame(y = 2)
   expect_error(
     bbr_lambda_summarize(lambda),
-    regexp = "`names\\(summary\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'RanS'."
-  )
-})
-
-test_that("errors with wrong list name", {
-  lambda <- list(raw_values = data.frame(x = 1), Summary2 = data.frame(y = 2))
-  expect_error(
-    bbr_lambda_summarize(lambda),
-    regexp = "names\\(lambda\\)` must include 'summary'."
+    regexp = "`names\\(lambda\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'RanS'."
   )
 })

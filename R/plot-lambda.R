@@ -25,15 +25,10 @@
 #' bbr_plot_lambda(lambda_est)
 #' }
 bbr_plot_lambda <- function(lambda) {
-  chk::chk_is(lambda, "list")
-  chk::check_names(lambda, names = c("summary"))
-  chk_has_data(lambda$summary)
-
-  plotdat <- lambda$summary
-  plotdat$Year <- as.character(plotdat$Year)
+  lambda$Year <- as.character(lambda$Year)
 
   chk::check_data(
-    plotdat,
+    lambda,
     values = list(
       PopulationName = character(),
       Year = character(),
@@ -43,7 +38,7 @@ bbr_plot_lambda <- function(lambda) {
     )
   )
 
-  ggplot(plotdat, aes(.data$Year, .data$estimate)) +
+  ggplot(lambda, aes(.data$Year, .data$estimate)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
       aes(x = .data$Year, ymin = .data$lower, ymax = .data$upper),
