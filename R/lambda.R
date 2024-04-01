@@ -110,9 +110,9 @@ bbr_lambda <- function(recruitment, survival) {
       Rlogit = logit(.data$R),
       SElogit = logit_se(.data$S_SE, .data$S),
       RElogit = logit_se(.data$R_SE, .data$R),
-      RanS = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
-      RanR = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit),
-      RanLambda =.data$RanS / (1 - .data$RanR),
+      ran_s = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
+      ran_r = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit),
+      RanLambda =.data$ran_s / (1 - .data$ran_r),
       LGT1 = ifelse(.data$RanLambda > 1, 1, 0)) |>
     dplyr::group_by(
       .data$PopulationName, .data$Year, .data$S, .data$R, .data$estimate
@@ -122,8 +122,8 @@ bbr_lambda <- function(recruitment, survival) {
       lower = quantile(.data$RanLambda, 0.025, na.rm = TRUE),
       upper = quantile(.data$RanLambda, 0.975, na.rm = TRUE),
       prop_lgt1 = mean(.data$LGT1),
-      RanS = I(list(.data$RanS)),
-      RanR = I(list(.data$RanR))
+      ran_s = I(list(.data$ran_s)),
+      ran_r = I(list(.data$ran_r))
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()

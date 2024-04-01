@@ -45,7 +45,7 @@
 bbr_lambda_summarize <- function(lambda) {
   chk::check_names(lambda, c(
     "PopulationName", "Year", "S", "R", "estimate", "se", "lower", "upper",
-    "prop_lgt1", "RanR", "RanS"))
+    "prop_lgt1", "ran_r", "ran_s"))
   
   chk::check_data(
     lambda,
@@ -61,17 +61,17 @@ bbr_lambda_summarize <- function(lambda) {
       prop_lgt1 = numeric()
     )
   )
-  # TODO: check RanR and RanS columns but they are lists
+  # TODO: check ran_r and ran_s columns but they are lists
   
   lambda <- lambda |>
     dplyr::mutate(
-      mean_sim_survival = purrr::map_dbl(.data$RanS, mean),
-      mean_sim_recruitment = purrr::map_dbl(.data$RanR, mean),
-      lambda = purrr::map2(.data$RanS, .data$RanR, function(s,r) { s / (1 - r) }),
+      mean_sim_survival = purrr::map_dbl(.data$ran_s, mean),
+      mean_sim_recruitment = purrr::map_dbl(.data$ran_r, mean),
+      lambda = purrr::map2(.data$ran_s, .data$ran_r, function(s,r) { s / (1 - r) }),
       mean_sim_lambda = purrr::map_dbl(.data$lambda, mean),
       median_sim_lambda = purrr::map_dbl(.data$lambda, median)
     ) |>
-    dplyr::select(!c("RanS", "RanR", "lambda"))
+    dplyr::select(!c("ran_s", "ran_r", "lambda"))
   
   lambda[-(1:2)] <- round(lambda[-(1:2)], 3)
   lambda

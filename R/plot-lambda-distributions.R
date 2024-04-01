@@ -40,8 +40,8 @@ bbr_plot_lambda_distributions <- function(lambda, population) {
   # subset data set for target population
   RL <- subset(lambda, lambda$PopulationName == population)
   Ld <- RL |>
-    tidyr::unnest(cols = c("RanS", "RanR")) |>
-    dplyr::mutate(RanLambda = .data$RanS / (1 - .data$RanR))
+    tidyr::unnest(cols = c("ran_s", "ran_r")) |>
+    dplyr::mutate(RanLambda = .data$ran_s / (1 - .data$ran_r))
 
   # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
   # year is still plotted as a line but with no distribution
