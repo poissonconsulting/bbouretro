@@ -118,24 +118,13 @@ test_that("errors when pop not in data set", {
 
     expect_error(
       bbr_plot_lambda_distributions(output, "B"),
-      regexp = "The population B is not present in the raw_values table\\."
+      regexp = "The population is not present in the table\\."
     )
   })
 })
 
-test_that("errors when dataframe passed as lambda", {
-  lambda <- data.frame(x = 1)
-  expect_error(
-    bbr_plot_lambda_distributions(lambda, "A"),
-    regexp = "`lambda` must inherit from class 'list'\\."
-  )
-})
-
 test_that("errors when number passed as population", {
-  lambda <- list(
-    raw_values = data.frame(PopulationName = "A"),
-    summary = data.frame(PopulationName = "A")
-  )
+  lambda <- data.frame(PopulationName = "A")
   expect_error(
     bbr_plot_lambda_distributions(lambda, 1),
     regexp = "`population` must be a string \\(non-missing character scalar\\)\\."
