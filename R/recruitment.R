@@ -123,7 +123,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
   }
   
-  # bootstrap approach...in progress....
+  # bootstrap approach 
   if (variance == "bootstrap") {
     # bootstrap by year
     boot <-
