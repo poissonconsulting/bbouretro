@@ -108,7 +108,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
   # Recruitment using DeCesare correction
   Compfull$R <- Compfull$CalfCowF / (1 + Compfull$CalfCowF)
   
-  # variance estimation-in progress.....
+  # variance estimation.
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
     Compfull$R_SE <- binomial_variance(Compfull$R, Compfull$females)^0.5
