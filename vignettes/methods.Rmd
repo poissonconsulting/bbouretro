@@ -1,0 +1,19 @@
+---
+title: "Literature Review on Methods for Estimating Survival, Recruitment, and Population Growth"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Literature Review on Methods for Estimating Survival, Recruitment, and Population Growth}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bbouretro)
+```
