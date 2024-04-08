@@ -24,6 +24,7 @@ Imports:
     purrr,
     rlang,
     stats,
+    tidyr,
     tibble
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
