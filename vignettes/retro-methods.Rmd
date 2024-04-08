@@ -2,7 +2,7 @@
 title: "Classical Methods for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{methods}
+  %\VignetteIndexEntry{retro-methods}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: bibliography.bib
