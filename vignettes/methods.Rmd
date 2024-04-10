@@ -2,7 +2,7 @@
 title: "Review of Previously Used Methods for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Literature Review on Methods for Estimating Survival, Recruitment, and Population Growth}
+  %\VignetteIndexEntry{Review of Previously Used Methods for Estimating Survival, Recruitment, and Population Growth}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: bibliography.bib
