@@ -1,11 +1,26 @@
 ---
-title: "Literature Review on Methods for Estimating Survival, Recruitment, and Population Growth"
+title: "Review of Previously Used Methods for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Literature Review on Methods for Estimating Survival, Recruitment, and Population Growth}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: bibliography.bib
 ---
+
+<!-- # Copyright 2024 Environment and Climate Change Canada -->
+<!-- # -->
+<!-- # Licensed under the Apache License, Version 2.0 (the "License"); -->
+<!-- # you may not use this file except in compliance with the License. -->
+<!-- # You may obtain a copy of the License at -->
+<!-- # -->
+<!-- # http://www.apache.org/licenses/LICENSE-2.0 -->
+<!-- # -->
+<!-- # Unless required by applicable law or agreed to in writing, software -->
+<!-- # distributed under the License is distributed on an "AS IS" BASIS, -->
+<!-- # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. -->
+<!-- # See the License for the specific language governing permissions and -->
+<!-- # limitations under the License. -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -17,3 +32,106 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(bbouretro)
 ```
+
+## Survival, $S$
+
+The Heisey and Fuller [-@heisey_evaluation_1985]  method is a generalization of the basic approach of Mayfield [-@mayfield_nesting_1961] and Trent and Rongstad [-@trent_home_1974] to determine unbiased estimates of cause-specific mortality rates. 
+Heisey and Fuller [-@heisey_evaluation_1985] also developed a computer program MICROMORT to perform the calculations. 
+
+The Heisey and Fuller [-@heisey_evaluation_1985] method can be described by the following equations where the subscript $i (i = 1, 2, ..., I)$ indicates the $i$th interval being considered. The maximum likelihood estimate for survival in the $i$th interval $(\hat{s}_{i})$ is given by the following equation where $x_{i}$ is the total number of transmitter days (number of collar animals multiplied by the number of days) and $y_{i}$ is the total number of deaths
+
+$$\hat{s}_{i} = \frac{x_{i} - y_{i}}{x_{i}}$$
+
+Where $L_{i}$ is the length of days in the interval then the estimated survival rate $(\hat{S}_{i})$ for the $i$th interval is
+
+$$ \hat{S}_{i} = \hat{s}_{i}^{L_{i}} $$
+The total survival rate, $S^{*}$, over all, $I$, intervals is simply the product of the $\hat{S}_{i}$’s
+
+$$ \hat{S}^{*} = \prod_{i=1}^{I}{\hat{S}_{i}} $$
+
+The standard error is calculated using the Taylor series approximation method. 
+The sampling distribution of $\hat{S}^{*}$ is quite skewed therefore the 95% Wald confidence interval [@millar_maximum_2011] is calculated on the log scale (before being back-transformed)
+
+$$ ln(\hat{S}^*) \pm 1.96 \ \hat{S}^{*-1} \ SE(\hat{S}^{*}) $$
+
+The nonparametric staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below [@pollock_survival_1989]. The probability of surviving in the $i$th timestep is given by the equation
+
+$$ \hat{S}_{i} = 1 - \frac{d_{i}}{r_{i}} $$
+
+where $d_{i}$ is the number of mortalities during the period and $r_{i}$ is the number of collared individuals at
+the start of period. The estimated survival for any arbitrary time period $t$ is given by
+
+$$ \hat{S}(t) = \prod_{i=1}{(\hat{S}_{i,t})} $$
+where $\hat{S}_{i,t}$ is the survival during the $i$th timestep of the $t$th period.
+
+One method to estimate the standard error [@cox_analysis_1984] uses Greenwood’s formula
+
+$$ SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum{\frac{d_{i}}{r_{i}(r_{i} - d_{i})}}} $$
+
+However they also propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989]
+
+$$ SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1 - \hat{S}(t)]}{r(t)}} $$
+
+Although Pollock et al. [-@pollock_survival_1989] proposed calculating 95% Wald confidence intervals [@millar_maximum_2011] this formulation can result in lower confidence limits below zero or upper confidence limits above one when using the standard equation
+
+$$ \hat{S}(t) \pm 1.96 \ SE (\hat{S}(t)) $$
+Confidence intervals were also computed using bootstrapping with 1,000 [@mcloughlin_declines_2003] or 10,000 replicates [@hervieux_widespread_2013].
+
+To account for censoring DeCesare et al. [-@decesare_estimating_2012] estimated female survival with nonparametric methods and “then adjusted the input annual sample sizes of animals and survival events to produce equivalent mean and variance estimates using a binomial variance estimator [@morris_quantitative_2002]” [@decesare_estimating_2012].
+
+There are other less used methods like the Skalski staggered entry equation [@skalski_wildlife_2005] and the known fate binomial model in program MARK. The known fate model provides a similar estimate to the Kaplan-Meier estimator when it is constrained to estimate yearly survival from the product of monthly survival rates. The advantage of the known fate approach is it allows comparison of alternative models with, for example, constant survival vs yearly and/or monthly variation. As well as the Heisey and Fuller method, Edmonds [-@edmonds_population_1988] also used the method described by Gasaway et al. [-@gasaway_interrelationships_1983] to provide estimates and confidence intervals.
+
+## Recruitment, $R$
+
+The mean ratio, $\hat{R}$, can be calculated from, $\bar{y}$, the mean number of calves and, $\bar{c}$, the mean number of cows [@cochran_sampling_1977; @thompson_sampling_1992; @krebs_ecological_1999]
+
+$$ \hat{R} = \frac{\bar{y}}{\bar{c}} $$
+Recruitment rates were adjusted by DeCesare et al. [-@decesare_estimating_2012] to provide an estimate of recruitment that assumes the calves surveyed in the March surveys have recruited to adults.
+DeCesare et al. [-@decesare_estimating_2012] argued uncorrected calf-cow ratios did not account for recruits at year end and therefore provide an overoptimistic estimate of recruitment and subsequent population trend. 
+In the equation derived by DeCesare et al. [-@decesare_estimating_2012], the age ratio, $X$, is commonly estimated as the number of calves, $n_{j}$, per adult
+female, $n_{af}$, observed at the end of a measured year, such that
+
+$$ X = \frac{n_{j}}{n_{af}} $$ and $$ \frac{X}{2} = \frac{n_{jf}}{n_{af}} $$
+
+where $X/2$ estimates the number of female calves $(n_{jf})$ per adult female assuming a 50:50 sex ratio,
+proper adjustments of $X/2$ to a calves/(calves + adults) ratio is necessary according to
+
+$$ R_{RM} = \frac{n_{jf}}{n_{f}} = \frac{ \frac{X}{2} }{1 + \frac{X}{2}} $$
+
+Where $n_{f} = n_{jf} + n_{af}$, or the total number of females of all age classes, including calves, counted at the end of the measurement year.
+
+The standard error of $R$ as defined by the ratio $(x/y)$ is given by
+
+$$ SE(\hat{R}) = \frac{\sqrt{1-f}}{\sqrt{n}y} \sqrt{\frac{(1-f)(\sum{x^{2}-2\hat{R}} \sum{xy+\hat{R}^{2}\sum{y^{2}}})}{n-1}}  $$
+
+Where $f$ is the sampling fraction $n/N$, $n$ is the sample size, $N$ is the sum of the sample sizes, and $\bar{y}$ is the observed mean of $Y$ measurement (denominator of ratio) [@cochran_sampling_1977; @thompson_sampling_1992; @krebs_ecological_1999].
+
+Bootstrapping was used to generate confidence intervals using 1,000 [@mcloughlin_declines_2003] and 10,000 replicates [@hervieux_widespread_2013; @hervieux_managing_2014]. 
+
+A binomial distribution was used by Rettie and Messier  [-@rettie_dynamics_1998] and the Eacker app which uses a binomial distribution in a Bayesian framework [@eacker_webbased_2019] can also generate confidence intervals.
+
+## Population Growth, $\lambda$
+
+The three main methods used for calculating, $\lambda$, population growth are the original recruitment- mortality $R/M$ formula described by Hatter and Bergerud (1991) using raw calf cow ratios of R; the adjusted recruitment $R_{RM}$ formula of DeCesare et al. [-@decesare_estimating_2012] and a Lefkovich matrix model [@fryxell_anthropogenic_2020]
+
+The original recruitment-mortality formula of Hatter and Bergerud [-@hatter_moose_1991]
+
+$$ \lambda = \frac{S}{1-R}  $$
+
+The adjusted recruitment rate of DeCesare et al. [-@decesare_estimating_2012] will provide a better estimate of $\lambda$ then using uncorrected calf-cow ratios from spring surveys (as discussed in the recruitment section).
+
+A Lefkovich matrix [@fryxell_anthropogenic_2020] which estimates lambda based on the maximum eigenvalue of a Lefkovich matrix of stage-based survival and birth rates. 
+Where the matrix-based population viability analysis (PVA) model used population-wide estimate of annual survival of adult and yearling females $(S)$ and successful offspring recruitment ($S \times B$, where $B$ is birth rate of female offspring) in each study area to fill the elements of a Lefkovich matrix $(L)$ where $B_{j}$ is offspring recruitment rate stemming from age class $j$, and $S_{j}$ is the annual survival rate of age class $j$, where $j=0,1$ and $a$ for new-born calves, yearlings, and adults
+[@fryxell_anthropogenic_2020].
+
+$$ L = \left[\begin{array}{ccc} 0 & S_1 \times B_1 & S_a \times B_a \\ S_0 & 0 & 0 \\ 0 & S_1 & S_a \end{array} \right] $$
+
+DeCesare et al. [-@decesare_estimating_2012] also considered stage-based matrix models and provides discussion on how matrix models relate to the standard $S/(1-R)$ equation.
+
+Confidence intervals for population growth were calculated through simulation. 
+One way was through Monte Carlo simulations by randomly drawing from the annual survival and recruitment distributions [@rettie_dynamics_1998; @hervieux_widespread_2013; @hervieux_managing_2014] using programs like Excel’s MATLAB or Poptools.
+Another method was through bootstrapping [@mcloughlin_declines_2003].
+The Eacker app which estimates $\lambda$ with uncertainty by simply applying the adjusted recruitment $R_{RM}$ formula to the individual Monte Carlo Markov Chain samples for each iteration [@eacker_webbased_2019].
+
+## References
+
