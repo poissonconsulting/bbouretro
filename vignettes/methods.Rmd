@@ -112,7 +112,7 @@ A binomial distribution was used by Rettie and Messier  [-@rettie_dynamics_1998]
 
 ## Population Growth, $\lambda$
 
-The three main methods used for calculating, $\lambda$, population growth are the original recruitment- mortality $R/M$ formula described by Hatter and Bergerud (1991) using raw calf cow ratios of R; the adjusted recruitment $R_{RM}$ formula of DeCesare et al. [-@decesare_estimating_2012] and a Lefkovich matrix model [@fryxell_anthropogenic_2020]
+The three main methods used for calculating, $\lambda$, population growth are the original recruitment-mortality $R/M$ formula described by Hatter and Bergerud (1991) using raw calf cow ratios of R; the adjusted recruitment $R_{RM}$ formula of DeCesare et al. [-@decesare_estimating_2012] and a Lefkovich matrix model [@fryxell_anthropogenic_2020]
 
 The original recruitment-mortality formula of Hatter and Bergerud [-@hatter_moose_1991]
 
