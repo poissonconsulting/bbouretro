@@ -34,11 +34,11 @@ knitr::opts_chunk$set(
 The Heisey and Fuller [-@heisey_evaluation_1985]  method is a generalization of the basic approach of Mayfield [-@mayfield_nesting_1961] and Trent and Rongstad [-@trent_home_1974] to determine unbiased estimates of cause-specific mortality rates. 
 Heisey and Fuller [-@heisey_evaluation_1985] also developed a computer program MICROMORT to perform the calculations. 
 
-The Heisey and Fuller [-@heisey_evaluation_1985] method can be described by the following equations where the subscript $i (i = 1, 2, ..., I)$ indicates the $i$th interval being considered. The maximum likelihood estimate for survival in the $i$th interval $(\hat{s}_{i})$ is given by the following equation where $x_{i}$ is the total number of transmitter days (number of collar animals multiplied by the number of days) and $y_{i}$ is the total number of deaths
+The Heisey and Fuller [-@heisey_evaluation_1985] method can be described by the following equations where the subscript $i\ (i = 1, 2, ..., I)$ indicates the $i$th interval being considered. The maximum likelihood estimate for survival in the $i$th interval $(\hat{s}_i)$ is given by the following equation where $x_i$ is the total number of transmitter days (number of collar animals multiplied by the number of days) and $y_i$ is the total number of deaths
 
-$$\hat{s}_{i} = \frac{x_{i} - y_{i}}{x_{i}}$$
+$$\hat{s}_i = \frac{x_i - y_i}{x_i}$$
 
-Where $L_{i}$ is the length of days in the interval then the estimated survival rate $(\hat{S}_{i})$ for the $i$th interval is
+Where $L_$ is the length of days in the interval then the estimated survival rate $(\hat{S}_i)$ for the $i$th interval is
 
 $$ \hat{S}_{i} = \hat{s}_{i}^{L_{i}} $$
 The total survival rate, $S^{*}$, over all, $I$, intervals is simply the product of the $\hat{S}_{i}$’s
@@ -48,21 +48,21 @@ $$ \hat{S}^{*} = \prod_{i=1}^{I}{\hat{S}_{i}} $$
 The standard error is calculated using the Taylor series approximation method. 
 The sampling distribution of $\hat{S}^{*}$ is quite skewed therefore the 95% Wald confidence interval [@millar_maximum_2011] is calculated on the log scale (before being back-transformed)
 
-$$ ln(\hat{S}^*) \pm 1.96 \ \hat{S}^{*-1} \ SE(\hat{S}^{*}) $$
+$$ \log(\hat{S}^*) \pm 1.96 \ \hat{S}^{*-1} \ \text{SE}(\hat{S}^{*}) $$
 
 The nonparametric staggered entry Kaplan-Meier, which uses discrete time steps, is defined algebraically below [@pollock_survival_1989]. The probability of surviving in the $i$th timestep is given by the equation
 
-$$ \hat{S}_{i} = 1 - \frac{d_{i}}{r_{i}} $$
+$$ \hat{S}_i = 1 - \frac{d_i}{r_i} $$
 
-where $d_{i}$ is the number of mortalities during the period and $r_{i}$ is the number of collared individuals at
-the start of period. The estimated survival for any arbitrary time period $t$ is given by
+where $d_i$ is the number of mortalities during the period and $r_i$ is the number of collared individuals at the start of period. 
+The estimated survival for any arbitrary time period $t$ is given by
 
 $$ \hat{S}(t) = \prod_{i=1}{(\hat{S}_{i,t})} $$
 where $\hat{S}_{i,t}$ is the survival during the $i$th timestep of the $t$th period.
 
 One method to estimate the standard error [@cox_analysis_1984] uses Greenwood’s formula
 
-$$ SE(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum{\frac{d_{i}}{r_{i}(r_{i} - d_{i})}}} $$
+$$ \text{SE}(\hat{S}(t)) = \sqrt{[\hat{S}(t)]^2 \sum{\frac{d_{i}}{r_{i}(r_{i} - d_{i})}}} $$
 
 However they also propose a simpler alternative estimate “which is better in the tails of the distribution” [@pollock_survival_1989]
 
@@ -70,12 +70,15 @@ $$ SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1 - \hat{S}(t)]}{r(t)}} $$
 
 Although Pollock et al. [-@pollock_survival_1989] proposed calculating 95% Wald confidence intervals [@millar_maximum_2011] this formulation can result in lower confidence limits below zero or upper confidence limits above one when using the standard equation
 
-$$ \hat{S}(t) \pm 1.96 \ SE (\hat{S}(t)) $$
+$$ \hat{S}(t) \pm 1.96 \ \text{SE} (\hat{S}(t)) $$
 Confidence intervals were also computed using bootstrapping with 1,000 [@mcloughlin_declines_2003] or 10,000 replicates [@hervieux_widespread_2013].
 
 To account for censoring DeCesare et al. [-@decesare_estimating_2012] estimated female survival with nonparametric methods and “then adjusted the input annual sample sizes of animals and survival events to produce equivalent mean and variance estimates using a binomial variance estimator [@morris_quantitative_2002]” [@decesare_estimating_2012].
 
-There are other less used methods like the Skalski staggered entry equation [@skalski_wildlife_2005] and the known fate binomial model in program MARK. The known fate model provides a similar estimate to the Kaplan-Meier estimator when it is constrained to estimate yearly survival from the product of monthly survival rates. The advantage of the known fate approach is it allows comparison of alternative models with, for example, constant survival vs yearly and/or monthly variation. As well as the Heisey and Fuller method, Edmonds [-@edmonds_population_1988] also used the method described by Gasaway et al. [-@gasaway_interrelationships_1983] to provide estimates and confidence intervals.
+There are other less used methods like the Skalski staggered entry equation [@skalski_wildlife_2005] and the known fate binomial model in program MARK. 
+The known fate model provides a similar estimate to the Kaplan-Meier estimator when it is constrained to estimate yearly survival from the product of monthly survival rates. 
+The advantage of the known fate approach is it allows comparison of alternative models with, for example, constant survival vs yearly and/or monthly variation. 
+As well as the Heisey and Fuller method, Edmonds [-@edmonds_population_1988] also used the method described by Gasaway et al. [-@gasaway_interrelationships_1983] to provide estimates and confidence intervals.
 
 ## Recruitment, $R$
 
