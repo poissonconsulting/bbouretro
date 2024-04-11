@@ -30,11 +30,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(bbouretro)
-library(bboudata)
-```
-
 There are multiple ways cited in literature to calculate survival, recruitment, and population growth.
 The classical or **retro** methods used in bbou**retro** are outlined below. 
 
