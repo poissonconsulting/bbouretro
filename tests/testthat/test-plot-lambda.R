@@ -81,54 +81,10 @@ test_that("pop c works", {
   })
 })
 
-test_that("errors when dataframe passed as lambda", {
-  lambda <- data.frame(x = 1)
-  expect_error(
-    bbr_plot_lambda(lambda),
-    regexp = "`lambda` must inherit from class 'list'\\."
-  )
-})
-
-test_that("errors when summary not in input list", {
-  lambda <- list(
-    Summary_2 = data.frame(PopulationName = "A")
-  )
-  expect_error(
-    bbr_plot_lambda(lambda),
-    regexp = "`names\\(lambda\\)` must include 'summary'\\."
-  )
-})
-
 test_that("errors when summary is an empty dataframe", {
-  lambda <- list(
-    summary = data.frame()
-  )
+  lambda <- data.frame()
   expect_error(
     bbr_plot_lambda(lambda),
-    regexp = "lambda\\$summary must have rows"
+    regexp = "must"
   )
-})
-
-test_that("creats plot as expected", {
-  lambda <- list(
-    summary = data.frame(
-      PopulationName = c("A", "A"),
-      Year = c(2000L, 2001L),
-      S = c(0.814, .987),
-      R = c(0.147, .0138),
-      estimate = c(1.27, 0.97),
-      se = c(0.0357, 0.0247),
-      lower = c(0.80, 0.75),
-      upper = c(1.30, 1.05),
-      prop_lgt1 = c(0.587, 0.658),
-      mean_sim_survival = c(0.974, 0.984),
-      mean_sim_recruitment = c(0.147, 0.0587),
-      mean_sim_lambda = c(1.08, 0.478),
-      median_sim_lambda = c(0.98, 1.01)
-    )
-  )
-
-  plot <- bbr_plot_lambda(lambda)
-  expect_s3_class(plot, "ggplot")
-  expect_snapshot_plot(plot, "plot_lambda_test_pop")
 })

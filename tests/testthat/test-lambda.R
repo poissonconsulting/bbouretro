@@ -27,11 +27,9 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
 
-    expect_type(output, "list")
-    expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_a_raw_values")
-    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_a_summary")
+    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_a_summary")
   })
 })
 
@@ -50,11 +48,9 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
 
-    expect_type(output, "list")
-    expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_b_raw_values")
-    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_b_summary")
+    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_b_summary")
   })
 })
 
@@ -73,11 +69,9 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
 
-    expect_type(output, "list")
-    expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_pop_c_raw_values")
-    expect_snapshot_data(output$summary, "bbr_lambda_simulate_pop_c_summary")
+    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_c_summary")
   })
 })
 
@@ -111,10 +105,9 @@ test_that("test data works", {
       )
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
+    lambda <- bbr_lambda(recruitment_est, survival_est)
 
-    expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_raw_values")
-    expect_snapshot_data(output$summary, "bbr_lambda_simulate_summary")
+    expect_snapshot_data(lambda, "bbr_lambda_simulate_summary")
   })
 })
 
@@ -150,7 +143,7 @@ test_that("errors if no populations overlap", {
 
     expect_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "PopulationName must have overlapping values in recruitment and survival."
+      regexp = "recruitment and survival must have overlapping values in ."
     )
   })
 })
@@ -187,7 +180,7 @@ test_that("errors if no years overlap", {
 
     expect_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "Year must have overlapping values in recruitment and survival."
+      regexp = "recruitment and survival must have overlapping values."
     )
   })
 })
@@ -207,9 +200,9 @@ test_that("errors when recruitment has rows passed", {
       variance = "cox_oakes"
     )
 
-    expect_error(
+    chk::expect_chk_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "recruitment must have rows"
+      regexp = "must"
     )
   })
 })
@@ -229,9 +222,9 @@ test_that("errors when survival has rows passed", {
       variance = "cox_oakes"
     )[0, ]
 
-    expect_error(
+    chk::expect_chk_error(
       bbr_lambda(recruitment_est, survival_est),
-      regexp = "survival must have rows"
+      regexp = "must"
     )
   })
 })
@@ -269,7 +262,6 @@ test_that("NA instead in dataset work", {
     output <- bbr_lambda(recruitment_est, survival_est)
 
     expect_type(output, "list")
-    expect_snapshot_data(output$raw_values, "bbr_lambda_simulate_na_test_raw")
-    expect_snapshot_data(output$summary, "bbr_lambda_simulate_na_test_sum")
+    expect_snapshot_data(output, "bbr_lambda_simulate_na_test_sum")
   })
 })

@@ -31,7 +31,7 @@
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
 #'   [`bbd_chk_data_recruitment`](https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_recruitment.html)
-#'   function.  See the `vignette("Methods", package = "bbouretro")` for the
+#'   function.  See the `vignette("methods", package = "bbouretro")` for the
 #'   equations used in this function.
 #'
 #'   User’s can input the assumed proportion of females in the population (to
