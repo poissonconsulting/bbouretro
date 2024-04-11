@@ -107,7 +107,7 @@ Where $f$ is the sampling fraction $n/N$, $n$ is the sample size, $N$ is the sum
 
 Bootstrapping was used to generate confidence intervals using 1,000 [@mcloughlin_declines_2003] and 10,000 replicates [@hervieux_widespread_2013; @hervieux_managing_2014]. 
 
-A binomial distribution was used by Rettie and Messier  [-@rettie_dynamics_1998] and the Eacker app which uses a binomial distribution in a Bayesian framework [@eacker_webbased_2019] can also generate confidence intervals.
+A binomial distribution was used by Rettie and Messier  [-@rettie_dynamics_1998].
 
 ## Population Growth, $\lambda$
 
@@ -130,7 +130,6 @@ DeCesare et al. [-@decesare_estimating_2012] also considered stage-based matrix 
 Confidence intervals for population growth were calculated through simulation. 
 One way was through Monte Carlo simulations by randomly drawing from the annual survival and recruitment distributions [@rettie_dynamics_1998; @hervieux_widespread_2013; @hervieux_managing_2014] using programs like Excel’s MATLAB or Poptools.
 Another method was through bootstrapping [@mcloughlin_declines_2003].
-The Eacker app which estimates $\lambda$ with uncertainty by simply applying the adjusted recruitment $R_{RM}$ formula to the individual Monte Carlo Markov Chain samples for each iteration [@eacker_webbased_2019].
 
 ## References
 
