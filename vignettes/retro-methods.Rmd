@@ -1,8 +1,8 @@
 ---
-title: "Classical Methods for Estimating Survival, Recruitment, and Population Growth"
+title: "Methods used in `bbouretro` for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Classical Methods for Estimating Survival, Recruitment, and Population Growth}
+  %\VignetteIndexEntry{Methods used in `bbouretro` for Estimating Survival, Recruitment, and Population Growth}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: bibliography.bib
@@ -63,7 +63,7 @@ Cox and Oakes [-@cox_analysis_1984] propose a simple binomial variance formula â
 $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 
 Logit-based confidence limits are estimated using the Wald method.
-Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in `vignette("methods")`.
+Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in `vignette("previous-methods")`.
 
 ## Recruitment, $R$
 
@@ -91,7 +91,7 @@ For the binomial method, variance is estimated as $(R_m \cdot (1 - R_{rm})/n)$ w
 
 It is assumed that both survival and recruitment are independently distributed on the logit scale therefore bounding each value between 0 and 1.
 The bootstrap method is recommended as the most robust approach to obtain variance estimates [@manly_1984] .
-A full summary of methods is given in `vignette("methods")`.
+A full summary of methods is given in `vignette("previous-methods")`.
 
 ## Population Growth, $\lambda$
 
