@@ -29,10 +29,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(bbouretro)
-```
-
 ## Survival, $S$
 
 The Heisey and Fuller [-@heisey_evaluation_1985]  method is a generalization of the basic approach of Mayfield [-@mayfield_nesting_1961] and Trent and Rongstad [-@trent_home_1974] to determine unbiased estimates of cause-specific mortality rates. 
