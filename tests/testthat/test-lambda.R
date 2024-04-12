@@ -267,7 +267,7 @@ test_that("NA instead in dataset work", {
     expect_snapshot({
       print(
         bbr_lambda(recruitment_est, survival_est),
-        n = 100, width = 100
+        n = 100, width = 100, right = TRUE
       )
     })
   })
@@ -333,7 +333,4 @@ test_that("NA instead in dataset work", {
 # )
 # 
 # df
-
-
-
-df
+# https://stackoverflow.com/questions/13590887/print-a-data-frame-with-columns-aligned-as-displayed-in-r

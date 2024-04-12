@@ -1,7 +1,7 @@
 # NA instead in dataset work
 
     Code
-      print(bbr_lambda(recruitment_est, survival_est), n = 100, width = 100)
+      print(bbr_lambda(recruitment_est, survival_est), n = 100, width = 100, right = TRUE)
     Output
       # A tibble: 4 x 11
         PopulationName  Year     S     R estimate      se  lower  upper prop_lgt1
