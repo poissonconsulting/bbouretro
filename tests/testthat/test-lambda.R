@@ -258,10 +258,11 @@ test_that("NA instead in dataset work", {
         " - No Mortalities all year (SE=0)"
       )
     )
-
-    output <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_type(output, "list")
-    expect_snapshot_data(output, "bbr_lambda_simulate_na_test_sum")
+    expect_snapshot({
+      print(
+        bbr_lambda(recruitment_est, survival_est),
+        n = 100, width = 100
+      )
+    })
   })
 })
