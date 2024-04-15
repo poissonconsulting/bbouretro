@@ -38,7 +38,7 @@ The Heisey and Fuller [-@heisey_evaluation_1985] method can be described by the 
 
 $$\hat{s}_i = \frac{x_i - y_i}{x_i}$$
 
-Where $L_$ is the length of days in the interval then the estimated survival rate $(\hat{S}_i)$ for the $i$th interval is
+Where $L_i$ is the length of days in the interval then the estimated survival rate $(\hat{S}_i)$ for the $i$th interval is
 
 $$ \hat{S}_{i} = \hat{s}_{i}^{L_{i}} $$
 The total survival rate, $S^{*}$, over all, $I$, intervals is simply the product of the $\hat{S}_{i}$’s
