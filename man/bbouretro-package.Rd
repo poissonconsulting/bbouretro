@@ -13,12 +13,12 @@ Estimates annual survival, recruitment and population growth using the classical
 
 Authors:
 \itemize{
-  \item John Boulanger \email{boulange@ecological.bc.ca}
+  \item John Boulanger \email{boulange@ecological.bc.ca} (\href{https://orcid.org/0000-0001-8222-1445}{ORCID})
+  \item Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID})
 }
 
 Other contributors:
 \itemize{
-  \item Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID}) [contributor]
   \item Seb Dalgarno \email{seb@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-3658-4517}{ORCID}) [contributor]
   \item Colton Stephens \email{colton@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-8744-6405}{ORCID}) [contributor]
   \item  Province of Alberta [copyright holder]

@@ -51,3 +51,7 @@ round_df_sigs <- function(df, digits) {
     )
   df
 }
+
+check_df_class <- function(df) {
+  vapply(df, class, FUN.VALUE = "")
+}

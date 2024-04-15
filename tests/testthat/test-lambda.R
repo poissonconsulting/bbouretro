@@ -27,9 +27,25 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_a_summary")
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+    
   })
 })
 
@@ -48,9 +64,24 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_b_summary")
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
   })
 })
 
@@ -69,9 +100,24 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_c_summary")
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
   })
 })
 
@@ -105,9 +151,24 @@ test_that("test data works", {
       )
     )
 
-    lambda <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_snapshot_data(lambda, "bbr_lambda_simulate_summary")
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
   })
 })
 
@@ -258,10 +319,24 @@ test_that("NA instead in dataset work", {
         " - No Mortalities all year (SE=0)"
       )
     )
-
-    output <- bbr_lambda(recruitment_est, survival_est)
-
-    expect_type(output, "list")
-    expect_snapshot_data(output, "bbr_lambda_simulate_na_test_sum")
+  
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
   })
 })

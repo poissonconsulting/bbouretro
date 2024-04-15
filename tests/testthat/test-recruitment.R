@@ -27,7 +27,6 @@ test_that("recruitment a works", {
         ),
         n = 100, width = 100
       )
-      set.seed(42)
       print(
         bbr_recruitment(
           bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
@@ -53,7 +52,6 @@ test_that("recruitment b works", {
         ),
         n = 100, width = 100
       )
-      set.seed(42)
       print(
         bbr_recruitment(
           bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
@@ -78,7 +76,6 @@ test_that("recruitment c works", {
       ),
       n = 100, width = 100
     )
-    set.seed(42)
     print(
       bbr_recruitment(
         bboudata::bbourecruit_c, p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
