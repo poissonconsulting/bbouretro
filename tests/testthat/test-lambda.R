@@ -258,16 +258,17 @@ test_that("NA instead in dataset work", {
         " - No Mortalities all year (SE=0)"
       )
     )
-    
-    options(
-      pillar.sigfig = 3,
-      pillar.align = "right"
-    )
+  
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
     
     expect_snapshot({
       print(
-        bbr_lambda(recruitment_est, survival_est),
-        n = 100, width = 100, right = TRUE
+        output
       )
     })
   })
@@ -329,8 +330,8 @@ test_that("NA instead in dataset work", {
 # 
 # options(
 #   pillar.sigfig = 3,
-#   pillar.align = "left"
+#   pillar.align = "right"
 # )
 # 
 # df
-# https://stackoverflow.com/questions/13590887/print-a-data-frame-with-columns-aligned-as-displayed-in-r
+# # https://stackoverflow.com/questions/13590887/print-a-data-frame-with-columns-aligned-as-displayed-in-r
