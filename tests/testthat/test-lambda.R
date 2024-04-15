@@ -340,4 +340,3 @@ test_that("NA instead in dataset work", {
     )
   })
 })
-
