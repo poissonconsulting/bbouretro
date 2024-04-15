@@ -14,3 +14,15 @@
       3 0.850701.... 0.031005....
       4 NaN, NaN.... 0.006496....
 
+---
+
+    Code
+      print(check_df_class(output))
+    Output
+      PopulationName           Year              S              R       estimate 
+         "character"      "integer"      "numeric"      "numeric"      "numeric" 
+                  se          lower          upper      prop_lgt1          ran_s 
+           "numeric"      "numeric"      "numeric"      "numeric"         "AsIs" 
+               ran_r 
+              "AsIs" 
+

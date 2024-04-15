@@ -271,67 +271,12 @@ test_that("NA instead in dataset work", {
         output
       )
     })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+    
   })
 })
-
-
-
-
-
-
-# recruitment_est <- data.frame(
-#   PopulationName = c("C", "C", "C", "C"),
-#   Year = c(2007L, 2008L, 2009L, 2010L),
-#   estimate = c(0.01, 0.02, 0.02, 0.03),
-#   se = c(0.01, 0.02, 0.02, 0.03),
-#   lower = c(0.01, 0.02, 0.02, 0.03),
-#   upper = c(0.01, 0.02, 0.02, 0.03),
-#   groups = c(10L, 15L, 12L, 4L),
-#   female_calves = c(7, 6, 3.5, 1),
-#   females = c(66, 69, 47.95, 16)
-# )
-# 
-# survival_est <- data.frame(
-#   PopulationName = c("C", "C", "C", "C"),
-#   Year = c(2007L, 2008L, 2009L, 2010L),
-#   estimate = c(0.5, 0.7, 0.9, 1),
-#   se = c(0.05, 0.03, 0.03, 0),
-#   lower = c(0.5, 0.7, 0.7, NA),
-#   upper = c(0.6, 0.8, 0.8, NA),
-#   mean_monitored = c(4.5, 12.6, 14.6, 20.2),
-#   sum_dead = c(3L, 3L, 3L, 0L),
-#   sum_alive = c(39L, 149L, 179L, 242L),
-#   status = c(
-#     "Only 9 months monitored - ", " - ", " - ",
-#     " - No Mortalities all year (SE=0)"
-#   )
-# )
-# 
-# 
-# library(pillar)
-# df <- bbr_lambda(recruitment_est, survival_est)
-# 
-# print(df, pillar.align = "left")
-# 
-# 
-# print(df, pillar.sigfig = 1)
-# print(df, pillar.sigfig = 3)
-# print(df, pillar.sigfig = 5)
-# 
-# print(df, align = "right")
-# print(df, align = "left")
-# 
-# 
-# options(
-#   pillar.sigfig = 6
-# )
-# 
-# df
-# 
-# options(
-#   pillar.sigfig = 3,
-#   pillar.align = "right"
-# )
-# 
-# df
-# # https://stackoverflow.com/questions/13590887/print-a-data-frame-with-columns-aligned-as-displayed-in-r
