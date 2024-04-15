@@ -12,104 +12,165 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# test_that("pop a works", {
-#   withr::with_seed(10, {
-#     recruitment_est <- bbr_recruitment(
-#       bboudata::bbourecruit_a,
-#       p_females = 0.65,
-#       sex_ratio = 0.5,
-#       variance = "binomial"
-#     )
-# 
-#     survival_est <- bbr_survival(
-#       bboudata::bbousurv_a,
-#       mort_type = "total",
-#       variance = "cox_oakes"
-#     )
-# 
-#     lambda <- bbr_lambda(recruitment_est, survival_est)
-# 
-#     expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_a_summary")
-#   })
-# })
-# 
-# test_that("pop b works", {
-#   withr::with_seed(10, {
-#     recruitment_est <- bbr_recruitment(
-#       bboudata::bbourecruit_b,
-#       p_females = 0.65,
-#       sex_ratio = 0.5,
-#       variance = "binomial"
-#     )
-# 
-#     survival_est <- bbr_survival(
-#       bboudata::bbousurv_b,
-#       mort_type = "total",
-#       variance = "cox_oakes"
-#     )
-# 
-#     lambda <- bbr_lambda(recruitment_est, survival_est)
-# 
-#     expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_b_summary")
-#   })
-# })
-# 
-# test_that("pop c works", {
-#   withr::with_seed(10, {
-#     recruitment_est <- bbr_recruitment(
-#       bboudata::bbourecruit_c,
-#       p_females = 0.65,
-#       sex_ratio = 0.5,
-#       variance = "binomial"
-#     )
-# 
-#     survival_est <- bbr_survival(
-#       bboudata::bbousurv_c,
-#       mort_type = "total",
-#       variance = "cox_oakes"
-#     )
-# 
-#     lambda <- bbr_lambda(recruitment_est, survival_est)
-# 
-#     expect_snapshot_data(lambda, "bbr_lambda_simulate_pop_c_summary")
-#   })
-# })
-# 
-# test_that("test data works", {
-#   withr::with_seed(10, {
-#     recruitment_est <- data.frame(
-#       PopulationName = rep("C", 4),
-#       Year = c(2003L, 2004L, 2005L, 2006L),
-#       estimate = c(0.01, 0.02, 0.02, 0.03),
-#       se = c(0.01, 0.02, 0.02, 0.03),
-#       lower = c(0.01, 0.02, 0.02, 0.03),
-#       upper = c(0.01, 0.02, 0.02, 0.03),
-#       groups = c(10L, 15L, 12L, 4L),
-#       female_calves = c(7, 6, 3.5, 1),
-#       females = c(66, 69, 47.95, 16)
-#     )
-# 
-#     survival_est <- data.frame(
-#       PopulationName = rep("C", 4),
-#       Year = c(2003L, 2004L, 2005L, 2006L),
-#       estimate = c(0.5, 0.7, 0.9, 1),
-#       se = c(0.05, 0.03, 0.03, 0),
-#       lower = c(0.5, 0.7, 0.7, NaN),
-#       upper = c(0.6, 0.8, 0.8, NaN),
-#       mean_monitored = c(4.5, 12.6, 14.6, 20.2),
-#       sum_dead = c(3L, 3L, 3L, 0L),
-#       sum_alive = c(39L, 149L, 179L, 242L),
-#       status = c(
-#         "Only 9 months monitored - ", " - ", " - ",
-#         " - No Mortalities all year (SE=0)"
-#       )
-#     )
-# 
-#     lambda <- bbr_lambda(recruitment_est, survival_est)
-# 
-#     expect_snapshot_data(lambda, "bbr_lambda_simulate_summary")
-#   })
-# })
+test_that("pop a works", {
+  withr::with_seed(10, {
+    recruitment_est <- bbr_recruitment(
+      bboudata::bbourecruit_a,
+      p_females = 0.65,
+      sex_ratio = 0.5,
+      variance = "binomial"
+    )
+
+    survival_est <- bbr_survival(
+      bboudata::bbousurv_a,
+      mort_type = "total",
+      variance = "cox_oakes"
+    )
+
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+    
+  })
+})
+
+test_that("pop b works", {
+  withr::with_seed(10, {
+    recruitment_est <- bbr_recruitment(
+      bboudata::bbourecruit_b,
+      p_females = 0.65,
+      sex_ratio = 0.5,
+      variance = "binomial"
+    )
+
+    survival_est <- bbr_survival(
+      bboudata::bbousurv_b,
+      mort_type = "total",
+      variance = "cox_oakes"
+    )
+
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+  })
+})
+
+test_that("pop c works", {
+  withr::with_seed(10, {
+    recruitment_est <- bbr_recruitment(
+      bboudata::bbourecruit_c,
+      p_females = 0.65,
+      sex_ratio = 0.5,
+      variance = "binomial"
+    )
+
+    survival_est <- bbr_survival(
+      bboudata::bbousurv_c,
+      mort_type = "total",
+      variance = "cox_oakes"
+    )
+
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+  })
+})
+
+test_that("test data works", {
+  withr::with_seed(10, {
+    recruitment_est <- data.frame(
+      PopulationName = rep("C", 4),
+      Year = c(2003L, 2004L, 2005L, 2006L),
+      estimate = c(0.01, 0.02, 0.02, 0.03),
+      se = c(0.01, 0.02, 0.02, 0.03),
+      lower = c(0.01, 0.02, 0.02, 0.03),
+      upper = c(0.01, 0.02, 0.02, 0.03),
+      groups = c(10L, 15L, 12L, 4L),
+      female_calves = c(7, 6, 3.5, 1),
+      females = c(66, 69, 47.95, 16)
+    )
+
+    survival_est <- data.frame(
+      PopulationName = rep("C", 4),
+      Year = c(2003L, 2004L, 2005L, 2006L),
+      estimate = c(0.5, 0.7, 0.9, 1),
+      se = c(0.05, 0.03, 0.03, 0),
+      lower = c(0.5, 0.7, 0.7, NaN),
+      upper = c(0.6, 0.8, 0.8, NaN),
+      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
+      sum_dead = c(3L, 3L, 3L, 0L),
+      sum_alive = c(39L, 149L, 179L, 242L),
+      status = c(
+        "Only 9 months monitored - ", " - ", " - ",
+        " - No Mortalities all year (SE=0)"
+      )
+    )
+
+    output <- 
+      data.frame(
+        round_df_sigs(
+          bbr_lambda(recruitment_est, survival_est), 3 
+        )
+      )
+    
+    expect_snapshot({
+      print(
+        output
+      )
+    })
+    
+    expect_snapshot(
+      print(
+        check_df_class(output)
+      )
+    )
+  })
+})
 
 test_that("errors if no populations overlap", {
   withr::with_seed(10, {
