@@ -1,6 +1,6 @@
 Package: bbouretro
 Title: Classical Survival, Recruitment and Population Growth Methods
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut",
             comment = c(ORCID = "0000-0001-8222-1445")),
