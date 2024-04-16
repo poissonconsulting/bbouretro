@@ -54,3 +54,12 @@ every_nth <- function(n) {
     }
   }
 }
+
+# caribou year ------------------------------------------------------------
+
+caribou_year <- function(year, month, year_start) {
+  start <- as.Date(paste(year, year_start, "01", sep = "-"))
+  date_in_start <- as.Date(paste(year, month, "01", sep = "-")) >= start
+  year[!date_in_start] <- year[!date_in_start] - 1L
+  year
+}

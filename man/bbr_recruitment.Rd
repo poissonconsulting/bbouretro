@@ -18,7 +18,13 @@ The return object has these columns:
 }
 }
 \usage{
-bbr_recruitment(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap")
+bbr_recruitment(
+  x,
+  p_females = 0.65,
+  sex_ratio = 0.5,
+  variance = "bootstrap",
+  year_start = 4L
+)
 }
 \arguments{
 \item{x}{A data frame that has recruitment data.}
@@ -35,6 +41,8 @@ set at 0.5.}
 
 \item{variance}{Estimate variance using "binomial" or "bootstrap". The
 default is set as "bootstrap".}
+
+\item{year_start}{A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.}
 }
 \value{
 A data frame. The columns are listed in the format section.
