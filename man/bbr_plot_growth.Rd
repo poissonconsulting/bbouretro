@@ -13,7 +13,7 @@ bbr_plot_growth(growth)
 A ggplot object.
 }
 \description{
-A plot of population growth (\eqn{\lambda}) estimates is given for each
+A plot of population growth (\eqn{\lambda}) estimates is given for the
 population unit.
 }
 \examples{

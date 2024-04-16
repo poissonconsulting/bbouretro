@@ -13,8 +13,7 @@ bbr_plot_growth_distributions(growth)
 A ggplot object.
 }
 \description{
-Create histograms of simulated population growth (\eqn{\lambda}) values for a
-chosen population unit.
+Create histograms of simulated population growth (\eqn{\lambda}) values.
 }
 \details{
 Plots are generated that show the distribution of simulated
