@@ -83,30 +83,30 @@ bbr_plot_survival(survival_est)
 ``` r
 
 # calculate lambda now that both recruitment and survival have been calculated
-lambda_est <- bbr_lambda(recruitment_est, survival_est)
-summary <- bbr_lambda_summarize(lambda_est)
+lambda_est <- bbr_growth(recruitment_est, survival_est)
+summary <- bbr_growth_summarize(lambda_est)
 summary
 #> # A tibble: 9 × 13
 #>   PopulationName  Year     S     R estimate     se  lower  upper prop_lgt1
 #>   <chr>          <int> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>     <dbl>
-#> 1 C               2005 0.832 0.096    0.92   0.108  0.631  1.05      0.149
-#> 2 C               2006 1     0.08     1.09  NA     NA     NA        NA    
-#> 3 C               2007 0.524 0.068    0.562  0.108  0.336  0.765     0    
-#> 4 C               2008 0.824 0.059    0.876  0.157  0.481  1.13      0.158
-#> 5 C               2009 1     0.083    1.09  NA     NA     NA        NA    
-#> 6 C               2010 0.926 0.14     1.08   0.077  0.891  1.18      0.847
-#> 7 C               2011 0.96  0.158    1.14   0.086  0.896  1.26      0.925
-#> 8 C               2012 0.963 0.112    1.08   0.071  0.889  1.17      0.875
-#> 9 C               2013 0.512 0.133    0.591  0.013  0.57   0.621     0    
+#> 1 C               2004 0.867 0.096    0.959  0.115  0.636  1.08      0.323
+#> 2 C               2005 0.832 0.08     0.904  0.105  0.633  1.03      0.093
+#> 3 C               2006 1     0.068    1.07  NA     NA     NA        NA    
+#> 4 C               2007 0.458 0.059    0.487  0.128  0.262  0.766     0    
+#> 5 C               2008 0.941 0.083    1.03   0.1    0.739  1.16      0.615
+#> 6 C               2009 1     0.14     1.16  NA     NA     NA        NA    
+#> 7 C               2010 0.926 0.158    1.1    0.085  0.877  1.23      0.854
+#> 8 C               2011 0.96  0.112    1.08   0.075  0.872  1.16      0.861
+#> 9 C               2012 0.924 0.133    1.07   0.072  0.875  1.15      0.808
 #> # ℹ 4 more variables: mean_sim_survival <dbl>, mean_sim_recruitment <dbl>,
 #> #   mean_sim_lambda <dbl>, median_sim_lambda <dbl>
-bbr_plot_lambda(lambda_est)
+bbr_plot_growth(lambda_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
 
 ``` r
-bbr_plot_lambda_distributions(lambda_est, "C")
+bbr_plot_growth_distributions(lambda_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />

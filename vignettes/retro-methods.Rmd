@@ -90,7 +90,7 @@ A full summary of methods is given in `vignette("previous-methods")`.
 
 ## Population Growth, $\lambda$
 
-For `bbr_lambda()` function uses the basic Hatter-Bergerud method [@hatter_moose_1991].
+For `bbr_growth()` function uses the basic Hatter-Bergerud method [@hatter_moose_1991].
 
 The basic Hatter-Bergerud equation used to estimate $\lambda$ is given below.
 
@@ -105,6 +105,6 @@ Also, the proportion of simulations where $\lambda$ is greater than 1 is tabulat
 
 Output summaries also include mean values simulated for $S$, $R$, as well as mean and median $\lambda$ values from the simulation.
 
-Users can generate plots of simulated lambda values using the `bbr_plot_lambda_distributions()` or yearly estimates using `bbr_plot_lambda()`.
+Users can generate plots of simulated lambda values using the `bbr_plot_growth_distributions()` or yearly estimates using `bbr_plot_growth()`.
 
 ## References
