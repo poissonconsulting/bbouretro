@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Plot lambda distributions
+#' Plot population growth distributions
 #'
 #' Create histograms of simulated population growth (\eqn{\lambda}) values for a
 #' chosen population unit.

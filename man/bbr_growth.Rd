@@ -15,10 +15,10 @@ bbr_growth(recruitment, survival)
 A data.frame.
 }
 \description{
-This function uses the output of \code{bbr_survival()} and \code{bbr_recruitment()}
-to estimate \eqn{\lambda} using the Hatter-Bergerud equation (Hatter and
-Bergerud, 1991). Monte Carlo simulation is used to generate confidence limits
-on \eqn{\lambda}.
+This function uses the output of \code{bbr_survival()} and \code{bbr_recruitment()} to
+estimate population growth (\eqn{\lambda}) using the Hatter-Bergerud equation
+(Hatter and Bergerud, 1991). Monte Carlo simulation is used to generate
+confidence limits.
 }
 \details{
 See the \code{vignette("methods", package = "bbouretro")} for
