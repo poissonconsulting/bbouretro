@@ -28,7 +28,7 @@ test_that("pop a works", {
     )
 
     output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "A")
+    plot <- bbr_plot_lambda_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_a")
@@ -51,7 +51,7 @@ test_that("pop b works", {
     )
 
     output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "B")
+    plot <- bbr_plot_lambda_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_b")
@@ -74,59 +74,51 @@ test_that("pop c works", {
     )
 
     output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "C")
+    plot <- bbr_plot_lambda_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_c")
   })
 })
 
-test_that("errors when pop not in data set", {
-  withr::with_seed(10, {
-    recruitment_est <- data.frame(
-      PopulationName = c("A", "A", "A", "A"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
-      estimate = c(0.01, 0.02, 0.02, 0.03),
-      se = c(0.01, 0.02, 0.02, 0.03),
-      lower = c(0.01, 0.02, 0.02, 0.03),
-      upper = c(0.01, 0.02, 0.02, 0.03),
-      groups = c(10L, 15L, 12L, 4L),
-      female_calves = c(7, 6, 3.5, 1),
-      females = c(66, 69, 47.95, 16)
-    )
-
-    survival_est <- data.frame(
-      PopulationName = c("A", "A", "A", "A"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
-      estimate = c(0.5, 0.7, 0.9, 1),
-      se = c(0.05, 0.03, 0.03, 0),
-      lower = c(0.5, 0.7, 0.7, NaN),
-      upper = c(0.6, 0.8, 0.8, NaN),
-      mean_monitored = c(4.5, 12.6, 14.6, 20.2),
-      sum_dead = c(3L, 3L, 3L, 0L),
-      sum_alive = c(39L, 149L, 179L, 242L),
-      status = c(
-        "Only 9 months monitored - ", " - ", " - ",
-        " - No Mortalities all year (SE=0)"
-      )
-    )
-
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "A")
-
-    expect_s3_class(plot, "ggplot")
-
-    expect_error(
-      bbr_plot_lambda_distributions(output, "B"),
-      regexp = "The population is not present in the table\\."
-    )
-  })
-})
-
-test_that("errors when number passed as population", {
-  lambda <- data.frame(PopulationName = "A")
-  expect_error(
-    bbr_plot_lambda_distributions(lambda, 1),
-    regexp = "`population` must be a string \\(non-missing character scalar\\)\\."
-  )
-})
+# test_that("errors when pop not in data set", {
+#   withr::with_seed(10, {
+#     recruitment_est <- data.frame(
+#       PopulationName = c("A", "A", "A", "A"),
+#       Year = c(2003L, 2004L, 2005L, 2006L),
+#       estimate = c(0.01, 0.02, 0.02, 0.03),
+#       se = c(0.01, 0.02, 0.02, 0.03),
+#       lower = c(0.01, 0.02, 0.02, 0.03),
+#       upper = c(0.01, 0.02, 0.02, 0.03),
+#       groups = c(10L, 15L, 12L, 4L),
+#       female_calves = c(7, 6, 3.5, 1),
+#       females = c(66, 69, 47.95, 16)
+#     )
+# 
+#     survival_est <- data.frame(
+#       PopulationName = c("A", "A", "A", "A"),
+#       Year = c(2003L, 2004L, 2005L, 2006L),
+#       estimate = c(0.5, 0.7, 0.9, 1),
+#       se = c(0.05, 0.03, 0.03, 0),
+#       lower = c(0.5, 0.7, 0.7, NaN),
+#       upper = c(0.6, 0.8, 0.8, NaN),
+#       mean_monitored = c(4.5, 12.6, 14.6, 20.2),
+#       sum_dead = c(3L, 3L, 3L, 0L),
+#       sum_alive = c(39L, 149L, 179L, 242L),
+#       status = c(
+#         "Only 9 months monitored - ", " - ", " - ",
+#         " - No Mortalities all year (SE=0)"
+#       )
+#     )
+# 
+#     output <- bbr_lambda(recruitment_est, survival_est)
+#     plot <- bbr_plot_lambda_distributions(output, "A")
+# 
+#     expect_s3_class(plot, "ggplot")
+# 
+#     expect_error(
+#       bbr_plot_lambda_distributions(output, "B"),
+#       regexp = "The population is not present in the table\\."
+#     )
+#   })
+# })
