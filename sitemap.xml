@@ -40,16 +40,16 @@
     <loc>/reference/bbouretro-package.html</loc>
   </url>
   <url>
-    <loc>/reference/bbr_lambda.html</loc>
+    <loc>/reference/bbr_growth.html</loc>
   </url>
   <url>
-    <loc>/reference/bbr_lambda_summarize.html</loc>
+    <loc>/reference/bbr_growth_summarize.html</loc>
   </url>
   <url>
-    <loc>/reference/bbr_plot_lambda.html</loc>
+    <loc>/reference/bbr_plot_growth.html</loc>
   </url>
   <url>
-    <loc>/reference/bbr_plot_lambda_distributions.html</loc>
+    <loc>/reference/bbr_plot_growth_distributions.html</loc>
   </url>
   <url>
     <loc>/reference/bbr_plot_recruitment.html</loc>
