@@ -11,7 +11,7 @@ reference:
   - '`bbr_plot_survival`'
 - title: Lambda
   contents:
-  - '`bbr_lambda`'
-  - '`bbr_lambda_summarize`'
-  - '`bbr_plot_lambda`'
-  - '`bbr_plot_lambda_distributions`'
+  - '`bbr_growth`'
+  - '`bbr_growth_summarize`'
+  - '`bbr_plot_growth`'
+  - '`bbr_plot_growth_distributions`'
