@@ -81,11 +81,11 @@ survival_est <-
 bbr_plot_survival(survival_est)
 
 # calculate lambda now that both recruitment and survival have been calculated
-lambda_est <- bbr_growth(recruitment_est, survival_est)
-summary <- bbr_growth_summarize(lambda_est)
+growth_est <- bbr_growth(recruitment_est, survival_est)
+summary <- bbr_growth_summarize(growth_est)
 summary
-bbr_plot_growth(lambda_est)
-bbr_plot_growth_distributions(lambda_est)
+bbr_plot_growth(growth_est)
+bbr_plot_growth_distributions(growth_est)
 ```
 
 ## bbou Suite

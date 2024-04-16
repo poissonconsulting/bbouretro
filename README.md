@@ -83,8 +83,8 @@ bbr_plot_survival(survival_est)
 ``` r
 
 # calculate lambda now that both recruitment and survival have been calculated
-lambda_est <- bbr_growth(recruitment_est, survival_est)
-summary <- bbr_growth_summarize(lambda_est)
+growth_est <- bbr_growth(recruitment_est, survival_est)
+summary <- bbr_growth_summarize(growth_est)
 summary
 #> # A tibble: 9 × 13
 #>   PopulationName  Year     S     R estimate     se  lower  upper prop_lgt1
@@ -99,14 +99,14 @@ summary
 #> 8 C               2011 0.96  0.112    1.08   0.075  0.872  1.16      0.861
 #> 9 C               2012 0.924 0.133    1.07   0.072  0.875  1.15      0.808
 #> # ℹ 4 more variables: mean_sim_survival <dbl>, mean_sim_recruitment <dbl>,
-#> #   mean_sim_lambda <dbl>, median_sim_lambda <dbl>
-bbr_plot_growth(lambda_est)
+#> #   mean_sim_growth <dbl>, median_sim_growth <dbl>
+bbr_plot_growth(growth_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
 
 ``` r
-bbr_plot_growth_distributions(lambda_est)
+bbr_plot_growth_distributions(growth_est)
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />

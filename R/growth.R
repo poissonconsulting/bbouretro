@@ -36,7 +36,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_growth(recruitment_est, survival_est)
+#' growth_est <- bbr_growth(recruitment_est, survival_est)
 #' }
 bbr_growth <- function(recruitment, survival) {
   

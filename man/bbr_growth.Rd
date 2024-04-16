@@ -28,7 +28,7 @@ using \code{bbr_growth_summarize()} or plotted using \code{bbr_plot_growth()}.
 }
 \examples{
 \dontrun{
-bbr_growth(recruitment_est, survival_est)
+growth_est <- bbr_growth(recruitment_est, survival_est)
 }
 }
 \references{
