@@ -22,9 +22,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_plot_lambda(lambda_est)
+#' bbr_plot_growth(lambda_est)
 #' }
-bbr_plot_lambda <- function(lambda) {
+bbr_plot_growth <- function(lambda) {
   lambda$Year <- as.character(lambda$Year)
 
   chk::check_data(
