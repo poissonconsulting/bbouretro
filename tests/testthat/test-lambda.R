@@ -30,7 +30,7 @@ test_that("pop a works", {
     output <- 
       data.frame(
         round_df_sigs(
-          bbr_lambda(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3 
         )
       )
     
@@ -67,7 +67,7 @@ test_that("pop b works", {
     output <- 
       data.frame(
         round_df_sigs(
-          bbr_lambda(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3 
         )
       )
     
@@ -103,7 +103,7 @@ test_that("pop c works", {
     output <- 
       data.frame(
         round_df_sigs(
-          bbr_lambda(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3 
         )
       )
     
@@ -154,7 +154,7 @@ test_that("test data works", {
     output <- 
       data.frame(
         round_df_sigs(
-          bbr_lambda(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3 
         )
       )
     
@@ -203,7 +203,7 @@ test_that("errors if no populations overlap", {
     )
 
     expect_error(
-      bbr_lambda(recruitment_est, survival_est),
+      bbr_growth(recruitment_est, survival_est),
       regexp = "recruitment and survival must have overlapping values in ."
     )
   })
@@ -240,7 +240,7 @@ test_that("errors if no years overlap", {
     )
 
     expect_error(
-      bbr_lambda(recruitment_est, survival_est),
+      bbr_growth(recruitment_est, survival_est),
       regexp = "recruitment and survival must have overlapping values."
     )
   })
@@ -262,7 +262,7 @@ test_that("errors when recruitment has rows passed", {
     )
 
     chk::expect_chk_error(
-      bbr_lambda(recruitment_est, survival_est),
+      bbr_growth(recruitment_est, survival_est),
       regexp = "must"
     )
   })
@@ -284,7 +284,7 @@ test_that("errors when survival has rows passed", {
     )[0, ]
 
     chk::expect_chk_error(
-      bbr_lambda(recruitment_est, survival_est),
+      bbr_growth(recruitment_est, survival_est),
       regexp = "must"
     )
   })
@@ -323,7 +323,7 @@ test_that("NA instead in dataset work", {
     output <- 
       data.frame(
         round_df_sigs(
-          bbr_lambda(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3 
         )
       )
     

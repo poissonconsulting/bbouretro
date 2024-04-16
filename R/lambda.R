@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Simulate lambda
+#' Simulate population growth
 #'
 #' This function uses the output of `bbr_survival()` and `bbr_recruitment()`
 #' to estimate \eqn{\lambda} using the Hatter-Bergerud equation (Hatter and
@@ -26,8 +26,8 @@
 #'
 #' @details See the `vignette("methods", package = "bbouretro")` for
 #'   descriptions of the equations used. The raw_values can be plotted using
-#'   `bbr_plot_lambda_distributions()` and the summary data frame can be output
-#'   using `bbr_lambda_summarize()` or plotted using `bbr_plot_lambda()`.
+#'   `bbr_plot_growth_distributions()` and the summary data frame can be output
+#'   using `bbr_growth_summarize()` or plotted using `bbr_plot_growth()`.
 #'
 #' @export
 #'
@@ -36,9 +36,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' bbr_lambda(recruitment_est, survival_est)
+#' bbr_growth(recruitment_est, survival_est)
 #' }
-bbr_lambda <- function(recruitment, survival) {
+bbr_growth <- function(recruitment, survival) {
   
   chk::check_data(
     recruitment,
