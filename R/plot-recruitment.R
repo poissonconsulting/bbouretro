@@ -49,7 +49,7 @@ bbr_plot_recruitment <- function(recruitment) {
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
     scale_x_discrete(breaks = every_nth(n = 2)) +
-    xlab("Year") +
+    xlab("Caribou Year") +
     ylab("Recruitment") +
     facet_wrap(~PopulationName, ncol = 1) +
     theme_bw(base_size = 14) +

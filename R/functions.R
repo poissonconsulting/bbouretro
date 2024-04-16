@@ -54,3 +54,24 @@ every_nth <- function(n) {
     }
   }
 }
+
+# caribou year ------------------------------------------------------------
+
+caribou_year <- function(year, month, year_start) {
+  start <- as.Date(paste(year, year_start, "01", sep = "-"))
+  date_in_start <- as.Date(paste(year, month, "01", sep = "-")) >= start
+  year[!date_in_start] <- year[!date_in_start] - 1L
+  year
+}
+
+
+# month levels ------------------------------------------------------------
+# leaves month but sets factor levels to be caribou month for model and plotting
+message("remove")
+# month_levels <- function(first, n) {
+#   levels <- 1:n
+#   if (first != 1) {
+#     levels <- c(first:n, 1:(first - 1))
+#   }
+#   levels
+# }

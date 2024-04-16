@@ -27,6 +27,7 @@
 #'   set at 0.5.
 #' @param variance Estimate variance using "binomial" or "bootstrap". The
 #'   default is set as "bootstrap".
+#' @param year_start A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
@@ -72,11 +73,13 @@
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap") {
+bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(p_females)
   chk::chk_range(sex_ratio)
   chk::chk_string(variance)
+  chk::chk_whole_number(year_start)
+  chk::chk_range(year_start, c(1, 12))
   
   # Estimate total females based on p_females and sex_ratio
   x <- dplyr::mutate(
@@ -85,6 +88,9 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     female_calves = .data$Calves * sex_ratio
   )
   
+  # set caribou year
+  x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
+
   # summarize by population and year
   Compfull <-
     x |>

@@ -19,7 +19,7 @@ The return object has these columns:
 }
 }
 \usage{
-bbr_survival(x, mort_type = "total", variance = "greenwood")
+bbr_survival(x, mort_type = "total", variance = "greenwood", year_start = 4L)
 }
 \arguments{
 \item{x}{A data frame that has survival data.}
@@ -31,6 +31,8 @@ only \code{"certain"} mortalities (MortalitiesCertain). The default is
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
 \code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is "greenwood".}
+
+\item{year_start}{A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.}
 }
 \value{
 A data frame. The columns are listed in the format section.

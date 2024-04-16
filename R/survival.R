@@ -24,6 +24,7 @@
 #'   `"total"`.
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
 #'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is "greenwood".
+#' @param year_start A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.
 #'
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
@@ -63,10 +64,12 @@
 #'   mort_type = "certain",
 #'   variance = "cox_oakes"
 #' )
-bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
+bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_start = 4L) {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_string(mort_type)
   chk::chk_string(variance)
+  chk::chk_whole_number(year_start)
+  chk::chk_range(year_start, c(1, 12))
 
   # make sure data set is sorted properly
   x <- dplyr::arrange(x, .data$Year, .data$Month)
@@ -81,13 +84,16 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood") {
   # and estimates scaled appropriately
   x <- subset(x, x$StartTotal > 0)
 
+  # set caribou year
+  x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
+  
   # calculate monthly components of survival and variance
   LiveDeadCount <- dplyr::mutate(
     x,
     Smonth = (1 - (.data$Morts / .data$StartTotal)),
     Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
-
+  
   YearSurv <-
     LiveDeadCount |>
     dplyr::group_by(.data$Year) |>
