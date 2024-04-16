@@ -33,7 +33,7 @@
 bbr_plot_growth_distributions <- function(growth) {
   chk::chk_data(growth)
   chk_population(growth)
-  
+
   Ld <- growth |>
     tidyr::unnest(cols = c("ran_s", "ran_r")) |>
     dplyr::mutate(RanLambda = .data$ran_s / (1 - .data$ran_r))
@@ -41,17 +41,17 @@ bbr_plot_growth_distributions <- function(growth) {
   # screen out sims where random lambda is NA (likely due to S=1 with 0 variance)
   # year is still plotted as a line but with no distribution
   LrawR <- subset(Ld, is.na(Ld$RanLambda) == FALSE)
-  
+
   # set lambda limits for x axis based all lambda--this reduces influence of outliers
   xmin <- quantile(LrawR$RanLambda, 0.0001)
   xmax <- quantile(LrawR$RanLambda, 0.99)
   # make sure that limits are still within range of lambda estimates for estimates with no CI's
   xmax <- ifelse(xmax <= max(growth$estimate), max(growth$estimate) + 0.05, xmax)
   xmin <- ifelse(xmin >= min(growth$estimate), min(growth$estimate) - 0.05, xmin)
-  
+
   # subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
   LrawR <- subset(LrawR, LrawR$RanLambda >= xmin & LrawR$RanLambda <= xmax)
-  
+
   # plot estimated lambda for each year as a red line with
   # a black hashed line indicates lambda=1.
   ggplot(LrawR, aes(.data$RanLambda)) +

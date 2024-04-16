@@ -27,25 +27,24 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- 
+    output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3
         )
       )
-    
+
     expect_snapshot({
       print(
         output
       )
     })
-    
+
     expect_snapshot(
       print(
         check_df_class(output)
       )
     )
-    
   })
 })
 
@@ -64,19 +63,19 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- 
+    output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3
         )
       )
-    
+
     expect_snapshot({
       print(
         output
       )
     })
-    
+
     expect_snapshot(
       print(
         check_df_class(output)
@@ -100,19 +99,19 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- 
+    output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3
         )
       )
-    
+
     expect_snapshot({
       print(
         output
       )
     })
-    
+
     expect_snapshot(
       print(
         check_df_class(output)
@@ -151,19 +150,19 @@ test_that("test data works", {
       )
     )
 
-    output <- 
+    output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3
         )
       )
-    
+
     expect_snapshot({
       print(
         output
       )
     })
-    
+
     expect_snapshot(
       print(
         check_df_class(output)
@@ -319,20 +318,20 @@ test_that("NA instead in dataset work", {
         " - No Mortalities all year (SE=0)"
       )
     )
-  
-    output <- 
+
+    output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(recruitment_est, survival_est), 3 
+          bbr_growth(recruitment_est, survival_est), 3
         )
       )
-    
+
     expect_snapshot({
       print(
         output
       )
     })
-    
+
     expect_snapshot(
       print(
         check_df_class(output)

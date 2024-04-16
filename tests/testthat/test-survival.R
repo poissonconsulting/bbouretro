@@ -16,25 +16,29 @@ test_that("survival a works", {
   expect_snapshot({
     print(
       bbr_survival(
-        bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"
+        bboudata::bbousurv_a,
+        mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"
+        bboudata::bbousurv_a,
+        mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"
+        bboudata::bbousurv_a,
+        mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"
+        bboudata::bbousurv_a,
+        mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -45,25 +49,29 @@ test_that("survival b works", {
   expect_snapshot({
     print(
       bbr_survival(
-        bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"
+        bboudata::bbousurv_b,
+        mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"
+        bboudata::bbousurv_b,
+        mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"
+        bboudata::bbousurv_b,
+        mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"
+        bboudata::bbousurv_b,
+        mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -74,25 +82,29 @@ test_that("survival c works", {
   expect_snapshot({
     print(
       bbr_survival(
-        bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"
+        bboudata::bbousurv_c,
+        mort_type = "total", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"
+        bboudata::bbousurv_c,
+        mort_type = "certain", variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"
+        bboudata::bbousurv_c,
+        mort_type = "total", variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
-        bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"
+        bboudata::bbousurv_c,
+        mort_type = "certain", variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -127,7 +139,7 @@ test_that("status message", {
   output <- bbr_survival(
     bboudata::bbousurv_c
   )
-  
+
   expect_equal(
     unique(output$status[output$sum_dead == 0]),
     " - No Mortalities all year (SE=0)"

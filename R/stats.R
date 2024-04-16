@@ -14,7 +14,7 @@
 
 # White, G.C., Burnham, K.P., and Anderson, D.R. 2001. Advanced features of Program Mark. In Wildlife, land, and people: prioritiesfor the 21st century. Edited by R. Field, R.J. Warren, H. Okarma, and P.R. Sievert. The Wildlife Society, Bethesda, Maryland. pp. 368–377.
 logit_se <- function(se, estimate) {
-  sqrt(se^2/(estimate^2 * (1 - estimate)^2))
+  sqrt(se^2 / (estimate^2 * (1 - estimate)^2))
 }
 
 logit <- function(x) {
@@ -26,13 +26,13 @@ ilogit <- function(x) {
 }
 
 binomial_variance <- function(p, n) {
-  (p * (1-p)) / n
+  (p * (1 - p)) / n
 }
 
 wald_cl <- function(estimate, se, upper = FALSE, level = 0.95) {
   q <- (1 - level) / 2
   z <- qnorm(q)
-  if(upper) {
+  if (upper) {
     z <- z * -1
   }
   estimate + se * z

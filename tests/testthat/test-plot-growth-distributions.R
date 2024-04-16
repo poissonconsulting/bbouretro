@@ -112,7 +112,7 @@ test_that("errors when more then 1 pop in data set", {
     )
 
     output <- bbr_growth(recruitment_est, survival_est)
-    output[1,1] <- "B"
+    output[1, 1] <- "B"
 
     expect_error(
       bbr_plot_growth_distributions(output),
