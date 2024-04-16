@@ -17,8 +17,8 @@ The return object has these columns:
 \item{prop_lgt1}{Proportion simulations where lambda>1}
 \item{mean_sim_survival}{Mean simulated survival value}
 \item{mean_sim_recruitment}{Mean simulated recruitment value}
-\item{mean_sim_growth}{Mean simulated lambda value}
-\item{median_sim_growth}{Median simulated lambda value}
+\item{mean_sim_growth}{Mean simulated population growth (lambda) value}
+\item{median_sim_growth}{Median simulated population growth (lambda) value}
 }
 }
 \usage{
