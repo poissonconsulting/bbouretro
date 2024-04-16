@@ -39,7 +39,6 @@
 #' growth_est <- bbr_growth(recruitment_est, survival_est)
 #' }
 bbr_growth <- function(recruitment, survival) {
-  
   chk::check_data(
     recruitment,
     values = list(
@@ -49,8 +48,8 @@ bbr_growth <- function(recruitment, survival) {
       se = numeric()
     ),
     nrow = c(1, Inf)
-  ) 
-  
+  )
+
   chk::check_data(
     survival,
     values = list(
@@ -61,36 +60,40 @@ bbr_growth <- function(recruitment, survival) {
     ),
     nrow = c(1, Inf)
   )
-  
+
   survival <- survival |>
-    dplyr::select( 
-      "PopulationName", 
-      "Year", 
+    dplyr::select(
+      "PopulationName",
+      "Year",
       "S" = "estimate",
-      "S_SE" = "se")
-  
+      "S_SE" = "se"
+    )
+
   # merge the comp and survival databases
   lambda <- recruitment |>
     dplyr::select(
-      "PopulationName", 
-      "Year", 
+      "PopulationName",
+      "Year",
       "R" = "estimate",
-      "R_SE" = "se") |>
+      "R_SE" = "se"
+    ) |>
     dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
-    dplyr::mutate(estimate = .data$S / (1 - .data$R),
-                  group = seq_len(dplyr::n()))
-  
-  if(!nrow(lambda)) {
+    dplyr::mutate(
+      estimate = .data$S / (1 - .data$R),
+      group = seq_len(dplyr::n())
+    )
+
+  if (!nrow(lambda)) {
     rlang::abort(
       "recruitment and survival must have overlapping values in recruitment and survival."
     )
   }
-  
+
   # total number of groups (projectXYear) for sims
   groups <- nrow(lambda)
   # fix sims at 1000
   sims <- 1000
-  
+
   # generate random normal data frames for survival and recruitment and group number to each
   # set of 1000 random numbers.  Use seperate random numbers for S and R to ensure independence
   # merge the random numbers with input data set based on group/row #
@@ -99,10 +102,14 @@ bbr_growth <- function(recruitment, survival) {
   # generate random values by adding random variation based on the SE of estimates-transform back to 0 to 1 interval.
   # random H-B lambda based on simulated R and S
   # summary of simulation and percentile based estimated CI's for lambda
-  lambda_sim <- expand.grid(group = seq_len(groups), 
-                            sim = seq_len(sims)) |>
-    dplyr::mutate(RannorS = rnorm(dplyr::n()), 
-                  RannorR = rnorm(dplyr::n())) |>
+  lambda_sim <- expand.grid(
+    group = seq_len(groups),
+    sim = seq_len(sims)
+  ) |>
+    dplyr::mutate(
+      RannorS = rnorm(dplyr::n()),
+      RannorR = rnorm(dplyr::n())
+    ) |>
     dplyr::arrange(.data$group) |>
     dplyr::inner_join(lambda, by = "group") |>
     dplyr::mutate(
@@ -112,8 +119,9 @@ bbr_growth <- function(recruitment, survival) {
       RElogit = logit_se(.data$R_SE, .data$R),
       ran_s = ilogit(.data$Slogit + .data$RannorS * .data$SElogit),
       ran_r = ilogit(.data$Rlogit + .data$RannorR * .data$RElogit),
-      RanLambda =.data$ran_s / (1 - .data$ran_r),
-      LGT1 = ifelse(.data$RanLambda > 1, 1, 0)) |>
+      RanLambda = .data$ran_s / (1 - .data$ran_r),
+      LGT1 = ifelse(.data$RanLambda > 1, 1, 0)
+    ) |>
     dplyr::group_by(
       .data$PopulationName, .data$Year, .data$S, .data$R, .data$estimate
     ) |>
@@ -127,6 +135,6 @@ bbr_growth <- function(recruitment, survival) {
     ) |>
     dplyr::ungroup() |>
     tibble::tibble()
-  
+
   lambda_sim
 }

@@ -46,8 +46,9 @@
 bbr_growth_summarize <- function(growth) {
   chk::check_names(growth, c(
     "PopulationName", "Year", "S", "R", "estimate", "se", "lower", "upper",
-    "prop_lgt1", "ran_r", "ran_s"))
-  
+    "prop_lgt1", "ran_r", "ran_s"
+  ))
+
   chk::check_data(
     growth,
     values = list(
@@ -63,17 +64,19 @@ bbr_growth_summarize <- function(growth) {
     )
   )
   # TODO: check ran_r and ran_s columns but they are lists
-  
+
   growth <- growth |>
     dplyr::mutate(
       mean_sim_survival = purrr::map_dbl(.data$ran_s, mean),
       mean_sim_recruitment = purrr::map_dbl(.data$ran_r, mean),
-      lambda = purrr::map2(.data$ran_s, .data$ran_r, function(s,r) { s / (1 - r) }),
+      lambda = purrr::map2(.data$ran_s, .data$ran_r, function(s, r) {
+        s / (1 - r)
+      }),
       mean_sim_growth = purrr::map_dbl(.data$lambda, mean),
       median_sim_growth = purrr::map_dbl(.data$lambda, median)
     ) |>
     dplyr::select(!c("ran_s", "ran_r", "lambda"))
-  
+
   growth[-(1:2)] <- round(growth[-(1:2)], 3)
   growth
 }

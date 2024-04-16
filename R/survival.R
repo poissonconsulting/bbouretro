@@ -86,14 +86,14 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
 
   # set caribou year
   x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
-  
+
   # calculate monthly components of survival and variance
   LiveDeadCount <- dplyr::mutate(
     x,
     Smonth = (1 - (.data$Morts / .data$StartTotal)),
     Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
-  
+
   YearSurv <-
     LiveDeadCount |>
     dplyr::group_by(.data$Year) |>
@@ -157,23 +157,23 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
   YearSurv$S_CIL <- round(YearSurv$S_CIL, 3)
   YearSurv$S_CIU <- round(YearSurv$S_CIU, 3)
 
-  YearSurv <- 
+  YearSurv <-
     YearSurv |>
     dplyr::mutate(
-      PopulationName = unique(x$PopulationName) 
+      PopulationName = unique(x$PopulationName)
     ) |>
     dplyr::select(
-    "PopulationName", 
-    "Year", 
-    "estimate" = "S", 
-    "se" = "S_SE", 
-    "lower" = "S_CIL", 
-    "upper" = "S_CIU", 
-    "mean_monitored",
-    "sum_dead", 
-    "sum_alive", 
-    "status"
-  ) |>
+      "PopulationName",
+      "Year",
+      "estimate" = "S",
+      "se" = "S_SE",
+      "lower" = "S_CIL",
+      "upper" = "S_CIU",
+      "mean_monitored",
+      "sum_dead",
+      "sum_alive",
+      "status"
+    ) |>
     tibble::tibble()
 
   YearSurv
