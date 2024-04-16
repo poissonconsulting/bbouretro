@@ -27,8 +27,8 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "A")
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_a")
@@ -50,8 +50,8 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "B")
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_b")
@@ -73,15 +73,15 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "C")
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_distributions_pop_c")
   })
 })
 
-test_that("errors when pop not in data set", {
+test_that("errors when more then 1 pop in data set", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = c("A", "A", "A", "A"),
@@ -111,22 +111,12 @@ test_that("errors when pop not in data set", {
       )
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda_distributions(output, "A")
-
-    expect_s3_class(plot, "ggplot")
+    output <- bbr_growth(recruitment_est, survival_est)
+    output[1, 1] <- "B"
 
     expect_error(
-      bbr_plot_lambda_distributions(output, "B"),
-      regexp = "The population is not present in the table\\."
+      bbr_plot_growth_distributions(output),
+      regexp = "'PopulationName' can only contain one unique value\\."
     )
   })
-})
-
-test_that("errors when number passed as population", {
-  lambda <- data.frame(PopulationName = "A")
-  expect_error(
-    bbr_plot_lambda_distributions(lambda, 1),
-    regexp = "`population` must be a string \\(non-missing character scalar\\)\\."
-  )
 })

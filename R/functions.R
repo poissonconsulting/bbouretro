@@ -22,16 +22,15 @@ chk_has_data <- function(x) {
   rlang::abort(paste(deparse(substitute(x)), "must have rows"))
 }
 
-chk_set <- function(x, name) {
-  if (x %in% name$PopulationName) {
-    return(invisible(x))
+chk_population <- function(x) {
+  if (vld_population(x)) {
+    return(invisible())
   }
+  chk::abort_chk("'PopulationName' can only contain one unique value.")
+}
 
-  rlang::abort(
-    paste(
-      "The population is not present in the table."
-    )
-  )
+vld_population <- function(x) {
+  length(unique(x$PopulationName)) == 1L
 }
 
 # Bootstrap ---------------------------------------------------------------

@@ -27,8 +27,8 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda(output)
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_pop_a")
@@ -50,8 +50,8 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda(output)
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_pop_b")
@@ -73,8 +73,8 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_lambda(recruitment_est, survival_est)
-    plot <- bbr_plot_lambda(output)
+    output <- bbr_growth(recruitment_est, survival_est)
+    plot <- bbr_plot_growth(output)
 
     expect_s3_class(plot, "ggplot")
     expect_snapshot_plot(plot, "plot_lambda_pop_c")
@@ -84,7 +84,7 @@ test_that("pop c works", {
 test_that("errors when summary is an empty dataframe", {
   lambda <- data.frame()
   expect_error(
-    bbr_plot_lambda(lambda),
+    bbr_plot_growth(lambda),
     regexp = "must"
   )
 })

@@ -27,8 +27,8 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    lambda <- bbr_lambda(recruitment_est, survival_est)
-    output <- bbr_lambda_summarize(lambda)
+    lambda <- bbr_growth(recruitment_est, survival_est)
+    output <- bbr_growth_summarize(lambda)
 
     expect_s3_class(output, "data.frame")
     expect_snapshot_data(output, "bbr_lambda_summarize_pop_a")
@@ -38,7 +38,7 @@ test_that("pop a works", {
 test_that("errors with list that doesn't have correct columns", {
   lambda <- data.frame(y = 2)
   expect_error(
-    bbr_lambda_summarize(lambda),
-    regexp = "`names\\(lambda\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'ran_s'."
+    bbr_growth_summarize(lambda),
+    regexp = "`names\\(growth\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'ran_s'."
   )
 })

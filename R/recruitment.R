@@ -80,14 +80,14 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
-  
+
   # Estimate total females based on p_females and sex_ratio
   x <- dplyr::mutate(
     x,
     females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
     female_calves = .data$Calves * sex_ratio
   )
-  
+
   # set caribou year
   x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
 
@@ -105,7 +105,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
       groups = length(.data$Year)
     ) |>
     dplyr::ungroup()
-  
+
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
   Compfull$CalfCow <- Compfull$Calves / Compfull$females
@@ -113,7 +113,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
   Compfull$CalfCowF <- Compfull$CalfCow * sex_ratio
   # Recruitment using DeCesare correction
   Compfull$R <- Compfull$CalfCowF / (1 + Compfull$CalfCowF)
-  
+
   # variance estimation.
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
@@ -123,13 +123,13 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     Compfull <- dplyr::mutate(
       Compfull,
       logits = logit(.data$R),
-      selogit = logit_se(.data$R_SE,  .data$R)
+      selogit = logit_se(.data$R_SE, .data$R)
     )
     Compfull$R_CIU <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = TRUE))
     Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
   }
-  
-  # bootstrap approach 
+
+  # bootstrap approach
   if (variance == "bootstrap") {
     # bootstrap by year
     boot <-
@@ -137,7 +137,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
       purrr::map(
         function(x) boot(data = x, rec_calc, R = 1000)
       )
-      
+
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
       year <- x
@@ -151,16 +151,16 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
         R_CIU = quants[3]
       )
     })
-    
+
     Compfull <- merge(
       Compfull,
       pc[c("Year", "R_SE", "R_CIL", "R_CIU")],
       by = c("Year")
     )
   }
-  
+
   # An abbreviated output data set.
-  Compfull <- 
+  Compfull <-
     Compfull |>
     dplyr::mutate(
       PopulationName = unique(x$PopulationName),
@@ -174,16 +174,16 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
       .before = "Year"
     ) |>
     dplyr::select(
-      "PopulationName", 
-      "Year", 
-      "estimate" = "R", 
-      "se" = "R_SE", 
-      "lower" = "R_CIL", 
-      "upper" = "R_CIU", 
-      "groups", 
-      "female_calves", 
+      "PopulationName",
+      "Year",
+      "estimate" = "R",
+      "se" = "R_SE",
+      "lower" = "R_CIL",
+      "upper" = "R_CIU",
+      "groups",
+      "female_calves",
       "females"
     )
-  
+
   tibble::as_tibble(Compfull)
 }
