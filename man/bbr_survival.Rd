@@ -30,9 +30,12 @@ only \code{"certain"} mortalities (MortalitiesCertain). The default is
 \code{"total"}.}
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
-\code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is "greenwood".}
+\code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is
+"greenwood".}
 
-\item{year_start}{A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.}
+\item{year_start}{A whole number between 1 and 12 indicating the month of the
+start of the caribou (i.e., biological) year. By default, April is set as
+the start of the caribou year.}
 }
 \value{
 A data frame. The columns are listed in the format section.

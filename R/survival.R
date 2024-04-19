@@ -23,9 +23,12 @@
 #'   only `"certain"` mortalities (MortalitiesCertain). The default is
 #'   `"total"`.
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
-#'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is "greenwood".
-#' @param year_start A whole number between 1 and 12 indicating the start of the caribou (i.e., biological) year. By default, April is set as the start of the caribou year.
-#'
+#'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is
+#'   "greenwood".
+#' @param year_start A whole number between 1 and 12 indicating the month of the
+#'   start of the caribou (i.e., biological) year. By default, April is set as
+#'   the start of the caribou year.
+#' 
 #' @details `x` needs to be formatted in a certain manner. To confirm the input
 #'   data frame is in the right format you can use the
 #'   [`bbd_chk_data_survival`](https://poissonconsulting.github.io/bboudata/reference/bbd_chk_data_survival.html)
