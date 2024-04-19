@@ -45,7 +45,7 @@
 #' \describe{
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
-#' \item{esimate}{Recruitment estimate }
+#' \item{estimate}{Recruitment estimate}
 #' \item{se}{SE}
 #' \item{lower}{Confidence limit}
 #' \item{upper}{Confidence limit}
