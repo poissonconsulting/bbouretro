@@ -85,7 +85,7 @@ test_that("errors when more then 1 pop in data set", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = c("A", "A", "A", "A"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.01, 0.02, 0.02, 0.03),
       se = c(0.01, 0.02, 0.02, 0.03),
       lower = c(0.01, 0.02, 0.02, 0.03),
@@ -97,7 +97,7 @@ test_that("errors when more then 1 pop in data set", {
 
     survival_est <- data.frame(
       PopulationName = c("A", "A", "A", "A"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.5, 0.7, 0.9, 1),
       se = c(0.05, 0.03, 0.03, 0),
       lower = c(0.5, 0.7, 0.7, NaN),

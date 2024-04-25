@@ -62,7 +62,7 @@ test_that("pop c works", {
 test_that("test xaxis labels", {
   recruitment_est <- data.frame(
     PopulationName = rep("A", 7),
-    Year = c(2003L, 2004L, 2005L, 2006L, 2007L, 2008L, 2009L),
+    CaribouYear = c(2003L, 2004L, 2005L, 2006L, 2007L, 2008L, 2009L),
     estimate = c(0.1, 0.2, 0.2, 0.3, 0.3, 0.3, 0.3),
     se = c(0.01, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03),
     lower = c(0.01, 0.02, 0.02, 0.03, 0.03, 0.03, 0.03),
@@ -101,7 +101,7 @@ test_that("errors if no year column", {
 
   expect_error(
     bbr_plot_recruitment(recruitment_est),
-    regexp = "`names\\(recruitment\\)` must include 'Year'\\."
+    regexp = "`names\\(recruitment\\)` must include 'CaribouYear'\\."
   )
 })
 

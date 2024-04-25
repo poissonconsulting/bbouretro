@@ -167,7 +167,7 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
     ) |>
     dplyr::select(
       "PopulationName",
-      "Year",
+      "CaribouYear" = "Year",
       "estimate" = "S",
       "se" = "S_SE",
       "lower" = "S_CIL",

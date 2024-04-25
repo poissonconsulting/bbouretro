@@ -58,7 +58,7 @@ bbr_plot_growth_distributions <- function(growth) {
     geom_histogram(bins = 30, fill = "tan", color = "black") +
     geom_vline(data = growth, aes(xintercept = .data$estimate), color = "red") +
     geom_vline(xintercept = 1, linetype = 2, color = "black") +
-    facet_wrap(~ .data$Year) +
+    facet_wrap(~ .data$CaribouYear) +
     xlab("Lambda Values") +
     ylab("Frequencies") +
     theme_bw()

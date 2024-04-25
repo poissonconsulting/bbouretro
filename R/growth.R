@@ -43,7 +43,7 @@ bbr_growth <- function(recruitment, survival) {
     recruitment,
     values = list(
       PopulationName = character(),
-      Year = integer(),
+      CaribouYear = integer(),
       estimate = numeric(),
       se = numeric()
     ),
@@ -54,7 +54,7 @@ bbr_growth <- function(recruitment, survival) {
     survival,
     values = list(
       PopulationName = character(),
-      Year = integer(),
+      CaribouYear = integer(),
       estimate = numeric(),
       se = numeric()
     ),
@@ -64,7 +64,7 @@ bbr_growth <- function(recruitment, survival) {
   survival <- survival |>
     dplyr::select(
       "PopulationName",
-      "Year",
+      "CaribouYear",
       "S" = "estimate",
       "S_SE" = "se"
     )
@@ -73,11 +73,11 @@ bbr_growth <- function(recruitment, survival) {
   lambda <- recruitment |>
     dplyr::select(
       "PopulationName",
-      "Year",
+      "CaribouYear",
       "R" = "estimate",
       "R_SE" = "se"
     ) |>
-    dplyr::inner_join(survival, by = c("PopulationName", "Year")) |>
+    dplyr::inner_join(survival, by = c("PopulationName", "CaribouYear")) |>
     dplyr::mutate(
       estimate = .data$S / (1 - .data$R),
       group = seq_len(dplyr::n())
@@ -123,7 +123,7 @@ bbr_growth <- function(recruitment, survival) {
       LGT1 = ifelse(.data$RanLambda > 1, 1, 0)
     ) |>
     dplyr::group_by(
-      .data$PopulationName, .data$Year, .data$S, .data$R, .data$estimate
+      .data$PopulationName, .data$CaribouYear, .data$S, .data$R, .data$estimate
     ) |>
     dplyr::summarize(
       se = sd(.data$RanLambda, na.rm = TRUE),

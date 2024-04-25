@@ -32,19 +32,19 @@ bbr_plot_recruitment <- function(recruitment) {
     recruitment,
     values = list(
       PopulationName = character(),
-      Year = integer(),
+      CaribouYear = integer(),
       estimate = numeric(),
       lower = numeric(),
       upper = numeric()
     )
   )
 
-  recruitment$Year <- as.character(recruitment$Year)
+  recruitment$CaribouYear <- as.character(recruitment$CaribouYear)
 
-  ggplot(recruitment, aes(.data$Year, .data$estimate)) +
+  ggplot(recruitment, aes(.data$CaribouYear, .data$estimate)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$lower, ymax = .data$upper),
+      aes(x = .data$CaribouYear, ymin = .data$lower, ymax = .data$upper),
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +

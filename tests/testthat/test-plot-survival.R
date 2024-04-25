@@ -60,7 +60,7 @@ test_that("pop c works", {
 test_that("skip x ticks when more then 6 groups", {
   survival_est <- data.frame(
     PopulationName = rep("A", 7),
-    Year = c(2003L, 2004L, 2005L, 2006L, 2007L, 2008L, 2009L),
+    CaribouYear = c(2003L, 2004L, 2005L, 2006L, 2007L, 2008L, 2009L),
     estimate = c(0.57, 0.72, 0.75, 1, 0.6, 0.7, 0.8),
     se = c(0.05, 0.03, 0.03, 0, 0.02, 0.04, 0.06),
     lower = c(0.5, 0.7, 0.7, NaN, 0.4, 0.65, 0.72),
@@ -105,7 +105,7 @@ test_that("errors if no year column", {
 
   expect_error(
     bbr_plot_survival(survival_est),
-    regexp = "`names\\(survival\\)` must include 'Year'\\."
+    regexp = "`names\\(survival\\)` must include 'CaribouYear'\\."
   )
 })
 
@@ -121,7 +121,7 @@ test_that("errors if list passed", {
 test_that("errors if df is empty", {
   survival_est <- data.frame(
     PopulationName = "A",
-    Year = 2001L
+    CaribouYear = 2001L
   )[0, ]
 
   expect_error(

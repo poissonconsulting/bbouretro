@@ -32,24 +32,24 @@ bbr_plot_survival <- function(survival) {
     survival,
     values = list(
       PopulationName = character(),
-      Year = integer(),
+      CaribouYear = integer(),
       estimate = numeric(),
       lower = numeric(),
       upper = numeric()
     )
   )
 
-  survival$Year <- as.character(survival$Year)
+  survival$CaribouYear <- as.character(survival$CaribouYear)
 
-  ggplot(survival, aes(.data$Year, .data$estimate)) +
+  ggplot(survival, aes(.data$CaribouYear, .data$estimate)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$lower, ymax = .data$upper),
+      aes(x = .data$CaribouYear, ymin = .data$lower, ymax = .data$upper),
       color = "steelblue"
     ) +
     scale_y_continuous(breaks = seq(0, 1, 0.1)) +
     scale_x_discrete(breaks = every_nth(n = 2)) +
-    xlab("Year") +
+    xlab("Caribou Year") +
     ylab("Adult female survival") +
     facet_wrap(~PopulationName, scales = "free_x") +
     theme_bw(base_size = 14) +
