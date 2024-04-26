@@ -49,7 +49,7 @@ bbr_growth <- function(survival, recruitment) {
     ),
     nrow = c(1, Inf)
   )
-  
+
   chk::check_data(
     recruitment,
     values = list(

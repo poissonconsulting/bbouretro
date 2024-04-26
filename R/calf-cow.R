@@ -13,7 +13,7 @@
 # limitations under the License.
 
 #' Estimate Calf-Cow Ratio.
-#' 
+#'
 #' @param x A data frame that has recruitment data.
 #' @param p_females Assumed or estimated proportion of females in the population
 #'   used to assign unknown sex caribou. Values must be between 0
@@ -73,17 +73,17 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
-  
+
   # Estimate total females based on p_females and sex_ratio
   x <- dplyr::mutate(
     x,
     females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
     female_calves = .data$Calves * sex_ratio
   )
-  
+
   # set caribou year
   x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
-  
+
   # summarize by population and year
   Compfull <-
     x |>
@@ -98,16 +98,16 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
       groups = length(.data$Year)
     ) |>
     dplyr::ungroup()
-  
+
   # Estimate recruitment based on full data set.
   # Calf cow based on male/female calves
   Compfull$R <- Compfull$Calves / Compfull$females
-  
+
   # variance estimation.
   # simple binomial variance estimate-right now uses females but may not be statistically correct!
   if (variance == "binomial") {
     Compfull$R_SE <- binomial_variance(Compfull$R, Compfull$females)^0.5
-    
+
     # logit-based confidence limits assuming R is constrained between 0 and 1.
     Compfull <- dplyr::mutate(
       Compfull,
@@ -117,7 +117,7 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
     Compfull$R_CIU <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = TRUE))
     Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
   }
-  
+
   # bootstrap approach
   if (variance == "bootstrap") {
     # bootstrap by year
@@ -126,7 +126,7 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
       purrr::map(
         function(x) boot(data = x, rec_calc, R = 1000)
       )
-    
+
     pc <- purrr::map_df(names(boot), function(x) {
       boots <- boot[[x]]$t
       year <- x
@@ -140,14 +140,14 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
         R_CIU = quants[3]
       )
     })
-    
+
     Compfull <- merge(
       Compfull,
       pc[c("Year", "R_SE", "R_CIL", "R_CIU")],
       by = c("Year")
     )
   }
-  
+
   # An abbreviated output data set.
   Compfull <-
     Compfull |>
@@ -173,6 +173,6 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
       "female_calves",
       "females"
     )
-  
+
   tibble::as_tibble(Compfull)
 }
