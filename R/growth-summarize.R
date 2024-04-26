@@ -67,7 +67,7 @@ bbr_growth_summarize <- function(growth) {
   chk::chk_is(growth$ran_r, "AsIs")
   chk::chk_numeric(growth$ran_s[[1]])
   chk::chk_numeric(growth$ran_r[[1]])
-  
+
   growth <- growth |>
     dplyr::mutate(
       mean_sim_survival = purrr::map_dbl(.data$ran_s, mean),
