@@ -52,11 +52,6 @@
 #' \item{females}{Estimated adult females}
 #' }
 #' @export
-#' @references
-#'   DeCesare, Nicholas J., Mark Hebblewhite, Mark Bradley, Kirby G. Smith,
-#'   David Hervieux, and Lalenia Neufeld. 2012 “Estimating Ungulate Recruitment
-#'   and Growth Rates Using Age Ratios.” The Journal of Wildlife Management
-#'   76 (1): 144–53 https://doi.org/10.1002/jwmg.244.
 #'
 #' @examples
 #' calfcow_est <- bbr_calf_cow_ratio(
