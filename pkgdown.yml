@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  previous-methods: previous-methods.html
+  classical-methods: classical-methods.html
   retro-methods: retro-methods.html
-last_built: 2024-04-25T16:55Z
+last_built: 2024-04-26T16:23Z
 
