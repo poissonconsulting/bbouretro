@@ -1,8 +1,8 @@
 ---
-title: "Previously Used Methods for Estimating Survival, Recruitment, and Population Growth"
+title: "Classical Methods for Estimating Survival, Recruitment, and Population Growth"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Previously Used Methods for Estimating Survival, Recruitment, and Population Growth}
+  %\VignetteIndexEntry{Classical Methods for Estimating Survival, Recruitment, and Population Growth}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: bibliography.bib
