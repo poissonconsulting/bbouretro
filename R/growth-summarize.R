@@ -45,7 +45,7 @@
 #' }
 bbr_growth_summarize <- function(growth) {
   chk::check_names(growth, c(
-    "PopulationName", "Year", "S", "R", "estimate", "se", "lower", "upper",
+    "PopulationName", "CaribouYear", "S", "R", "estimate", "se", "lower", "upper",
     "prop_lgt1", "ran_r", "ran_s"
   ))
 
@@ -53,7 +53,7 @@ bbr_growth_summarize <- function(growth) {
     growth,
     values = list(
       PopulationName = character(),
-      Year = integer(),
+      CaribouYear = integer(),
       S = numeric(),
       R = numeric(),
       estimate = numeric(),

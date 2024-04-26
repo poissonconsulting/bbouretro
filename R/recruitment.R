@@ -175,7 +175,7 @@ bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bo
     ) |>
     dplyr::select(
       "PopulationName",
-      "Year",
+      "CaribouYear" = "Year",
       "estimate" = "R",
       "se" = "R_SE",
       "lower" = "R_CIL",

@@ -26,28 +26,28 @@
 #' bbr_plot_growth(growth_est)
 #' }
 bbr_plot_growth <- function(growth) {
-  growth$Year <- as.character(growth$Year)
+  growth$CaribouYear <- as.character(growth$CaribouYear)
 
   chk::check_data(
     growth,
     values = list(
       PopulationName = character(),
-      Year = character(),
+      CaribouYear = character(),
       estimate = numeric(),
       lower = numeric(),
       upper = numeric()
     )
   )
 
-  ggplot(growth, aes(.data$Year, .data$estimate)) +
+  ggplot(growth, aes(.data$CaribouYear, .data$estimate)) +
     geom_point(color = "red", size = 3) +
     geom_errorbar(
-      aes(x = .data$Year, ymin = .data$lower, ymax = .data$upper),
+      aes(x = .data$CaribouYear, ymin = .data$lower, ymax = .data$upper),
       color = "steelblue"
     ) +
     geom_hline(yintercept = 1) +
     facet_wrap(~PopulationName, ncol = 1) +
-    xlab("Year") +
+    xlab("Caribou Year") +
     ylab("Lambda estimate") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))

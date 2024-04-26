@@ -39,6 +39,6 @@ test_that("errors with list that doesn't have correct columns", {
   lambda <- data.frame(y = 2)
   expect_error(
     bbr_growth_summarize(lambda),
-    regexp = "`names\\(growth\\)` must include 'PopulationName', 'Year', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'ran_s'."
+    regexp = "`names\\(growth\\)` must include 'PopulationName', 'CaribouYear', 'S', 'R', 'estimate', 'se', 'lower', 'upper', ... and 'ran_s'."
   )
 })

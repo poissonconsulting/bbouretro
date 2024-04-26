@@ -124,7 +124,7 @@ test_that("test data works", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = rep("C", 4),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.01, 0.02, 0.02, 0.03),
       se = c(0.01, 0.02, 0.02, 0.03),
       lower = c(0.01, 0.02, 0.02, 0.03),
@@ -136,7 +136,7 @@ test_that("test data works", {
 
     survival_est <- data.frame(
       PopulationName = rep("C", 4),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.5, 0.7, 0.9, 1),
       se = c(0.05, 0.03, 0.03, 0),
       lower = c(0.5, 0.7, 0.7, NaN),
@@ -175,7 +175,7 @@ test_that("errors if no populations overlap", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = c("A", "A", "A", "A"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.01, 0.02, 0.02, 0.03),
       se = c(0.01, 0.02, 0.02, 0.03),
       lower = c(0.01, 0.02, 0.02, 0.03),
@@ -187,7 +187,7 @@ test_that("errors if no populations overlap", {
 
     survival_est <- data.frame(
       PopulationName = c("C", "C", "C", "C"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.5, 0.7, 0.9, 1),
       se = c(0.05, 0.03, 0.03, 0),
       lower = c(0.5, 0.7, 0.7, NaN),
@@ -212,7 +212,7 @@ test_that("errors if no years overlap", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = c("C", "C", "C", "C"),
-      Year = c(2007L, 2008L, 2009L, 2010L),
+      CaribouYear = c(2007L, 2008L, 2009L, 2010L),
       estimate = c(0.01, 0.02, 0.02, 0.03),
       se = c(0.01, 0.02, 0.02, 0.03),
       lower = c(0.01, 0.02, 0.02, 0.03),
@@ -224,7 +224,7 @@ test_that("errors if no years overlap", {
 
     survival_est <- data.frame(
       PopulationName = c("C", "C", "C", "C"),
-      Year = c(2003L, 2004L, 2005L, 2006L),
+      CaribouYear = c(2003L, 2004L, 2005L, 2006L),
       estimate = c(0.5, 0.7, 0.9, 1),
       se = c(0.05, 0.03, 0.03, 0),
       lower = c(0.5, 0.7, 0.7, NaN),
@@ -293,7 +293,7 @@ test_that("NA instead in dataset work", {
   withr::with_seed(10, {
     recruitment_est <- data.frame(
       PopulationName = c("C", "C", "C", "C"),
-      Year = c(2007L, 2008L, 2009L, 2010L),
+      CaribouYear = c(2007L, 2008L, 2009L, 2010L),
       estimate = c(0.01, 0.02, 0.02, 0.03),
       se = c(0.01, 0.02, 0.02, 0.03),
       lower = c(0.01, 0.02, 0.02, 0.03),
@@ -305,7 +305,7 @@ test_that("NA instead in dataset work", {
 
     survival_est <- data.frame(
       PopulationName = c("C", "C", "C", "C"),
-      Year = c(2007L, 2008L, 2009L, 2010L),
+      CaribouYear = c(2007L, 2008L, 2009L, 2010L),
       estimate = c(0.5, 0.7, 0.9, 1),
       se = c(0.05, 0.03, 0.03, 0),
       lower = c(0.5, 0.7, 0.7, NA),

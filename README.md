@@ -87,17 +87,17 @@ growth_est <- bbr_growth(recruitment_est, survival_est)
 summary <- bbr_growth_summarize(growth_est)
 summary
 #> # A tibble: 9 × 13
-#>   PopulationName  Year     S     R estimate     se  lower  upper prop_lgt1
-#>   <chr>          <int> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>     <dbl>
-#> 1 C               2004 0.867 0.096    0.959  0.115  0.636  1.08      0.323
-#> 2 C               2005 0.832 0.08     0.904  0.105  0.633  1.03      0.093
-#> 3 C               2006 1     0.068    1.07  NA     NA     NA        NA    
-#> 4 C               2007 0.458 0.059    0.487  0.128  0.262  0.766     0    
-#> 5 C               2008 0.941 0.083    1.03   0.1    0.739  1.16      0.615
-#> 6 C               2009 1     0.14     1.16  NA     NA     NA        NA    
-#> 7 C               2010 0.926 0.158    1.1    0.085  0.877  1.23      0.854
-#> 8 C               2011 0.96  0.112    1.08   0.075  0.872  1.16      0.861
-#> 9 C               2012 0.924 0.133    1.07   0.072  0.875  1.15      0.808
+#>   PopulationName CaribouYear     S     R estimate     se  lower  upper prop_lgt1
+#>   <chr>                <int> <dbl> <dbl>    <dbl>  <dbl>  <dbl>  <dbl>     <dbl>
+#> 1 C                     2004 0.867 0.096    0.959  0.115  0.636  1.08      0.323
+#> 2 C                     2005 0.832 0.08     0.904  0.105  0.633  1.03      0.093
+#> 3 C                     2006 1     0.068    1.07  NA     NA     NA        NA    
+#> 4 C                     2007 0.458 0.059    0.487  0.128  0.262  0.766     0    
+#> 5 C                     2008 0.941 0.083    1.03   0.1    0.739  1.16      0.615
+#> 6 C                     2009 1     0.14     1.16  NA     NA     NA        NA    
+#> 7 C                     2010 0.926 0.158    1.1    0.085  0.877  1.23      0.854
+#> 8 C                     2011 0.96  0.112    1.08   0.075  0.872  1.16      0.861
+#> 9 C                     2012 0.924 0.133    1.07   0.072  0.875  1.15      0.808
 #> # ℹ 4 more variables: mean_sim_survival <dbl>, mean_sim_recruitment <dbl>,
 #> #   mean_sim_growth <dbl>, median_sim_growth <dbl>
 bbr_plot_growth(growth_est)

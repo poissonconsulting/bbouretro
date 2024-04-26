@@ -1,4 +1,4 @@
-PopulationName,Year,S,R,estimate,se,lower,upper,prop_lgt1,mean_sim_survival,mean_sim_recruitment,mean_sim_growth,median_sim_growth
+PopulationName,CaribouYear,S,R,estimate,se,lower,upper,prop_lgt1,mean_sim_survival,mean_sim_recruitment,mean_sim_growth,median_sim_growth
 A,1989,0.885,0.06,0.941,0.041,0.876,1.04,0.081,0.883,0.066,0.947,0.944
 A,1990,0.891,0.102,0.992,0.034,0.931,1.07,0.382,0.888,0.105,0.993,0.99
 A,1991,0.886,0.125,1.01,0.041,0.946,1.11,0.614,0.886,0.128,1.02,1.01
