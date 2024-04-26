@@ -36,11 +36,11 @@
 #'
 #' @examples
 #' \dontrun{
-#' growth_est <- bbr_growth(recruitment_est, survival_est)
+#' growth_est <- bbr_growth(survival_est, recruitment_est)
 #' }
-bbr_growth <- function(recruitment, survival) {
+bbr_growth <- function(survival, recruitment) {
   chk::check_data(
-    recruitment,
+    survival,
     values = list(
       PopulationName = character(),
       CaribouYear = integer(),
@@ -49,9 +49,9 @@ bbr_growth <- function(recruitment, survival) {
     ),
     nrow = c(1, Inf)
   )
-
+  
   chk::check_data(
-    survival,
+    recruitment,
     values = list(
       PopulationName = character(),
       CaribouYear = integer(),
