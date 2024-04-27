@@ -128,7 +128,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># calculate lambda now that both recruitment and survival have been calculated</span></span>
-<span><span class="va">growth_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bbr_growth.html">bbr_growth</a></span><span class="op">(</span><span class="va">recruitment_est</span>, <span class="va">survival_est</span><span class="op">)</span></span>
+<span><span class="va">growth_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bbr_growth.html">bbr_growth</a></span><span class="op">(</span><span class="va">survival_est</span>, <span class="va">recruitment_est</span><span class="op">)</span></span>
 <span><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bbr_growth_summarize.html">bbr_growth_summarize</a></span><span class="op">(</span><span class="va">growth_est</span><span class="op">)</span></span>
 <span><span class="va">summary</span></span>
 <span><span class="co">#&gt; # A tibble: 9 × 13</span></span>
