@@ -83,7 +83,7 @@ bbr_plot_survival(survival_est)
 ``` r
 
 # calculate lambda now that both recruitment and survival have been calculated
-growth_est <- bbr_growth(recruitment_est, survival_est)
+growth_est <- bbr_growth(survival_est, recruitment_est)
 summary <- bbr_growth_summarize(growth_est)
 summary
 #> # A tibble: 9 × 13

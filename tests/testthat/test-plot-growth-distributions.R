@@ -27,7 +27,7 @@ test_that("pop a works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_growth(recruitment_est, survival_est)
+    output <- bbr_growth(survival_est, recruitment_est)
     plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
@@ -50,7 +50,7 @@ test_that("pop b works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_growth(recruitment_est, survival_est)
+    output <- bbr_growth(survival_est, recruitment_est)
     plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
@@ -73,7 +73,7 @@ test_that("pop c works", {
       variance = "cox_oakes"
     )
 
-    output <- bbr_growth(recruitment_est, survival_est)
+    output <- bbr_growth(survival_est, recruitment_est)
     plot <- bbr_plot_growth_distributions(output)
 
     expect_s3_class(plot, "ggplot")
@@ -111,7 +111,7 @@ test_that("errors when more then 1 pop in data set", {
       )
     )
 
-    output <- bbr_growth(recruitment_est, survival_est)
+    output <- bbr_growth(survival_est, recruitment_est)
     output[1, 1] <- "B"
 
     expect_error(

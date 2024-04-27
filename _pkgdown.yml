@@ -5,6 +5,7 @@ reference:
   contents:
   - '`bbr_recruitment`'
   - '`bbr_plot_recruitment`'
+  - '`bbr_calf_cow_ratio`'
 - title: Survival
   contents:
   - '`bbr_survival`'
