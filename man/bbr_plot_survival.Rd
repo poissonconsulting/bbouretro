@@ -17,6 +17,8 @@ A plot of yearly survival is given for each population unit.
 }
 \examples{
 \dontrun{
+survival_est <- bbr_survival(bboudata::bbousurv_a)
+
 bbr_plot_survival(survival_est)
 }
 }

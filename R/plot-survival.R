@@ -23,6 +23,8 @@
 #'
 #' @examples
 #' \dontrun{
+#' survival_est <- bbr_survival(bboudata::bbousurv_a)
+#' 
 #' bbr_plot_survival(survival_est)
 #' }
 bbr_plot_survival <- function(survival) {
