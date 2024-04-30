@@ -61,7 +61,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/poissonconsulting/bbouretro/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -90,19 +97,15 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"poissonconsulting/bbouretro"</span><span class="op">)</span></span></code></pre></div>
-<p>or alternatively using pak</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"poissonconsulting/bbouretro"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bbouretro</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bboudata</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/poissonconsulting/bbouretro" class="external-link">bbouretro</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/poissonconsulting/bboudata" class="external-link">bboudata</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># generate recruitment estimate for each year</span></span>
 <span><span class="va">recruitment_est</span> <span class="op">&lt;-</span></span>
@@ -113,8 +116,8 @@
 <span>    variance <span class="op">=</span> <span class="st">"bootstrap"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="fu"><a href="reference/bbr_plot_recruitment.html">bbr_plot_recruitment</a></span><span class="op">(</span><span class="va">recruitment_est</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># generate survival estimate for each year</span></span>
 <span><span class="va">survival_est</span> <span class="op">&lt;-</span></span>
@@ -124,8 +127,8 @@
 <span>    variance <span class="op">=</span> <span class="st">"greenwood"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="fu"><a href="reference/bbr_plot_survival.html">bbr_plot_survival</a></span><span class="op">(</span><span class="va">survival_est</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-2.png" width="100%"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p><img src="reference/figures/README-unnamed-chunk-3-2.png" width="100%"></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># calculate lambda now that both recruitment and survival have been calculated</span></span>
 <span><span class="va">growth_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bbr_growth.html">bbr_growth</a></span><span class="op">(</span><span class="va">survival_est</span>, <span class="va">recruitment_est</span><span class="op">)</span></span>
@@ -146,10 +149,10 @@
 <span><span class="co">#&gt; # ℹ 4 more variables: mean_sim_survival &lt;dbl&gt;, mean_sim_recruitment &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   mean_sim_growth &lt;dbl&gt;, median_sim_growth &lt;dbl&gt;</span></span>
 <span><span class="fu"><a href="reference/bbr_plot_growth.html">bbr_plot_growth</a></span><span class="op">(</span><span class="va">growth_est</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-3.png" width="100%"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p><img src="reference/figures/README-unnamed-chunk-3-3.png" width="100%"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/bbr_plot_growth_distributions.html">bbr_plot_growth_distributions</a></span><span class="op">(</span><span class="va">growth_est</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-4.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-4.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="bbou-suite">bbou Suite<a class="anchor" aria-label="anchor" href="#bbou-suite"></a>
@@ -177,7 +180,15 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/poissonconsulting/bbouretro/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/poissonconsulting/bbouretro/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
