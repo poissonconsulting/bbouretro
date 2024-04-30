@@ -11,8 +11,8 @@ Estimates annual survival, recruitment and population growth using the classical
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/poissonconsulting/bbouretro}
   \item \url{https://poissonconsulting.github.io/bbouretro/}
+  \item \url{https://github.com/poissonconsulting/bbouretro}
   \item Report bugs at \url{https://github.com/poissonconsulting/bbouretro/issues}
 }
 

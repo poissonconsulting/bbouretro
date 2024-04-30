@@ -16,5 +16,10 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @import ggplot2
+#' @importFrom boot boot
+#' @importFrom extras logit ilogit
+#' @importFrom rlang .data
+#' @importFrom stats median plogis qlogis qnorm quantile rnorm sd
 ## usethis namespace: end
 NULL

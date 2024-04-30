@@ -18,13 +18,14 @@ Description: Estimates annual survival, recruitment and population growth
     using the classical methods. This package is part of the bbou suite of
     tools.
 License: Apache License (>= 2)
-URL: https://github.com/poissonconsulting/bbouretro,
-    https://poissonconsulting.github.io/bbouretro/
+URL: https://poissonconsulting.github.io/bbouretro/,
+    https://github.com/poissonconsulting/bbouretro
 BugReports: https://github.com/poissonconsulting/bbouretro/issues
 Imports: 
     boot,
     chk,
     dplyr,
+    extras,
     ggplot2,
     purrr,
     rlang,

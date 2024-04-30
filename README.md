@@ -18,6 +18,8 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/bbouretro/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/bbouretro/branch/main/graph/badge.svg?token=y99t6ttYNS)](https://app.codecov.io/gh/poissonconsulting/bbouretro?branch=main)
@@ -30,7 +32,7 @@ recruitment and population growth using the classical methods.
 
 ## Installation
 
-To install the latest development version from
+To install the latest version from
 [GitHub](https://github.com/poissonconsulting/bbouretro)
 
 ``` r
@@ -49,7 +51,7 @@ library(bboudata)
 # generate recruitment estimate for each year
 recruitment_est <-
   bbr_recruitment(
-    bbourecruit_c,
+    bboudata::bbourecruit_c,
     p_females = 0.65,
     sex_ratio = 0.5,
     variance = "bootstrap"
@@ -64,7 +66,7 @@ bbr_plot_recruitment(recruitment_est)
 # generate survival estimate for each year
 survival_est <-
   bbr_survival(
-    bbousurv_c,
+    bboudata::bbousurv_c,
     mort_type = "total",
     variance = "greenwood"
   )
