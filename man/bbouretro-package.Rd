@@ -8,6 +8,15 @@
 \description{
 Estimates annual survival, recruitment and population growth using the classical methods. This package is part of the bbou suite of tools.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/poissonconsulting/bbouretro}
+  \item \url{https://poissonconsulting.github.io/bbouretro/}
+  \item Report bugs at \url{https://github.com/poissonconsulting/bbouretro/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Ayla Pearson \email{ayla@poissonconsulting.ca} (\href{https://orcid.org/0000-0001-7388-1222}{ORCID})
 
@@ -21,7 +30,7 @@ Other contributors:
 \itemize{
   \item Seb Dalgarno \email{seb@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-3658-4517}{ORCID}) [contributor]
   \item Colton Stephens \email{colton@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-8744-6405}{ORCID}) [contributor]
-  \item  Province of Alberta [copyright holder]
+  \item Province of Alberta [copyright holder]
 }
 
 }
