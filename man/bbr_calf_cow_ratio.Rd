@@ -9,7 +9,6 @@ The return object has these columns:
 \item{PopulationName}{Population name}
 \item{Year}{Year sampled}
 \item{estimate}{Calf-Cow ratio estimate}
-\item{se}{SE}
 \item{lower}{Confidence limit}
 \item{upper}{Confidence limit}
 \item{groups}{Groups sampled}

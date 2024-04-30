@@ -13,6 +13,7 @@
 # limitations under the License.
 
 #' Estimate Calf-Cow Ratio.
+#' 
 #'
 #' @param x A data frame that has recruitment data.
 #' @param p_females Assumed or estimated proportion of females in the population
@@ -44,7 +45,6 @@
 #' \item{PopulationName}{Population name}
 #' \item{Year}{Year sampled}
 #' \item{estimate}{Calf-Cow ratio estimate}
-#' \item{se}{SE}
 #' \item{lower}{Confidence limit}
 #' \item{upper}{Confidence limit}
 #' \item{groups}{Groups sampled}
@@ -73,106 +73,20 @@ bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = 
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
-
-  # Estimate total females based on p_females and sex_ratio
-  x <- dplyr::mutate(
-    x,
-    females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
-    female_calves = .data$Calves * sex_ratio
-  )
-
-  # set caribou year
-  x$Year <- caribou_year(x$Year, x$Month, year_start = year_start)
-
-  # summarize by population and year
-  Compfull <-
-    x |>
-    dplyr::group_by(.data$PopulationName, .data$Year) |>
-    dplyr::summarize(
-      females = sum(.data$females),
-      female_calves = sum(.data$female_calves),
-      Calves = sum(.data$Calves),
-      UnknownAdults = sum(.data$UnknownAdults),
-      Bulls = sum(.data$Bulls),
-      Yearlings = sum(.data$Yearlings),
-      groups = length(.data$Year)
-    ) |>
-    dplyr::ungroup()
-
-  # Estimate recruitment based on full data set.
-  # Calf cow based on male/female calves
-  Compfull$R <- Compfull$Calves / Compfull$females
-
-  # variance estimation.
-  # simple binomial variance estimate-right now uses females but may not be statistically correct!
-  if (variance == "binomial") {
-    Compfull$R_SE <- binomial_variance(Compfull$R, Compfull$females)^0.5
-
-    # logit-based confidence limits assuming R is constrained between 0 and 1.
-    Compfull <- dplyr::mutate(
-      Compfull,
-      logits = logit(.data$R),
-      selogit = logit_se(.data$R_SE, .data$R)
-    )
-    Compfull$R_CIU <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = TRUE))
-    Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
-  }
-
-  # bootstrap approach
-  if (variance == "bootstrap") {
-    # bootstrap by year
-    boot <-
-      split(x, x$Year) |>
-      purrr::map(
-        function(x) boot(data = x, rec_calc, R = 1000)
-      )
-
-    pc <- purrr::map_df(names(boot), function(x) {
-      boots <- boot[[x]]$t
-      year <- x
-      quants <- quantile(boots, c(0.025, 0.5, 0.975))
-      SE <- sd(boots)
-      tibble::tibble(
-        Year = year,
-        medianboot = quants[2],
-        R_SE = SE,
-        R_CIL = quants[1],
-        R_CIU = quants[3]
-      )
-    })
-
-    Compfull <- merge(
-      Compfull,
-      pc[c("Year", "R_SE", "R_CIL", "R_CIU")],
-      by = c("Year")
-    )
-  }
-
-  # An abbreviated output data set.
-  Compfull <-
-    Compfull |>
-    dplyr::mutate(
-      PopulationName = unique(x$PopulationName),
-      dplyr::across(
-        c("R", "R_SE", "R_CIL", "R_CIU"),
-        ~ round(.x, 3)
-      )
-    ) |>
-    dplyr::relocate(
-      "PopulationName",
-      .before = "Year"
-    ) |>
-    dplyr::select(
-      "PopulationName",
-      "CaribouYear" = "Year",
-      "estimate" = "R",
-      "se" = "R_SE",
-      "lower" = "R_CIL",
-      "upper" = "R_CIU",
-      "groups",
-      "female_calves",
-      "females"
-    )
-
-  tibble::as_tibble(Compfull)
+  
+  rec <- bbr_recruitment(x, 
+                         p_females = p_females, 
+                         sex_ratio = sex_ratio, 
+                         variance = variance,
+                         year_start = year_start)
+  
+  ccr <- 
+    rec |> 
+    dplyr::mutate(dplyr::across(c("estimate", "lower", "upper"), function(.x) {
+      round(bbr_rec_to_cc(.x, sex_ratio = sex_ratio), 3)
+    }))
+  
+  # SE no longer valid - can't convert from recruitment
+  ccr$se <- NULL
+  tibble::as_tibble(ccr)
 }
