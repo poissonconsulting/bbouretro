@@ -25,6 +25,7 @@ Imports:
     boot,
     chk,
     dplyr,
+    extras,
     ggplot2,
     purrr,
     rlang,

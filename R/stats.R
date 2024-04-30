@@ -17,14 +17,6 @@ logit_se <- function(se, estimate) {
   sqrt(se^2 / (estimate^2 * (1 - estimate)^2))
 }
 
-logit <- function(x) {
-  qlogis(x)
-}
-
-ilogit <- function(x) {
-  plogis(x)
-}
-
 binomial_variance <- function(p, n) {
   (p * (1 - p)) / n
 }
