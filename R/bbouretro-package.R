@@ -16,7 +16,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @import ggplot2
+#' @import chk ggplot2
 #' @importFrom boot boot
 #' @importFrom extras logit ilogit
 #' @importFrom rlang .data
