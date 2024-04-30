@@ -46,13 +46,6 @@ To install the latest development version from [GitHub](https://github.com/poiss
 remotes::install_github("poissonconsulting/bbouretro")
 ```
 
-or alternatively using pak
-
-```{r, eval=FALSE}
-# install.packages("pak")
-pak::pak("poissonconsulting/bbouretro")
-```
-
 ## Example
 
 ```{r}

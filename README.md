@@ -38,13 +38,6 @@ To install the latest development version from
 remotes::install_github("poissonconsulting/bbouretro")
 ```
 
-or alternatively using pak
-
-``` r
-# install.packages("pak")
-pak::pak("poissonconsulting/bbouretro")
-```
-
 ## Example
 
 ``` r
@@ -64,7 +57,7 @@ recruitment_est <-
 bbr_plot_recruitment(recruitment_est)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ``` r
 
@@ -78,7 +71,7 @@ survival_est <-
 bbr_plot_survival(survival_est)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-2.png" width="100%" />
 
 ``` r
 
@@ -103,13 +96,13 @@ summary
 bbr_plot_growth(growth_est)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-3.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-3.png" width="100%" />
 
 ``` r
 bbr_plot_growth_distributions(growth_est)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-4.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-4.png" width="100%" />
 
 ## bbou Suite
 
