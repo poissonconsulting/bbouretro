@@ -8,6 +8,8 @@ reference:
   - '`bbr_recruitment`'
   - '`bbr_plot_recruitment`'
   - '`bbr_calf_cow_ratio`'
+  - '`bbr_cc_to_rec`'
+  - '`bbr_rec_to_cc`'
 - title: Survival
   contents:
   - '`bbr_survival`'
