@@ -1,5 +1,5 @@
 Package: bbouretro
-Title: Classical Survival, Recruitment and Population Growth Methods
+Title: Traditional Survival, Recruitment and Population Growth Methods
 Version: 0.1.0
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut",
