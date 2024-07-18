@@ -1,75 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/404.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/ISSUE_TEMPLATE.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/articles/classical-methods.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/articles/retro-methods.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/index.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbouretro-package.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_calf_cow_ratio.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_cc_to_rec.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_growth.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_growth_summarize.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_growth.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_growth_distributions.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_recruitment.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_survival.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_rec_to_cc.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_recruitment.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_survival.html</loc>
-  </url>
-  <url>
-    <loc>https://poissonconsulting.github.io/bbouretro/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://poissonconsulting.github.io/bbouretro/404.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/CONTRIBUTING.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/ISSUE_TEMPLATE.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/LICENSE.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/SUPPORT.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/articles/index.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/articles/retro-methods.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/articles/traditional-methods.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/authors.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/index.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/news/index.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbouretro-package.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_calf_cow_ratio.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_cc_to_rec.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_growth.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_growth_summarize.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_growth.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_growth_distributions.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_recruitment.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_plot_survival.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_rec_to_cc.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_recruitment.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/bbr_survival.html</loc></url>
+<url><loc>https://poissonconsulting.github.io/bbouretro/reference/index.html</loc></url>
 </urlset>
+
