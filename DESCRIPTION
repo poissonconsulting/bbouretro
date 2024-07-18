@@ -1,5 +1,5 @@
 Package: bbouretro
-Title: Classical Survival, Recruitment and Population Growth Methods
+Title: Traditional Survival, Recruitment and Population Growth Methods
 Version: 0.1.0
 Authors@R: c(
     person("John", "Boulanger", , "boulange@ecological.bc.ca", role = "aut",
@@ -15,7 +15,7 @@ Authors@R: c(
     person("Province of Alberta", role = "cph")
   )
 Description: Estimates annual survival, recruitment and population growth
-    using the classical methods. This package is part of the bbou suite of
+    using the traditional methods. This package is part of the bbou suite of
     tools.
 License: Apache License (>= 2)
 URL: https://poissonconsulting.github.io/bbouretro/,
@@ -46,4 +46,4 @@ Remotes:
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
