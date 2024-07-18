@@ -28,7 +28,7 @@ coverage](https://codecov.io/gh/poissonconsulting/bbouretro/branch/main/graph/ba
 ## Introduction
 
 The goal of bbouretro is to provide the ability to calculate survival,
-recruitment and population growth using the classical methods.
+recruitment and population growth using the traditional methods.
 
 ## Installation
 

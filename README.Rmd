@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ## Introduction
-The goal of bbouretro is to provide the ability to calculate survival, recruitment and population growth using the classical methods. 
+The goal of bbouretro is to provide the ability to calculate survival, recruitment and population growth using the traditional methods. 
 
 ## Installation
 

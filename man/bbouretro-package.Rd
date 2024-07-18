@@ -6,7 +6,7 @@
 \alias{bbouretro-package}
 \title{bbouretro: Traditional Survival, Recruitment and Population Growth Methods}
 \description{
-Estimates annual survival, recruitment and population growth using the classical methods. This package is part of the bbou suite of tools.
+Estimates annual survival, recruitment and population growth using the traditional methods. This package is part of the bbou suite of tools.
 }
 \seealso{
 Useful links:
