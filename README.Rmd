@@ -59,7 +59,7 @@ library(bboudata)
 recruitment_est <-
   bbr_recruitment(
     bboudata::bbourecruit_c,
-    p_females = 0.65,
+    adult_female_proportion = 0.65,
     sex_ratio = 0.5,
     variance = "bootstrap"
   )
