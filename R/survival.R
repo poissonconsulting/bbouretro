@@ -65,16 +65,8 @@
 #'   include_uncertain_morts = FALSE,
 #'   variance = "cox_oakes"
 #' )
-#' 
-#' 
-#' 
 
- survival_est <- bbr_survival1(  bboudata::bbousurv_b,
-  include_uncertain_morts = TRUE,   variance = "cox_oakes"
- )
-
-
-bbr_survival1 <- function(x, include_uncertain_morts = FALSE, variance = "greenwood", year_start = 4L) {
+bbr_survival <- function(x, include_uncertain_morts = FALSE, variance = "greenwood", year_start = 4L) {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_flag(include_uncertain_morts)
   chk::chk_string(variance)

@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     survival_est <- bbr_survival(
       bboudata::bbousurv_a,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -31,7 +31,7 @@ test_that("pop b works", {
   withr::with_seed(10, {
     survival_est <- bbr_survival(
       bboudata::bbousurv_b,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -46,7 +46,7 @@ test_that("pop c works", {
   withr::with_seed(10, {
     survival_est <- bbr_survival(
       bboudata::bbousurv_c,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 

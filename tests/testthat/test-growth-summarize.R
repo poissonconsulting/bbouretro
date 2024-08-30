@@ -23,7 +23,7 @@ test_that("pop a works", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_a,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 

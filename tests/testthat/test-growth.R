@@ -23,7 +23,7 @@ test_that("pop a works", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_a,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -59,7 +59,7 @@ test_that("pop b works", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_b,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -95,7 +95,7 @@ test_that("pop c works", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_c,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -256,7 +256,7 @@ test_that("errors when recruitment has rows passed", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_c,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )
 
@@ -278,7 +278,7 @@ test_that("errors when survival has rows passed", {
 
     survival_est <- bbr_survival(
       bboudata::bbousurv_c,
-      mort_type = "total",
+      include_uncertain_morts = TRUE,
       variance = "cox_oakes"
     )[0, ]
 

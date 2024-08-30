@@ -1,8 +1,8 @@
 # survival a works
 
     Code
-      print(bbr_survival(bboudata::bbousurv_a, mort_type = "total", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_a, include_uncertain_morts = TRUE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 32 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -74,8 +74,8 @@
       31        0       317 No Mortalities all year (SE=0)                         
       32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
-      print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_a, include_uncertain_morts = FALSE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 32 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -147,8 +147,8 @@
       31        0       317 No Mortalities all year (SE=0)                         
       32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
-      print(bbr_survival(bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_a, include_uncertain_morts = TRUE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 32 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -220,8 +220,8 @@
       31        0       317 No Mortalities all year (SE=0)                         
       32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
-      print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_a, include_uncertain_morts = FALSE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 32 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -296,8 +296,8 @@
 # survival b works
 
     Code
-      print(bbr_survival(bboudata::bbousurv_b, mort_type = "total", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_b, include_uncertain_morts = TRUE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 18 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -341,8 +341,8 @@
       17        3       295 <NA>                          
       18        1        27 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_b, include_uncertain_morts = FALSE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 18 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -386,8 +386,8 @@
       17        3       295 <NA>                          
       18        1        27 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_b, include_uncertain_morts = TRUE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 18 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -431,8 +431,8 @@
       17        3       295 <NA>                          
       18        1        27 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_b, include_uncertain_morts = FALSE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 18 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -479,8 +479,8 @@
 # survival c works
 
     Code
-      print(bbr_survival(bboudata::bbousurv_c, mort_type = "total", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_c, include_uncertain_morts = TRUE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 11 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -510,8 +510,8 @@
       10        2       265 <NA>                          
       11        4        24 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_c, include_uncertain_morts = FALSE,
+      variance = "cox_oakes"), n = 100, width = 100)
     Output
       # A tibble: 11 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -541,8 +541,8 @@
       10        2       265 <NA>                          
       11        4        24 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_c, include_uncertain_morts = TRUE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 11 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored
@@ -572,8 +572,8 @@
       10        2       265 <NA>                          
       11        4        24 Only 1 months monitored       
     Code
-      print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"),
-      n = 100, width = 100)
+      print(bbr_survival(bboudata::bbousurv_c, include_uncertain_morts = FALSE,
+      variance = "greenwood"), n = 100, width = 100)
     Output
       # A tibble: 11 x 10
          PopulationName CaribouYear estimate    se   lower   upper mean_monitored

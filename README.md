@@ -67,7 +67,7 @@ bbr_plot_recruitment(recruitment_est)
 survival_est <-
   bbr_survival(
     bboudata::bbousurv_c,
-    mort_type = "total",
+    include_uncertain_morts= TRUE,
     variance = "greenwood"
   )
 bbr_plot_survival(survival_est)
