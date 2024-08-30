@@ -19,6 +19,7 @@
 #'
 #' @param x A data frame that has survival data.
 #' @param include_uncertain_morts A flag indicating whether to include uncertain mortalities in total mortalities.
+#'    The default value is FALSE. 
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
 #'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is
 #'   "greenwood".
