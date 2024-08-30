@@ -129,16 +129,29 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
   # Zero mortalities causes variance to be 0
   YearSurv$Status1 <- ifelse(
     YearSurv$monthcount == 12,
-    "",
+    NA_character_,
     paste("Only", YearSurv$monthcount, "months monitored")
   )
   YearSurv$Status2 <- ifelse(
     YearSurv$sum_dead == 0,
     "No Mortalities all year (SE=0)",
-    ""
+    NA_character_
   )
-  YearSurv$status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
-
+  
+  YearSurv$status <- ifelse(
+    is.na(YearSurv$Status1) & is.na(YearSurv$Status2), 
+    NA_character_,
+    ifelse(
+      !is.na(YearSurv$Status1) & !is.na(YearSurv$Status2),
+      paste(YearSurv$Status1, YearSurv$Status2, sep = "; "),
+      ifelse(
+        !is.na(YearSurv$Status1), 
+        YearSurv$Status1, 
+        YearSurv$Status2
+      )
+    )
+  )
+  
   # scale estimates to a year if less than 12 months monitored
   YearSurv$S <- YearSurv$S^(12 / YearSurv$monthcount)
   YearSurv$S_Var <- YearSurv$S_Var^(12 / YearSurv$monthcount)

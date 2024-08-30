@@ -39,40 +39,40 @@
       30 A                     2014    0.908 0.015   0.873   0.934           26.9
       31 A                     2015    1     0     NaN     NaN               26.4
       32 A                     2016    1     0     NaN     NaN               28  
-         sum_dead sum_alive status                                                    
-            <int>     <int> <chr>                                                     
-       1        0        16 "Only 2 months monitored - No Mortalities all year (SE=0)"
-       2        0        96 " - No Mortalities all year (SE=0)"                       
-       3        4        87 " - "                                                     
-       4        0       163 " - No Mortalities all year (SE=0)"                       
-       5        2       208 " - "                                                     
-       6        3       265 " - "                                                     
-       7        4       415 " - "                                                     
-       8        2       378 " - "                                                     
-       9        7       573 " - "                                                     
-      10       10       554 " - "                                                     
-      11        6       441 " - "                                                     
-      12        3       378 " - "                                                     
-      13        7       298 " - "                                                     
-      14        3       312 " - "                                                     
-      15        2       266 " - "                                                     
-      16        4       226 " - "                                                     
-      17        3       329 " - "                                                     
-      18        6       324 " - "                                                     
-      19        7       324 " - "                                                     
-      20        1       307 " - "                                                     
-      21        4       280 " - "                                                     
-      22        8       266 " - "                                                     
-      23        5       300 " - "                                                     
-      24        9       290 " - "                                                     
-      25        4       326 " - "                                                     
-      26        4       364 " - "                                                     
-      27        2       293 " - "                                                     
-      28        2       306 " - "                                                     
-      29        3       353 " - "                                                     
-      30        2       323 " - "                                                     
-      31        0       317 " - No Mortalities all year (SE=0)"                       
-      32        0        28 "Only 1 months monitored - No Mortalities all year (SE=0)"
+         sum_dead sum_alive status                                                 
+            <int>     <int> <chr>                                                  
+       1        0        16 Only 2 months monitored; No Mortalities all year (SE=0)
+       2        0        96 No Mortalities all year (SE=0)                         
+       3        4        87 <NA>                                                   
+       4        0       163 No Mortalities all year (SE=0)                         
+       5        2       208 <NA>                                                   
+       6        3       265 <NA>                                                   
+       7        4       415 <NA>                                                   
+       8        2       378 <NA>                                                   
+       9        7       573 <NA>                                                   
+      10       10       554 <NA>                                                   
+      11        6       441 <NA>                                                   
+      12        3       378 <NA>                                                   
+      13        7       298 <NA>                                                   
+      14        3       312 <NA>                                                   
+      15        2       266 <NA>                                                   
+      16        4       226 <NA>                                                   
+      17        3       329 <NA>                                                   
+      18        6       324 <NA>                                                   
+      19        7       324 <NA>                                                   
+      20        1       307 <NA>                                                   
+      21        4       280 <NA>                                                   
+      22        8       266 <NA>                                                   
+      23        5       300 <NA>                                                   
+      24        9       290 <NA>                                                   
+      25        4       326 <NA>                                                   
+      26        4       364 <NA>                                                   
+      27        2       293 <NA>                                                   
+      28        2       306 <NA>                                                   
+      29        3       353 <NA>                                                   
+      30        2       323 <NA>                                                   
+      31        0       317 No Mortalities all year (SE=0)                         
+      32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
       print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
@@ -112,40 +112,40 @@
       30 A                     2014    0.908 0.015   0.873   0.934           26.9
       31 A                     2015    1     0     NaN     NaN               26.4
       32 A                     2016    1     0     NaN     NaN               28  
-         sum_dead sum_alive status                                                    
-            <int>     <int> <chr>                                                     
-       1        0        16 "Only 2 months monitored - No Mortalities all year (SE=0)"
-       2        0        96 " - No Mortalities all year (SE=0)"                       
-       3        4        87 " - "                                                     
-       4        0       163 " - No Mortalities all year (SE=0)"                       
-       5        2       208 " - "                                                     
-       6        3       265 " - "                                                     
-       7        4       415 " - "                                                     
-       8        2       378 " - "                                                     
-       9        7       573 " - "                                                     
-      10       10       554 " - "                                                     
-      11        6       441 " - "                                                     
-      12        3       378 " - "                                                     
-      13        7       298 " - "                                                     
-      14        3       312 " - "                                                     
-      15        2       266 " - "                                                     
-      16        4       226 " - "                                                     
-      17        3       329 " - "                                                     
-      18        6       324 " - "                                                     
-      19        7       324 " - "                                                     
-      20        1       307 " - "                                                     
-      21        4       280 " - "                                                     
-      22        8       266 " - "                                                     
-      23        5       300 " - "                                                     
-      24        9       290 " - "                                                     
-      25        4       326 " - "                                                     
-      26        4       364 " - "                                                     
-      27        2       293 " - "                                                     
-      28        2       306 " - "                                                     
-      29        3       353 " - "                                                     
-      30        2       323 " - "                                                     
-      31        0       317 " - No Mortalities all year (SE=0)"                       
-      32        0        28 "Only 1 months monitored - No Mortalities all year (SE=0)"
+         sum_dead sum_alive status                                                 
+            <int>     <int> <chr>                                                  
+       1        0        16 Only 2 months monitored; No Mortalities all year (SE=0)
+       2        0        96 No Mortalities all year (SE=0)                         
+       3        4        87 <NA>                                                   
+       4        0       163 No Mortalities all year (SE=0)                         
+       5        2       208 <NA>                                                   
+       6        3       265 <NA>                                                   
+       7        4       415 <NA>                                                   
+       8        2       378 <NA>                                                   
+       9        7       573 <NA>                                                   
+      10       10       554 <NA>                                                   
+      11        6       441 <NA>                                                   
+      12        3       378 <NA>                                                   
+      13        7       298 <NA>                                                   
+      14        3       312 <NA>                                                   
+      15        2       266 <NA>                                                   
+      16        4       226 <NA>                                                   
+      17        3       329 <NA>                                                   
+      18        6       324 <NA>                                                   
+      19        7       324 <NA>                                                   
+      20        1       307 <NA>                                                   
+      21        4       280 <NA>                                                   
+      22        8       266 <NA>                                                   
+      23        5       300 <NA>                                                   
+      24        9       290 <NA>                                                   
+      25        4       326 <NA>                                                   
+      26        4       364 <NA>                                                   
+      27        2       293 <NA>                                                   
+      28        2       306 <NA>                                                   
+      29        3       353 <NA>                                                   
+      30        2       323 <NA>                                                   
+      31        0       317 No Mortalities all year (SE=0)                         
+      32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
       print(bbr_survival(bboudata::bbousurv_a, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
@@ -185,40 +185,40 @@
       30 A                     2014    0.908 0.063   0.693   0.977           26.9
       31 A                     2015    1     0     NaN     NaN               26.4
       32 A                     2016    1     0     NaN     NaN               28  
-         sum_dead sum_alive status                                                    
-            <int>     <int> <chr>                                                     
-       1        0        16 "Only 2 months monitored - No Mortalities all year (SE=0)"
-       2        0        96 " - No Mortalities all year (SE=0)"                       
-       3        4        87 " - "                                                     
-       4        0       163 " - No Mortalities all year (SE=0)"                       
-       5        2       208 " - "                                                     
-       6        3       265 " - "                                                     
-       7        4       415 " - "                                                     
-       8        2       378 " - "                                                     
-       9        7       573 " - "                                                     
-      10       10       554 " - "                                                     
-      11        6       441 " - "                                                     
-      12        3       378 " - "                                                     
-      13        7       298 " - "                                                     
-      14        3       312 " - "                                                     
-      15        2       266 " - "                                                     
-      16        4       226 " - "                                                     
-      17        3       329 " - "                                                     
-      18        6       324 " - "                                                     
-      19        7       324 " - "                                                     
-      20        1       307 " - "                                                     
-      21        4       280 " - "                                                     
-      22        8       266 " - "                                                     
-      23        5       300 " - "                                                     
-      24        9       290 " - "                                                     
-      25        4       326 " - "                                                     
-      26        4       364 " - "                                                     
-      27        2       293 " - "                                                     
-      28        2       306 " - "                                                     
-      29        3       353 " - "                                                     
-      30        2       323 " - "                                                     
-      31        0       317 " - No Mortalities all year (SE=0)"                       
-      32        0        28 "Only 1 months monitored - No Mortalities all year (SE=0)"
+         sum_dead sum_alive status                                                 
+            <int>     <int> <chr>                                                  
+       1        0        16 Only 2 months monitored; No Mortalities all year (SE=0)
+       2        0        96 No Mortalities all year (SE=0)                         
+       3        4        87 <NA>                                                   
+       4        0       163 No Mortalities all year (SE=0)                         
+       5        2       208 <NA>                                                   
+       6        3       265 <NA>                                                   
+       7        4       415 <NA>                                                   
+       8        2       378 <NA>                                                   
+       9        7       573 <NA>                                                   
+      10       10       554 <NA>                                                   
+      11        6       441 <NA>                                                   
+      12        3       378 <NA>                                                   
+      13        7       298 <NA>                                                   
+      14        3       312 <NA>                                                   
+      15        2       266 <NA>                                                   
+      16        4       226 <NA>                                                   
+      17        3       329 <NA>                                                   
+      18        6       324 <NA>                                                   
+      19        7       324 <NA>                                                   
+      20        1       307 <NA>                                                   
+      21        4       280 <NA>                                                   
+      22        8       266 <NA>                                                   
+      23        5       300 <NA>                                                   
+      24        9       290 <NA>                                                   
+      25        4       326 <NA>                                                   
+      26        4       364 <NA>                                                   
+      27        2       293 <NA>                                                   
+      28        2       306 <NA>                                                   
+      29        3       353 <NA>                                                   
+      30        2       323 <NA>                                                   
+      31        0       317 No Mortalities all year (SE=0)                         
+      32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
     Code
       print(bbr_survival(bboudata::bbousurv_a, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
@@ -258,40 +258,40 @@
       30 A                     2014    0.908 0.063   0.693   0.977           26.9
       31 A                     2015    1     0     NaN     NaN               26.4
       32 A                     2016    1     0     NaN     NaN               28  
-         sum_dead sum_alive status                                                    
-            <int>     <int> <chr>                                                     
-       1        0        16 "Only 2 months monitored - No Mortalities all year (SE=0)"
-       2        0        96 " - No Mortalities all year (SE=0)"                       
-       3        4        87 " - "                                                     
-       4        0       163 " - No Mortalities all year (SE=0)"                       
-       5        2       208 " - "                                                     
-       6        3       265 " - "                                                     
-       7        4       415 " - "                                                     
-       8        2       378 " - "                                                     
-       9        7       573 " - "                                                     
-      10       10       554 " - "                                                     
-      11        6       441 " - "                                                     
-      12        3       378 " - "                                                     
-      13        7       298 " - "                                                     
-      14        3       312 " - "                                                     
-      15        2       266 " - "                                                     
-      16        4       226 " - "                                                     
-      17        3       329 " - "                                                     
-      18        6       324 " - "                                                     
-      19        7       324 " - "                                                     
-      20        1       307 " - "                                                     
-      21        4       280 " - "                                                     
-      22        8       266 " - "                                                     
-      23        5       300 " - "                                                     
-      24        9       290 " - "                                                     
-      25        4       326 " - "                                                     
-      26        4       364 " - "                                                     
-      27        2       293 " - "                                                     
-      28        2       306 " - "                                                     
-      29        3       353 " - "                                                     
-      30        2       323 " - "                                                     
-      31        0       317 " - No Mortalities all year (SE=0)"                       
-      32        0        28 "Only 1 months monitored - No Mortalities all year (SE=0)"
+         sum_dead sum_alive status                                                 
+            <int>     <int> <chr>                                                  
+       1        0        16 Only 2 months monitored; No Mortalities all year (SE=0)
+       2        0        96 No Mortalities all year (SE=0)                         
+       3        4        87 <NA>                                                   
+       4        0       163 No Mortalities all year (SE=0)                         
+       5        2       208 <NA>                                                   
+       6        3       265 <NA>                                                   
+       7        4       415 <NA>                                                   
+       8        2       378 <NA>                                                   
+       9        7       573 <NA>                                                   
+      10       10       554 <NA>                                                   
+      11        6       441 <NA>                                                   
+      12        3       378 <NA>                                                   
+      13        7       298 <NA>                                                   
+      14        3       312 <NA>                                                   
+      15        2       266 <NA>                                                   
+      16        4       226 <NA>                                                   
+      17        3       329 <NA>                                                   
+      18        6       324 <NA>                                                   
+      19        7       324 <NA>                                                   
+      20        1       307 <NA>                                                   
+      21        4       280 <NA>                                                   
+      22        8       266 <NA>                                                   
+      23        5       300 <NA>                                                   
+      24        9       290 <NA>                                                   
+      25        4       326 <NA>                                                   
+      26        4       364 <NA>                                                   
+      27        2       293 <NA>                                                   
+      28        2       306 <NA>                                                   
+      29        3       353 <NA>                                                   
+      30        2       323 <NA>                                                   
+      31        0       317 No Mortalities all year (SE=0)                         
+      32        0        28 Only 1 months monitored; No Mortalities all year (SE=0)
 
 # survival b works
 
@@ -320,26 +320,26 @@
       16 B                     2016    1     0     NaN     NaN               26.8
       17 B                     2017    0.891 0.017   0.853   0.92            24.6
       18 B                     2018    0.636 0       0.636   0.636           27  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        1       110 " - "                              
-       2        2       306 " - "                              
-       3        8       401 " - "                              
-       4        3       505 " - "                              
-       5        5       451 " - "                              
-       6        8       249 " - "                              
-       7        5       118 " - "                              
-       8        2       171 " - "                              
-       9        0       293 " - No Mortalities all year (SE=0)"
-      10       10       310 " - "                              
-      11        3       339 " - "                              
-      12        2       320 " - "                              
-      13        1       300 " - "                              
-      14        2       314 " - "                              
-      15        2       288 " - "                              
-      16        0       322 " - No Mortalities all year (SE=0)"
-      17        3       295 " - "                              
-      18        1        27 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        1       110 <NA>                          
+       2        2       306 <NA>                          
+       3        8       401 <NA>                          
+       4        3       505 <NA>                          
+       5        5       451 <NA>                          
+       6        8       249 <NA>                          
+       7        5       118 <NA>                          
+       8        2       171 <NA>                          
+       9        0       293 No Mortalities all year (SE=0)
+      10       10       310 <NA>                          
+      11        3       339 <NA>                          
+      12        2       320 <NA>                          
+      13        1       300 <NA>                          
+      14        2       314 <NA>                          
+      15        2       288 <NA>                          
+      16        0       322 No Mortalities all year (SE=0)
+      17        3       295 <NA>                          
+      18        1        27 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
@@ -365,26 +365,26 @@
       16 B                     2016    1     0     NaN     NaN               26.8
       17 B                     2017    0.891 0.017   0.853   0.92            24.6
       18 B                     2018    0.636 0       0.636   0.636           27  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        1       110 " - "                              
-       2        2       306 " - "                              
-       3        8       401 " - "                              
-       4        3       505 " - "                              
-       5        5       451 " - "                              
-       6        8       249 " - "                              
-       7        5       118 " - "                              
-       8        2       171 " - "                              
-       9        0       293 " - No Mortalities all year (SE=0)"
-      10       10       310 " - "                              
-      11        3       339 " - "                              
-      12        2       320 " - "                              
-      13        1       300 " - "                              
-      14        2       314 " - "                              
-      15        2       288 " - "                              
-      16        0       322 " - No Mortalities all year (SE=0)"
-      17        3       295 " - "                              
-      18        1        27 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        1       110 <NA>                          
+       2        2       306 <NA>                          
+       3        8       401 <NA>                          
+       4        3       505 <NA>                          
+       5        5       451 <NA>                          
+       6        8       249 <NA>                          
+       7        5       118 <NA>                          
+       8        2       171 <NA>                          
+       9        0       293 No Mortalities all year (SE=0)
+      10       10       310 <NA>                          
+      11        3       339 <NA>                          
+      12        2       320 <NA>                          
+      13        1       300 <NA>                          
+      14        2       314 <NA>                          
+      15        2       288 <NA>                          
+      16        0       322 No Mortalities all year (SE=0)
+      17        3       295 <NA>                          
+      18        1        27 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_b, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
@@ -410,26 +410,26 @@
       16 B                     2016    1     0     NaN     NaN               26.8
       17 B                     2017    0.891 0.059   0.711   0.965           24.6
       18 B                     2018    0.636 0       0.636   0.636           27  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        1       110 " - "                              
-       2        2       306 " - "                              
-       3        8       401 " - "                              
-       4        3       505 " - "                              
-       5        5       451 " - "                              
-       6        8       249 " - "                              
-       7        5       118 " - "                              
-       8        2       171 " - "                              
-       9        0       293 " - No Mortalities all year (SE=0)"
-      10       10       310 " - "                              
-      11        3       339 " - "                              
-      12        2       320 " - "                              
-      13        1       300 " - "                              
-      14        2       314 " - "                              
-      15        2       288 " - "                              
-      16        0       322 " - No Mortalities all year (SE=0)"
-      17        3       295 " - "                              
-      18        1        27 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        1       110 <NA>                          
+       2        2       306 <NA>                          
+       3        8       401 <NA>                          
+       4        3       505 <NA>                          
+       5        5       451 <NA>                          
+       6        8       249 <NA>                          
+       7        5       118 <NA>                          
+       8        2       171 <NA>                          
+       9        0       293 No Mortalities all year (SE=0)
+      10       10       310 <NA>                          
+      11        3       339 <NA>                          
+      12        2       320 <NA>                          
+      13        1       300 <NA>                          
+      14        2       314 <NA>                          
+      15        2       288 <NA>                          
+      16        0       322 No Mortalities all year (SE=0)
+      17        3       295 <NA>                          
+      18        1        27 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_b, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
@@ -455,26 +455,26 @@
       16 B                     2016    1     0     NaN     NaN               26.8
       17 B                     2017    0.891 0.059   0.711   0.965           24.6
       18 B                     2018    0.636 0       0.636   0.636           27  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        1       110 " - "                              
-       2        2       306 " - "                              
-       3        8       401 " - "                              
-       4        3       505 " - "                              
-       5        5       451 " - "                              
-       6        8       249 " - "                              
-       7        5       118 " - "                              
-       8        2       171 " - "                              
-       9        0       293 " - No Mortalities all year (SE=0)"
-      10       10       310 " - "                              
-      11        3       339 " - "                              
-      12        2       320 " - "                              
-      13        1       300 " - "                              
-      14        2       314 " - "                              
-      15        2       288 " - "                              
-      16        0       322 " - No Mortalities all year (SE=0)"
-      17        3       295 " - "                              
-      18        1        27 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        1       110 <NA>                          
+       2        2       306 <NA>                          
+       3        8       401 <NA>                          
+       4        3       505 <NA>                          
+       5        5       451 <NA>                          
+       6        8       249 <NA>                          
+       7        5       118 <NA>                          
+       8        2       171 <NA>                          
+       9        0       293 No Mortalities all year (SE=0)
+      10       10       310 <NA>                          
+      11        3       339 <NA>                          
+      12        2       320 <NA>                          
+      13        1       300 <NA>                          
+      14        2       314 <NA>                          
+      15        2       288 <NA>                          
+      16        0       322 No Mortalities all year (SE=0)
+      17        3       295 <NA>                          
+      18        1        27 Only 1 months monitored       
 
 # survival c works
 
@@ -496,19 +496,19 @@
        9 C                     2011    0.96  0.011   0.931   0.977           23.8
       10 C                     2012    0.924 0.016   0.888   0.95            22.1
       11 C                     2013    0.112 0       0.112   0.112           24  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        4        61 " - "                              
-       2        2       175 " - "                              
-       3        3       189 " - "                              
-       4        0       254 " - No Mortalities all year (SE=0)"
-       5       11       166 " - "                              
-       6        1       189 " - "                              
-       7        0       227 " - No Mortalities all year (SE=0)"
-       8        2       256 " - "                              
-       9        1       285 " - "                              
-      10        2       265 " - "                              
-      11        4        24 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        4        61 <NA>                          
+       2        2       175 <NA>                          
+       3        3       189 <NA>                          
+       4        0       254 No Mortalities all year (SE=0)
+       5       11       166 <NA>                          
+       6        1       189 <NA>                          
+       7        0       227 No Mortalities all year (SE=0)
+       8        2       256 <NA>                          
+       9        1       285 <NA>                          
+      10        2       265 <NA>                          
+      11        4        24 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "cox_oakes"),
       n = 100, width = 100)
@@ -527,19 +527,19 @@
        9 C                     2011    0.96  0.011   0.931   0.977           23.8
       10 C                     2012    0.924 0.016   0.888   0.95            22.1
       11 C                     2013    0.112 0       0.112   0.112           24  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        4        61 " - "                              
-       2        2       175 " - "                              
-       3        3       189 " - "                              
-       4        0       254 " - No Mortalities all year (SE=0)"
-       5       11       166 " - "                              
-       6        1       189 " - "                              
-       7        0       227 " - No Mortalities all year (SE=0)"
-       8        2       256 " - "                              
-       9        1       285 " - "                              
-      10        2       265 " - "                              
-      11        4        24 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        4        61 <NA>                          
+       2        2       175 <NA>                          
+       3        3       189 <NA>                          
+       4        0       254 No Mortalities all year (SE=0)
+       5       11       166 <NA>                          
+       6        1       189 <NA>                          
+       7        0       227 No Mortalities all year (SE=0)
+       8        2       256 <NA>                          
+       9        1       285 <NA>                          
+      10        2       265 <NA>                          
+      11        4        24 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_c, mort_type = "total", variance = "greenwood"),
       n = 100, width = 100)
@@ -558,19 +558,19 @@
        9 C                     2011    0.96  0.039   0.765   0.994           23.8
       10 C                     2012    0.924 0.051   0.743   0.981           22.1
       11 C                     2013    0.112 0       0.112   0.112           24  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        4        61 " - "                              
-       2        2       175 " - "                              
-       3        3       189 " - "                              
-       4        0       254 " - No Mortalities all year (SE=0)"
-       5       11       166 " - "                              
-       6        1       189 " - "                              
-       7        0       227 " - No Mortalities all year (SE=0)"
-       8        2       256 " - "                              
-       9        1       285 " - "                              
-      10        2       265 " - "                              
-      11        4        24 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        4        61 <NA>                          
+       2        2       175 <NA>                          
+       3        3       189 <NA>                          
+       4        0       254 No Mortalities all year (SE=0)
+       5       11       166 <NA>                          
+       6        1       189 <NA>                          
+       7        0       227 No Mortalities all year (SE=0)
+       8        2       256 <NA>                          
+       9        1       285 <NA>                          
+      10        2       265 <NA>                          
+      11        4        24 Only 1 months monitored       
     Code
       print(bbr_survival(bboudata::bbousurv_c, mort_type = "certain", variance = "greenwood"),
       n = 100, width = 100)
@@ -589,17 +589,17 @@
        9 C                     2011    0.96  0.039   0.765   0.994           23.8
       10 C                     2012    0.924 0.051   0.743   0.981           22.1
       11 C                     2013    0.112 0       0.112   0.112           24  
-         sum_dead sum_alive status                             
-            <int>     <int> <chr>                              
-       1        4        61 " - "                              
-       2        2       175 " - "                              
-       3        3       189 " - "                              
-       4        0       254 " - No Mortalities all year (SE=0)"
-       5       11       166 " - "                              
-       6        1       189 " - "                              
-       7        0       227 " - No Mortalities all year (SE=0)"
-       8        2       256 " - "                              
-       9        1       285 " - "                              
-      10        2       265 " - "                              
-      11        4        24 "Only 1 months monitored - "       
+         sum_dead sum_alive status                        
+            <int>     <int> <chr>                         
+       1        4        61 <NA>                          
+       2        2       175 <NA>                          
+       3        3       189 <NA>                          
+       4        0       254 No Mortalities all year (SE=0)
+       5       11       166 <NA>                          
+       6        1       189 <NA>                          
+       7        0       227 No Mortalities all year (SE=0)
+       8        2       256 <NA>                          
+       9        1       285 <NA>                          
+      10        2       265 <NA>                          
+      11        4        24 Only 1 months monitored       
 

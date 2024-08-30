@@ -142,6 +142,6 @@ test_that("status message", {
 
   expect_equal(
     unique(output$status[output$sum_dead == 0]),
-    " - No Mortalities all year (SE=0)"
+    "No Mortalities all year (SE=0)"
   )
 })
