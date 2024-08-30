@@ -24,14 +24,14 @@ test_that("recruitment a works", {
       print(
         bbr_recruitment(
           bboudata::bbourecruit_a,
-          p_females = 0.2, sex_ratio = 0.6, variance = "binomial"
+          adult_female_proportion = 0.2, sex_ratio = 0.6, variance = "binomial"
         ),
         n = 100, width = 100
       )
       print(
         bbr_recruitment(
           bboudata::bbourecruit_a,
-          p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+          adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
         ),
         n = 100, width = 100
       )
@@ -51,14 +51,14 @@ test_that("recruitment b works", {
       print(
         bbr_recruitment(
           bboudata::bbourecruit_b,
-          p_females = 0.65, sex_ratio = 0.6, variance = "binomial"
+          adult_female_proportion = 0.65, sex_ratio = 0.6, variance = "binomial"
         ),
         n = 100, width = 100
       )
       print(
         bbr_recruitment(
           bboudata::bbourecruit_b,
-          p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+          adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
         ),
         n = 100, width = 100
       )
@@ -77,14 +77,14 @@ test_that("recruitment c works", {
     print(
       bbr_recruitment(
         bboudata::bbourecruit_c,
-        p_females = 0.65, sex_ratio = 0.6, variance = "binomial"
+        adult_female_proportion = 0.65, sex_ratio = 0.6, variance = "binomial"
       ),
       n = 100, width = 100
     )
     print(
       bbr_recruitment(
         bboudata::bbourecruit_c,
-        p_females = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+        adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
       ),
       n = 100, width = 100
     )
@@ -115,25 +115,25 @@ test_that("errors when column missing in data", {
   )
 })
 
-test_that("errors number greater then 1 or less then 0 provided to p_females", {
+test_that("errors number greater then 1 or less then 0 provided to adult_female_proportion", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      p_females = 1.05,
+      adult_female_proportion = 1.05,
       sex_ratio = 0.5,
       variance = "binomial"
     ),
-    regexp = "`p_females` must be between 0 and 1, not 1.05\\."
+    regexp = "`adult_female_proportion` must be between 0 and 1, not 1.05\\."
   )
 
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      p_females = -1.05,
+      adult_female_proportion = -1.05,
       sex_ratio = 0.5,
       variance = "binomial"
     ),
-    regexp = "`p_females` must be between 0 and 1, not -1.05\\."
+    regexp = "`adult_female_proportion` must be between 0 and 1, not -1.05\\."
   )
 })
 
@@ -141,7 +141,7 @@ test_that("errors number greater then 1 or less then 0 provided to sex_ratio", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      p_females = 0.5,
+      adult_female_proportion = 0.5,
       sex_ratio = 2,
       variance = "binomial"
     ),
@@ -151,7 +151,7 @@ test_that("errors number greater then 1 or less then 0 provided to sex_ratio", {
   expect_error(
     bbr_recruitment(
       bboudata::bbourecruit_c,
-      p_females = 0.5,
+      adult_female_proportion = 0.5,
       sex_ratio = -1,
       variance = "binomial"
     ),

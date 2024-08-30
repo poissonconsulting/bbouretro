@@ -63,8 +63,8 @@
       26    83  
       27    75  
     Code
-      print(bbr_recruitment(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.6,
-      variance = "binomial"), n = 100, width = 100)
+      print(bbr_recruitment(bboudata::bbourecruit_a, adult_female_proportion = 0.2,
+      sex_ratio = 0.6, variance = "binomial"), n = 100, width = 100)
     Output
       # A tibble: 27 x 9
          PopulationName CaribouYear estimate    se lower upper groups female_calves
@@ -126,8 +126,8 @@
       26    83  
       27    75  
     Code
-      print(bbr_recruitment(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5,
-      variance = "bootstrap"), n = 100, width = 100)
+      print(bbr_recruitment(bboudata::bbourecruit_a, adult_female_proportion = 0.2,
+      sex_ratio = 0.5, variance = "bootstrap"), n = 100, width = 100)
     Output
       # A tibble: 27 x 9
          PopulationName CaribouYear estimate    se lower upper groups female_calves
@@ -230,8 +230,8 @@
       14   110  
       15   127. 
     Code
-      print(bbr_recruitment(bboudata::bbourecruit_b, p_females = 0.65, sex_ratio = 0.6,
-      variance = "binomial"), n = 100, width = 100)
+      print(bbr_recruitment(bboudata::bbourecruit_b, adult_female_proportion = 0.65,
+      sex_ratio = 0.6, variance = "binomial"), n = 100, width = 100)
     Output
       # A tibble: 15 x 9
          PopulationName CaribouYear estimate    se lower upper groups female_calves
@@ -269,8 +269,8 @@
       14   110  
       15   127. 
     Code
-      print(bbr_recruitment(bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5,
-      variance = "bootstrap"), n = 100, width = 100)
+      print(bbr_recruitment(bboudata::bbourecruit_b, adult_female_proportion = 0.2,
+      sex_ratio = 0.5, variance = "bootstrap"), n = 100, width = 100)
     Output
       # A tibble: 15 x 9
          PopulationName CaribouYear estimate    se lower upper groups female_calves

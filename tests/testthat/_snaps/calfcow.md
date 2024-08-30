@@ -34,8 +34,8 @@
       26 A                     2014    0.193 0.103 0.288     29           8      83  
       27 A                     2015    0.294 0.186 0.398     22          11      75  
     Code
-      print(bbr_calf_cow_ratio(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.6,
-      variance = "binomial"), n = 100, width = 100)
+      print(bbr_calf_cow_ratio(bboudata::bbourecruit_a, adult_female_proportion = 0.2,
+      sex_ratio = 0.6, variance = "binomial"), n = 100, width = 100)
     Output
       # A tibble: 27 x 8
          PopulationName CaribouYear estimate lower upper groups female_calves females
@@ -68,8 +68,8 @@
       26 A                     2014    0.193 0.095 0.391     29           9.6    83  
       27 A                     2015    0.294 0.155 0.553     22          13.2    75  
     Code
-      print(bbr_calf_cow_ratio(bboudata::bbourecruit_a, p_females = 0.2, sex_ratio = 0.5,
-      variance = "bootstrap"), n = 100, width = 100)
+      print(bbr_calf_cow_ratio(bboudata::bbourecruit_a, adult_female_proportion = 0.2,
+      sex_ratio = 0.5, variance = "bootstrap"), n = 100, width = 100)
     Output
       # A tibble: 27 x 8
          PopulationName CaribouYear estimate lower upper groups female_calves females
@@ -126,8 +126,8 @@
       14 B                     2016    0.2   0.121 0.301     32          11     110  
       15 B                     2017    0.195 0.13  0.255     27          12.5   127. 
     Code
-      print(bbr_calf_cow_ratio(bboudata::bbourecruit_b, p_females = 0.65, sex_ratio = 0.6,
-      variance = "binomial"), n = 100, width = 100)
+      print(bbr_calf_cow_ratio(bboudata::bbourecruit_b, adult_female_proportion = 0.65,
+      sex_ratio = 0.6, variance = "binomial"), n = 100, width = 100)
     Output
       # A tibble: 15 x 8
          PopulationName CaribouYear estimate lower upper groups female_calves females
@@ -148,8 +148,8 @@
       14 B                     2016    0.2   0.11  0.366     32          13.2   110  
       15 B                     2017    0.196 0.112 0.346     27          15     127. 
     Code
-      print(bbr_calf_cow_ratio(bboudata::bbourecruit_b, p_females = 0.2, sex_ratio = 0.5,
-      variance = "bootstrap"), n = 100, width = 100)
+      print(bbr_calf_cow_ratio(bboudata::bbourecruit_b, adult_female_proportion = 0.2,
+      sex_ratio = 0.5, variance = "bootstrap"), n = 100, width = 100)
     Output
       # A tibble: 15 x 8
          PopulationName CaribouYear estimate lower upper groups female_calves females

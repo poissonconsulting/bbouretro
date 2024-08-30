@@ -17,7 +17,7 @@
 #' Estimate recruitment using DeCesare et al. (2012) methods.
 #'
 #' @param x A data frame that has recruitment data.
-#' @param p_females Assumed or estimated proportion of females in the population
+#' @param adult_female_proportion Assumed or estimated proportion of females in the population
 #'   used to assign unknown sex caribou. Values must be between 0
 #'   and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
 #'   estimates. The default is set at 0.65.
@@ -63,28 +63,28 @@
 #' @examples
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
-#'   p_females = 0.65,
+#'   adult_female_proportion = 0.65,
 #'   sex_ratio = 0.5,
 #'   variance = "binomial"
 #' )
 #' recruitment_est <- bbr_recruitment(
 #'   bboudata::bbourecruit_a,
-#'   p_females = 0.60,
+#'   adult_female_proportion = 0.60,
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
+bbr_recruitment <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
   x <- bboudata::bbd_chk_data_recruitment(x)
-  chk::chk_range(p_females)
+  chk::chk_range(adult_female_proportion)
   chk::chk_range(sex_ratio)
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
 
-  # Estimate total females based on p_females and sex_ratio
+  # Estimate total females based on adult_female_proportion and sex_ratio
   x <- dplyr::mutate(
     x,
-    females = .data$Cows + .data$UnknownAdults * p_females + .data$Yearlings * sex_ratio,
+    females = .data$Cows + .data$UnknownAdults * adult_female_proportion + .data$Yearlings * sex_ratio,
     female_calves = .data$Calves * sex_ratio
   )
 

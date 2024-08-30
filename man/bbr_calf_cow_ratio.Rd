@@ -19,7 +19,7 @@ The return object has these columns:
 \usage{
 bbr_calf_cow_ratio(
   x,
-  p_females = 0.65,
+  adult_female_proportion = 0.65,
   sex_ratio = 0.5,
   variance = "bootstrap",
   year_start = 4L
@@ -28,7 +28,7 @@ bbr_calf_cow_ratio(
 \arguments{
 \item{x}{A data frame that has recruitment data.}
 
-\item{p_females}{Assumed or estimated proportion of females in the population
+\item{adult_female_proportion}{Assumed or estimated proportion of females in the population
 used to assign unknown sex caribou. Values must be between 0
 and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
 estimates. The default is set at 0.65.}
@@ -63,13 +63,13 @@ ratio at birth.
 \examples{
 calfcow_est <- bbr_calf_cow_ratio(
   bboudata::bbourecruit_a,
-  p_females = 0.65,
+  adult_female_proportion = 0.65,
   sex_ratio = 0.5,
   variance = "binomial"
 )
 calfcow_est <- bbr_calf_cow_ratio(
   bboudata::bbourecruit_a,
-  p_females = 0.60,
+  adult_female_proportion = 0.60,
   sex_ratio = 0.65,
   variance = "bootstrap"
 )
