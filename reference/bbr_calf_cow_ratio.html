@@ -68,7 +68,7 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">bbr_calf_cow_ratio</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  p_females <span class="op">=</span> <span class="fl">0.65</span>,</span>
+<span>  adult_female_proportion <span class="op">=</span> <span class="fl">0.65</span>,</span>
 <span>  sex_ratio <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  variance <span class="op">=</span> <span class="st">"bootstrap"</span>,</span>
 <span>  year_start <span class="op">=</span> <span class="fl">4L</span></span>
@@ -111,7 +111,7 @@
 <dd><p>A data frame that has recruitment data.</p></dd>
 
 
-<dt id="arg-p-females">p_females<a class="anchor" aria-label="anchor" href="#arg-p-females"></a></dt>
+<dt id="arg-adult-female-proportion">adult_female_proportion<a class="anchor" aria-label="anchor" href="#arg-adult-female-proportion"></a></dt>
 <dd><p>Assumed or estimated proportion of females in the population
 used to assign unknown sex caribou. Values must be between 0
 and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
@@ -154,13 +154,13 @@ ratio at birth.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">calfcow_est</span> <span class="op">&lt;-</span> <span class="fu">bbr_calf_cow_ratio</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu">bboudata</span><span class="fu">::</span><span class="va"><a href="https://poissonconsulting.github.io/bboudata/reference/bbourecruit_a.html" class="external-link">bbourecruit_a</a></span>,</span></span>
-<span class="r-in"><span>  p_females <span class="op">=</span> <span class="fl">0.65</span>,</span></span>
+<span class="r-in"><span>  adult_female_proportion <span class="op">=</span> <span class="fl">0.65</span>,</span></span>
 <span class="r-in"><span>  sex_ratio <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>  variance <span class="op">=</span> <span class="st">"binomial"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">calfcow_est</span> <span class="op">&lt;-</span> <span class="fu">bbr_calf_cow_ratio</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu">bboudata</span><span class="fu">::</span><span class="va"><a href="https://poissonconsulting.github.io/bboudata/reference/bbourecruit_a.html" class="external-link">bbourecruit_a</a></span>,</span></span>
-<span class="r-in"><span>  p_females <span class="op">=</span> <span class="fl">0.60</span>,</span></span>
+<span class="r-in"><span>  adult_female_proportion <span class="op">=</span> <span class="fl">0.60</span>,</span></span>
 <span class="r-in"><span>  sex_ratio <span class="op">=</span> <span class="fl">0.65</span>,</span></span>
 <span class="r-in"><span>  variance <span class="op">=</span> <span class="st">"bootstrap"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
