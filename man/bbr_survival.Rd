@@ -21,7 +21,7 @@ The return object has these columns:
 \usage{
 bbr_survival(
   x,
-  include_uncertain_morts = FALSE,
+  include_uncertain_morts = TRUE,
   variance = "greenwood",
   year_start = 4L
 )
@@ -30,7 +30,7 @@ bbr_survival(
 \item{x}{A data frame that has survival data.}
 
 \item{include_uncertain_morts}{A flag indicating whether to include uncertain mortalities in total mortalities.
-The default value is FALSE.}
+The default value is TRUE.}
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
 \code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is
