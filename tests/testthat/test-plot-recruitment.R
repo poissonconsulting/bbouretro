@@ -16,7 +16,7 @@ test_that("pop a works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_a,
-      p_females = 0.65,
+      adult_female_proportion = 0.65,
       sex_ratio = 0.5,
       variance = "binomial", year_start = 1L
     )
@@ -32,7 +32,7 @@ test_that("pop b works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_b,
-      p_females = 0.65,
+      adult_female_proportion = 0.65,
       sex_ratio = 0.5,
       variance = "binomial"
     )
@@ -48,7 +48,7 @@ test_that("pop c works", {
   withr::with_seed(10, {
     recruitment_est <- bbr_recruitment(
       bboudata::bbourecruit_c,
-      p_females = 0.65,
+      adult_female_proportion = 0.65,
       sex_ratio = 0.5,
       variance = "binomial"
     )
@@ -96,7 +96,7 @@ test_that("errors if no year column", {
     female_calves = rep(7, 7),
     females = rep(66, 7),
     sex_ratio = rep(0.5, 7),
-    p_females = rep(0.65, 7)
+    adult_female_proportion = rep(0.65, 7)
   )
 
   expect_error(

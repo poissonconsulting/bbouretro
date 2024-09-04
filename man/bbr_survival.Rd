@@ -19,15 +19,18 @@ The return object has these columns:
 }
 }
 \usage{
-bbr_survival(x, mort_type = "total", variance = "greenwood", year_start = 4L)
+bbr_survival(
+  x,
+  include_uncertain_morts = TRUE,
+  variance = "greenwood",
+  year_start = 4L
+)
 }
 \arguments{
 \item{x}{A data frame that has survival data.}
 
-\item{mort_type}{Mortality data to be included. Values can be \code{"total"} which
-would be all mortalities (MortalitiesCertain and MortalitiesUncertain) or
-only \code{"certain"} mortalities (MortalitiesCertain). The default is
-\code{"total"}.}
+\item{include_uncertain_morts}{A flag indicating whether to include uncertain mortalities in total mortalities.
+The default value is TRUE.}
 
 \item{variance}{Variance type to estimate. Can be the Greenwood estimator
 \code{"greenwood"} or Cox Oakes estimator \code{"cox_oakes"}. The default is
@@ -54,12 +57,12 @@ equations used in this function.
 \examples{
 survival_est <- bbr_survival(
   bboudata::bbousurv_a,
-  mort_type = "total",
+  include_uncertain_morts = TRUE,
   variance = "greenwood"
 )
 survival_est <- bbr_survival(
   bboudata::bbousurv_b,
-  mort_type = "certain",
+  include_uncertain_morts = FALSE,
   variance = "cox_oakes"
 )
 }

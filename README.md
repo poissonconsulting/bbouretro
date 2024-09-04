@@ -52,7 +52,7 @@ library(bboudata)
 recruitment_est <-
   bbr_recruitment(
     bboudata::bbourecruit_c,
-    p_females = 0.65,
+    adult_female_proportion = 0.65,
     sex_ratio = 0.5,
     variance = "bootstrap"
   )
@@ -67,7 +67,7 @@ bbr_plot_recruitment(recruitment_est)
 survival_est <-
   bbr_survival(
     bboudata::bbousurv_c,
-    mort_type = "total",
+    include_uncertain_morts= TRUE,
     variance = "greenwood"
   )
 bbr_plot_survival(survival_est)

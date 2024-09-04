@@ -17,28 +17,28 @@ test_that("survival a works", {
     print(
       bbr_survival(
         bboudata::bbousurv_a,
-        mort_type = "total", variance = "cox_oakes"
+        include_uncertain_morts = TRUE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_a,
-        mort_type = "certain", variance = "cox_oakes"
+        include_uncertain_morts = FALSE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_a,
-        mort_type = "total", variance = "greenwood"
+        include_uncertain_morts = TRUE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_a,
-        mort_type = "certain", variance = "greenwood"
+        include_uncertain_morts = FALSE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -50,28 +50,28 @@ test_that("survival b works", {
     print(
       bbr_survival(
         bboudata::bbousurv_b,
-        mort_type = "total", variance = "cox_oakes"
+        include_uncertain_morts = TRUE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_b,
-        mort_type = "certain", variance = "cox_oakes"
+        include_uncertain_morts = FALSE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_b,
-        mort_type = "total", variance = "greenwood"
+        include_uncertain_morts = TRUE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_b,
-        mort_type = "certain", variance = "greenwood"
+        include_uncertain_morts = FALSE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -83,28 +83,28 @@ test_that("survival c works", {
     print(
       bbr_survival(
         bboudata::bbousurv_c,
-        mort_type = "total", variance = "cox_oakes"
+        include_uncertain_morts = TRUE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_c,
-        mort_type = "certain", variance = "cox_oakes"
+        include_uncertain_morts = FALSE, variance = "cox_oakes"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_c,
-        mort_type = "total", variance = "greenwood"
+        include_uncertain_morts = TRUE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
     print(
       bbr_survival(
         bboudata::bbousurv_c,
-        mort_type = "certain", variance = "greenwood"
+        include_uncertain_morts = FALSE, variance = "greenwood"
       ),
       n = 100, width = 100
     )
@@ -142,6 +142,6 @@ test_that("status message", {
 
   expect_equal(
     unique(output$status[output$sum_dead == 0]),
-    " - No Mortalities all year (SE=0)"
+    "No Mortalities all year (SE=0)"
   )
 })

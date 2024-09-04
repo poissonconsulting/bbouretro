@@ -18,10 +18,8 @@
 #' (Pollock et al. 1989).
 #'
 #' @param x A data frame that has survival data.
-#' @param mort_type Mortality data to be included. Values can be `"total"` which
-#'   would be all mortalities (MortalitiesCertain and MortalitiesUncertain) or
-#'   only `"certain"` mortalities (MortalitiesCertain). The default is
-#'   `"total"`.
+#' @param include_uncertain_morts A flag indicating whether to include uncertain mortalities in total mortalities.
+#'    The default value is TRUE. 
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
 #'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is
 #'   "greenwood".
@@ -59,17 +57,18 @@
 #' @examples
 #' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_a,
-#'   mort_type = "total",
+#'   include_uncertain_morts = TRUE,
 #'   variance = "greenwood"
 #' )
 #' survival_est <- bbr_survival(
 #'   bboudata::bbousurv_b,
-#'   mort_type = "certain",
+#'   include_uncertain_morts = FALSE,
 #'   variance = "cox_oakes"
 #' )
-bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_start = 4L) {
+
+bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwood", year_start = 4L) {
   x <- bboudata::bbd_chk_data_survival(x)
-  chk::chk_string(mort_type)
+  chk::chk_flag(include_uncertain_morts)
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
@@ -77,12 +76,12 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
   # make sure data set is sorted properly
   x <- dplyr::arrange(x, .data$Year, .data$Month)
   # Tally total mortalities.
-  x$TotalMorts <- x$MortalitiesCertain + x$MortalitiesUncertain
-
-  # mort_type can be "total" or "certain"
-  x$mort_type <- mort_type
-  x$Morts <- ifelse(x$mort_type == "total", x$TotalMorts, x$MortalitiesCertain)
-
+  
+  ifelse(include_uncertain_morts, 
+  x$Morts <- x$MortalitiesCertain + x$MortalitiesUncertain,
+  x$Morts <- x$MortalitiesCertain
+  )
+  
   # Months with 0 collars monitored are removed but this is noted to user later
   # and estimates scaled appropriately
   x <- subset(x, x$StartTotal > 0)
@@ -129,16 +128,29 @@ bbr_survival <- function(x, mort_type = "total", variance = "greenwood", year_st
   # Zero mortalities causes variance to be 0
   YearSurv$Status1 <- ifelse(
     YearSurv$monthcount == 12,
-    "",
+    NA_character_,
     paste("Only", YearSurv$monthcount, "months monitored")
   )
   YearSurv$Status2 <- ifelse(
     YearSurv$sum_dead == 0,
     "No Mortalities all year (SE=0)",
-    ""
+    NA_character_
   )
-  YearSurv$status <- paste(YearSurv$Status1, "-", YearSurv$Status2)
-
+  
+  YearSurv$status <- ifelse(
+    is.na(YearSurv$Status1) & is.na(YearSurv$Status2), 
+    NA_character_,
+    ifelse(
+      !is.na(YearSurv$Status1) & !is.na(YearSurv$Status2),
+      paste(YearSurv$Status1, YearSurv$Status2, sep = "; "),
+      ifelse(
+        !is.na(YearSurv$Status1), 
+        YearSurv$Status1, 
+        YearSurv$Status2
+      )
+    )
+  )
+  
   # scale estimates to a year if less than 12 months monitored
   YearSurv$S <- YearSurv$S^(12 / YearSurv$monthcount)
   YearSurv$S_Var <- YearSurv$S_Var^(12 / YearSurv$monthcount)

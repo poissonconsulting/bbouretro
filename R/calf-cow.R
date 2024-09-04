@@ -16,7 +16,7 @@
 #' 
 #'
 #' @param x A data frame that has recruitment data.
-#' @param p_females Assumed or estimated proportion of females in the population
+#' @param adult_female_proportion Assumed or estimated proportion of females in the population
 #'   used to assign unknown sex caribou. Values must be between 0
 #'   and 1. Can be set to 0 to exclude unknown sex caribou from recruitment
 #'   estimates. The default is set at 0.65.
@@ -56,26 +56,26 @@
 #' @examples
 #' calfcow_est <- bbr_calf_cow_ratio(
 #'   bboudata::bbourecruit_a,
-#'   p_females = 0.65,
+#'   adult_female_proportion = 0.65,
 #'   sex_ratio = 0.5,
 #'   variance = "binomial"
 #' )
 #' calfcow_est <- bbr_calf_cow_ratio(
 #'   bboudata::bbourecruit_a,
-#'   p_females = 0.60,
+#'   adult_female_proportion = 0.60,
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_calf_cow_ratio <- function(x, p_females = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
+bbr_calf_cow_ratio <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
   x <- bboudata::bbd_chk_data_recruitment(x)
-  chk::chk_range(p_females)
+  chk::chk_range(adult_female_proportion)
   chk::chk_range(sex_ratio)
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
   
   rec <- bbr_recruitment(x, 
-                         p_females = p_females, 
+                         adult_female_proportion = adult_female_proportion, 
                          sex_ratio = sex_ratio, 
                          variance = variance,
                          year_start = year_start)
