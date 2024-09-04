@@ -19,7 +19,7 @@
 #'
 #' @param x A data frame that has survival data.
 #' @param include_uncertain_morts A flag indicating whether to include uncertain mortalities in total mortalities.
-#'    The default value is FALSE. 
+#'    The default value is TRUE. 
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
 #'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is
 #'   "greenwood".
@@ -66,7 +66,7 @@
 #'   variance = "cox_oakes"
 #' )
 
-bbr_survival <- function(x, include_uncertain_morts = FALSE, variance = "greenwood", year_start = 4L) {
+bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwood", year_start = 4L) {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_flag(include_uncertain_morts)
   chk::chk_string(variance)
