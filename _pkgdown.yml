@@ -1,6 +1,5 @@
 url: https://poissonconsulting.github.io/bbouretro/
 
-destination: docs
 
 reference:
 - title: Recruitment
@@ -20,3 +19,5 @@ reference:
   - '`bbr_growth_summarize`'
   - '`bbr_plot_growth`'
   - '`bbr_plot_growth_distributions`'
+template:
+  package: poissontemplate
