@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(bbouretro)
 ```
 
 <!-- # Copyright 2024 Province of Alberta -->
@@ -102,3 +103,7 @@ Please report any [issues](https://github.com/poissonconsulting/bbouretro/issues
 
 Please note that this project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). 
 By contributing to this project, you agree to abide by its terms.
+
+```{r, results = "asis", echo = FALSE}
+cat(licensing_md())
+```
