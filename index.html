@@ -6,15 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Traditional Survival, Recruitment and Population Growth Methods • bbouretro</title>
-<script src="katex-auto.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="katex-auto.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto_Condensed-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Roboto_Mono-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Playfair_Display-0.4.9/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto_Condensed-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Roboto_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Playfair_Display-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><link href="deps/KaTex-0.16.10/katex.min.css" rel="stylesheet">
-<script src="deps/KaTex-0.16.10/katex.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Traditional Survival, Recruitment and Population Growth Methods">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Traditional Survival, Recruitment and Population Growth Methods">
 <meta name="description" content="Estimates annual survival, recruitment and population growth using the traditional methods. This package is part of the bbou suite of tools.">
 <meta property="og:description" content="Estimates annual survival, recruitment and population growth using the traditional methods. This package is part of the bbou suite of tools.">
 </head>
@@ -83,6 +83,11 @@
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://poissonconsulting.github.io/bbouretro/">bbouretro</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://poissonconsulting.github.io/bboudata/" class="external-link">bboudata</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'bboudata'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:bbouretro':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     licensing_md</span></span>
 <span></span>
 <span><span class="co"># generate recruitment estimate for each year</span></span>
 <span><span class="va">recruitment_est</span> <span class="op">&lt;-</span></span>
@@ -100,7 +105,7 @@
 <span><span class="va">survival_est</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="reference/bbr_survival.html">bbr_survival</a></span><span class="op">(</span></span>
 <span>    <span class="fu">bboudata</span><span class="fu">::</span><span class="va"><a href="https://poissonconsulting.github.io/bboudata/reference/bbousurv_c.html" class="external-link">bbousurv_c</a></span>,</span>
-<span>    include_uncertain_morts<span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    include_uncertain_morts <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>    variance <span class="op">=</span> <span class="st">"greenwood"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="fu"><a href="reference/bbr_plot_survival.html">bbr_plot_survival</a></span><span class="op">(</span><span class="va">survival_est</span><span class="op">)</span></span></code></pre></div>
@@ -153,6 +158,14 @@
 </h2>
 <p>Please note that this project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
+<div class="section level2">
+<h2 id="licensing">Licensing<a class="anchor" aria-label="anchor" href="#licensing"></a>
+</h2>
+<p>Copyright 2022-2023 Environment and Climate Change Canada<br>
+Copyright 2024 Province of Alberta</p>
+<p>The documentation is released under the <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">CC BY 4.0 License</a></p>
+<p>The code is released under the <a href="https://www.apache.org/licenses/LICENSE-2.0" class="external-link">Apache License 2.0</a></p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -188,11 +201,11 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>John Boulanger <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8222-1445" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>John Boulanger <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8222-1445" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>
-<a href="https://www.poissonconsulting.ca/author/ayla-pearson/" class="external-link">Ayla Pearson</a> <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0001-7388-1222" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://www.poissonconsulting.ca/author/ayla-pearson/" class="external-link">Ayla Pearson</a> <br><small class="roles"> Maintainer, author </small> <a href="https://orcid.org/0000-0001-7388-1222" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>
-<a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-7683-4592" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://www.poissonconsulting.ca/author/joe-thorley/" class="external-link">Joe Thorley</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-7683-4592" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -215,7 +228,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
