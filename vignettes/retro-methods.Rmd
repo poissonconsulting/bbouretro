@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 There are multiple ways cited in literature to calculate survival, recruitment, and population growth.
 The traditional or **retro** methods used in bbou**retro** are outlined below. 
 
-## Survival, $S$
+## Survival
 
 The `bbr_survival()` function uses the staggered entry Kaplan-Meier method.
 
@@ -60,7 +60,7 @@ $$SE(\hat{S}(t)) = \sqrt{ \frac{[\hat{S}(t)]^2 - [1-\hat{S}(t)]}{r(t)}}$$
 Logit-based confidence limits are estimated using the Wald method.
 Further details on the Kaplan-Meier approach as applied in boreal caribou studies are given in `vignette("previous-methods")`.
 
-## Recruitment, $R$
+## Recruitment
 
 The `bbr_recruitment()` function estimates recruitment using the following method. 
 
@@ -88,7 +88,7 @@ It is assumed that both survival and recruitment are independently distributed o
 The bootstrap method is recommended as the most robust approach to obtain variance estimates [@manly_1984] .
 A full summary of methods is given in `vignette("previous-methods")`.
 
-## Population Growth, $\lambda$
+## Population Growth
 
 For `bbr_growth()` function uses the basic Hatter-Bergerud method [@hatter_moose_1991].
 
