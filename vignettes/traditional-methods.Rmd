@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Survival, $S$
+## Survival
 
 The Heisey and Fuller [-@heisey_evaluation_1985]  method is a generalization of the basic approach of Mayfield [-@mayfield_nesting_1961] and Trent and Rongstad [-@trent_home_1974] to determine unbiased estimates of cause-specific mortality rates. 
 Heisey and Fuller [-@heisey_evaluation_1985] also developed a computer program MICROMORT to perform the calculations. 
@@ -80,7 +80,7 @@ The known fate model provides a similar estimate to the Kaplan-Meier estimator w
 The advantage of the known fate approach is it allows comparison of alternative models with, for example, constant survival vs yearly and/or monthly variation. 
 As well as the Heisey and Fuller method, Edmonds [-@edmonds_population_1988] also used the method described by Gasaway et al. [-@gasaway_interrelationships_1983] to provide estimates and confidence intervals.
 
-## Recruitment, $R$
+## Recruitment
 
 The mean ratio, $\hat{R}$, can be calculated from, $\bar{y}$, the mean number of calves and, $\bar{c}$, the mean number of cows [@cochran_sampling_1977; @thompson_sampling_1992; @krebs_ecological_1999]
 
@@ -109,7 +109,7 @@ Bootstrapping was used to generate confidence intervals using 1,000 [@mcloughlin
 
 A binomial distribution was used by Rettie and Messier  [-@rettie_dynamics_1998].
 
-## Population Growth, $\lambda$
+## Population Growth
 
 The three main methods used for calculating, $\lambda$, population growth are the original recruitment-mortality $R/M$ formula described by Hatter and Bergerud (1991) using raw calf cow ratios of R; the adjusted recruitment $R_{RM}$ formula of DeCesare et al. [-@decesare_estimating_2012] and a Lefkovich matrix model [@fryxell_anthropogenic_2020]
 
