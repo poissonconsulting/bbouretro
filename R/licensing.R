@@ -1,4 +1,3 @@
-# Copyright 2022-2023 Environment and Climate Change Canada
 # Copyright 2024 Province of Alberta
 #
 # Licensed under the Apache License, Version 2.0 (the 'License');
@@ -23,7 +22,6 @@
 #' licensing_md()
 licensing_md <- function() {
   "## Licensing
-  Copyright 2022-2023 Environment and Climate Change Canada\\
   Copyright 2024 Province of Alberta\\
 
   The documentation is released under the
