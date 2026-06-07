@@ -10,7 +10,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-7683-4592")),
     person("Seb", "Dalgarno", , "seb@poissonconsulting.ca", role = "ctb",
            comment = c(ORCID = "0000-0002-3658-4517")),
-    person("Colton", "Stephens", , "colton@poissonconsulting.ca", role = "ctb",
+    person("Colton", "Stephens", , role = "ctb",
            comment = c(ORCID = "0000-0002-8744-6405")),
     person("Province of Alberta", role = "cph")
   )
