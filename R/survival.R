@@ -19,7 +19,7 @@
 #'
 #' @param x A data frame that has survival data.
 #' @param include_uncertain_morts A flag indicating whether to include uncertain mortalities in total mortalities.
-#'    The default value is TRUE. 
+#'    The default value is TRUE.
 #' @param variance Variance type to estimate. Can be the Greenwood estimator
 #'   `"greenwood"` or Cox Oakes estimator `"cox_oakes"`. The default is
 #'   "greenwood".
@@ -66,7 +66,12 @@
 #'   variance = "cox_oakes"
 #' )
 
-bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwood", year_start = 4L) {
+bbr_survival <- function(
+  x,
+  include_uncertain_morts = TRUE,
+  variance = "greenwood",
+  year_start = 4L
+) {
   x <- bboudata::bbd_chk_data_survival(x)
   chk::chk_flag(include_uncertain_morts)
   chk::chk_string(variance)
@@ -76,12 +81,13 @@ bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwoo
   # make sure data set is sorted properly
   x <- dplyr::arrange(x, .data$Year, .data$Month)
   # Tally total mortalities.
-  
-  ifelse(include_uncertain_morts, 
-  x$Morts <- x$MortalitiesCertain + x$MortalitiesUncertain,
-  x$Morts <- x$MortalitiesCertain
+
+  ifelse(
+    include_uncertain_morts,
+    x$Morts <- x$MortalitiesCertain + x$MortalitiesUncertain,
+    x$Morts <- x$MortalitiesCertain
   )
-  
+
   # Months with 0 collars monitored are removed but this is noted to user later
   # and estimates scaled appropriately
   x <- subset(x, x$StartTotal > 0)
@@ -93,7 +99,8 @@ bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwoo
   LiveDeadCount <- dplyr::mutate(
     x,
     Smonth = (1 - (.data$Morts / .data$StartTotal)),
-    Smonth_varj = .data$Morts / (.data$StartTotal * (.data$StartTotal - .data$Morts))
+    Smonth_varj = .data$Morts /
+      (.data$StartTotal * (.data$StartTotal - .data$Morts))
   )
 
   YearSurv <-
@@ -117,7 +124,8 @@ bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwoo
   # Variance estimate using the Greenwood formula for variance
   YearSurv$S_Var_Green <- YearSurv$S^2 * YearSurv$S_var1
   # Variance estimate using the Pollock et al 1989 method
-  YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) / YearSurv$sum_alive
+  YearSurv$S_Var_Pollock <- (YearSurv$S^2 * (1 - YearSurv$S)) /
+    YearSurv$sum_alive
   YearSurv$S_Var <- ifelse(
     YearSurv$VarType == "cox_oakes",
     YearSurv$S_Var_Pollock,
@@ -136,21 +144,21 @@ bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwoo
     "No Mortalities all year (SE=0)",
     NA_character_
   )
-  
+
   YearSurv$status <- ifelse(
-    is.na(YearSurv$Status1) & is.na(YearSurv$Status2), 
+    is.na(YearSurv$Status1) & is.na(YearSurv$Status2),
     NA_character_,
     ifelse(
       !is.na(YearSurv$Status1) & !is.na(YearSurv$Status2),
       paste(YearSurv$Status1, YearSurv$Status2, sep = "; "),
       ifelse(
-        !is.na(YearSurv$Status1), 
-        YearSurv$Status1, 
+        !is.na(YearSurv$Status1),
+        YearSurv$Status1,
         YearSurv$Status2
       )
     )
   )
-  
+
   # scale estimates to a year if less than 12 months monitored
   YearSurv$S <- YearSurv$S^(12 / YearSurv$monthcount)
   YearSurv$S_Var <- YearSurv$S_Var^(12 / YearSurv$monthcount)
@@ -162,8 +170,16 @@ bbr_survival <- function(x, include_uncertain_morts = TRUE, variance = "greenwoo
     logits = logit(.data$S),
     selogit = logit_se(.data$S_SE, .data$S)
   )
-  YearSurv$S_CIU <- ilogit(wald_cl(YearSurv$logits, YearSurv$selogit, upper = TRUE))
-  YearSurv$S_CIL <- ilogit(wald_cl(YearSurv$logits, YearSurv$selogit, upper = FALSE))
+  YearSurv$S_CIU <- ilogit(wald_cl(
+    YearSurv$logits,
+    YearSurv$selogit,
+    upper = TRUE
+  ))
+  YearSurv$S_CIL <- ilogit(wald_cl(
+    YearSurv$logits,
+    YearSurv$selogit,
+    upper = FALSE
+  ))
 
   # round estimates for table.
   YearSurv$mean_monitored <- round(YearSurv$meanalive, 1)

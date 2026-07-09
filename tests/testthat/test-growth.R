@@ -30,7 +30,8 @@ test_that("pop a works", {
     output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(survival_est, recruitment_est), 3
+          bbr_growth(survival_est, recruitment_est),
+          3
         )
       )
 
@@ -66,7 +67,8 @@ test_that("pop b works", {
     output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(survival_est, recruitment_est), 3
+          bbr_growth(survival_est, recruitment_est),
+          3
         )
       )
 
@@ -102,7 +104,8 @@ test_that("pop c works", {
     output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(survival_est, recruitment_est), 3
+          bbr_growth(survival_est, recruitment_est),
+          3
         )
       )
 
@@ -145,7 +148,9 @@ test_that("test data works", {
       sum_dead = c(3L, 3L, 3L, 0L),
       sum_alive = c(39L, 149L, 179L, 242L),
       status = c(
-        "Only 9 months monitored - ", " - ", " - ",
+        "Only 9 months monitored - ",
+        " - ",
+        " - ",
         " - No Mortalities all year (SE=0)"
       )
     )
@@ -153,7 +158,8 @@ test_that("test data works", {
     output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(survival_est, recruitment_est), 3
+          bbr_growth(survival_est, recruitment_est),
+          3
         )
       )
 
@@ -196,7 +202,9 @@ test_that("errors if no populations overlap", {
       sum_dead = c(3L, 3L, 3L, 0L),
       sum_alive = c(39L, 149L, 179L, 242L),
       status = c(
-        "Only 9 months monitored - ", " - ", " - ",
+        "Only 9 months monitored - ",
+        " - ",
+        " - ",
         " - No Mortalities all year (SE=0)"
       )
     )
@@ -233,7 +241,9 @@ test_that("errors if no years overlap", {
       sum_dead = c(3L, 3L, 3L, 0L),
       sum_alive = c(39L, 149L, 179L, 242L),
       status = c(
-        "Only 9 months monitored - ", " - ", " - ",
+        "Only 9 months monitored - ",
+        " - ",
+        " - ",
         " - No Mortalities all year (SE=0)"
       )
     )
@@ -314,7 +324,9 @@ test_that("NA instead in dataset work", {
       sum_dead = c(3L, 3L, 3L, 0L),
       sum_alive = c(39L, 149L, 179L, 242L),
       status = c(
-        "Only 9 months monitored - ", " - ", " - ",
+        "Only 9 months monitored - ",
+        " - ",
+        " - ",
         " - No Mortalities all year (SE=0)"
       )
     )
@@ -322,7 +334,8 @@ test_that("NA instead in dataset work", {
     output <-
       data.frame(
         round_df_sigs(
-          bbr_growth(survival_est, recruitment_est), 3
+          bbr_growth(survival_est, recruitment_est),
+          3
         )
       )
 

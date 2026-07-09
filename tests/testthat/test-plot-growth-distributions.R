@@ -106,7 +106,9 @@ test_that("errors when more then 1 pop in data set", {
       sum_dead = c(3L, 3L, 3L, 0L),
       sum_alive = c(39L, 149L, 179L, 242L),
       status = c(
-        "Only 9 months monitored - ", " - ", " - ",
+        "Only 9 months monitored - ",
+        " - ",
+        " - ",
         " - No Mortalities all year (SE=0)"
       )
     )

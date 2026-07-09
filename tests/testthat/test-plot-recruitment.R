@@ -18,7 +18,8 @@ test_that("pop a works", {
       bboudata::bbourecruit_a,
       adult_female_proportion = 0.65,
       sex_ratio = 0.5,
-      variance = "binomial", year_start = 1L
+      variance = "binomial",
+      year_start = 1L
     )
 
     plot <- bbr_plot_recruitment(recruitment_est)

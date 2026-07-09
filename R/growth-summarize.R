@@ -44,14 +44,26 @@
 #' recruitment_est <- bbr_recruitment(bboudata::bbourecruit_a)
 #' survival_est <- bbr_survival(bboudata::bbousurv_a)
 #' growth_est <- bbr_growth(survival_est, recruitment_est)
-#' 
+#'
 #' bbr_growth_summarize(growth_est)
 #' }
 bbr_growth_summarize <- function(growth) {
-  chk::check_names(growth, c(
-    "PopulationName", "CaribouYear", "S", "R", "estimate", "se", "lower", "upper",
-    "prop_lgt1", "ran_r", "ran_s"
-  ))
+  chk::check_names(
+    growth,
+    c(
+      "PopulationName",
+      "CaribouYear",
+      "S",
+      "R",
+      "estimate",
+      "se",
+      "lower",
+      "upper",
+      "prop_lgt1",
+      "ran_r",
+      "ran_s"
+    )
+  )
 
   chk::check_data(
     growth,

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 #' Estimate Calf-Cow Ratio.
-#' 
+#'
 #'
 #' @param x A data frame that has recruitment data.
 #' @param adult_female_proportion Assumed or estimated proportion of females in the population
@@ -66,26 +66,34 @@
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_calf_cow_ratio <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
+bbr_calf_cow_ratio <- function(
+  x,
+  adult_female_proportion = 0.65,
+  sex_ratio = 0.5,
+  variance = "bootstrap",
+  year_start = 4L
+) {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(adult_female_proportion)
   chk::chk_range(sex_ratio)
   chk::chk_string(variance)
   chk::chk_whole_number(year_start)
   chk::chk_range(year_start, c(1, 12))
-  
-  rec <- bbr_recruitment(x, 
-                         adult_female_proportion = adult_female_proportion, 
-                         sex_ratio = sex_ratio, 
-                         variance = variance,
-                         year_start = year_start)
-  
-  ccr <- 
-    rec |> 
+
+  rec <- bbr_recruitment(
+    x,
+    adult_female_proportion = adult_female_proportion,
+    sex_ratio = sex_ratio,
+    variance = variance,
+    year_start = year_start
+  )
+
+  ccr <-
+    rec |>
     dplyr::mutate(dplyr::across(c("estimate", "lower", "upper"), function(.x) {
       round(bbr_rec_to_cc(.x, sex_ratio = sex_ratio), 3)
     }))
-  
+
   # SE no longer valid - can't convert from recruitment
   ccr$se <- NULL
   tibble::as_tibble(ccr)

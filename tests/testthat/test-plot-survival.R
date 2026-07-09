@@ -69,7 +69,12 @@ test_that("skip x ticks when more then 6 groups", {
     sum_dead = c(3L, 3L, 3L, 0L, 7L, 2L, 4L),
     sum_alive = c(39L, 149L, 179L, 242L, 251L, 124L, 365L),
     status = c(
-      "Only 9 months monitored - ", " - ", " - ", " - ", " - ", " - ",
+      "Only 9 months monitored - ",
+      " - ",
+      " - ",
+      " - ",
+      " - ",
+      " - ",
       " - "
     )
   )
@@ -98,7 +103,9 @@ test_that("errors if no year column", {
     sum_dead = c(3L, 3L, 3L, 0L),
     sum_alive = c(39L, 149L, 179L, 242L),
     status = c(
-      "Only 9 months monitored - ", " - ", " - ",
+      "Only 9 months monitored - ",
+      " - ",
+      " - ",
       " - No Mortalities all year (SE=0)"
     )
   )
