@@ -26,7 +26,7 @@
 #' recruitment_est <- bbr_recruitment(bboudata::bbourecruit_a)
 #' survival_est <- bbr_survival(bboudata::bbousurv_a)
 #' growth_est <- bbr_growth(survival_est, recruitment_est)
-#' 
+#'
 #' bbr_plot_growth(growth_est)
 #' }
 bbr_plot_growth <- function(growth) {

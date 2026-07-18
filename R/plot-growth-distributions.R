@@ -31,7 +31,7 @@
 #' recruitment_est <- bbr_recruitment(bboudata::bbourecruit_a)
 #' survival_est <- bbr_survival(bboudata::bbousurv_a)
 #' growth_est <- bbr_growth(survival_est, recruitment_est)
-#' 
+#'
 #' bbr_plot_growth_distributions(growth_est)
 #' }
 bbr_plot_growth_distributions <- function(growth) {
@@ -50,8 +50,16 @@ bbr_plot_growth_distributions <- function(growth) {
   xmin <- quantile(LrawR$RanLambda, 0.0001)
   xmax <- quantile(LrawR$RanLambda, 0.99)
   # make sure that limits are still within range of lambda estimates for estimates with no CI's
-  xmax <- ifelse(xmax <= max(growth$estimate), max(growth$estimate) + 0.05, xmax)
-  xmin <- ifelse(xmin >= min(growth$estimate), min(growth$estimate) - 0.05, xmin)
+  xmax <- ifelse(
+    xmax <= max(growth$estimate),
+    max(growth$estimate) + 0.05,
+    xmax
+  )
+  xmin <- ifelse(
+    xmin >= min(growth$estimate),
+    min(growth$estimate) - 0.05,
+    xmin
+  )
 
   # subset data based on xlimits-this works better than using xlim or coord_cartesian in ggplot
   LrawR <- subset(LrawR, LrawR$RanLambda >= xmin & LrawR$RanLambda <= xmax)

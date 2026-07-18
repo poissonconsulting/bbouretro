@@ -19,21 +19,28 @@ test_that("recruitment a works", {
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_a
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
       print(
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_a,
-          adult_female_proportion = 0.2, sex_ratio = 0.6, variance = "binomial"
+          adult_female_proportion = 0.2,
+          sex_ratio = 0.6,
+          variance = "binomial"
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
       print(
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_a,
-          adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+          adult_female_proportion = 0.2,
+          sex_ratio = 0.5,
+          variance = "bootstrap"
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
     })
   })
@@ -46,21 +53,28 @@ test_that("recruitment b works", {
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_b
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
       print(
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_b,
-          adult_female_proportion = 0.65, sex_ratio = 0.6, variance = "binomial"
+          adult_female_proportion = 0.65,
+          sex_ratio = 0.6,
+          variance = "binomial"
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
       print(
         bbr_calf_cow_ratio(
           bboudata::bbourecruit_b,
-          adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+          adult_female_proportion = 0.2,
+          sex_ratio = 0.5,
+          variance = "bootstrap"
         ),
-        n = 100, width = 100
+        n = 100,
+        width = 100
       )
     })
   })
@@ -72,21 +86,28 @@ test_that("recruitment c works", {
   expect_snapshot({
     print(
       bbr_calf_cow_ratio(bboudata::bbourecruit_c),
-      n = 100, width = 100
+      n = 100,
+      width = 100
     )
     print(
       bbr_calf_cow_ratio(
         bboudata::bbourecruit_c,
-        adult_female_proportion = 0.65, sex_ratio = 0.6, variance = "binomial"
+        adult_female_proportion = 0.65,
+        sex_ratio = 0.6,
+        variance = "binomial"
       ),
-      n = 100, width = 100
+      n = 100,
+      width = 100
     )
     print(
       bbr_calf_cow_ratio(
         bboudata::bbourecruit_c,
-        adult_female_proportion = 0.2, sex_ratio = 0.5, variance = "bootstrap"
+        adult_female_proportion = 0.2,
+        sex_ratio = 0.5,
+        variance = "bootstrap"
       ),
-      n = 100, width = 100
+      n = 100,
+      width = 100
     )
   })
 })

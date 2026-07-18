@@ -73,7 +73,13 @@
 #'   sex_ratio = 0.65,
 #'   variance = "bootstrap"
 #' )
-bbr_recruitment <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, variance = "bootstrap", year_start = 4L) {
+bbr_recruitment <- function(
+  x,
+  adult_female_proportion = 0.65,
+  sex_ratio = 0.5,
+  variance = "bootstrap",
+  year_start = 4L
+) {
   x <- bboudata::bbd_chk_data_recruitment(x)
   chk::chk_range(adult_female_proportion)
   chk::chk_range(sex_ratio)
@@ -84,7 +90,9 @@ bbr_recruitment <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, 
   # Estimate total females based on adult_female_proportion and sex_ratio
   x <- dplyr::mutate(
     x,
-    females = .data$Cows + .data$UnknownAdults * adult_female_proportion + .data$Yearlings * sex_ratio,
+    females = .data$Cows +
+      .data$UnknownAdults * adult_female_proportion +
+      .data$Yearlings * sex_ratio,
     female_calves = .data$Calves * sex_ratio
   )
 
@@ -125,8 +133,16 @@ bbr_recruitment <- function(x, adult_female_proportion = 0.65, sex_ratio = 0.5, 
       logits = logit(.data$R),
       selogit = logit_se(.data$R_SE, .data$R)
     )
-    Compfull$R_CIU <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = TRUE))
-    Compfull$R_CIL <- ilogit(wald_cl(Compfull$logits, Compfull$selogit, upper = FALSE))
+    Compfull$R_CIU <- ilogit(wald_cl(
+      Compfull$logits,
+      Compfull$selogit,
+      upper = TRUE
+    ))
+    Compfull$R_CIL <- ilogit(wald_cl(
+      Compfull$logits,
+      Compfull$selogit,
+      upper = FALSE
+    ))
   }
 
   # bootstrap approach
